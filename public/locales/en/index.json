@@ -1,0 +1,47 @@
+{
+    "catalogue": "Catalogue",
+    "hero": {
+        "title": "Create your family tree together with Stammbaum",
+        "cta": "Create tree",
+        "step1": "Add relatives and loved ones to your tree",
+        "step2": "Share your family story with friends",
+        "step3": "Keep important dates and milestones"
+    },
+    "cards": [
+        {
+            "relation": "Daughter",
+            "name": "Anna Miller",
+            "lifespan": "14.08.2002"
+        },
+        {
+            "relation": "Mother",
+            "name": "Mary Miller",
+            "lifespan": "27.11.1983"
+        },
+        {
+            "relation": "Father",
+            "name": "John Miller",
+            "lifespan": "15.06.1978"
+        },
+        {
+            "relation": "Grandmother",
+            "name": "Helen Clarke",
+            "lifespan": "09.03.1955 — 02.08.2020"
+        },
+        {
+            "relation": "Grandfather",
+            "name": "Robert Clarke",
+            "lifespan": "21.07.1948"
+        },
+        {
+            "relation": "Grandmother",
+            "name": "Jane Miller",
+            "lifespan": "03.12.1949 — 31.05.2021"
+        },
+        {
+            "relation": "Grandfather",
+            "name": "Peter Miller Jr.",
+            "lifespan": "09.06.1945 — 06.06.1985"
+        }
+    ]
+}

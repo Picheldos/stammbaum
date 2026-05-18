@@ -1,0 +1,14 @@
+{
+  "title": "Account",
+  "favorites": "Favorites",
+  "favoritesEmpty": "Favorites list is empty",
+  "myAddress": "My address",
+  "addAddress": "Add address",
+  "addNewAddress": "Add new address",
+  "required": "Required",
+  "meta": {
+    "title": "Account",
+    "description": "Description",
+    "keywords": "keywords"
+  }
+}

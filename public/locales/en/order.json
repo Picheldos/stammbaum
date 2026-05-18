@@ -1,0 +1,24 @@
+{
+  "title": "Checkout",
+  "loading": "Loading...",
+  "requiredField": "Required field",
+  "invalidEmail": "Invalid email",
+  "invalidPhone": "Invalid phone number",
+  "invalidValue": "Invalid value",
+  "privacyCheckbox": "I have read and agree to the personal data processing policy",
+  "privacyRequired": "Consent is required",
+  "continue": "Continue",
+  "deliveryMethod": "Delivery method:",
+  "courier": "Courier",
+  "comment": "Comment",
+  "promoCode": "Promo code",
+  "itemsSum": "Items total:",
+  "deliveryCost": "Delivery cost:",
+  "total": "Total:",
+  "successMessage": "Your order has been successfully paid!",
+  "meta": {
+    "title": "Checkout",
+    "description": "Checkout at Stammbaum",
+    "keywords": "order, checkout, stammbaum"
+  }
+}

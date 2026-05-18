@@ -1,0 +1,16 @@
+{
+  "loading": "Загрузка корзины...",
+  "empty": "Корзина пуста",
+  "total": "ИТОГО:",
+  "deliveryCost": "Стоимость доставки:",
+  "checkout": "Оформить заказ",
+  "paymentAndDelivery": "Оплата и доставка",
+  "exchangeAndReturn": "Обмен и возврат",
+  "paymentDeliveryContent": "Информация об оплате и доставке.",
+  "exchangeReturnContent": "Условия обмена и возврата товаров.",
+  "meta": {
+    "title": "Корзина",
+    "description": "Описание корзины",
+    "keywords": "cart, shopping"
+  }
+}

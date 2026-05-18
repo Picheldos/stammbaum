@@ -1,0 +1,14 @@
+{
+  "title": "Личный кабинет",
+  "favorites": "Избранное",
+  "favoritesEmpty": "Список избранного пуст",
+  "myAddress": "Мой адрес",
+  "addAddress": "Добавить адрес",
+  "addNewAddress": "Добавить новый адрес",
+  "required": "Обязательно",
+  "meta": {
+    "title": "Личный кабинет",
+    "description": "Описание",
+    "keywords": "keywords"
+  }
+}

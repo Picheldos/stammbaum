@@ -1,0 +1,6 @@
+{
+  "title": "Search",
+  "titleQuery": "Search: {{query}}",
+  "description": "Product search results",
+  "keywords": "search, products"
+}

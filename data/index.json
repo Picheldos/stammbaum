@@ -1,0 +1,18 @@
+{
+    "product": {
+        "title": "title",
+        "price": "250$",
+        "image": "",
+        "colors": ["white", "black"],
+        "category": "coast",
+        "id": 0
+    },
+    "index": {
+        "mainPic": "",
+        "gallery": ["", "", ""],
+        "video": ""
+    },
+    "title": "Stammbaum — семейное древо",
+    "descriptionEn": "Stammbaum — create, view, and collaboratively maintain your online family tree.",
+    "descriptionRu": "Stammbaum — создавайте, просматривайте и совместно ведите генеалогическое древо семьи онлайн."
+}

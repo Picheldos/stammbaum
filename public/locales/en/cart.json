@@ -1,0 +1,16 @@
+{
+  "loading": "Loading cart...",
+  "empty": "Cart is empty",
+  "total": "Total:",
+  "deliveryCost": "Delivery cost:",
+  "checkout": "Checkout",
+  "paymentAndDelivery": "Payment and delivery",
+  "exchangeAndReturn": "Exchange and return",
+  "paymentDeliveryContent": "Payment and delivery information.",
+  "exchangeReturnContent": "Exchange and return policy.",
+  "meta": {
+    "title": "Cart",
+    "description": "Cart description",
+    "keywords": "cart, shopping"
+  }
+}

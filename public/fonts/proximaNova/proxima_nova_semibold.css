@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Proxima Nova Semibold';
+    src: url('../fonts/proxima_nova_semibold.eot'); /* IE 9 Compatibility Mode */
+    src: url('../fonts/proxima_nova_semibold.eot?#iefix') format('embedded-opentype'),
+        /* IE < 9 */ url('../fonts/proxima_nova_semibold.woff2') format('woff2'),
+        /* Super Modern Browsers */ url('../fonts/proxima_nova_semibold.woff') format('woff'),
+        /* Firefox >= 3.6, any other modern browser */ url('../fonts/proxima_nova_semibold.ttf') format('truetype'),
+        /* Safari, Android, iOS */ url('../fonts/proxima_nova_semibold.svg#proxima_nova_semibold') format('svg'); /* Chrome < 4, Legacy iOS */
+}

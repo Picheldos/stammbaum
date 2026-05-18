@@ -1,0 +1,24 @@
+{
+  "title": "Оформление заказа",
+  "loading": "Загрузка...",
+  "requiredField": "Обязательное поле",
+  "invalidEmail": "Некорректный e-mail",
+  "invalidPhone": "Некорректный номер телефона",
+  "invalidValue": "Некорректное значение",
+  "privacyCheckbox": "Я ознакомился и согласен с политикой обработки персональных данных",
+  "privacyRequired": "Необходимо согласие",
+  "continue": "Продолжить",
+  "deliveryMethod": "Способ доставки:",
+  "courier": "Курьер",
+  "comment": "Комментарий",
+  "promoCode": "Промокод",
+  "itemsSum": "Товаров на сумму:",
+  "deliveryCost": "Стоимость доставки:",
+  "total": "Итого:",
+  "successMessage": "Ваш заказ успешно оплачен!",
+  "meta": {
+    "title": "Оформление заказа",
+    "description": "Оформление заказа в Stammbaum",
+    "keywords": "order, checkout, stammbaum"
+  }
+}

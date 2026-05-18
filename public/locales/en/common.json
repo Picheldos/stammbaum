@@ -1,0 +1,36 @@
+{
+    "catalogue": "Catalogue",
+    "about": "About",
+    "account": "Account",
+    "contact": "Contact us",
+    "payment": "Payment and delivery",
+    "All": "All",
+    "faq": "FAQ",
+    "openSearch": "Open search",
+    "login": "Login",
+    "signIn": "Sign in",
+    "passwordsDoNotMatch": "Passwords do not match",
+    "personalDataPolicy": "I've read and agree with the personal data processing policy",
+    "addToBag": "Add to bag",
+    "productPreview": "Product preview",
+    "productImage": "Product image",
+    "locale": "EN",
+    "nav": {
+        "about": "About",
+        "tree": "Family tree",
+        "cemetery": "Cemetery",
+        "ariaPrimary": "Main navigation",
+        "openMenu": "Open menu"
+    },
+    "header": {
+        "createTree": "Create tree",
+        "login": "Log in"
+    },
+    "validation": {
+        "email": "Invalid email format. Use format: name@domain.com",
+        "tel": "Invalid phone format",
+        "password": "Invalid password. At least 8 characters, must include letters and digits",
+        "text": "Invalid characters. Only Latin letters, digits and spaces allowed",
+        "required": "This field is required"
+    }
+}
