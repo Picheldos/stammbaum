@@ -164,12 +164,16 @@ const buildDescendants = (
     return units;
 };
 
-const measure = (unit: CoupleUnit, opts: LayoutOptions): number => {
+/**
+ * Recursively measure the width of a unit's subtree along a single direction
+ * ('down' walks ancestors, 'up' walks descendants). Non-root units only have
+ * children on one side so they are happy with one pass; for the root unit we
+ * call this once per side and combine the totals in {@link layoutTree}.
+ */
+const measure = (unit: CoupleUnit, direction: 'up' | 'down', opts: LayoutOptions): number => {
     const selfWidth = coupleSlot(unit.members, opts);
-    const childWidth = (unit.ancestors.length > 0 ? unit.ancestors : unit.descendants).reduce(
-        (acc, child) => acc + measure(child, opts),
-        0
-    );
+    const children = direction === 'down' ? unit.ancestors : unit.descendants;
+    const childWidth = children.reduce((acc, child) => acc + measure(child, direction, opts), 0);
     unit.width = Math.max(selfWidth, childWidth);
     return unit.width;
 };
@@ -290,8 +294,13 @@ export const layoutTree = (
     const rootSpouse = rootSpouses[0];
     const rootMembers = rootSpouse ? [rootPersonId, rootSpouse] : [rootPersonId];
 
-    const seenAncestors = new Set<string>([rootPersonId, ...(rootSpouse ? [rootSpouse] : [])]);
-    const seenDescendants = new Set<string>([rootPersonId, ...(rootSpouse ? [rootSpouse] : [])]);
+    // Track which persons have been picked up by the recursion so the same
+    // person isn't placed in two ancestor/descendant units. The recursion adds
+    // each visited node to the set itself — pre-seeding it here with the root
+    // members would short-circuit buildAncestors/buildDescendants on their very
+    // first call and leave Maria/Pyotr (etc.) unplaced.
+    const seenAncestors = new Set<string>();
+    const seenDescendants = new Set<string>();
 
     const rootUnit: CoupleUnit = {
         members: rootMembers,
@@ -302,15 +311,22 @@ export const layoutTree = (
         descendants: buildDescendants(rootPersonId, rootSpouse, 0, relations, seenDescendants)
     };
 
-    measure(rootUnit, opts);
+    // Measure both sides independently — the rootUnit is the only unit that
+    // has both ancestors and descendants.
+    const selfWidth = coupleSlot(rootMembers, opts);
+    const ancestorsTotal = rootUnit.ancestors.reduce((acc, c) => acc + measure(c, 'down', opts), 0);
+    const descendantsTotal = rootUnit.descendants.reduce((acc, c) => acc + measure(c, 'up', opts), 0);
+    rootUnit.width = Math.max(selfWidth, ancestorsTotal, descendantsTotal);
 
     const nodes: NodePosition[] = [];
     place(rootUnit, 0, 'down', opts, nodes);
 
-    // Walk down/up descendants from the same root unit (descendants were
-    // already attached to rootUnit.descendants).
+    // Place descendants centred under the rootUnit. `place` was already invoked
+    // for the rootUnit above so `rootUnit.centre` is now meaningful.
+    let descCursor = rootUnit.centre - descendantsTotal / 2;
     for (const desc of rootUnit.descendants) {
-        place(desc, desc.centre - desc.width / 2, 'up', opts, nodes);
+        place(desc, descCursor, 'up', opts, nodes);
+        descCursor += desc.width;
     }
 
     // Siblings of root that aren't already placed via shared parents.
