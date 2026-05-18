@@ -329,28 +329,40 @@ export const layoutTree = (
         descCursor += desc.width;
     }
 
-    // Siblings of root that aren't already placed via shared parents.
+    // Siblings of root that aren't already placed via shared parents. Place
+    // them on either side of the rootUnit (alternating left/right), beyond
+    // the rendered edge of the root couple so they never overlap.
     const placed = new Set(nodes.map((n) => n.personId));
     const siblings = getSiblings(rootPersonId, relations).filter((id) => !placed.has(id));
     const rootCentre = rootUnit.centre;
+    const rootRendered =
+        rootMembers.length === 2 ? opts.nodeWidth * 2 + opts.columnGap : opts.nodeWidth;
+    const rootHalf = coupleSlot(rootMembers, opts) / 2;
+    const rootLeftEdge = rootCentre - rootHalf;
+    const rootRightEdge = rootLeftEdge + rootRendered;
+    const sibSlot = opts.nodeWidth + opts.columnGap;
     siblings.forEach((sib, i) => {
-        const offset = (i + 1) * slotWidth(opts) * (i % 2 === 0 ? -1 : 1);
-        nodes.push({
-            personId: sib,
-            x: rootCentre + offset - opts.nodeWidth / 2,
-            y: 0,
-            generation: 0
-        });
+        const ordinal = Math.floor(i / 2);
+        const onLeft = i % 2 === 0;
+        const x = onLeft
+            ? rootLeftEdge - opts.columnGap - opts.nodeWidth - sibSlot * ordinal
+            : rootRightEdge + opts.columnGap + sibSlot * ordinal;
+        nodes.push({ personId: sib, x, y: 0, generation: 0 });
         placed.add(sib);
     });
 
-    // Floating persons (unreachable via the focus) — show at the right side.
-    let floatX = (rootUnit.width || slotWidth(opts)) + slotWidth(opts);
+    // Floating persons (unreachable via the focus) — show at the right side
+    // beyond every other placed node.
+    const occupiedRight = nodes.reduce(
+        (acc, n) => Math.max(acc, n.x + opts.nodeWidth),
+        rootRightEdge
+    );
+    let floatX = occupiedRight + sibSlot;
     for (const p of persons) {
         if (placed.has(p.id)) continue;
         nodes.push({ personId: p.id, x: floatX, y: 0, generation: 0 });
         placed.add(p.id);
-        floatX += slotWidth(opts);
+        floatX += sibSlot;
     }
 
     const connections = buildConnections(nodes, relations, opts);
