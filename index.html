@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Stammbaum — Вход / Регистрация (демо)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <div class="brand">Stammbaum</div>
+      <div class="nav-actions">
+        <button id="createTree" class="btn outline">Создать дерево</button>
+        <button id="authBtn" class="btn primary">Войти</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div id="profileArea" class="profile hidden"></div>
+      <p class="hint">Это демонстрация страницы авторизации/регистрации. Данные аккаунтов и сессия хранятся в localStorage.</p>
+    </div>
+  </main>
+
+  <div id="authModal" class="modal hidden" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>Авторизация</h3>
+        <button id="closeModal" class="close">✕</button>
+      </div>
+
+      <div class="modal-tabs">
+        <button id="tabLogin" class="tab active">Войти</button>
+        <button id="tabRegister" class="tab">Зарегистрироваться</button>
+      </div>
+
+      <div class="modal-body">
+        <form id="loginForm">
+          <input name="id" placeholder="Имя пользователя или E-mail" required />
+          <input name="password" type="password" placeholder="Пароль" required />
+          <div class="forgot"><a href="#" id="forgot">Забыли пароль?</a></div>
+          <button type="submit" class="btn primary wide">Войти в профиль</button>
+        </form>
+
+        <form id="registerForm" class="hidden">
+          <input name="username" placeholder="Имя пользователя" required />
+          <input name="email" type="email" placeholder="E-mail" required />
+          <input name="password" type="password" placeholder="Пароль" required />
+          <input name="confirm" type="password" placeholder="Введите пароль еще раз" required />
+          <label class="terms"><input name="terms" type="checkbox" /> Я согласен с политикой обработки персональных данных</label>
+          <button type="submit" class="btn primary wide">Зарегистрироваться</button>
+        </form>
+
+        <div id="authMsg" class="msg"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

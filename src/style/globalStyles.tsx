@@ -25,7 +25,15 @@ const GlobalStyle = createGlobalStyle`
         overflow: auto;
     }
 
-    input {
+    input[type="checkbox"] {
+        -webkit-appearance: auto;
+        appearance: auto;
+        width: 16px;
+        height: 16px;
+        margin: 0;
+    }
+
+    input:not([type="checkbox"]) {
         -webkit-appearance: none;
         outline: none;
     }

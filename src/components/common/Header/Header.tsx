@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
@@ -29,11 +29,25 @@ export interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ variant = 'marketing' }) => {
     const { t } = useTranslation('common');
     const { pathname } = useRouter();
+    const router = useRouter();
+    const [sessionUser, setSessionUser] = useState<{ username: string; email: string } | null>(null);
     const setSandwichOpen = useSetRecoilState(SandwichState);
 
     const toggleMenu = () => setSandwichOpen((open) => !open);
 
     const marketing = variant === 'marketing';
+
+    useEffect(() => {
+        try {
+            const raw = localStorage.getItem('stammbaum_session');
+            if (raw) {
+                const s = JSON.parse(raw);
+                setSessionUser({ username: s.username, email: s.email });
+            }
+        } catch (e) {
+            // ignore
+        }
+    }, []);
 
     const navItems: { href: string; labelKey: string }[] = [
         { href: '/about', labelKey: 'nav.about' },
@@ -66,8 +80,34 @@ const Header: React.FC<HeaderProps> = ({ variant = 'marketing' }) => {
                 <RightCol>
                     {marketing && (
                         <AuthCluster>
-                            <BtnOutline type="button">{t('header.createTree')}</BtnOutline>
-                            <BtnSolid type="button">{t('header.login')}</BtnSolid>
+                            {!sessionUser ? (
+                                <>
+                                    <Link href="/login" style={{ textDecoration: 'none' }}>
+                                        <BtnOutline type="button">{t('signIn')}</BtnOutline>
+                                    </Link>
+                                    <Link href="/login" style={{ textDecoration: 'none' }}>
+                                        <BtnSolid type="button">{t('header.login')}</BtnSolid>
+                                    </Link>
+                                </>
+                            ) : (
+                                <>
+                                    <div style={{ color: 'white', opacity: 0.95 }}>{sessionUser.username}</div>
+                                    <BtnOutline
+                                        type="button"
+                                        onClick={() => {
+                                            try {
+                                                localStorage.removeItem('stammbaum_session');
+                                            } catch (e) {
+                                                // ignore
+                                            }
+                                            setSessionUser(null);
+                                            router.push('/');
+                                        }}
+                                    >
+                                        {t('header.logout')}
+                                    </BtnOutline>
+                                </>
+                            )}
                         </AuthCluster>
                     )}
                     <LangSwitch tone="light" compact />

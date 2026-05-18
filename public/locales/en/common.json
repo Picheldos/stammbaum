@@ -24,7 +24,8 @@
     },
     "header": {
         "createTree": "Create tree",
-        "login": "Log in"
+        "login": "Log in",
+        "logout": "Log out"
     },
     "validation": {
         "email": "Invalid email format. Use format: name@domain.com",
