@@ -83,71 +83,90 @@ export const remAdaptiveFont = (minSize: number, tabletSize: number, smallDeskSi
 };
 
 const typography = {
+    /* H1 - мобильный минимум 20, затем рост */
     title: css`
-        ${remAdaptiveFont(25, 25, 45, 45)};
+        font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
+        ${remAdaptiveFont(20, 30, 40, 40)};
         line-height: 1;
-        font-weight: 400;
+        font-weight: 500;
     `,
 
+    /* H2 - мобильный минимум 16 */
     title2: css`
-        ${remAdaptiveFont(20, 22, 40, 40)};
+        font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
+        ${remAdaptiveFont(16, 22, 30, 30)};
         line-height: 1;
-        font-weight: 700;
+        font-weight: 500;
     `,
 
+    /* H3 - Playfair Display */
     title3: css`
-        ${remAdaptiveFont(22, 24, 30, 30)};
+        font-family: var(--font-playfair-display), 'Playfair Display', Georgia, serif;
+        ${remAdaptiveFont(16, 18, 20, 20)};
         line-height: 1;
-        font-weight: 700;
+        font-weight: 500;
     `,
 
+    /* B3 - очень маленький (минимум 8) */
     font1: css`
-        ${remAdaptiveFont(12, 14, 23, 23)};
+        font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
+        ${remAdaptiveFont(8, 10, 14, 14)};
         line-height: 1.2;
         font-weight: 400;
     `,
 
+    /* B1 - минимум 12 */
     font2: css`
-        ${remAdaptiveFont(16, 18, 30, 30)};
+        font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
+        ${remAdaptiveFont(12, 14, 20, 20)};
         line-height: 1.2;
         font-weight: 400;
     `,
 
+    /* H5 or general mid text */
     font3: css`
-        ${remAdaptiveFont(19, 19, 32, 32)};
+        font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
+        ${remAdaptiveFont(18, 18, 22, 22)};
         line-height: 1.2;
         font-weight: 400;
     `,
 
     font4: css`
+        font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
         ${remAdaptiveFont(12, 12, 18, 18)};
         line-height: 1.2;
         font-weight: 400;
     `,
 
     font5: css`
+        font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
         ${remAdaptiveFont(15, 12, 25, 25)};
         line-height: 1.2;
         font-weight: 400;
     `,
 
+    /* H4 - минимум 14 */
     font6: css`
-        ${remAdaptiveFont(20, 24, 35, 40)};
+        font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
+        ${remAdaptiveFont(14, 18, 25, 25)};
         line-height: 1;
-        font-weight: 400;
+        font-weight: 500;
         font-style: normal;
         letter-spacing: 0;
     `,
 
+    /* B2 - минимум 8 */
     font7: css`
-        ${remAdaptiveFont(14, 16, 18, 20)};
+        font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
+        ${remAdaptiveFont(8, 12, 16, 18)};
         line-height: 1;
-        font-weight: 400;
+        font-weight: 500;
         font-style: normal;
         letter-spacing: 0;
     `,
 
     logo: css`
+        font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
         ${remAdaptiveFont(28, 32, 55, 55)};
         line-height: 1;
         font-weight: 400;
@@ -162,6 +181,7 @@ const typography = {
     `,
 
     headerNav: css`
+        font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
         ${remAdaptiveFont(14, 14, 16, 16)};
         line-height: 1.2;
         font-weight: 500;

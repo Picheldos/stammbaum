@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { color, font, hover, mediaBreakpointUp } from '@/style/mixins';
+import { color, font, hover, mediaBreakpointUp, vw } from '@/style/mixins';
 
 export const Bar = styled.header`
     position: sticky;
@@ -16,7 +16,7 @@ export const Bar = styled.header`
 
     ${mediaBreakpointUp('lg')} {
         min-height: 72px;
-        padding: 0 32px;
+        padding: 0 ${vw(20, 'mac')} ${vw(20, 'mac')};
     }
 `;
 

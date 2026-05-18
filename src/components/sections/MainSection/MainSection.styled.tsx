@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { color, mediaBreakpointDown, mediaBreakpointUp } from '@/style/mixins';
+import { color, mediaBreakpointDown, mediaBreakpointUp, font } from '@/style/mixins';
 import { remFluidMiddle } from '@/style/typography';
 
 export const LandingRoot = styled.section`
@@ -31,10 +31,10 @@ export const HeroContent = styled.div`
     }
 `;
 
+/* заголовок — типография из общего набора */
 export const HeroTitle = styled.h1`
-    ${remFluidMiddle('font-size', 26, 30, 36, 42)};
+    ${font('title')};
     line-height: 1.22;
-    font-weight: 700;
     letter-spacing: -0.015em;
     color: ${color('textPrimary')};
 `;
@@ -67,7 +67,7 @@ export const StepItem = styled.li`
 export const StepIndex = styled.span`
     flex-shrink: 0;
     min-width: 2.85rem;
-    font-size: clamp(1.75rem, 3.8vw, 2.65rem);
+    ${font('title2')};
     font-weight: 300;
     line-height: 1.08;
     color: ${color('landingStepNum')};
@@ -76,7 +76,7 @@ export const StepIndex = styled.span`
 export const StepCopy = styled.span`
     flex: 1;
     padding-top: 0.65rem;
-    font-size: clamp(0.95rem, 1.85vw, 1.0625rem);
+    ${font('font7')};
     line-height: 1.45;
     font-weight: 400;
 `;
@@ -128,6 +128,7 @@ export const TreeScene = styled.div`
 `;
 
 export const TreeLayer = styled.div`
+    position: relative;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -142,7 +143,6 @@ export const TreeLayer = styled.div`
     }
 
     ${mediaBreakpointUp('lg')} {
-        position: absolute;
         inset: auto 0 0;
         justify-content: flex-end;
         padding-bottom: 2%;
@@ -161,6 +161,7 @@ export const CardsOverlay = styled.div`
     padding-bottom: 8%;
     pointer-events: none;
     gap: clamp(14px, 2.8vh, 28px);
+    z-index: 1;
 
     ${mediaBreakpointDown('lg')} {
         position: static;
@@ -198,8 +199,10 @@ export const DemoCardRoot = styled.div`
     color: ${color('textPrimary')};
     border: 1px solid rgba(255, 255, 255, 0.35);
 
+    ${font('font2')};
+
     strong {
-        font-size: clamp(0.72rem, 1.25vw, 0.84rem);
+        ${font('font1')};
         font-weight: 700;
         line-height: 1.25;
     }
@@ -229,14 +232,14 @@ export const AvatarStub = styled.div`
 `;
 
 export const MetaLine = styled.span`
-    font-size: 0.65rem;
+    ${font('font1')};
     font-weight: 500;
     opacity: 0.78;
     line-height: 1.2;
 `;
 
 export const LifespanLine = styled.span`
-    font-size: 0.62rem;
+    ${font('font1')};
     opacity: 0.72;
     line-height: 1.25;
 `;

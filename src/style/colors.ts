@@ -11,9 +11,9 @@ const colors = {
     color228: '#081e01',
     color1337: '#fbfdfb',
     /** Stammbaum — топ-бар и акценты */
-    forest: '#4A7043',
+    forest: '#64774A',
     forestDeep: '#2F4F3A',
-    cream: '#FDFBF5',
+    cream: '#FFFCF6',
     creamWarm: '#F5E9D3',
     slateBlue: '#4F5D75',
     navActive: '#5B6D8E',

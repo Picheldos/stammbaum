@@ -3,6 +3,8 @@ import { useTranslation } from 'next-i18next';
 import TreePlaceholder from '@/components/sections/MainSection/TreePlaceholder';
 import LandingDemoCard from '@/components/sections/MainSection/LandingDemoCard';
 import type { LandingDemoCardData } from '@/components/sections/MainSection/LandingDemoCard';
+import Image from 'next/image';
+
 import {
     CardTier,
     CardsOverlay,
@@ -78,7 +80,14 @@ const MainSection: React.FC = () => {
                         </CardTier>
                     </CardsOverlay>
                     <TreeLayer>
-                        <TreePlaceholder />
+                        <Image
+                            src="/images/index/tree.png"
+                            alt="decorative tree"
+                            layout={'fill'}
+                            objectFit={`cover`}
+                            style={{ pointerEvents: 'none' }}
+                            aria-hidden
+                        />
                     </TreeLayer>
                 </TreeScene>
             </HeroGrid>
