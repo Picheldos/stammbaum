@@ -2,6 +2,7 @@
     "defaultTreeName": "Tree 1",
     "addRelativeCta": "Add a relative",
     "confirmDelete": "Delete this person from the tree?",
+    "confirmRemoveRelation": "Remove this relation? The person will stay in the tree.",
     "authGuard": {
         "loading": "Loading...",
         "redirecting": "Redirecting..."
@@ -73,6 +74,11 @@
             "firstNameRequired": "First name is required",
             "lastNameRequired": "Last name is required",
             "photo": "Could not read photo"
+        },
+        "sharedParents": {
+            "title": "Which parents does this sibling share?",
+            "both": "Both parents (full sibling)",
+            "onlyOne": "Only {{parent}} (half sibling)"
         }
     },
     "relativePicker": {

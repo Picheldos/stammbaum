@@ -2,6 +2,7 @@
     "defaultTreeName": "Древо 1",
     "addRelativeCta": "Добавить родственника",
     "confirmDelete": "Удалить этого человека из древа?",
+    "confirmRemoveRelation": "Удалить эту связь? Сам человек останется в древе.",
     "authGuard": {
         "loading": "Загрузка...",
         "redirecting": "Перенаправление..."
@@ -73,6 +74,11 @@
             "firstNameRequired": "Введите имя",
             "lastNameRequired": "Введите фамилию",
             "photo": "Не удалось прочитать фото"
+        },
+        "sharedParents": {
+            "title": "Какие родители общие у этого брата/сестры?",
+            "both": "Оба родителя (родной брат/сестра)",
+            "onlyOne": "Только {{parent}} (сводный брат/сестра)"
         }
     },
     "relativePicker": {

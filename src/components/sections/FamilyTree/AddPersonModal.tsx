@@ -1,5 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'next-i18next';
+import styled from 'styled-components';
+import { color, font } from '@/style/mixins';
 import { AddRelativeKind, Gender, Person } from '@/lib/family/types';
 import {
     Field,
@@ -23,6 +25,35 @@ import {
 } from './Modal.styled';
 import { formatShortName } from '@/lib/family/relations';
 
+const SharedParentBlock = styled.fieldset`
+    border: 1px solid rgba(94, 109, 139, 0.35);
+    border-radius: 6px;
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+`;
+
+const SharedParentLegend = styled.legend`
+    ${font('font4')};
+    color: ${color('textPrimary')};
+    opacity: 0.75;
+    padding: 0 4px;
+`;
+
+const SharedParentOption = styled.label`
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    ${font('font7')};
+    color: ${color('textPrimary')};
+    cursor: pointer;
+
+    input {
+        accent-color: ${color('forest')};
+    }
+`;
+
 export type AddPersonMode =
     | { kind: 'self' }
     | { kind: 'edit'; person: Person }
@@ -40,11 +71,19 @@ export interface AddPersonValues {
     deathPlace?: string;
     biography?: string;
     photo?: string;
+    /**
+     * Subset of the focus person's parents that the new relative shares.
+     * Only used when adding a brother/sister to someone with at least two parents,
+     * so the caller can distinguish full siblings from half-siblings.
+     */
+    sharedParentIds?: string[];
 }
 
 export interface AddPersonModalProps {
     open: boolean;
     mode: AddPersonMode;
+    /** Parents of the focus person — used to render half-sibling parent picker. */
+    focusParents?: Person[];
     onCancel: () => void;
     onSubmit: (values: AddPersonValues) => void;
 }
@@ -113,12 +152,25 @@ const readImageAsDataUrl = (file: File): Promise<string> =>
         reader.readAsDataURL(file);
     });
 
-const AddPersonModal: React.FC<AddPersonModalProps> = ({ open, mode, onCancel, onSubmit }) => {
+const AddPersonModal: React.FC<AddPersonModalProps> = ({ open, mode, focusParents, onCancel, onSubmit }) => {
     const { t } = useTranslation('tree');
     const [values, setValues] = useState<AddPersonValues>(() => initialValues(mode));
     const [showDeath, setShowDeath] = useState<boolean>(false);
     const [showBio, setShowBio] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
+
+    // The shared-parent picker is only relevant for sibling relatives when the
+    // focus person has more than one parent — that's when half-siblings become
+    // possible. We always default to "all parents" (full sibling) which matches
+    // the historical behaviour for the common case.
+    const isSiblingRelative =
+        mode.kind === 'relative' && (mode.relation === 'brother' || mode.relation === 'sister');
+    const showSharedParentPicker = isSiblingRelative && (focusParents?.length ?? 0) >= 2;
+    const allParentIds = useMemo(
+        () => (focusParents ? focusParents.map((p) => p.id) : []),
+        [focusParents]
+    );
+    const [sharedParentSelection, setSharedParentSelection] = useState<string[]>(allParentIds);
 
     // Reset state whenever the modal opens with a new mode/person.
     const modeKey = useMemo(() => {
@@ -134,6 +186,7 @@ const AddPersonModal: React.FC<AddPersonModalProps> = ({ open, mode, onCancel, o
         setShowDeath(Boolean(next.deathDate || next.deathPlace));
         setShowBio(Boolean(next.biography));
         setError('');
+        setSharedParentSelection(allParentIds);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [open, modeKey]);
 
@@ -178,9 +231,33 @@ const AddPersonModal: React.FC<AddPersonModalProps> = ({ open, mode, onCancel, o
             deathDate: showDeath ? values.deathDate || undefined : undefined,
             deathPlace: showDeath ? values.deathPlace?.trim() || undefined : undefined,
             biography: showBio ? values.biography?.trim() || undefined : undefined,
-            photo: values.photo || undefined
+            photo: values.photo || undefined,
+            sharedParentIds: showSharedParentPicker ? sharedParentSelection : undefined
         };
         onSubmit(cleaned);
+    };
+
+    // For the picker we treat the chosen option as an opaque key: "all" means
+    // full siblings, otherwise a single parent id means a half sibling sharing
+    // only that parent.
+    const sharedParentValue =
+        sharedParentSelection.length === allParentIds.length ? 'all' : sharedParentSelection[0] ?? 'all';
+
+    const onPickSharedParent = (next: string) => {
+        if (next === 'all') {
+            setSharedParentSelection(allParentIds);
+        } else {
+            setSharedParentSelection([next]);
+        }
+    };
+
+    const parentLabel = (p: Person): string => {
+        const short = formatShortName(p);
+        const role =
+            p.gender === 'male'
+                ? t('relativeLabel.father', { defaultValue: 'Father' })
+                : t('relativeLabel.mother', { defaultValue: 'Mother' });
+        return `${role}: ${short}`;
     };
 
     return (
@@ -296,6 +373,43 @@ const AddPersonModal: React.FC<AddPersonModalProps> = ({ open, mode, onCancel, o
                             </Hint>
                         )}
                     </Hints>
+
+                    {showSharedParentPicker && focusParents && (
+                        <SharedParentBlock>
+                            <SharedParentLegend>
+                                {t('addPerson.sharedParents.title', {
+                                    defaultValue: 'Which parents does this sibling share?'
+                                })}
+                            </SharedParentLegend>
+                            <SharedParentOption>
+                                <input
+                                    type="radio"
+                                    name="sharedParents"
+                                    value="all"
+                                    checked={sharedParentValue === 'all'}
+                                    onChange={() => onPickSharedParent('all')}
+                                />
+                                {t('addPerson.sharedParents.both', {
+                                    defaultValue: 'Both parents (full sibling)'
+                                })}
+                            </SharedParentOption>
+                            {focusParents.map((p) => (
+                                <SharedParentOption key={p.id}>
+                                    <input
+                                        type="radio"
+                                        name="sharedParents"
+                                        value={p.id}
+                                        checked={sharedParentValue === p.id}
+                                        onChange={() => onPickSharedParent(p.id)}
+                                    />
+                                    {t('addPerson.sharedParents.onlyOne', {
+                                        defaultValue: 'Only {{parent}} (half sibling)',
+                                        parent: parentLabel(p)
+                                    })}
+                                </SharedParentOption>
+                            ))}
+                        </SharedParentBlock>
+                    )}
 
                     {error && <ErrorText>{error}</ErrorText>}
 

@@ -55,11 +55,25 @@ const HeroMeta = styled.div`
     opacity: 0.75;
 `;
 
-const ListItem = styled.button`
+const ListRow = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 6px;
     background: rgba(255, 255, 255, 0.5);
+    border-radius: 6px;
+    padding: 4px 6px 4px 0;
+
+    &:hover {
+        background: ${color('white')};
+    }
+`;
+
+const ListItem = styled.button`
+    flex: 1;
+    background: transparent;
     border: none;
     border-radius: 6px;
-    padding: 10px 12px;
+    padding: 6px 6px 6px 12px;
     text-align: left;
     cursor: pointer;
     display: flex;
@@ -67,9 +81,24 @@ const ListItem = styled.button`
     gap: 12px;
     color: ${color('textPrimary')};
     ${font('font7')};
+`;
+
+const RemoveRelationButton = styled.button`
+    flex: 0 0 auto;
+    background: transparent;
+    border: 1px solid rgba(94, 109, 139, 0.4);
+    color: ${color('textPrimary')};
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    line-height: 1;
+    font-size: 16px;
+    cursor: pointer;
+    opacity: 0.7;
 
     &:hover {
-        background: ${color('white')};
+        opacity: 1;
+        background: rgba(94, 109, 139, 0.15);
     }
 `;
 
@@ -108,6 +137,8 @@ const ActionButton = styled.button`
 
 export type PersonCardTab = 'info' | 'parents' | 'spouses' | 'children' | 'siblings';
 
+export type PersonRelationKind = 'parent' | 'spouse' | 'child' | 'sibling';
+
 export interface PersonCardModalProps {
     open: boolean;
     person: Person | null;
@@ -121,6 +152,11 @@ export interface PersonCardModalProps {
     onAddSpouse: (person: Person) => void;
     onAddChild: (person: Person) => void;
     onAddSibling: (person: Person) => void;
+    /**
+     * Remove a single relation between the focused person and `relativeId`.
+     * Surfaces a confirmation prompt in the parent component.
+     */
+    onRemoveRelation?: (person: Person, relativeId: string, kind: PersonRelationKind) => void;
 }
 
 const PersonCardModal: React.FC<PersonCardModalProps> = ({
@@ -135,7 +171,8 @@ const PersonCardModal: React.FC<PersonCardModalProps> = ({
     onAddParent,
     onAddSpouse,
     onAddChild,
-    onAddSibling
+    onAddSibling,
+    onRemoveRelation
 }) => {
     const { t } = useTranslation('tree');
     const [tab, setTab] = useState<PersonCardTab>(initialTab);
@@ -146,6 +183,42 @@ const PersonCardModal: React.FC<PersonCardModalProps> = ({
 
     if (!person) return null;
     const lookup = buildLookup(persons);
+
+    /**
+     * Whether the "×" remove button should be shown for an item in the given
+     * tab. We only show it for relations that map cleanly to a single edge in
+     * the data model — siblings derived from shared parents can't be removed
+     * here without breaking the parent links, so we suppress the button if no
+     * explicit sibling edge exists between the two persons.
+     */
+    const canRemoveFromTab = (relativeId: string): boolean => {
+        if (!onRemoveRelation) return false;
+        if (tab === 'parents' || tab === 'spouses' || tab === 'children') return true;
+        if (tab === 'siblings') {
+            return relations.some(
+                (r) =>
+                    r.type === 'sibling' &&
+                    ((r.fromId === person.id && r.toId === relativeId) ||
+                        (r.fromId === relativeId && r.toId === person.id))
+            );
+        }
+        return false;
+    };
+
+    const removalKindForTab = (): PersonRelationKind | null => {
+        switch (tab) {
+            case 'parents':
+                return 'parent';
+            case 'spouses':
+                return 'spouse';
+            case 'children':
+                return 'child';
+            case 'siblings':
+                return 'sibling';
+            default:
+                return null;
+        }
+    };
 
     const renderList = (ids: string[], onAdd: () => void): React.ReactNode => {
         if (ids.length === 0) {
@@ -160,22 +233,40 @@ const PersonCardModal: React.FC<PersonCardModalProps> = ({
                 </>
             );
         }
+        const removalKind = removalKindForTab();
         return (
             <>
                 {ids.map((id) => {
                     const rel = lookup.byId(id);
                     if (!rel) return null;
+                    const showRemove = Boolean(removalKind) && canRemoveFromTab(id);
                     return (
-                        <ListItem key={id} type="button" onClick={() => onSelectPerson(id)}>
-                            <ListAvatar $photo={rel.photo} />
-                            <div>
-                                <div>{formatFullName(rel)}</div>
-                                <Empty>
-                                    {rel.birthDate ? formatDate(rel.birthDate) : ''}
-                                    {rel.deathDate ? ` — ${formatDate(rel.deathDate)}` : ''}
-                                </Empty>
-                            </div>
-                        </ListItem>
+                        <ListRow key={id}>
+                            <ListItem type="button" onClick={() => onSelectPerson(id)}>
+                                <ListAvatar $photo={rel.photo} />
+                                <div>
+                                    <div>{formatFullName(rel)}</div>
+                                    <Empty>
+                                        {rel.birthDate ? formatDate(rel.birthDate) : ''}
+                                        {rel.deathDate ? ` — ${formatDate(rel.deathDate)}` : ''}
+                                    </Empty>
+                                </div>
+                            </ListItem>
+                            {showRemove && removalKind && onRemoveRelation && (
+                                <RemoveRelationButton
+                                    type="button"
+                                    aria-label={t('personCard.removeRelation', {
+                                        defaultValue: 'Remove relation'
+                                    })}
+                                    title={t('personCard.removeRelation', {
+                                        defaultValue: 'Remove relation'
+                                    })}
+                                    onClick={() => onRemoveRelation(person, id, removalKind)}
+                                >
+                                    ×
+                                </RemoveRelationButton>
+                            )}
+                        </ListRow>
                     );
                 })}
                 <ActionRow>

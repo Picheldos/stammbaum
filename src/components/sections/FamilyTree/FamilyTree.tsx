@@ -10,6 +10,7 @@ import {
     listTrees,
     PersonInput,
     removePerson,
+    removeRelation,
     setPersonHidden,
     updatePerson,
     updateTree,
@@ -335,7 +336,20 @@ const FamilyTree: React.FC = () => {
             case 'sister': {
                 const parents = getParents(relativeOf.id, relations);
                 if (parents.length > 0) {
-                    parents.forEach((parentId) => attachRelation('parent', parentId, created.id));
+                    // If the modal returned a sharedParentIds subset (half-sibling case)
+                    // honour it, otherwise default to all parents (full sibling).
+                    const requested = values.sharedParentIds;
+                    const shared =
+                        requested && requested.length > 0
+                            ? requested.filter((id) => parents.includes(id))
+                            : parents;
+                    if (shared.length > 0) {
+                        shared.forEach((parentId) => attachRelation('parent', parentId, created.id));
+                    } else {
+                        // No shared parents picked at all → record an explicit sibling edge so
+                        // the layout still knows they belong together as a step-sibling.
+                        attachRelation('sibling', relativeOf.id, created.id);
+                    }
                 } else {
                     attachRelation('sibling', relativeOf.id, created.id);
                 }
@@ -344,6 +358,46 @@ const FamilyTree: React.FC = () => {
         }
         setAddState(null);
         setPicker(null);
+        reload();
+    };
+
+    /**
+     * Remove a single relation between `person` and `otherId`. Used by the
+     * person card to let users clean up incorrect parent/spouse/sibling/child
+     * links without cascade-deleting either person.
+     */
+    const handleRemoveRelation = (
+        person: Person,
+        otherId: string,
+        kind: 'parent' | 'spouse' | 'child' | 'sibling'
+    ) => {
+        const target = (() => {
+            switch (kind) {
+                case 'parent':
+                    return relations.find(
+                        (r) => r.type === 'parent' && r.fromId === otherId && r.toId === person.id
+                    );
+                case 'child':
+                    return relations.find(
+                        (r) => r.type === 'parent' && r.fromId === person.id && r.toId === otherId
+                    );
+                case 'spouse': {
+                    const [a, b] = person.id < otherId ? [person.id, otherId] : [otherId, person.id];
+                    return relations.find((r) => r.type === 'spouse' && r.fromId === a && r.toId === b);
+                }
+                case 'sibling': {
+                    const [a, b] = person.id < otherId ? [person.id, otherId] : [otherId, person.id];
+                    return relations.find((r) => r.type === 'sibling' && r.fromId === a && r.toId === b);
+                }
+            }
+        })();
+        if (!target) return;
+        const confirmed =
+            typeof window !== 'undefined'
+                ? window.confirm(t('confirmRemoveRelation', { defaultValue: 'Remove this relation?' }))
+                : true;
+        if (!confirmed) return;
+        removeRelation(target.id);
         reload();
     };
 
@@ -463,6 +517,18 @@ const FamilyTree: React.FC = () => {
             </TreeRoot>
         );
     }
+
+    // Compute the focus person's parents for the half-sibling parent picker in
+    // the AddPersonModal. Only relevant when adding a brother/sister, but the
+    // modal will ignore the prop in every other mode.
+    const addPersonFocusParents = (() => {
+        const m = addState?.mode;
+        if (!m || m.kind !== 'relative') return undefined;
+        if (m.relation !== 'brother' && m.relation !== 'sister') return undefined;
+        return getParents(m.relativeOf.id, relations)
+            .map((id) => findPerson(id))
+            .filter((p): p is Person => Boolean(p));
+    })();
 
     /* ---------------------- Tree state ---------------------- */
 
@@ -605,6 +671,7 @@ const FamilyTree: React.FC = () => {
             <AddPersonModal
                 open={Boolean(addState)}
                 mode={addState?.mode ?? { kind: 'self' }}
+                focusParents={addPersonFocusParents}
                 onCancel={() => setAddState(null)}
                 onSubmit={handleSavePerson}
             />
@@ -634,6 +701,7 @@ const FamilyTree: React.FC = () => {
                 onAddSibling={(person) => {
                     setAddState({ mode: { kind: 'relative', relativeOf: person, relation: 'sister' } });
                 }}
+                onRemoveRelation={handleRemoveRelation}
             />
 
             <TreeSidebar
