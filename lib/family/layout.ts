@@ -80,8 +80,6 @@ interface CoupleUnit {
     linkedFromBelow?: boolean;
 }
 
-const slotWidth = (opts: LayoutOptions): number => opts.nodeWidth + opts.columnGap;
-
 const coupleSlot = (members: string[], opts: LayoutOptions): number =>
     members.length === 2 ? opts.nodeWidth * 2 + opts.columnGap * 1.5 : opts.nodeWidth + opts.columnGap;
 
