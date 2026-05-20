@@ -14,7 +14,7 @@ export const MainArea = styled.main`
     position: relative;
     padding: 0 ${vw(27, 'xs')} ${vw(36, 'xs')};
 
-    ${mediaBreakpointUp('xl')} {
+    ${mediaBreakpointUp('lg')} {
         padding: 0 ${vw(20, 'mac')} ${vw(20, 'mac')};
     }
 `;

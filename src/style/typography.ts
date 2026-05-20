@@ -165,6 +165,24 @@ const typography = {
         letter-spacing: 0;
     `,
 
+    font8: css`
+        font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
+        ${remAdaptiveFont(6, 6, 8, 10)};
+        line-height: 1;
+        font-weight: 400;
+        font-style: normal;
+        letter-spacing: 0;
+    `,
+
+    font9: css`
+        font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
+        ${remAdaptiveFont(6, 6, 8, 10)};
+        line-height: 1;
+        font-weight: 600;
+        font-style: normal;
+        letter-spacing: 0;
+    `,
+
     logo: css`
         font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
         ${remAdaptiveFont(28, 32, 55, 55)};

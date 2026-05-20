@@ -54,13 +54,36 @@ export interface LayoutOptions {
     columnGap: number;
     /** Vertical distance between two consecutive generations. */
     rowGap: number;
+    /** XL breakpoint node width in vw units. */
+    xlNodeWidth?: number;
+    /** XL breakpoint node height in vw units. */
+    xlNodeHeight?: number;
 }
 
 export const DEFAULT_LAYOUT_OPTIONS: LayoutOptions = {
     nodeWidth: 168,
     nodeHeight: 96,
     columnGap: 24,
-    rowGap: 64
+    rowGap: 64,
+    xlNodeWidth: 105,
+    xlNodeHeight: 50
+};
+
+/**
+ * Get layout options for a specific breakpoint.
+ * On 'lg' and above, use smaller node dimensions to keep cards from overlapping with connection lines.
+ */
+export const getLayoutOptionsForBreakpoint = (breakpoint: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'mac' | 'fhd' | 'qhd' | 'uhd'): LayoutOptions => {
+    // For large screens and above, use the specified xl dimensions
+    if (['lg', 'xl', 'xxl', 'mac', 'fhd', 'qhd', 'uhd'].includes(breakpoint)) {
+        return {
+            nodeWidth: DEFAULT_LAYOUT_OPTIONS.xlNodeWidth || DEFAULT_LAYOUT_OPTIONS.nodeWidth,
+            nodeHeight: DEFAULT_LAYOUT_OPTIONS.xlNodeHeight || DEFAULT_LAYOUT_OPTIONS.nodeHeight,
+            columnGap: DEFAULT_LAYOUT_OPTIONS.columnGap,
+            rowGap: DEFAULT_LAYOUT_OPTIONS.rowGap
+        };
+    }
+    return DEFAULT_LAYOUT_OPTIONS;
 };
 
 interface CoupleUnit {

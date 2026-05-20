@@ -4,16 +4,12 @@ import { color, font, hover } from '@/style/mixins';
 /* ---------- Page-level shell ---------- */
 
 export const TreeRoot = styled.section`
-    position: relative;
-    width: calc(100% + 2 * var(--tree-side-padding, 0px));
-    margin: 0 calc(-1 * var(--tree-side-padding, 0px));
-    height: calc(100vh - 56px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 
-    @media (min-width: 1024px) {
-        height: calc(100vh - 72px);
-    }
-
-    background: linear-gradient(180deg, #d9e4ee 0%, #c5d1c0 65%, #b9c1a7 100%);
     overflow: hidden;
 `;
 
@@ -21,7 +17,7 @@ export const Backdrop = styled.div`
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background-image: radial-gradient(circle at 50% 110%, rgba(76, 95, 60, 0.7) 0%, rgba(76, 95, 60, 0) 65%);
+    background-image: url('/fon.jpg') center / cover no-repeat;
 `;
 
 export const Canvas = styled.div`
@@ -36,20 +32,9 @@ export const Canvas = styled.div`
 `;
 
 export const TreeImageLayer = styled.div`
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%);
-    width: min(1200px, 95vw);
-    aspect-ratio: 16 / 11;
-    opacity: 0.55;
-    pointer-events: none;
-
-    svg {
-        width: 100%;
-        height: 100%;
-        display: block;
-    }
+    position: relative;
+    width: 100%;
+    height: 100%;
 `;
 
 export const Scene = styled.div<{ $x: number; $y: number; $scale: number }>`
@@ -222,3 +207,4 @@ export const EmptyCta = styled.button`
         background: ${color('slateBlue')};
     `)}
 `;
+

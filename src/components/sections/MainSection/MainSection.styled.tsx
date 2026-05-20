@@ -1,27 +1,26 @@
 import styled from 'styled-components';
-import { color, mediaBreakpointDown, mediaBreakpointUp, font } from '@/style/mixins';
-import { remFluidMiddle } from '@/style/typography';
+import { color, mediaBreakpointDown, mediaBreakpointUp, font, vw } from '@/style/mixins';
 
 export const LandingRoot = styled.section`
     width: 100%;
-    padding: clamp(1.75rem, 4vw, 3.25rem) 0 clamp(2.5rem, 6vw, 4rem);
+    height: 100%;
+    padding: ${vw(40, 'xl')} 0;
 `;
 
 export const HeroGrid = styled.div`
     display: grid;
-    gap: clamp(2rem, 5vw, 3.75rem);
     align-items: start;
 
     ${mediaBreakpointUp('lg')} {
         grid-template-columns: minmax(0, 1fr) minmax(280px, 1.08fr);
         align-items: center;
-    }
+    }   
 `;
 
 export const HeroContent = styled.div`
     display: flex;
     flex-direction: column;
-    gap: clamp(1.5rem, 3.5vw, 2.5rem);
+    gap: clamp(12rem, 3.5vw, 2.5rem);
     max-width: 36rem;
 
     ${mediaBreakpointDown('md')} {
@@ -128,7 +127,7 @@ export const TreeScene = styled.div`
 `;
 
 export const TreeLayer = styled.div`
-    position: relative;
+    position: absolute;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -145,20 +144,20 @@ export const TreeLayer = styled.div`
     ${mediaBreakpointUp('lg')} {
         inset: auto 0 0;
         justify-content: flex-end;
-        padding-bottom: 2%;
         pointer-events: none;
+
+        width: ${vw(585, 'xl')};
+        height: ${vw(554, 'xl')};
     }
 `;
 
 export const CardsOverlay = styled.div`
-    position: absolute;
     inset: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding-top: clamp(12px, 3vh, 32px);
-    padding-bottom: 8%;
+    margin-top: ${vw(145, 'xl')};
     pointer-events: none;
     gap: clamp(14px, 2.8vh, 28px);
     z-index: 1;
@@ -184,62 +183,3 @@ export const CardTier = styled.div<{ $compact?: boolean }>`
     width: 100%;
 `;
 
-export const DemoCardRoot = styled.div`
-    pointer-events: auto;
-    width: clamp(118px, 19vw, 158px);
-    padding: 10px 10px 12px;
-    border-radius: 10px;
-    background: ${color('landingCard')};
-    box-shadow: 0 6px 18px rgba(47, 79, 58, 0.12);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 5px;
-    color: ${color('textPrimary')};
-    border: 1px solid rgba(255, 255, 255, 0.35);
-
-    ${font('font2')};
-
-    strong {
-        ${font('font1')};
-        font-weight: 700;
-        line-height: 1.25;
-    }
-
-    ${mediaBreakpointDown('md')} {
-        width: calc(50% - 12px);
-        max-width: 168px;
-    }
-`;
-
-export const AvatarStub = styled.div`
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: ${color('avatarStub')};
-    border: 2px solid rgba(255, 255, 255, 0.75);
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08);
-    position: relative;
-
-    &::after {
-        content: '';
-        position: absolute;
-        inset: 10px 12px;
-        border-radius: 50% 50% 40% 40%;
-        background: rgba(255, 255, 255, 0.22);
-    }
-`;
-
-export const MetaLine = styled.span`
-    ${font('font1')};
-    font-weight: 500;
-    opacity: 0.78;
-    line-height: 1.2;
-`;
-
-export const LifespanLine = styled.span`
-    ${font('font1')};
-    opacity: 0.72;
-    line-height: 1.25;
-`;

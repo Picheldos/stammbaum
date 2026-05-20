@@ -20,7 +20,7 @@ const colors = {
     textPrimary: '#333333',
     /** Landing */
     landingPaper: '#F9F8F0',
-    landingCard: '#E8DCC4',
+    landingCard: '#EFD195',
     landingCta: '#5E6D8B',
     landingStepNum: '#C5CAC7',
     treeStub: '#9AA89B',

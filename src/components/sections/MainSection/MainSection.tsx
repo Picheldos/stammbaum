@@ -1,8 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'next-i18next';
-import TreePlaceholder from '@/components/sections/MainSection/TreePlaceholder';
-import LandingDemoCard from '@/components/sections/MainSection/LandingDemoCard';
-import type { LandingDemoCardData } from '@/components/sections/MainSection/LandingDemoCard';
+import PersonCard from '@/components/blocks/PersonCard/PersonCard';
+import type { PersonCardData } from '@/components/blocks/PersonCard/PersonCard';
 import Image from 'next/image';
 
 import {
@@ -21,9 +20,9 @@ import {
     TreeScene
 } from '@/components/sections/MainSection/MainSection.styled';
 
-const parseCards = (value: unknown): LandingDemoCardData[] =>
+const parseCards = (value: unknown): PersonCardData[] =>
     Array.isArray(value)
-        ? (value as LandingDemoCardData[]).filter((c) => c && typeof c.name === 'string')
+        ? (value as PersonCardData[]).filter((c) => c && typeof c.name === 'string')
         : [];
 
 const MainSection: React.FC = () => {
@@ -66,22 +65,22 @@ const MainSection: React.FC = () => {
                 <TreeScene>
                     <CardsOverlay>
                         <CardTier>
-                            <LandingDemoCard data={c0} />
+                            <PersonCard data={c0} />
                         </CardTier>
                         <CardTier>
-                            <LandingDemoCard data={c1} />
-                            <LandingDemoCard data={c2} />
+                            <PersonCard data={c1} />
+                            <PersonCard data={c2} />
                         </CardTier>
                         <CardTier $compact>
-                            <LandingDemoCard data={c3} />
-                            <LandingDemoCard data={c4} />
-                            <LandingDemoCard data={c5} />
-                            <LandingDemoCard data={c6} />
+                            <PersonCard data={c3} />
+                            <PersonCard data={c4} />
+                            <PersonCard data={c5} />
+                            <PersonCard data={c6} />
                         </CardTier>
                     </CardsOverlay>
                     <TreeLayer>
                         <Image
-                            src="/images/index/tree.png"
+                            src="/images/index/tree.jpg"
                             alt="decorative tree"
                             layout={'fill'}
                             objectFit={`cover`}

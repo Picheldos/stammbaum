@@ -26,9 +26,8 @@ import {
 } from '@/lib/family/relations';
 import { DEFAULT_LAYOUT_OPTIONS, layoutTree, NodePosition } from '@/lib/family/layout';
 
-import PersonNode from './PersonNode';
+import PersonCard from '@/components/blocks/PersonCard/PersonCard';
 import Connections from './Connections';
-import TreeBackdrop from './TreeBackdrop';
 import PersonContextMenu from './PersonContextMenu';
 import TreeSidebar from './TreeSidebar';
 import AddPersonModal, { AddPersonMode, AddPersonValues } from './AddPersonModal';
@@ -51,6 +50,8 @@ import {
     ZoomButton,
     ZoomControls
 } from './FamilyTree.styled';
+import Image from 'next/image';
+
 
 interface ContextMenuState {
     person: Person;
@@ -201,7 +202,7 @@ const FamilyTree: React.FC = () => {
     );
 
     // Pan + zoom state. (0,0) is the centre of the canvas.
-    const [scale, setScale] = useState(1);
+    const [scale, setScale] = useState(1.7);
     const [pan, setPan] = useState({ x: 0, y: 0 });
     const dragState = useRef<{ pointerId: number; startX: number; startY: number; baseX: number; baseY: number } | null>(
         null
@@ -242,8 +243,8 @@ const FamilyTree: React.FC = () => {
         setScale((current) => Math.min(MAX_SCALE, Math.max(MIN_SCALE, current * (1 + delta))));
     };
 
-    const zoomIn = () => setScale((current) => Math.min(MAX_SCALE, current * 1.15));
-    const zoomOut = () => setScale((current) => Math.max(MIN_SCALE, current / 1.15));
+    const zoomIn = () => setScale((current) => Math.min(MAX_SCALE, current * 2));
+    const zoomOut = () => setScale((current) => Math.max(MIN_SCALE, current / 2));
     const recenter = () => {
         setScale(1);
         setPan({ x: 0, y: 0 });
@@ -466,7 +467,14 @@ const FamilyTree: React.FC = () => {
             <TreeRoot>
                 <Backdrop />
                 <TreeImageLayer>
-                    <TreeBackdrop />
+                    <Image
+                        src="/images/fon.jpg"
+                        alt="decorative tree"
+                        layout={'fill'}
+                        objectFit={`cover`}
+                        style={{ pointerEvents: 'none' }}
+                        aria-hidden
+                    />
                 </TreeImageLayer>
                 <FloatingTopRight>
                     <IconButton type="button" aria-label={t('controls.search', { defaultValue: 'Search' })}>
@@ -534,9 +542,15 @@ const FamilyTree: React.FC = () => {
 
     return (
         <TreeRoot>
-            <Backdrop />
             <TreeImageLayer>
-                <TreeBackdrop />
+                <Image
+                    src="/images/fon.jpg"
+                    alt="decorative tree"
+                    layout={'fill'}
+                    objectFit={`cover`}
+                    style={{ pointerEvents: 'none' }}
+                    aria-hidden
+                />
             </TreeImageLayer>
 
             <Canvas
@@ -554,16 +568,20 @@ const FamilyTree: React.FC = () => {
                         if (!person) return null;
                         const label = labelForRelation(person, focusId, relations, t);
                         return (
-                            <PersonNode
+                            <PersonCard
                                 key={person.id}
                                 person={person}
                                 x={node.x}
                                 y={node.y}
                                 width={DEFAULT_LAYOUT_OPTIONS.nodeWidth}
                                 height={DEFAULT_LAYOUT_OPTIONS.nodeHeight}
+                                xlWidth={DEFAULT_LAYOUT_OPTIONS.xlNodeWidth}
+                                xlHeight={DEFAULT_LAYOUT_OPTIONS.xlNodeHeight}
                                 relationLabel={label}
                                 isHidden={person.isHidden}
-                                onClick={(event) => onClickNode(person, event)}
+                                onClick={(event) => onClickNode(person, event as any)}
+                                onMouseDown={(e) => e.stopPropagation()}
+                                ariaLabel={formatShortName(person)}
                             />
                         );
                     })}
@@ -708,6 +726,7 @@ const FamilyTree: React.FC = () => {
                 open={sidebarOpen}
                 trees={trees.map((tr) => ({ id: tr.id, name: tr.name }))}
                 activeTreeId={activeTreeId}
+
                 onSelectTree={(id) => {
                     setActiveTreeId(id);
                     setSidebarOpen(false);
