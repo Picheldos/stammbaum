@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Overlay, Content, Header, Title, CloseButton, Body, Footer } from './Popup.styled';
+import { Overlay, Content, Header, Title, CloseButton, Body } from './Popup.styled';
 import { PopupProps } from './Popup.types';
 
 export const Popup: React.FC<PopupProps> = ({

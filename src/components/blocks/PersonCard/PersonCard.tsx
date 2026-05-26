@@ -36,14 +36,10 @@ const PersonCard: React.FC<PersonCardProps> = ({
     relationLabel,
     x,
     y,
-    width,
-    height,
     isHidden,
     onClick,
     onMouseDown,
     ariaLabel,
-    xlWidth,
-    xlHeight
 }) => {
     const isPositioned = x !== undefined && y !== undefined;
     const displayData = data || (person ? {
@@ -56,13 +52,7 @@ const PersonCard: React.FC<PersonCardProps> = ({
 
     return (
         <Container
-            $x={x}
-            $y={y}
-            $width={width}
-            $height={height}
-            $xlWidth={xlWidth}
-            $xlHeight={xlHeight}
-            $isPositioned={isPositioned}
+        
             $hidden={isHidden}
             onClick={onClick}
             onMouseDown={onMouseDown}

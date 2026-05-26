@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components';
-import { color, mediaBreakpointUp, font, vw, hover } from '@/style/mixins';
+import styled from 'styled-components';
+import { color, mediaBreakpointUp, font, vw } from '@/style/mixins';
 
 export const Container = styled.div<{ $hidden?: boolean }>`
     pointer-events: auto;

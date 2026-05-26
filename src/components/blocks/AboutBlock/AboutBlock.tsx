@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Title, Subtitle, PlusButton, ImageContainer } from './AboutBlock.styled';
-import { Popup } from '@/components/common/Popup/Popup'; // или создай, если нет
+// import { Popup } from '@/components/common/Popup/Popup'; // или создай, если нет
 
 export interface AboutBlockProps {
   variant?: 'step' | 'image' | 'text' | 'empty';
@@ -20,7 +20,6 @@ export const AboutBlock: React.FC<AboutBlockProps> = ({
   title,
   subtitle,
   image,
-  popupTitle,
   popupContent,
   className = '',
   color,
@@ -32,7 +31,7 @@ export const AboutBlock: React.FC<AboutBlockProps> = ({
       setIsPopupOpen(true);
     }
   };
-
+  console.log(isPopupOpen)
   return (
     <>
       <Container variant={variant} color={color} className={className}>
@@ -62,12 +61,12 @@ export const AboutBlock: React.FC<AboutBlockProps> = ({
         {variant === 'empty' && <div className="empty-block" />}
       </Container>
 
-      <Popup
+      {/* <Popup
         isOpen={isPopupOpen}
         onClose={() => setIsPopupOpen(false)}
         title={popupTitle || title || ''}
         content={popupContent || ''}
-      />
+      /> */}
     </>
   );
 };

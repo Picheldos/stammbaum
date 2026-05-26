@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import Head from 'next/head';
 import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
 import { BasePageProps } from '@/interfaces';
 import Sandwich from '@/components/common/Sandwich/Sandwich';
 import { SizesState } from '@/recoil/commonState/athom';

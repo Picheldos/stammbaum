@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { color, mediaBreakpointUp, vw } from '@/style/mixins';
+import { mediaBreakpointUp, vw } from '@/style/mixins';
 
 export const Container = styled.div<{ variant?: string; color?: string }>`
   top: ${vw(132, 'xs')};
@@ -7,7 +7,6 @@ export const Container = styled.div<{ variant?: string; color?: string }>`
   width: ${vw(283, 'xs')};
   height: ${vw(260, 'xs')};
   border-radius: ${vw(5, 'xs')};
-//   background: ${({ color: bgColor }) => color(bgColor || 'aboutBlockBg')};
   opacity: 1;
   transform: rotate(${vw(0, 'xs')}deg);
   display: flex;
