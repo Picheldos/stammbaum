@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
 import { useSession } from '@/hooks/useSession';
 import {
@@ -10,7 +11,7 @@ import {
     listTrees,
     PersonInput,
     removePerson,
-    removeRelation,
+    removeRelation, 
     setPersonHidden,
     updatePerson,
     updateTree,
@@ -26,8 +27,9 @@ import {
 } from '@/lib/family/relations';
 import { DEFAULT_LAYOUT_OPTIONS, layoutTree, NodePosition } from '@/lib/family/layout';
 
-import PersonCard from '@/components/blocks/PersonCard/PersonCard';
+import PersonNode from './PersonNode';
 import Connections from './Connections';
+import TreeBackdrop from './TreeBackdrop';
 import PersonContextMenu from './PersonContextMenu';
 import TreeSidebar from './TreeSidebar';
 import AddPersonModal, { AddPersonMode, AddPersonValues } from './AddPersonModal';
@@ -50,8 +52,6 @@ import {
     ZoomButton,
     ZoomControls
 } from './FamilyTree.styled';
-import Image from 'next/image';
-
 
 interface ContextMenuState {
     person: Person;
@@ -202,7 +202,7 @@ const FamilyTree: React.FC = () => {
     );
 
     // Pan + zoom state. (0,0) is the centre of the canvas.
-    const [scale, setScale] = useState(1.7);
+    const [scale, setScale] = useState(1);
     const [pan, setPan] = useState({ x: 0, y: 0 });
     const dragState = useRef<{ pointerId: number; startX: number; startY: number; baseX: number; baseY: number } | null>(
         null
@@ -243,8 +243,8 @@ const FamilyTree: React.FC = () => {
         setScale((current) => Math.min(MAX_SCALE, Math.max(MIN_SCALE, current * (1 + delta))));
     };
 
-    const zoomIn = () => setScale((current) => Math.min(MAX_SCALE, current * 2));
-    const zoomOut = () => setScale((current) => Math.max(MIN_SCALE, current / 2));
+    const zoomIn = () => setScale((current) => Math.min(MAX_SCALE, current * 1.15));
+    const zoomOut = () => setScale((current) => Math.max(MIN_SCALE, current / 1.15));
     const recenter = () => {
         setScale(1);
         setPan({ x: 0, y: 0 });
@@ -465,7 +465,6 @@ const FamilyTree: React.FC = () => {
     if (!rootPerson) {
         return (
             <TreeRoot>
-                <Backdrop />
                 <TreeImageLayer>
                     <Image
                         src="/images/fon.jpg"
@@ -568,20 +567,16 @@ const FamilyTree: React.FC = () => {
                         if (!person) return null;
                         const label = labelForRelation(person, focusId, relations, t);
                         return (
-                            <PersonCard
+                            <PersonNode
                                 key={person.id}
                                 person={person}
                                 x={node.x}
                                 y={node.y}
                                 width={DEFAULT_LAYOUT_OPTIONS.nodeWidth}
                                 height={DEFAULT_LAYOUT_OPTIONS.nodeHeight}
-                                xlWidth={DEFAULT_LAYOUT_OPTIONS.xlNodeWidth}
-                                xlHeight={DEFAULT_LAYOUT_OPTIONS.xlNodeHeight}
                                 relationLabel={label}
                                 isHidden={person.isHidden}
-                                onClick={(event) => onClickNode(person, event as any)}
-                                onMouseDown={(e) => e.stopPropagation()}
-                                ariaLabel={formatShortName(person)}
+                                onClick={(event) => onClickNode(person, event)}
                             />
                         );
                     })}
@@ -719,6 +714,7 @@ const FamilyTree: React.FC = () => {
                 onAddSibling={(person) => {
                     setAddState({ mode: { kind: 'relative', relativeOf: person, relation: 'sister' } });
                 }}
+
                 onRemoveRelation={handleRemoveRelation}
             />
 
@@ -726,7 +722,6 @@ const FamilyTree: React.FC = () => {
                 open={sidebarOpen}
                 trees={trees.map((tr) => ({ id: tr.id, name: tr.name }))}
                 activeTreeId={activeTreeId}
-
                 onSelectTree={(id) => {
                     setActiveTreeId(id);
                     setSidebarOpen(false);

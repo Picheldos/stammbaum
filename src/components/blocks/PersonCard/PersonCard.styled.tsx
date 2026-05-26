@@ -1,29 +1,14 @@
 import styled, { css } from 'styled-components';
 import { color, mediaBreakpointUp, font, vw, hover } from '@/style/mixins';
 
-export const Container = styled.div<{
-    $x?: number;
-    $y?: number;
-    $width?: number;
-    $height?: number;
-    $xlWidth?: number;
-    $xlHeight?: number;
-    $isPositioned?: boolean;
-    $hidden?: boolean;
-}>`
+export const Container = styled.div<{ $hidden?: boolean }>`
     pointer-events: auto;
-    position: ${({ $isPositioned }) => ($isPositioned ? 'absolute' : 'relative')};
-    ${({ $isPositioned, $x, $y }) =>
-        $isPositioned
-            ? css`
-                  transform: translate(${$x}px, ${$y}px);
-              `
-            : ''}
-    width: ${({ $isPositioned, $width }) => ($isPositioned && $width ? `${$width}px` : vw(180, 'xs'))};
-    height: ${({ $isPositioned, $height }) => ($isPositioned && $height ? `${$height}px` : 'fit-content')};
+    position: relative;
+    width: vw(180, 'xs');
+    height: fit-content;
     padding: ${vw(16, 'xs')} ${vw(16, 'xs')} ${vw(16, 'xs')};
     padding-top: ${vw(56, 'xs')};
-    margin-top: ${({ $isPositioned }) => ($isPositioned ? vw(35, 'xs') : '0')};
+    margin-top: 0;
     border-radius: ${vw(12, 'xs')};
     background: ${color('landingCard')};
     box-shadow: 0 ${vw(6, 'xs')} ${vw(18, 'xs')} rgba(47, 79, 58, 0.12);
@@ -37,40 +22,25 @@ export const Container = styled.div<{
     opacity: ${({ $hidden }) => ($hidden ? 0.45 : 1)};
     transition: transform 0.18s ease, box-shadow 0.18s ease;
     z-index: 2;
-    cursor: ${({ $isPositioned }) => ($isPositioned ? 'pointer' : 'default')};
+    cursor: default;
 
     ${font('font8')};
 
-    ${({ $isPositioned }) =>
-        $isPositioned
-            ? hover(css`
-                  box-shadow: 0 10px 24px rgba(47, 79, 58, 0.26);
-              `)
-            : ''}
-
     ${mediaBreakpointUp('md')} {
-        width: ${({ $isPositioned, $width }) => ($isPositioned && $width ? `${$width}px` : vw(180, 'md'))};
+        width: vw(180, 'md');
         padding: ${vw(16, 'md')} ${vw(16, 'md')} ${vw(16, 'md')};
         padding-top: ${vw(56, 'md')};
-        margin-top: ${({ $isPositioned }) => ($isPositioned ? vw(35, 'md') : '0')};
+        margin-top: 0;
         border-radius: ${vw(12, 'md')};
         box-shadow: 0 ${vw(6, 'md')} ${vw(18, 'md')} rgba(47, 79, 58, 0.12);
         gap: ${vw(6, 'md')};
     }
 
     ${mediaBreakpointUp('lg')} {
-        width: ${({ $isPositioned, $width, $xlWidth }) => {
-            if ($isPositioned && $xlWidth) return `calc((${$xlWidth} / 1200) * 100vw)`;
-            if ($isPositioned && $width) return `${$width}px`;
-            return vw(105, 'xl');
-        }};
-        height: ${({ $isPositioned, $height, $xlHeight }) => {
-            if ($isPositioned && $xlHeight) return `calc((${$xlHeight} / 1200) * 100vw)`;
-            if ($isPositioned && $height) return `${$height}px`;
-            return vw(50, 'xl');
-        }};
+        width: ${vw(105, 'xl')};
+        height: ${vw(50, 'xl')};
         padding: ${vw(12, 'xl')};
-        margin-top: ${({ $isPositioned }) => ($isPositioned ? vw(20, 'xl') : '0')};
+        margin-top: 0;
         border-radius: 10px;
         box-shadow: 0 6px 18px rgba(47, 79, 58, 0.12);
         gap: 5px;
