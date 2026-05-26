@@ -1,4 +1,4 @@
- import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
 import { useSession } from '@/hooks/useSession';
@@ -26,10 +26,9 @@ import {
     getSpouses
 } from '@/lib/family/relations';
 import { DEFAULT_LAYOUT_OPTIONS, layoutTree, NodePosition } from '@/lib/family/layout';
-
+ 
 import PersonNode from './PersonNode';
 import Connections from './Connections';
-import TreeBackdrop from './TreeBackdrop';
 import PersonContextMenu from './PersonContextMenu';
 import TreeSidebar from './TreeSidebar';
 import AddPersonModal, { AddPersonMode, AddPersonValues } from './AddPersonModal';
@@ -37,7 +36,6 @@ import AddRelativePicker from './AddRelativePicker';
 import PersonCardModal, { PersonCardTab } from './PersonCardModal';
 import {
     AddRelativeCta,
-    Backdrop,
     Canvas,
     EmptyAvatar,
     EmptyCard,
@@ -52,29 +50,29 @@ import {
     ZoomButton,
     ZoomControls
 } from './FamilyTree.styled';
-
+ 
 interface ContextMenuState {
     person: Person;
     x: number;
     y: number;
 }
-
+ 
 interface RelativePickerState {
     person: Person;
 }
-
+ 
 interface CardState {
     personId: string;
     tab: PersonCardTab;
 }
-
+ 
 interface AddPersonState {
     mode: AddPersonMode;
 }
-
+ 
 const MIN_SCALE = 0.4;
 const MAX_SCALE = 2.5;
-
+ 
 const BurgerIcon: React.FC = () => (
     <svg viewBox="0 0 24 24" aria-hidden>
         <rect x="3" y="6" width="18" height="2" rx="1" fill="currentColor" />
@@ -82,14 +80,14 @@ const BurgerIcon: React.FC = () => (
         <rect x="3" y="16" width="18" height="2" rx="1" fill="currentColor" />
     </svg>
 );
-
+ 
 const SearchIcon: React.FC = () => (
     <svg viewBox="0 0 24 24" aria-hidden fill="none" stroke="currentColor" strokeWidth="2">
         <circle cx="11" cy="11" r="6" />
         <line x1="20" y1="20" x2="16.5" y2="16.5" strokeLinecap="round" />
     </svg>
 );
-
+ 
 const labelForRelation = (
     person: Person,
     focusId: string | undefined,
@@ -98,7 +96,7 @@ const labelForRelation = (
 ): string | undefined => {
     if (!focusId) return undefined;
     if (person.id === focusId) return t('relativeLabel.self', { defaultValue: 'Me' });
-
+ 
     const parents = getParents(focusId, relations);
     if (parents.includes(person.id)) {
         return person.gender === 'male'
@@ -123,7 +121,7 @@ const labelForRelation = (
             ? t('relativeLabel.brother', { defaultValue: 'Brother' })
             : t('relativeLabel.sister', { defaultValue: 'Sister' });
     }
-
+ 
     // Grandparents
     for (const parentId of parents) {
         const grand = getParents(parentId, relations);
@@ -139,7 +137,7 @@ const labelForRelation = (
                 : t('relativeLabel.aunt', { defaultValue: 'Aunt' });
         }
     }
-
+ 
     // Grandchildren
     for (const childId of children) {
         const grand = getChildren(childId, relations);
@@ -149,29 +147,29 @@ const labelForRelation = (
                 : t('relativeLabel.granddaughter', { defaultValue: 'Granddaughter' });
         }
     }
-
+ 
     return t('relativeLabel.relative', { defaultValue: 'Relative' });
 };
-
+ 
 const FamilyTree: React.FC = () => {
     const { t } = useTranslation('tree');
     const { session } = useSession();
-
+ 
     const [tick, setTick] = useState(0);
     const reload = useCallback(() => setTick((n) => n + 1), []);
-
+ 
     const [trees, setTrees] = useState<Tree[]>([]);
     const [activeTreeId, setActiveTreeId] = useState<string>('');
     const [persons, setPersons] = useState<Person[]>([]);
     const [relations, setRelations] = useState<PersonRelation[]>([]);
-
+ 
     const [showHidden, setShowHidden] = useState(false);
     const [contextMenu, setContextMenu] = useState<ContextMenuState | null>(null);
     const [picker, setPicker] = useState<RelativePickerState | null>(null);
     const [addState, setAddState] = useState<AddPersonState | null>(null);
     const [card, setCard] = useState<CardState | null>(null);
     const [sidebarOpen, setSidebarOpen] = useState(false);
-
+ 
     // Bootstrap: load (or create) the active tree for the signed-in user.
     useEffect(() => {
         if (!session) return;
@@ -184,7 +182,7 @@ const FamilyTree: React.FC = () => {
         setActiveTreeId((current) => (current && userTrees.some((tr) => tr.id === current) ? current : userTrees[0].id));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [session, tick]);
-
+ 
     useEffect(() => {
         if (!activeTreeId) {
             setPersons([]);
@@ -194,21 +192,21 @@ const FamilyTree: React.FC = () => {
         setPersons(listPersons(activeTreeId));
         setRelations(listRelations(activeTreeId));
     }, [activeTreeId, tick]);
-
+ 
     const activeTree = useMemo(() => trees.find((tr) => tr.id === activeTreeId) || null, [trees, activeTreeId]);
     const rootPerson = useMemo(
         () => (activeTree?.rootPersonId ? persons.find((p) => p.id === activeTree.rootPersonId) ?? null : null),
         [activeTree, persons]
     );
-
+ 
     // Pan + zoom state. (0,0) is the centre of the canvas.
-    const [scale, setScale] = useState(1);
+    const [scale, setScale] = useState(1.5);
     const [pan, setPan] = useState({ x: 0, y: 0 });
     const dragState = useRef<{ pointerId: number; startX: number; startY: number; baseX: number; baseY: number } | null>(
         null
     );
     const canvasRef = useRef<HTMLDivElement>(null);
-
+ 
     const onPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
         if (event.button !== 0) return;
         if (event.target !== event.currentTarget) return;
@@ -221,7 +219,7 @@ const FamilyTree: React.FC = () => {
         };
         (event.target as Element).setPointerCapture?.(event.pointerId);
     };
-
+ 
     const onPointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
         const drag = dragState.current;
         if (!drag || drag.pointerId !== event.pointerId) return;
@@ -230,26 +228,26 @@ const FamilyTree: React.FC = () => {
             y: drag.baseY + (event.clientY - drag.startY)
         });
     };
-
+ 
     const stopDrag = (event: React.PointerEvent<HTMLDivElement>) => {
         const drag = dragState.current;
         if (!drag || drag.pointerId !== event.pointerId) return;
         dragState.current = null;
     };
-
+ 
     const onWheel = (event: React.WheelEvent<HTMLDivElement>) => {
         event.preventDefault();
         const delta = -event.deltaY * 0.0015;
         setScale((current) => Math.min(MAX_SCALE, Math.max(MIN_SCALE, current * (1 + delta))));
     };
-
+ 
     const zoomIn = () => setScale((current) => Math.min(MAX_SCALE, current * 1.15));
     const zoomOut = () => setScale((current) => Math.max(MIN_SCALE, current / 1.15));
     const recenter = () => {
         setScale(1);
         setPan({ x: 0, y: 0 });
     };
-
+ 
     const layout = useMemo(() => {
         if (!rootPerson) return null;
         const visiblePersons = showHidden ? persons : persons.filter((p) => !p.isHidden);
@@ -257,21 +255,21 @@ const FamilyTree: React.FC = () => {
         const visibleRelations = relations.filter((r) => visibleIds.has(r.fromId) && visibleIds.has(r.toId));
         return layoutTree(rootPerson.id, visiblePersons, visibleRelations);
     }, [rootPerson, persons, relations, showHidden]);
-
+ 
     const nodeIndex = useMemo(() => {
         const map = new Map<string, NodePosition>();
         if (layout) layout.nodes.forEach((n) => map.set(n.personId, n));
         return map;
     }, [layout]);
-
+ 
     /* ---------------------- Mutations ---------------------- */
-
+ 
     const persistPerson = (input: PersonInput): Person => {
         const person = createPerson(input);
         reload();
         return person;
     };
-
+ 
     const attachRelation = (
         type: PersonRelation['type'],
         fromId: string,
@@ -281,7 +279,7 @@ const FamilyTree: React.FC = () => {
         if (!activeTreeId) return;
         addRelation(activeTreeId, type, fromId, toId, extras);
     };
-
+ 
     const handleAddSelf = (values: AddPersonValues) => {
         if (!session || !activeTreeId) return;
         const person = persistPerson({ ...values, treeId: activeTreeId });
@@ -298,7 +296,7 @@ const FamilyTree: React.FC = () => {
         setAddState(null);
         reload();
     };
-
+ 
     const handleSavePerson = (values: AddPersonValues) => {
         if (!addState) return;
         const mode = addState.mode;
@@ -316,7 +314,7 @@ const FamilyTree: React.FC = () => {
         if (!activeTreeId) return;
         const relativeOf = mode.relativeOf;
         const created = persistPerson({ ...values, treeId: activeTreeId });
-
+ 
         switch (mode.relation) {
             case 'mother':
             case 'father':
@@ -361,7 +359,7 @@ const FamilyTree: React.FC = () => {
         setPicker(null);
         reload();
     };
-
+ 
     /**
      * Remove a single relation between `person` and `otherId`. Used by the
      * person card to let users clean up incorrect parent/spouse/sibling/child
@@ -401,13 +399,13 @@ const FamilyTree: React.FC = () => {
         removeRelation(target.id);
         reload();
     };
-
+ 
     const handleHideToggle = (person: Person) => {
         setPersonHidden(person.treeId, person.id, !person.isHidden);
         setContextMenu(null);
         reload();
     };
-
+ 
     const handleDeletePerson = (person: Person) => {
         const confirmed =
             typeof window !== 'undefined'
@@ -422,9 +420,9 @@ const FamilyTree: React.FC = () => {
         setContextMenu(null);
         reload();
     };
-
+ 
     /* ---------------------- Sidebar handlers ---------------------- */
-
+ 
     const handleNewTree = () => {
         if (!session) return;
         const name = window.prompt(t('sidebar.newTreePrompt', { defaultValue: 'Name of the new tree' }), `Tree ${trees.length + 1}`);
@@ -434,23 +432,23 @@ const FamilyTree: React.FC = () => {
         setSidebarOpen(false);
         reload();
     };
-
+ 
     const placeholderAction = (key: string) => () => {
         if (typeof window !== 'undefined') {
             window.alert(t(`sidebar.placeholder.${key}` as const, { defaultValue: 'Coming soon' }));
         }
         setSidebarOpen(false);
     };
-
+ 
     /* ---------------------- Rendering helpers ---------------------- */
-
+ 
     const findPerson = (id: string): Person | undefined => persons.find((p) => p.id === id);
-
+ 
     const focusId = rootPerson?.id;
-
+ 
     const contextMenuPerson = contextMenu ? findPerson(contextMenu.person.id) ?? contextMenu.person : null;
     const cardPerson = card ? findPerson(card.personId) ?? null : null;
-
+ 
     const onClickNode = (person: Person, event: React.MouseEvent<HTMLButtonElement>) => {
         const rect = (event.currentTarget as HTMLElement).getBoundingClientRect();
         setContextMenu({
@@ -459,9 +457,9 @@ const FamilyTree: React.FC = () => {
             y: rect.top
         });
     };
-
+ 
     /* ---------------------- Empty state ---------------------- */
-
+ 
     if (!rootPerson) {
         return (
             <TreeRoot>
@@ -500,7 +498,7 @@ const FamilyTree: React.FC = () => {
                         {t('emptyState.button', { defaultValue: 'Add information' })}
                     </EmptyCta>
                 </EmptyOverlay>
-
+ 
                 <TreeSidebar
                     open={sidebarOpen}
                     trees={trees.map((tr) => ({ id: tr.id, name: tr.name }))}
@@ -514,7 +512,7 @@ const FamilyTree: React.FC = () => {
                     onDownloadForPrint={placeholderAction('downloadPrint')}
                     onContactUs={placeholderAction('contactUs')}
                 />
-
+ 
                 <AddPersonModal
                     open={Boolean(addState)}
                     mode={addState?.mode ?? { kind: 'self' }}
@@ -524,7 +522,7 @@ const FamilyTree: React.FC = () => {
             </TreeRoot>
         );
     }
-
+ 
     // Compute the focus person's parents for the half-sibling parent picker in
     // the AddPersonModal. Only relevant when adding a brother/sister, but the
     // modal will ignore the prop in every other mode.
@@ -536,9 +534,9 @@ const FamilyTree: React.FC = () => {
             .map((id) => findPerson(id))
             .filter((p): p is Person => Boolean(p));
     })();
-
+ 
     /* ---------------------- Tree state ---------------------- */
-
+ 
     return (
         <TreeRoot>
             <TreeImageLayer>
@@ -551,7 +549,7 @@ const FamilyTree: React.FC = () => {
                     aria-hidden
                 />
             </TreeImageLayer>
-
+ 
             <Canvas
                 ref={canvasRef}
                 onPointerDown={onPointerDown}
@@ -582,7 +580,7 @@ const FamilyTree: React.FC = () => {
                     })}
                 </Scene>
             </Canvas>
-
+ 
             <FloatingTopLeft>
                 <IconButton
                     type="button"
@@ -610,7 +608,7 @@ const FamilyTree: React.FC = () => {
                     <SearchIcon />
                 </IconButton>
             </FloatingTopLeft>
-
+ 
             <FloatingTopRight>
                 <IconButton
                     type="button"
@@ -620,7 +618,7 @@ const FamilyTree: React.FC = () => {
                     <BurgerIcon />
                 </IconButton>
             </FloatingTopRight>
-
+ 
             <ZoomControls>
                 <ZoomButton type="button" aria-label="zoom in" onClick={zoomIn}>
                     +
@@ -632,11 +630,11 @@ const FamilyTree: React.FC = () => {
                     ◎
                 </ZoomButton>
             </ZoomControls>
-
+ 
             <AddRelativeCta type="button" onClick={() => rootPerson && setPicker({ person: rootPerson })}>
                 {t('addRelativeCta', { defaultValue: 'Add a relative' })}
             </AddRelativeCta>
-
+ 
             {contextMenu && contextMenuPerson && (
                 <PersonContextMenu
                     person={contextMenuPerson}
@@ -669,7 +667,7 @@ const FamilyTree: React.FC = () => {
                     onDelete={() => handleDeletePerson(contextMenuPerson)}
                 />
             )}
-
+ 
             <AddRelativePicker
                 open={Boolean(picker)}
                 person={picker?.person ?? null}
@@ -680,7 +678,7 @@ const FamilyTree: React.FC = () => {
                     setPicker(null);
                 }}
             />
-
+ 
             <AddPersonModal
                 open={Boolean(addState)}
                 mode={addState?.mode ?? { kind: 'self' }}
@@ -688,7 +686,7 @@ const FamilyTree: React.FC = () => {
                 onCancel={() => setAddState(null)}
                 onSubmit={handleSavePerson}
             />
-
+ 
             <PersonCardModal
                 open={Boolean(card)}
                 person={cardPerson}
@@ -714,10 +712,10 @@ const FamilyTree: React.FC = () => {
                 onAddSibling={(person) => {
                     setAddState({ mode: { kind: 'relative', relativeOf: person, relation: 'sister' } });
                 }}
-
+ 
                 onRemoveRelation={handleRemoveRelation}
             />
-
+ 
             <TreeSidebar
                 open={sidebarOpen}
                 trees={trees.map((tr) => ({ id: tr.id, name: tr.name }))}
@@ -734,9 +732,9 @@ const FamilyTree: React.FC = () => {
                 onDownloadForPrint={placeholderAction('downloadPrint')}
                 onContactUs={placeholderAction('contactUs')}
             />
-
+ 
         </TreeRoot>
     );
 };
-
+ 
 export default FamilyTree;

@@ -207,4 +207,3 @@ export const EmptyCta = styled.button`
         background: ${color('slateBlue')};
     `)}
 `;
-

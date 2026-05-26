@@ -167,7 +167,7 @@ const typography = {
 
     font8: css`
         font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
-        ${remAdaptiveFont(6, 6, 8, 10)};
+        ${remAdaptiveFont(6, 6, 8, 12)};
         line-height: 1;
         font-weight: 400;
         font-style: normal;
