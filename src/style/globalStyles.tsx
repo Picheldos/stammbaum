@@ -13,7 +13,8 @@ const GlobalStyle = createGlobalStyle`
     }
 
     html {
-        font-family: var(--font-inter), ${variables.fonts.helvetica};
+        /* Основной шрифт — Manrope через CSS-переменную set в _app.tsx */
+        font-family: var(--font-manrope), ${variables.fonts.proxima};
         scrollbar-gutter: stable;
         color: ${color('textPrimary')};
     }
@@ -54,7 +55,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     button {
-        font-family: var(--font-inter), ${variables.fonts.helvetica};
+        font-family: var(--font-manrope), ${variables.fonts.proxima};
         border: none;
 
         &, &:active,

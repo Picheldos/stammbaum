@@ -1,0 +1,124 @@
+{
+    "defaultTreeName": "Древо 1",
+    "addRelativeCta": "Добавить родственника",
+    "confirmDelete": "Удалить этого человека из древа?",
+    "confirmRemoveRelation": "Удалить эту связь? Сам человек останется в древе.",
+    "authGuard": {
+        "loading": "Загрузка...",
+        "redirecting": "Перенаправление..."
+    },
+    "controls": {
+        "search": "Поиск",
+        "menu": "Меню",
+        "searchPrompt": "Поиск по фамилии или имени",
+        "notFound": "Человек не найден"
+    },
+    "emptyState": {
+        "title": "Добавьте информацию о себе",
+        "cta": "Добавить информацию о себе",
+        "button": "Добавить информацию"
+    },
+    "menu": {
+        "openCard": "Открыть карточку",
+        "editCard": "Редактировать карточку",
+        "addRelative": "Добавить родственника",
+        "viewRelations": "Посмотреть родственные связи",
+        "hideRelative": "Скрыть родственника",
+        "unhideRelative": "Показать родственника",
+        "showHiddenRelatives": "Показать скрытых родственников",
+        "hideHiddenRelatives": "Скрыть скрытых родственников",
+        "deleteRelative": "Удалить родственника"
+    },
+    "sidebar": {
+        "selectTree": "Выбрать древо",
+        "newTree": "Новое древо",
+        "newTreePrompt": "Название нового древа",
+        "importantDates": "Важные даты",
+        "gallery": "Фотогалерея",
+        "inviteRelatives": "Пригласить родственников",
+        "downloadPrint": "Скачать для печати",
+        "contactUs": "Связаться с нами",
+        "placeholder": {
+            "importantDates": "Раздел «Важные даты» появится позже.",
+            "gallery": "Фотогалерея появится позже.",
+            "inviteRelatives": "Приглашение родственников — будущая функция.",
+            "downloadPrint": "Печать древа — будущая функция.",
+            "contactUs": "Скоро добавим форму обратной связи."
+        }
+    },
+    "gender": {
+        "female": "Ж",
+        "male": "М"
+    },
+    "addPerson": {
+        "titleSelf": "Добавить информацию",
+        "titleRelative": "Новый родственник",
+        "fields": {
+            "firstName": "Имя",
+            "lastName": "Фамилия",
+            "middleName": "Отчество",
+            "maidenName": "Девичья фамилия",
+            "birthDate": "Дата рождения",
+            "birthPlace": "Место рождения",
+            "deathDate": "Дата смерти",
+            "deathPlace": "Место смерти",
+            "biography": "Добавьте заметку",
+            "photo": "Загрузить фотографию"
+        },
+        "actions": {
+            "save": "Сохранить изменения",
+            "addNote": "Добавить заметку",
+            "addDeath": "Добавить дату и место смерти"
+        },
+        "errors": {
+            "firstNameRequired": "Введите имя",
+            "lastNameRequired": "Введите фамилию",
+            "photo": "Не удалось прочитать фото"
+        },
+        "sharedParents": {
+            "title": "Какие родители общие у этого брата/сестры?",
+            "both": "Оба родителя (родной брат/сестра)",
+            "onlyOne": "Только {{parent}} (сводный брат/сестра)"
+        }
+    },
+    "relativePicker": {
+        "title": "Добавить родственника"
+    },
+    "relativeLabel": {
+        "self": "Я",
+        "mother": "Мать",
+        "father": "Отец",
+        "spouse": "Супруг/супруга",
+        "son": "Сын",
+        "daughter": "Дочь",
+        "brother": "Брат",
+        "sister": "Сестра",
+        "husband": "Муж",
+        "wife": "Жена",
+        "grandfather": "Дедушка",
+        "grandmother": "Бабушка",
+        "grandson": "Внук",
+        "granddaughter": "Внучка",
+        "uncle": "Дядя",
+        "aunt": "Тётя",
+        "relative": "Родственник"
+    },
+    "personCard": {
+        "empty": "Записей пока нет",
+        "add": "Добавить",
+        "edit": "Редактировать",
+        "middleName": "Отчество",
+        "maidenName": "Девичья фамилия",
+        "nationality": "Национальность",
+        "occupation": "Род занятий",
+        "deathPlace": "Место смерти",
+        "note": "Заметка",
+        "tabs": {
+            "info": "Информация",
+            "parents": "Родители",
+            "spouses": "Супруги",
+            "children": "Дети",
+            "siblings": "Братья и сёстры"
+        }
+    }
+}

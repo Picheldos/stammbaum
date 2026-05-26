@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { color, font, hover, mediaBreakpointUp } from '@/style/mixins';
+import { color, font, hover, mediaBreakpointUp, vw } from '@/style/mixins';
 
 export const Bar = styled.header`
     position: sticky;
@@ -7,7 +7,7 @@ export const Bar = styled.header`
     z-index: 100;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center;     
     min-height: 56px;
     padding: 0 16px;
     background-color: ${color('forest')};
@@ -15,8 +15,8 @@ export const Bar = styled.header`
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
 
     ${mediaBreakpointUp('lg')} {
-        min-height: 72px;
-        padding: 0 32px;
+        min-height: ${vw(55, 'mac')};
+        padding: 0 ${vw(20, 'mac')};
     }
 `;
 
@@ -25,7 +25,6 @@ export const BarInner = styled.div`
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
     width: 100%;
-    max-width: 1440px;
     gap: 8px;
 `;
 

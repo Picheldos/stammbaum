@@ -1,51 +1,10 @@
-@font-face {
-    font-family: 'Proxima Nova';
-    src: url('/fonts/proximaNova/proxima_nova_regular.eot');
-    src: url('/fonts/proximaNova/proxima_nova_regular.eot?#iefix') format('embedded-opentype'),
-        url('/fonts/proximaNova/proxima_nova_regular.woff2') format('woff2'),
-        url('/fonts/proximaNova/proxima_nova_regular.woff') format('woff'),
-        url('/fonts/proximaNova/proxima_nova_regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
+/* Fonts are provided via next/font in _app.tsx as CSS variables:
+   --font-manrope and --font-playfair-display. Local @font-face declarations
+   removed to avoid conflicts. If you need local fallbacks, add them here
+   mapping to the same variable names. */
 
-@font-face {
-    font-family: 'Proxima Nova';
-    src: url('/fonts/proximaNova/proxima_nova_bold.eot');
-    src: url('/fonts/proximaNova/proxima_nova_bold.eot?#iefix') format('embedded-opentype'),
-        url('/fonts/proximaNova/proxima_nova_bold.woff2') format('woff2'),
-        url('/fonts/proximaNova/proxima_nova_bold.woff') format('woff'),
-        url('/fonts/proximaNova/proxima_nova_bold.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Proxima Nova';
-    src: url('/fonts/proximaNova/proxima_nova_semibold.eot');
-    src: url('/fonts/proximaNova/proxima_nova_semibold.eot?#iefix') format('embedded-opentype'),
-        url('/fonts/proximaNova/proxima_nova_semibold.woff2') format('woff2'),
-        url('/fonts/proximaNova/proxima_nova_semibold.woff') format('woff'),
-        url('/fonts/proximaNova/proxima_nova_semibold.ttf') format('truetype');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Helvetica';
-    src: url('/fonts/helvetica/helvetica.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Helvetica';
-    src: url('/fonts/helvetica/helvetica_bold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
+:root {
+    /* Placeholder variables (actual values set by next/font on root div) */
+    --font-manrope: 'Manrope, Arial, sans-serif';
+    --font-playfair-display: 'Playfair Display, Georgia, serif';
 }

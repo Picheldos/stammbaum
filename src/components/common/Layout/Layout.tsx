@@ -37,7 +37,7 @@ const Layout: React.FC<LayoutProps> = ({ children, meta, header, sandwich }) => 
             <PageShell>
                 <Header {...header} />
                 <MainArea>{children}</MainArea>
-                <Footer />
+                { /* <Footer /> */ }
             </PageShell>
             <Sandwich {...sandwich} />
         </>

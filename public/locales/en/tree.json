@@ -1,0 +1,124 @@
+{
+    "defaultTreeName": "Tree 1",
+    "addRelativeCta": "Add a relative",
+    "confirmDelete": "Delete this person from the tree?",
+    "confirmRemoveRelation": "Remove this relation? The person will stay in the tree.",
+    "authGuard": {
+        "loading": "Loading...",
+        "redirecting": "Redirecting..."
+    },
+    "controls": {
+        "search": "Search",
+        "menu": "Menu",
+        "searchPrompt": "Search by first or last name",
+        "notFound": "Person not found"
+    },
+    "emptyState": {
+        "title": "Add information about yourself",
+        "cta": "Add information about yourself",
+        "button": "Add information"
+    },
+    "menu": {
+        "openCard": "Open card",
+        "editCard": "Edit card",
+        "addRelative": "Add a relative",
+        "viewRelations": "View relations",
+        "hideRelative": "Hide relative",
+        "unhideRelative": "Unhide relative",
+        "showHiddenRelatives": "Show hidden relatives",
+        "hideHiddenRelatives": "Hide hidden relatives",
+        "deleteRelative": "Delete relative"
+    },
+    "sidebar": {
+        "selectTree": "Select tree",
+        "newTree": "New tree",
+        "newTreePrompt": "Name of the new tree",
+        "importantDates": "Important dates",
+        "gallery": "Photo gallery",
+        "inviteRelatives": "Invite relatives",
+        "downloadPrint": "Download for print",
+        "contactUs": "Contact us",
+        "placeholder": {
+            "importantDates": "The \"Important dates\" section will be available later.",
+            "gallery": "Photo gallery will be available later.",
+            "inviteRelatives": "Inviting relatives is a future feature.",
+            "downloadPrint": "Printable export is a future feature.",
+            "contactUs": "Contact form is coming soon."
+        }
+    },
+    "gender": {
+        "female": "F",
+        "male": "M"
+    },
+    "addPerson": {
+        "titleSelf": "Add information",
+        "titleRelative": "New relative",
+        "fields": {
+            "firstName": "First name",
+            "lastName": "Last name",
+            "middleName": "Middle name",
+            "maidenName": "Maiden name",
+            "birthDate": "Date of birth",
+            "birthPlace": "Place of birth",
+            "deathDate": "Date of death",
+            "deathPlace": "Place of death",
+            "biography": "Add a note",
+            "photo": "Upload a photo"
+        },
+        "actions": {
+            "save": "Save changes",
+            "addNote": "Add a note",
+            "addDeath": "Add date and place of death"
+        },
+        "errors": {
+            "firstNameRequired": "First name is required",
+            "lastNameRequired": "Last name is required",
+            "photo": "Could not read photo"
+        },
+        "sharedParents": {
+            "title": "Which parents does this sibling share?",
+            "both": "Both parents (full sibling)",
+            "onlyOne": "Only {{parent}} (half sibling)"
+        }
+    },
+    "relativePicker": {
+        "title": "Add a relative"
+    },
+    "relativeLabel": {
+        "self": "Me",
+        "mother": "Mother",
+        "father": "Father",
+        "spouse": "Spouse",
+        "son": "Son",
+        "daughter": "Daughter",
+        "brother": "Brother",
+        "sister": "Sister",
+        "husband": "Husband",
+        "wife": "Wife",
+        "grandfather": "Grandfather",
+        "grandmother": "Grandmother",
+        "grandson": "Grandson",
+        "granddaughter": "Granddaughter",
+        "uncle": "Uncle",
+        "aunt": "Aunt",
+        "relative": "Relative"
+    },
+    "personCard": {
+        "empty": "No records yet",
+        "add": "Add",
+        "edit": "Edit",
+        "middleName": "Middle name",
+        "maidenName": "Maiden name",
+        "nationality": "Nationality",
+        "occupation": "Occupation",
+        "deathPlace": "Place of death",
+        "note": "Note",
+        "tabs": {
+            "info": "Info",
+            "parents": "Parents",
+            "spouses": "Spouses",
+            "children": "Children",
+            "siblings": "Siblings"
+        }
+    }
+}

@@ -1,10 +1,10 @@
-:root{--green:#6b7f52;--beige:#f0e2c9;--muted:#6e7b88;--accent:#415066}
-*{box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+:root{--green:#6b7f52;--beige:#f0e2c9;--muted:#6e7b88;--accent:#415066; --font-manrope: 'Manrope, Arial, sans-serif'; --font-playfair-display: 'Playfair Display, Georgia, serif';}
+*{box-sizing:border-box;font-family:var(--font-manrope);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 body{margin:0;background:#fbf9f5;color:#333}
 .container{max-width:1100px;margin:0 auto;padding:20px}
 .topbar{background:var(--green);color:#fff;padding:12px 0;box-shadow:0 0 0 4px rgba(0,0,0,0.06) inset}
 .topbar .container{display:flex;align-items:center;justify-content:space-between}
-.brand{font-family:Georgia,serif;font-size:26px}
+.brand{font-family:var(--font-playfair-display);font-size:26px}
 .btn{border-radius:6px;padding:8px 14px;border:1px solid rgba(0,0,0,0.1);background:#fff;cursor:pointer}
 .btn.outline{background:transparent;color:#fff;border-color:rgba(255,255,255,0.5)}
 .btn.primary{background:#eef1f6;color:var(--accent);border:1px solid rgba(0,0,0,0.08)}

@@ -8,7 +8,9 @@ const variables = {
     videoRatio: (9 / 16) * 100,
     fonts: {
         proxima: 'Proxima Nova, Arial',
-        helvetica: 'Helvetica, Arial'
+        helvetica: 'Helvetica, Arial',
+        manrope: 'Manrope, Arial, sans-serif',
+        playfair: 'Playfair Display, Georgia, serif'
     }
 };
 
