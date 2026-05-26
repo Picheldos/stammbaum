@@ -70,12 +70,16 @@ export const StepIndex = styled.span`
     font-weight: 300;
     line-height: 1.08;
     color: ${color('landingStepNum')};
+
+    ${mediaBreakpointUp('xl')} {
+        ${font('title')};
+    }
 `;
 
 export const StepCopy = styled.span`
     flex: 1;
     padding-top: 0.65rem;
-    ${font('font7')};
+    ${font('font3')};
     line-height: 1.45;
     font-weight: 400;
 `;
@@ -149,6 +153,12 @@ export const TreeLayer = styled.div`
         width: ${vw(585, 'xl')};
         height: ${vw(554, 'xl')};
     }
+
+    ${mediaBreakpointUp('xxl')} {
+        inset: auto 0 ${vw(-170)};
+    }
+
+    
 `;
 
 export const CardsOverlay = styled.div`

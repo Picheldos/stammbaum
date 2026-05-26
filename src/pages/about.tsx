@@ -4,6 +4,7 @@ import Layout from '@/components/common/Layout/Layout';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import styled from 'styled-components';
 import { font } from '@/style/mixins';
+import { AboutSection } from '@/components/sections/AboutSection/AboutSection';
 
 const Body = styled.section`
     ${font('font2')};
@@ -13,7 +14,7 @@ const Body = styled.section`
 const AboutPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ meta, header, sandwich }) => {
     return (
         <Layout meta={meta} header={header} sandwich={sandwich}>
-            <Body>{meta.description}</Body>
+            <AboutSection />
         </Layout>
     );
 };

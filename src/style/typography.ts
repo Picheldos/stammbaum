@@ -86,7 +86,7 @@ const typography = {
     /* H1 - мобильный минимум 20, затем рост */
     title: css`
         font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
-        ${remAdaptiveFont(20, 30, 40, 40)};
+        ${remAdaptiveFont(20, 30, 40, 52)};
         line-height: 1;
         font-weight: 500;
     `,
@@ -94,7 +94,7 @@ const typography = {
     /* H2 - мобильный минимум 16 */
     title2: css`
         font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
-        ${remAdaptiveFont(16, 22, 30, 30)};
+        ${remAdaptiveFont(16, 22, 30, 40)};
         line-height: 1;
         font-weight: 500;
     `,

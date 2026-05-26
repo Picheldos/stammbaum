@@ -1,14 +1,13 @@
 import styled from 'styled-components';
-import { color, mediaBreakpointUp, font, vw } from '@/style/mixins';
+import { color, mediaBreakpointUp, vw } from '@/style/mixins';
 
-export const Container = styled.div<{ colorBg?: string }>`
-  position: absolute;
+export const Container = styled.div<{ variant?: string; color?: string }>`
   top: ${vw(132, 'xs')};
   left: ${vw(20, 'xs')};
   width: ${vw(283, 'xs')};
   height: ${vw(260, 'xs')};
   border-radius: ${vw(5, 'xs')};
-  background: ${colorBg => color(`${colorBg}`)};
+//   background: ${({ color: bgColor }) => color(bgColor || 'aboutBlockBg')};
   opacity: 1;
   transform: rotate(${vw(0, 'xs')}deg);
   display: flex;
@@ -16,51 +15,60 @@ export const Container = styled.div<{ colorBg?: string }>`
   justify-content: center;
   align-items: center;
   padding: ${vw(24, 'xs')};
-
-  ${mediaBreakpointUp('md')} {
-    top: ${vw(132, 'md')};
-    left: ${vw(20, 'md')};
-    width: ${vw(283, 'md')};
-    height: ${vw(260, 'md')};
-    border-radius: ${vw(5, 'md')};
-    padding: ${vw(24, 'md')};
-  }
+  text-align: center;
 
   ${mediaBreakpointUp('lg')} {
-    top: ${vw(132, 'lg')};
-    left: ${vw(20, 'lg')};
-    width: ${vw(283, 'lg')};
-    height: ${vw(260, 'lg')};
-    border-radius: ${vw(5, 'lg')};
-    padding: ${vw(24, 'lg')};
+    top: ${vw(132, 'md')};
+    left: ${vw(20, 'md')};
+    width: ${vw(283, 'xl')};
+    height: ${vw(260, 'xl')};
+    padding: ${vw(24, 'xl')};
   }
+
+  ${({ variant }) =>
+    variant === 'image' &&
+    `
+      padding: 0;
+      overflow: hidden;
+    `}
 `;
 
 export const Title = styled.h3`
-  ${font('font2')};
-  margin-bottom: ${vw(12, 'xs')};
-  color: ${color('textPrimary')};
-
-  ${mediaBreakpointUp('md')} {
-    margin-bottom: ${vw(12, 'md')};
-  }
-
-  ${mediaBreakpointUp('lg')} {
-    margin-bottom: ${vw(12, 'lg')};
-  }
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
 `;
 
 export const Subtitle = styled.p`
-  ${font('font6')};
-  color: ${color('textSecondary')};
-  text-align: center;
-  line-height: ${vw(20, 'xs')};
+  font-size: 1rem;
+  opacity: 0.9;
+`;
 
-  ${mediaBreakpointUp('md')} {
-    line-height: ${vw(22, 'md')};
+export const PlusButton = styled.button`
+  margin-top: 1rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid white;
+  background: transparent;
+  color: white;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
   }
+`;
 
-  ${mediaBreakpointUp('lg')} {
-    line-height: ${vw(24, 'lg')};
+export const ImageContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 `;
