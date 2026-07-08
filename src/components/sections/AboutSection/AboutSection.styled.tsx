@@ -1,14 +1,15 @@
 import styled from 'styled-components';
-import { mediaBreakpointUp, vw } from '@/style/mixins';
+import { font, mediaBreakpointUp, vw } from '@/style/mixins';
 
 export const Container = styled.section`
 
   h1 {
-    text-align: center;
-    margin-bottom: ${vw(60, 'xs')};
+    ${font('title2')};
+    margin-bottom: ${vw(30, 'xs')};
 
     ${mediaBreakpointUp('md')} {
-      margin-bottom: ${vw(80, 'md')};
+      padding-top: ${vw(40)};
+      margin-bottom: ${vw(40)};
     }
   }
 `;
@@ -16,8 +17,7 @@ export const Container = styled.section`
 export const FlexContainer = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
-  max-width: 1200px;
+  justify-content: space-between;
   margin: 0 auto;
 
   ${mediaBreakpointUp('md')} {

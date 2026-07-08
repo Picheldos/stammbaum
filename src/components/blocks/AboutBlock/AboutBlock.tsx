@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Container, Title, Subtitle, PlusButton, ImageContainer } from './AboutBlock.styled';
-// import { Popup } from '@/components/common/Popup/Popup'; // или создай, если нет
+import React from 'react';
+import Image from 'next/image';
+import { Container, Title, Subtitle, PlusButton, ImageContainer, StepNumber } from './AboutBlock.styled';
 
 export interface AboutBlockProps {
   variant?: 'step' | 'image' | 'text' | 'empty';
@@ -12,6 +12,7 @@ export interface AboutBlockProps {
   popupContent?: string;
   className?: string;
   color?: string;
+  onPopupOpen?: () => void;
 }
 
 export const AboutBlock: React.FC<AboutBlockProps> = ({
@@ -23,28 +24,33 @@ export const AboutBlock: React.FC<AboutBlockProps> = ({
   popupContent,
   className = '',
   color,
+  onPopupOpen,
 }) => {
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-
   const handlePlusClick = () => {
-    if (popupContent) {
-      setIsPopupOpen(true);
+    if (popupContent && onPopupOpen) {
+      onPopupOpen();
     }
   };
-  console.log(isPopupOpen)
+
   return (
-    <>
-      <Container variant={variant} color={color} className={className}>
+    <Container variant={variant} color={color} className={className}>
         {variant === 'image' && image && (
           <ImageContainer>
-            <img src={image} alt="Family" />
+            <Image
+              src={image}
+              fill
+              alt="Family"
+              quality={100}
+              style={{ objectFit: 'cover', objectPosition: 'center' }}
+
+            />
           </ImageContainer>
         )}
 
         {variant === 'step' && (
           <>
-            {stepNumber && <div className="step-number">Шаг {stepNumber}</div>}
-            {title && <Title>{title}</Title>}
+            {stepNumber && <StepNumber>Шаг {stepNumber}</StepNumber>}
+            {title && <Title $variant={variant}>{title}</Title>}
             {subtitle && <Subtitle>{subtitle}</Subtitle>}
             
             <PlusButton onClick={handlePlusClick}>+</PlusButton>
@@ -53,20 +59,12 @@ export const AboutBlock: React.FC<AboutBlockProps> = ({
 
         {variant === 'text' && (
           <>
-            {title && <Title>{title}</Title>}
+            {title && <Title $variant={variant}>{title}</Title>}
             {subtitle && <Subtitle>{subtitle}</Subtitle>}
           </>
         )}
 
         {variant === 'empty' && <div className="empty-block" />}
-      </Container>
-
-      {/* <Popup
-        isOpen={isPopupOpen}
-        onClose={() => setIsPopupOpen(false)}
-        title={popupTitle || title || ''}
-        content={popupContent || ''}
-      /> */}
-    </>
+    </Container>
   );
 };

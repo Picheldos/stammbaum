@@ -1,57 +1,106 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
+import { useTranslation } from 'next-i18next';
 import { AboutBlock } from '@/components/blocks/AboutBlock/AboutBlock';
-// import familyImage from '/images/family.jpg'; // ← проверь путь
+import { Popup } from '@/components/common/Popup/Popup';
 
 import { Container, FlexContainer } from './AboutSection.styled';
 
+const STEP_CONFIG = [
+  { stepNumber: 1, color: '#576686' },
+  { stepNumber: 2, color: '#64774A' },
+  { stepNumber: 3, color: '#64774A' },
+  { stepNumber: 4, color: '#576686' },
+] as const;
+
+type StepTranslation = {
+  title: string;
+  content: string;
+};
+
+const parseSteps = (value: unknown): StepTranslation[] =>
+  Array.isArray(value)
+    ? (value as StepTranslation[]).filter((step) => step && typeof step.title === 'string')
+    : [];
+
 export const AboutSection: React.FC = () => {
+  const { t } = useTranslation('about');
+  const [activeStep, setActiveStep] = useState<number | null>(null);
+
+  const steps = useMemo(() => {
+    const translations = parseSteps(t('steps', { returnObjects: true }));
+
+    return STEP_CONFIG.map((config, index) => ({
+      ...config,
+      title: translations[index]?.title ?? '',
+      content: translations[index]?.content ?? '',
+    }));
+  }, [t]);
+
+  const activeStepData = steps.find((step) => step.stepNumber === activeStep);
+  const totalSteps = steps.length;
+
   return (
     <Container>
-      <h1>О проекте</h1>
+      <h1>{t('title')}</h1>
 
       <FlexContainer>
-        {/* Шаг 1 */}
         <AboutBlock
+          color={steps[0].color}
           variant="step"
-          stepNumber={1}
-          title="Зарегистрируйтесь и начните создавать свою историю"
-          popupTitle="Шаг 1"
-          popupContent="После входа вы можете добавить сведения о близких, загрузить фотографии, памятные моменты, отмечать важные даты и выстраивать структуру семейных связей."
+          stepNumber={steps[0].stepNumber}
+          title={steps[0].title}
+          popupContent={steps[0].content}
+          onPopupOpen={() => setActiveStep(steps[0].stepNumber)}
         />
 
-        {/* Центральное фото */}
-        {/* <AboutBlock
-          variant="image"
-          image={familyImage}
-        /> */}
+        <AboutBlock variant="image" image={'/images/about/family.jpg'} />
 
-        {/* Шаг 2 */}
+        <AboutBlock variant="empty" />
+
         <AboutBlock
+          color={steps[1].color}
           variant="step"
-          stepNumber={2}
-          title="Добавляйте родственников и объединяйте ваши семейные древа"
-          popupTitle="Шаг 2"
-          popupContent="Приглашайте членов семьи, объединяйте несколько древ в одно большое генеалогическое дерево."
+          stepNumber={steps[1].stepNumber}
+          title={steps[1].title}
+          popupContent={steps[1].content}
+          onPopupOpen={() => setActiveStep(steps[1].stepNumber)}
         />
 
-        {/* Шаг 3 */}
         <AboutBlock
+          color={steps[2].color}
           variant="step"
-          stepNumber={3}
-          title="Вы получаете общую картину вашего семейного древа"
-          popupTitle="Шаг 3"
-          popupContent="Просматривайте полную структуру семьи, связи между поколениями и важные события в удобном визуальном формате."
+          stepNumber={steps[2].stepNumber}
+          title={steps[2].title}
+          popupContent={steps[2].content}
+          onPopupOpen={() => setActiveStep(steps[2].stepNumber)}
         />
 
-        {/* Шаг 4 */}
+        <AboutBlock variant="empty" />
+
+        <AboutBlock variant="text" title={t('description')} />
+
         <AboutBlock
+          color={steps[3].color}
           variant="step"
-          stepNumber={4}
-          title="Добавляйте данные о своих усопших родственниках"
-          popupTitle="Шаг 4"
-          popupContent="Сохраняйте память о предках: даты жизни, биографии, фотографии и истории."
+          stepNumber={steps[3].stepNumber}
+          title={steps[3].title}
+          popupContent={steps[3].content}
+          onPopupOpen={() => setActiveStep(steps[3].stepNumber)}
         />
       </FlexContainer>
+
+      {activeStep !== null && activeStepData && (
+        <Popup
+          isOpen={activeStep !== null}
+          onClose={() => setActiveStep(null)}
+          title={t('popupStep', { number: activeStepData.stepNumber })}
+          subtitle={activeStepData.title}
+          content={activeStepData.content}
+          currentStep={activeStepData.stepNumber}
+          totalSteps={totalSteps}
+          onStepChange={setActiveStep}
+        />
+      )}
     </Container>
   );
 };

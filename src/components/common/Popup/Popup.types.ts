@@ -2,8 +2,13 @@ export interface PopupProps {
   isOpen: boolean;
   onClose: () => void;
   title: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
   closeOnOverlayClick?: boolean;
   showCloseButton?: boolean;
+  content: string;
+  subtitle: string;
+  currentStep?: number;
+  totalSteps?: number;
+  onStepChange?: (step: number) => void;
 }

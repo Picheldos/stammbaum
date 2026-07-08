@@ -1,0 +1,28 @@
+{
+  "title": "About the project",
+  "description": "This service was created as a space where people come together to preserve family memories and share the stories of their ancestors",
+  "popupStep": "Step {{number}}",
+  "steps": [
+    {
+      "title": "Sign up and start creating your story",
+      "content": "After signing in, you can add information about loved ones, upload photos and memorable moments, mark important dates, and build your family connections."
+    },
+    {
+      "title": "Add relatives and merge your family trees",
+      "content": "Invite family members and combine multiple trees into one large genealogical tree."
+    },
+    {
+      "title": "See the full picture of your family tree",
+      "content": "View your complete family structure, connections between generations, and important events in a clear visual format."
+    },
+    {
+      "title": "Add information about deceased relatives",
+      "content": "Preserve the memory of ancestors: dates of life, biographies, photos, and stories."
+    }
+  ],
+  "meta": {
+    "title": "About",
+    "description": "About page placeholder.",
+    "keywords": "about"
+  }
+}

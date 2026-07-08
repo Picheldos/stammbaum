@@ -83,18 +83,22 @@ export const remAdaptiveFont = (minSize: number, tabletSize: number, smallDeskSi
 };
 
 const typography = {
-    /* H1 - мобильный минимум 20, затем рост */
+    /* H1 */
     title: css`
         font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
-        ${remAdaptiveFont(20, 30, 40, 52)};
+        ${remAdaptiveFont(20, 22, 40, 70)};
         line-height: 1;
         font-weight: 500;
+
+        @media (min-width: 1920px) {
+            font-weight: 600;
+        }
     `,
 
-    /* H2 - мобильный минимум 16 */
+    /* H2 */
     title2: css`
         font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
-        ${remAdaptiveFont(16, 22, 30, 40)};
+        ${remAdaptiveFont(16, 18, 30, 50)};
         line-height: 1;
         font-weight: 500;
     `,
@@ -102,85 +106,101 @@ const typography = {
     /* H3 - Playfair Display */
     title3: css`
         font-family: var(--font-playfair-display), 'Playfair Display', Georgia, serif;
-        ${remAdaptiveFont(16, 18, 20, 20)};
+        ${remAdaptiveFont(16, 16, 20, 20)};
         line-height: 1;
         font-weight: 500;
     `,
 
-    /* B3 - очень маленький (минимум 8) */
+    /* B3 */
     font1: css`
         font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
-        ${remAdaptiveFont(8, 10, 14, 14)};
+        ${remAdaptiveFont(8, 8, 14, 16)};
         line-height: 1.2;
         font-weight: 400;
+
+        @media (min-width: 1280px) {
+            font-weight: 500;
+        }
     `,
 
-    /* B1 - минимум 12 */
+    /* B1 */
     font2: css`
         font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
-        ${remAdaptiveFont(12, 14, 20, 20)};
+        ${remAdaptiveFont(12, 12, 20, 18)};
         line-height: 1.2;
-        font-weight: 400;
+        font-weight: 500;
+
+        @media (min-width: 1280px) and (max-width: 1919px) {
+            font-weight: 400;
+        }
     `,
 
-    /* H5 or general mid text */
+    /* H5 */
     font3: css`
         font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
         ${remAdaptiveFont(18, 18, 22, 22)};
         line-height: 1.2;
-        font-weight: 400;
+        font-weight: 500;
     `,
 
+    /* B4 */
     font4: css`
         font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
-        ${remAdaptiveFont(12, 12, 18, 18)};
+        ${remAdaptiveFont(12, 12, 12, 14)};
         line-height: 1.2;
-        font-weight: 400;
+        font-weight: 500;
     `,
 
+    /* B5 */
     font5: css`
         font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
-        ${remAdaptiveFont(15, 12, 25, 25)};
+        ${remAdaptiveFont(10, 10, 22, 22)};
         line-height: 1.2;
-        font-weight: 400;
+        font-weight: 500;
     `,
 
-    /* H4 - минимум 14 */
+    /* H4 */
     font6: css`
         font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
-        ${remAdaptiveFont(14, 18, 25, 25)};
+        ${remAdaptiveFont(14, 14, 25, 30)};
         line-height: 1;
         font-weight: 500;
         font-style: normal;
         letter-spacing: 0;
     `,
 
-    /* B2 - минимум 8 */
+    /* B2 */
     font7: css`
         font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
-        ${remAdaptiveFont(8, 12, 16, 18)};
+        ${remAdaptiveFont(8, 8, 16, 18)};
         line-height: 1;
         font-weight: 500;
         font-style: normal;
         letter-spacing: 0;
     `,
 
+    /* B6 */
     font8: css`
         font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
-        ${remAdaptiveFont(6, 6, 8, 12)};
+        ${remAdaptiveFont(8, 8, 8, 8)};
         line-height: 1;
         font-weight: 400;
         font-style: normal;
         letter-spacing: 0;
     `,
 
+    /* B7 */
     font9: css`
         font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
-        ${remAdaptiveFont(6, 6, 8, 10)};
+        ${remAdaptiveFont(5, 8, 8, 8)};
         line-height: 1;
-        font-weight: 600;
+        font-weight: 400;
         font-style: normal;
         letter-spacing: 0;
+
+        @media (min-width: 1280px) {
+            font-weight: 600;
+        }
     `,
 
     logo: css`

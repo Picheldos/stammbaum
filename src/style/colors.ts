@@ -10,6 +10,7 @@ const colors = {
     darkBeige: '#EBEBDB',
     color228: '#081e01',
     color1337: '#fbfdfb',
+    popupBackground: '#F8EACF',
     /** Stammbaum — топ-бар и акценты */
     forest: '#64774A',
     forestDeep: '#2F4F3A',
@@ -18,6 +19,7 @@ const colors = {
     slateBlue: '#4F5D75',
     navActive: '#5B6D8E',
     textPrimary: '#333333',
+    ink: '#30302A',
     /** Landing */
     landingPaper: '#F9F8F0',
     landingCard: '#EFD195',

@@ -22,6 +22,11 @@ export const Overlay = styled.div<{ isOpen: boolean }>`
 `;
 
 export const Content = styled.div<{ className?: string }>`
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   position: relative;
   border-radius: ${vw(12, 'xs')};
   padding: ${vw(32, 'xs')};
@@ -29,6 +34,8 @@ export const Content = styled.div<{ className?: string }>`
   width: ${vw(500, 'xs')};
   box-shadow: 0 ${vw(10, 'xs')} ${vw(40, 'xs')} rgba(0, 0, 0, 0.3);
   animation: slideUp 0.3s ease;
+
+  background: ${color('popupBackground')};
 
   @keyframes slideUp {
     from { transform: translateY(${vw(20, 'xs')}); opacity: 0; }
@@ -43,54 +50,130 @@ export const Content = styled.div<{ className?: string }>`
 
   ${mediaBreakpointUp('lg')} {
     border-radius: ${vw(12, 'lg')};
-    padding: ${vw(48, 'lg')};
-    width: ${vw(700, 'lg')};
+    padding: ${vw(100)} ${vw(90)};
+    width: ${vw(700)};
+    height: ${vw(450)};
   }
 `;
 
 export const Header = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: ${vw(24, 'xs')};
-
-  ${mediaBreakpointUp('md')} {
-    margin-bottom: ${vw(32, 'md')};
-  }
 `;
 
 export const Title = styled.h2`
-  ${font('font1')};
+  ${font('title2')};
+
   color: ${color('textPrimary')};
 `;
 
-export const CloseButton = styled.button`
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: ${vw(8, 'xs')};
-  transition: color 0.2s ease;
+const iconLineStyles = `
+  position: absolute;
+  display: block;
+  width: 2px;
+  height: 13px;
+  background: ${color('textPrimary')};
+  border-radius: 1px;
+`;
 
-  &:hover {
-    color: ${color('textPrimary')};
+export const IconButton = styled.button`
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  min-height: 16px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  flex-shrink: 0;
+
+  span {
+    ${iconLineStyles}
   }
 
-  ${mediaBreakpointUp('md')} {
-    padding: ${vw(10, 'md')};
+  &:hover span {
+    opacity: 0.7;
+  }
+`;
+
+export const CloseButton = styled(IconButton)`
+  top: 30px;
+  right: 30px;
+
+  span {
+    left: 50%;
+    top: 50%;
+    margin-left: -1px;
+    margin-top: -5px;
+    transform-origin: center center;
+  }
+
+  span:first-child {
+    transform: rotate(45deg);
+  }
+
+  span:last-child {
+    transform: rotate(-45deg);
+  }
+`;
+
+export const PrevButton = styled(IconButton)`
+  left: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  span:first-child {
+    left: 2px;
+    bottom: 50%;
+    transform-origin: left bottom;
+    transform: rotate(45deg);
+  }
+
+  span:last-child {
+    left: 2px;
+    top: 50%;
+    transform-origin: left top;
+    transform: rotate(-45deg);
+  }
+`;
+
+export const NextButton = styled(IconButton)`
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  span:first-child {
+    right: 2px;
+    bottom: 50%;
+    transform-origin: right bottom;
+    transform: rotate(-45deg);
+  }
+
+  span:last-child {
+    right: 2px;
+    top: 50%;
+    transform-origin: right top;
+    transform: rotate(45deg);
   }
 `;
 
 export const Body = styled.div`
-  ${font('font5')};
   color: ${color('textPrimary')};
-  line-height: ${vw(24, 'xs')};
-  margin-bottom: ${vw(32, 'xs')};
+  // margin-bottom: ${vw(32, 'xs')};
 
-  ${mediaBreakpointUp('md')} {
-    line-height: ${vw(28, 'md')};
-    margin-bottom: ${vw(40, 'md')};
-  }
+  // ${mediaBreakpointUp('md')} {
+  //   margin-bottom: ${vw(40, 'md')};
+  // }
 `;
+
+export const Subtitle = styled.div`
+    ${font('font6')};
+`
+
+export const Text = styled.div`
+    ${font('font5')};
+`
 
 export const Footer = styled.div<{ className?: string }>`
   display: flex;
