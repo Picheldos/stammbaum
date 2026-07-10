@@ -4,7 +4,7 @@ import { RecoilRoot } from 'recoil';
 import 'swiper/css';
 import AppWrapper from '@/components/common/AppWrapper/AppWrapper';
 import { appWithTranslation } from 'next-i18next';
-import { Playfair_Display, Inter } from 'next/font/google';
+import { Playfair_Display, Manrope } from 'next/font/google';
 
 const playfairDisplay = Playfair_Display({
     subsets: ['latin', 'cyrillic'],
@@ -13,17 +13,17 @@ const playfairDisplay = Playfair_Display({
     display: 'swap'
 });
 
-const inter = Inter({
+const manrope = Manrope({
     subsets: ['latin', 'cyrillic'],
     weight: ['400', '500', '600', '700'],
-    variable: '--font-inter',
+    variable: '--font-manrope',
     display: 'swap'
 });
 
 const MyApp = ({ Component, pageProps, router }: AppProps) => {
     return (
         <RecoilRoot>
-            <div className={`${playfairDisplay.variable} ${inter.variable}`}>
+            <div className={`${playfairDisplay.variable} ${manrope.variable}`}>
                 <AppWrapper pageProps={pageProps} Component={Component} router={router} />
             </div>
         </RecoilRoot>

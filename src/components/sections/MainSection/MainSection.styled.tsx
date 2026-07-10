@@ -3,8 +3,8 @@ import { color, mediaBreakpointDown, mediaBreakpointUp, font, vw } from '@/style
 
 export const LandingRoot = styled.section`
     width: 100%;
-    height: 100%;
-    padding: ${vw(40, 'xl')} 0;
+    padding-top: ${vw(40, 'xl')};
+
 `;
 
 export const HeroGrid = styled.div`
@@ -21,24 +21,22 @@ export const HeroContent = styled.div`
     display: flex;
     flex-direction: column;
 
-    ${mediaBreakpointUp('md')} {
-        max-width: 36rem;
-        gap: clamp(12rem, 3.5vw, 2.5rem);
-
-    }
+    height: 100%;
+    justify-content: space-between;
 `;
 
 /* заголовок — типография из общего набора */
 export const HeroTitle = styled.h1`
-    ${font('title')};
-    line-height: 1.22;
-    letter-spacing: -0.015em;
+    ${font('title')};   
     color: ${color('textPrimary')};
     margin-bottom: ${vw(40, 'xs')};
     max-width: ${vw(250, 'xs')};
 
+    line-height: 0.92;
+
     ${mediaBreakpointUp('lg')} {
-        margin-bottom: 0;
+        margin-bottom: ${vw(200)};
+        max-width: ${vw(920)};
     }
  `;
 
@@ -48,8 +46,6 @@ export const StepsList = styled.ol`
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: clamp(0.95rem, 2.2vw, 1.25rem);
-
     ${mediaBreakpointDown('md')} {
         max-width: ${vw(300, 'xs')};
     }
@@ -103,6 +99,8 @@ export const CtaButton = styled.button`
     cursor: pointer;
     box-shadow: 0 4px 14px rgba(94, 109, 139, 0.28);
     transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+
+    margin-top: ${vw(240)};
 
     &:hover {
         background: ${color('slateBlue')};
@@ -205,4 +203,3 @@ export const CardTier = styled.div<{ $compact?: boolean }>`
     flex-wrap: wrap;
     width: 100%;
 `;
-
