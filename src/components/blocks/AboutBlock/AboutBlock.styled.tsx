@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { mediaBreakpointUp, vw, font, color } from '@/style/mixins';
+import { mediaBreakpointUp, vw, font, color, mediaBreakpointDown } from '@/style/mixins';
 
 const plusButtonHoverStyles = css`
   background: ${color('white', 0.1)};
@@ -9,13 +9,13 @@ export const PlusButton = styled.button`
   margin-top: auto;
   margin-left: auto;
 
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: 2px solid white;
   background: transparent;
   color: white;
-  font-size: 2.1rem;
+  font-size: 1.5rem;
   font-weight: 200;
   display: flex;
   align-items: center;
@@ -30,6 +30,8 @@ export const PlusButton = styled.button`
   ${mediaBreakpointUp('lg')} {
     width: ${vw(61)};
     height: ${vw(61)};
+      font-size: 2.1rem;
+
   }
 `;
 
@@ -42,7 +44,8 @@ export const Container = styled.div<{ variant?: string; color?: string }>`
 
   margin-bottom: 10px;
 
-  padding: ${vw(24, 'xs')};
+  padding: ${vw(20, 'xs')};
+  height: ${vw(140, 'xs')};
 
   ${mediaBreakpointUp('lg')} {
     width: ${vw(283, 'xl')};
@@ -59,7 +62,7 @@ export const Container = styled.div<{ variant?: string; color?: string }>`
 
   ${({ variant }) =>
     variant === 'step' &&
-    css`
+    css`ß
       cursor: pointer;
 
       &:hover ${PlusButton} {
@@ -75,12 +78,22 @@ export const Container = styled.div<{ variant?: string; color?: string }>`
       border: 1px solid ${color('ink', 0.5)};
     `}
 
+  ${({ variant }) =>
+    variant === 'empty' &&
+    css`
+      ${mediaBreakpointDown('lg')} {
+        display: none;
+      }
+    `}
+
   ${({ color }) =>
     color &&
     `
       color: white;
       background: ${color};
     `}
+
+
 `;
 
 export const Title = styled.div<{ $variant?: string }>`

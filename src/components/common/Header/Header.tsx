@@ -114,7 +114,6 @@ const Header: React.FC<HeaderProps> = ({ variant = 'marketing' }) => {
                     <Burger type="button" aria-label={t('nav.openMenu')} onClick={toggleMenu}>
                         <span />
                         <span />
-                        <span />
                     </Burger>
                 </RightCol>
             </BarInner>

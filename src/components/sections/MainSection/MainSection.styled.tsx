@@ -20,13 +20,11 @@ export const HeroGrid = styled.div`
 export const HeroContent = styled.div`
     display: flex;
     flex-direction: column;
-    gap: clamp(12rem, 3.5vw, 2.5rem);
-    max-width: 36rem;
 
-    ${mediaBreakpointDown('md')} {
-        max-width: none;
-        text-align: center;
-        align-items: center;
+    ${mediaBreakpointUp('md')} {
+        max-width: 36rem;
+        gap: clamp(12rem, 3.5vw, 2.5rem);
+
     }
 `;
 
@@ -36,7 +34,13 @@ export const HeroTitle = styled.h1`
     line-height: 1.22;
     letter-spacing: -0.015em;
     color: ${color('textPrimary')};
-`;
+    margin-bottom: ${vw(40, 'xs')};
+    max-width: ${vw(250, 'xs')};
+
+    ${mediaBreakpointUp('lg')} {
+        margin-bottom: 0;
+    }
+ `;
 
 export const StepsList = styled.ol`
     list-style: none;
@@ -47,7 +51,7 @@ export const StepsList = styled.ol`
     gap: clamp(0.95rem, 2.2vw, 1.25rem);
 
     ${mediaBreakpointDown('md')} {
-        max-width: 28rem;
+        max-width: ${vw(300, 'xs')};
     }
 `;
 
@@ -55,8 +59,10 @@ export const StepItem = styled.li`
     display: flex;
     flex-direction: row;
     gap: clamp(0.65rem, 2vw, 1rem);
-    align-items: flex-start;
+    align-items: center;
     color: ${color('textPrimary')};
+
+    ${font('font6')};
 
     ${mediaBreakpointDown('md')} {
         text-align: left;
@@ -66,7 +72,7 @@ export const StepItem = styled.li`
 export const StepIndex = styled.span`
     flex-shrink: 0;
     min-width: 2.85rem;
-    ${font('title2')};
+    ${font('stepIndex')};
     font-weight: 300;
     line-height: 1.08;
     color: ${color('landingStepNum')};
@@ -115,6 +121,7 @@ export const CtaButton = styled.button`
     ${mediaBreakpointDown('md')} {
         align-self: stretch;
         max-width: none;
+        margin-top: ${vw(30, 'xs')}
     }
 `;
 
@@ -127,6 +134,8 @@ export const TreeScene = styled.div`
     ${mediaBreakpointDown('lg')} {
         min-height: unset;
         gap: 0;
+
+        display: none;
     }
 `;
 
@@ -138,6 +147,10 @@ export const TreeLayer = styled.div`
     justify-content: flex-end;
     align-items: center;
     z-index: 0;
+
+    width: 100%;
+    height: ${vw(286, 'xs')};
+
 
     ${mediaBreakpointDown('lg')} {
         flex: unset;

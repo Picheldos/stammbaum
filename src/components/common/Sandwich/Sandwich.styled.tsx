@@ -10,9 +10,9 @@ export const Container = styled.div<{ open: boolean }>`
     display: flex;
     flex-direction: column;
 
-    width: min(420px, 100vw);
+    width: ${vw(227, 'xs')};
     padding: ${vw(16, 'xs')} ${vw(22, 'xs')} ${vw(28, 'xs')};
-    background: ${color('creamWarm')};
+    background: ${color('cream')};
     border-left: 1px solid ${color('darkGray')};
     box-shadow: -8px 0 28px rgba(47, 79, 58, 0.14);
 
@@ -32,14 +32,14 @@ export const SandwichTop = styled.div`
     justify-content: flex-end;
     width: 100%;
     flex-shrink: 0;
+    height: 20px;
 `;
 
 export const SandwichMenu = styled.div`
     display: flex;
     flex-direction: column;
     flex: 1;
-    justify-content: center;
-    gap: ${vw(4, 'xs')};
+
     min-height: 0;
 `;
 

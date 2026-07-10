@@ -131,8 +131,8 @@ export const Burger = styled.button`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 22px;
-    height: 16px;
+    width: 20px;
+    height: 7px;
     padding: 0;
     background: transparent;
     border: none;

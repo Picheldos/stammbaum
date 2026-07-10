@@ -223,8 +223,17 @@ const typography = {
         ${remAdaptiveFont(14, 14, 16, 16)};
         line-height: 1.2;
         font-weight: 500;
+    `,
+    
+    stepIndex: css`
+        font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
+        ${remAdaptiveFont(38, 44, 60, 80)};
+        line-height: 1.1;
+        font-weight: 800;
     `
 };
+
+
 
 export type Typography = keyof typeof typography;
 

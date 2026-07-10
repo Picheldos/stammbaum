@@ -3,7 +3,7 @@ import { color, font, hover } from '@/style/mixins';
 
 export const Container = styled.div<{ $light?: boolean; $compact?: boolean }>`
     cursor: pointer;
-    ${({ $compact }) => font($compact ? 'font7' : 'logo')};
+    ${({ $compact }) => font($compact ? 'font4' : 'logo')};
     padding: 4px 6px;
     font-weight: ${({ $compact }) => ($compact ? 600 : 400)};
 

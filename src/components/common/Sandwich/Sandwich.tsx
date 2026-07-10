@@ -34,7 +34,9 @@ const Sandwich: React.FC<SandwichProps> = () => {
     const items: { href: string; labelKey: string }[] = [
         { href: '/about', labelKey: 'nav.about' },
         { href: '/tree', labelKey: 'nav.tree' },
-        { href: '/cemetery', labelKey: 'nav.cemetery' }
+        { href: '/cemetery', labelKey: 'nav.cemetery' },
+        { href: '/login', labelKey: 'nav.enter' },
+        {  href: '#', labelKey: 'nav.feedback' }
     ];
 
     return (
@@ -48,8 +50,8 @@ const Sandwich: React.FC<SandwichProps> = () => {
                         <SandwichMenuLink as="span">{t(labelKey)}</SandwichMenuLink>
                     </Link>
                 ))}
-                <SandwichMenuHint>{t('header.createTree')}</SandwichMenuHint>
-                <SandwichMenuHint>{t('header.login')}</SandwichMenuHint>
+                {/* <SandwichMenuHint>{t('header.createTree')}</SandwichMenuHint>
+                <SandwichMenuHint>{t('header.login')}</SandwichMenuHint> */}
             </SandwichMenu>
         </Container>
     );

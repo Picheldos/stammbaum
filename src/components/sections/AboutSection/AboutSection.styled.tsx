@@ -16,11 +16,11 @@ export const Container = styled.section`
 
 export const FlexContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   margin: 0 auto;
 
-  ${mediaBreakpointUp('md')} {
+  ${mediaBreakpointUp('lg')} {
     flex-direction: row;
     flex-wrap: wrap;
 
