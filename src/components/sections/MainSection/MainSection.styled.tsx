@@ -1,9 +1,13 @@
 import styled from 'styled-components';
-import { color, mediaBreakpointDown, mediaBreakpointUp, font, vw } from '@/style/mixins';
+import { color, mediaBreakpointDown, mediaBreakpointUp, font, vw, vh } from '@/style/mixins';
 
 export const LandingRoot = styled.section`
     width: 100%;
-    padding-top: ${vw(40, 'xl')};
+    
+    ${mediaBreakpointUp('lg')} {
+        padding-top: ${vw(40, 'xl')};
+        height: calc(100vh - 60px - ${vw(40)});
+    }
 
 `;
 
@@ -14,6 +18,7 @@ export const HeroGrid = styled.div`
     ${mediaBreakpointUp('lg')} {
         grid-template-columns: minmax(0, 1fr) minmax(280px, 1.08fr);
         align-items: center;
+        height: 100%;
     }   
 `;
 
@@ -29,13 +34,11 @@ export const HeroContent = styled.div`
 export const HeroTitle = styled.h1`
     ${font('title')};   
     color: ${color('textPrimary')};
-    margin-bottom: ${vw(40, 'xs')};
     max-width: ${vw(250, 'xs')};
 
     line-height: 0.92;
 
     ${mediaBreakpointUp('lg')} {
-        margin-bottom: ${vw(200)};
         max-width: ${vw(920)};
     }
  `;
@@ -100,7 +103,6 @@ export const CtaButton = styled.button`
     box-shadow: 0 4px 14px rgba(94, 109, 139, 0.28);
     transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
 
-    margin-top: ${vw(240)};
 
     &:hover {
         background: ${color('slateBlue')};
@@ -162,12 +164,14 @@ export const TreeLayer = styled.div`
         pointer-events: none;
 
         width: ${vw(585, 'xl')};
-        height: ${vw(554, 'xl')};
+        height: ${vh(946)};
+        inset: auto 0 calc(0px - 60px - ${vw(40)});
+
     }
 
-    ${mediaBreakpointUp('xxl')} {
-        inset: auto 0 ${vw(-170)};
-    }
+    /* ${mediaBreakpointUp('xxl')} {
+        inset: auto 0 calc(0 - 60px - ${vw(40, 'xl')});;
+    } */
 
     
 `;

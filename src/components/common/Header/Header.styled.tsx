@@ -15,7 +15,7 @@ export const Bar = styled.header`
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
 
     ${mediaBreakpointUp('lg')} {
-        min-height: ${vw(55, 'mac')};
+        min-height: 60px;
         padding: 0 ${vw(20, 'mac')};
     }
 `;
