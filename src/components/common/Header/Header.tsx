@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import Logo from '@/components/blocks/Logo/Logo';
 import LangSwitch from '@/components/ui/LangSwitch/LangSwitch';
 import { SandwichState } from '@/recoil/sandwichState/athom';
+import { SizesState } from '@/recoil/commonState/athom';
 import {
     AuthCluster,
     Bar,
@@ -36,6 +37,15 @@ const Header: React.FC<HeaderProps> = ({ variant = 'marketing' }) => {
     const toggleMenu = () => setSandwichOpen((open) => !open);
 
     const marketing = variant === 'marketing';
+    const { isMobile } = useRecoilValue(SizesState);
+
+    const allNavItems: { href: string; labelKey: string }[] = [
+        { href: '/about', labelKey: 'nav.about' },
+        { href: '/tree', labelKey: 'nav.tree' },
+        { href: '/cemetery', labelKey: 'nav.cemetery' }
+    ];
+
+    const navItems = isMobile ? allNavItems.filter((item) => item.href !== '/about') : allNavItems;
 
     useEffect(() => {
         try {
@@ -48,12 +58,6 @@ const Header: React.FC<HeaderProps> = ({ variant = 'marketing' }) => {
             // ignore
         }
     }, []);
-
-    const navItems: { href: string; labelKey: string }[] = [
-        { href: '/about', labelKey: 'nav.about' },
-        { href: '/tree', labelKey: 'nav.tree' },
-        { href: '/cemetery', labelKey: 'nav.cemetery' }
-    ];
 
     return (
         <Bar role="banner">

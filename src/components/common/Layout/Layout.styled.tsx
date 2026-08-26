@@ -12,7 +12,7 @@ export const MainArea = styled.main`
     flex: 1 0 auto;
     width: 100%;
     position: relative;
-    padding: 0 ${vw(27, 'xs')} ${vw(36, 'xs')};
+    padding: 0 ${vw(10, 'xs')} ${vw(36, 'xs')};
 
     position: absolute;
     top: 0;

@@ -1,14 +1,14 @@
+import { color, font, mediaBreakpointDown, mediaBreakpointUp, vh, vw } from '@/style/mixins';
 import styled from 'styled-components';
-import { color, mediaBreakpointDown, mediaBreakpointUp, font, vw, vh } from '@/style/mixins';
 
 export const LandingRoot = styled.section`
     width: 100%;
-    
+    padding-top: ${vw(60, 'xs')};
+
     ${mediaBreakpointUp('lg')} {
         padding-top: ${vw(40, 'xl')};
         height: calc(100vh - 60px - ${vw(40)});
     }
-
 `;
 
 export const HeroGrid = styled.div`
@@ -19,7 +19,11 @@ export const HeroGrid = styled.div`
         grid-template-columns: minmax(0, 1fr) minmax(280px, 1.08fr);
         align-items: center;
         height: 100%;
-    }   
+
+        & > button {
+            display: none;
+        }
+    }
 `;
 
 export const HeroContent = styled.div`
@@ -28,11 +32,17 @@ export const HeroContent = styled.div`
 
     height: 100%;
     justify-content: space-between;
+
+    button {
+        ${mediaBreakpointDown('xl')} {
+            display: none;
+        }
+    }
 `;
 
 /* заголовок — типография из общего набора */
 export const HeroTitle = styled.h1`
-    ${font('title')};   
+    ${font('title')};
     color: ${color('textPrimary')};
     max-width: ${vw(250, 'xs')};
 
@@ -41,7 +51,7 @@ export const HeroTitle = styled.h1`
     ${mediaBreakpointUp('lg')} {
         max-width: ${vw(920)};
     }
- `;
+`;
 
 export const StepsList = styled.ol`
     list-style: none;
@@ -51,6 +61,7 @@ export const StepsList = styled.ol`
     flex-direction: column;
     ${mediaBreakpointDown('md')} {
         max-width: ${vw(300, 'xs')};
+        margin-top: ${vw(40, 'xs')};
     }
 `;
 
@@ -61,10 +72,19 @@ export const StepItem = styled.li`
     align-items: center;
     color: ${color('textPrimary')};
 
+    text-align: left;
+
     ${font('font6')};
 
-    ${mediaBreakpointDown('md')} {
-        text-align: left;
+    &:not(:last-of-type) {
+        margin-bottom: ${vw(20, 'xs')};
+    }
+
+    ${mediaBreakpointUp('xl')} {
+        text-align: auto;
+        &:not(:last-of-type) {
+            margin-bottom: ${vw(40)};
+        }
     }
 `;
 
@@ -83,10 +103,12 @@ export const StepIndex = styled.span`
 
 export const StepCopy = styled.span`
     flex: 1;
-    padding-top: 0.65rem;
     ${font('font3')};
-    line-height: 1.45;
     font-weight: 400;
+
+    ${mediaBreakpointUp('xl')} {
+        line-height: 1.45;
+    }
 `;
 
 export const CtaButton = styled.button`
@@ -102,7 +124,6 @@ export const CtaButton = styled.button`
     cursor: pointer;
     box-shadow: 0 4px 14px rgba(94, 109, 139, 0.28);
     transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-
 
     &:hover {
         background: ${color('slateBlue')};
@@ -121,7 +142,7 @@ export const CtaButton = styled.button`
     ${mediaBreakpointDown('md')} {
         align-self: stretch;
         max-width: none;
-        margin-top: ${vw(30, 'xs')}
+        margin-top: ${vw(30, 'xs')};
     }
 `;
 
@@ -129,18 +150,13 @@ export const TreeScene = styled.div`
     position: relative;
     display: flex;
     flex-direction: column;
-    min-height: min(560px, 72vh);
 
     ${mediaBreakpointDown('lg')} {
-        min-height: unset;
-        gap: 0;
-
-        display: none;
+        margin-top: ${vw(60, 'xs')};
     }
 `;
 
 export const TreeLayer = styled.div`
-    position: absolute;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -149,8 +165,7 @@ export const TreeLayer = styled.div`
     z-index: 0;
 
     width: 100%;
-    height: ${vw(286, 'xs')};
-
+    height: ${vw(330, 'xs')};
 
     ${mediaBreakpointDown('lg')} {
         flex: unset;
@@ -162,18 +177,16 @@ export const TreeLayer = styled.div`
         inset: auto 0 0;
         justify-content: flex-end;
         pointer-events: none;
+        position: absolute;
 
         width: ${vw(585, 'xl')};
         height: ${vh(946)};
         inset: auto 0 calc(0px - 60px - ${vw(40)});
-
     }
 
     /* ${mediaBreakpointUp('xxl')} {
         inset: auto 0 calc(0 - 60px - ${vw(40, 'xl')});;
     } */
-
-    
 `;
 
 export const CardsOverlay = styled.div`

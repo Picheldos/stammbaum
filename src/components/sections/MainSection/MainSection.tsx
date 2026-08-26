@@ -3,6 +3,8 @@ import { useTranslation } from 'next-i18next';
 import PersonCard from '@/components/blocks/PersonCard/PersonCard';
 import type { PersonCardData } from '@/components/blocks/PersonCard/PersonCard';
 import Image from 'next/image';
+import { useRecoilValue } from 'recoil';
+import { SizesState } from '@/recoil/commonState/athom';
 
 import {
     CardTier,
@@ -19,6 +21,7 @@ import {
     TreeLayer,
     TreeScene
 } from '@/components/sections/MainSection/MainSection.styled';
+import { AboutSection } from '@/components/sections/AboutSection/AboutSection';
 
 const parseCards = (value: unknown): PersonCardData[] =>
     Array.isArray(value)
@@ -27,6 +30,7 @@ const parseCards = (value: unknown): PersonCardData[] =>
 
 const MainSection: React.FC = () => {
     const { t } = useTranslation('index');
+    const { isMobile } = useRecoilValue(SizesState);
 
     const cards = parseCards(t('cards', { returnObjects: true }));
 
@@ -63,24 +67,26 @@ const MainSection: React.FC = () => {
                 </HeroContent>
 
                 <TreeScene>
-                    <CardsOverlay>
-                        <CardTier>
-                            <PersonCard data={c0} />
-                        </CardTier>
-                        <CardTier>
-                            <PersonCard data={c1} />
-                            <PersonCard data={c2} />
-                        </CardTier>
-                        <CardTier $compact>
-                            <PersonCard data={c3} />
-                            <PersonCard data={c4} />
-                            <PersonCard data={c5} />
-                            <PersonCard data={c6} />
-                        </CardTier>
-                    </CardsOverlay>
+                    {!isMobile && (
+                        <CardsOverlay>
+                            <CardTier>
+                                <PersonCard data={c0} />
+                            </CardTier>
+                            <CardTier>
+                                <PersonCard data={c1} />
+                                <PersonCard data={c2} />
+                            </CardTier>
+                            <CardTier $compact>
+                                <PersonCard data={c3} />
+                                <PersonCard data={c4} />
+                                <PersonCard data={c5} />
+                                <PersonCard data={c6} />
+                            </CardTier>
+                        </CardsOverlay>
+                    )}
                     <TreeLayer>
                         <Image
-                            src="/images/index/tree.jpg"
+                            src={isMobile ? '/images/index/tree-m.png' : '/images/index/tree.jpg'}
                             alt="decorative tree"
                             layout={'fill'}
                             objectFit={`cover`}
@@ -89,6 +95,7 @@ const MainSection: React.FC = () => {
                         />
                     </TreeLayer>
                 </TreeScene>
+                <CtaButton type="button">{t('hero.cta')}</CtaButton>
             </HeroGrid>
         </LandingRoot>
     );

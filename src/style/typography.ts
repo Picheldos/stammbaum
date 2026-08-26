@@ -78,7 +78,12 @@ export const remFluidMiddle: (
         }
     `;
 };
-export const remAdaptiveFont = (minSize: number, tabletSize: number, smallDeskSize: number, maxSize: number): FlattenSimpleInterpolation => {
+export const remAdaptiveFont = (
+    minSize: number,
+    tabletSize: number,
+    smallDeskSize: number,
+    maxSize: number
+): FlattenSimpleInterpolation => {
     return remFluidMiddle('font-size', minSize, tabletSize, smallDeskSize, maxSize, 16);
 };
 
@@ -212,8 +217,8 @@ const typography = {
 
     logoSerif: css`
         font-family: var(--font-playfair-display), 'Georgia', serif;
-        ${remAdaptiveFont(22, 24, 32, 38)};
-        line-height: 1.05;
+        ${remAdaptiveFont(11, 11, 20, 20)};
+        line-height: 1;
         font-weight: 400;
         letter-spacing: 0.02em;
     `,
@@ -224,7 +229,7 @@ const typography = {
         line-height: 1.2;
         font-weight: 500;
     `,
-    
+
     stepIndex: css`
         font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
         ${remAdaptiveFont(38, 44, 60, 80)};
@@ -232,8 +237,6 @@ const typography = {
         font-weight: 800;
     `
 };
-
-
 
 export type Typography = keyof typeof typography;
 

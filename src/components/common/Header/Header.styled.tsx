@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { color, font, hover, mediaBreakpointUp, vw } from '@/style/mixins';
+import { color, font, hover, mediaBreakpointDown, mediaBreakpointUp, vw } from '@/style/mixins';
 
 export const Bar = styled.header`
     position: sticky;
@@ -8,7 +8,7 @@ export const Bar = styled.header`
     display: flex;
     align-items: center;
     justify-content: center;     
-    min-height: 56px;
+    min-height: 35px;
     padding: 0 16px;
     background-color: ${color('forest')};
     color: ${color('white')};
@@ -21,8 +21,7 @@ export const Bar = styled.header`
 `;
 
 export const BarInner = styled.div`
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    display: flex;
     align-items: center;
     width: 100%;
     gap: 8px;
@@ -30,9 +29,14 @@ export const BarInner = styled.div`
 
 export const LeftCol = styled.div`
     display: flex;
+    flex: 1 1 0;
     align-items: center;
-    justify-self: start;
+    justify-content: flex-start;
     min-width: 0;
+
+    ${mediaBreakpointDown('xl')} {
+        display: none;
+    }
 `;
 
 export const Nav = styled.nav`
@@ -66,7 +70,7 @@ export const NavLink = styled.span<{ $active?: boolean }>`
 `;
 
 export const LogoCol = styled.div`
-    justify-self: center;
+    flex: 0 0 auto;
     text-align: center;
 
     a {
@@ -76,6 +80,7 @@ export const LogoCol = styled.div`
 
 export const RightCol = styled.div`
     display: flex;
+    flex: 1 1 0;
     align-items: center;
     justify-content: flex-end;
     gap: 10px;

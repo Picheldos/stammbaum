@@ -9,6 +9,10 @@ export const TreeRoot = styled.section`
     left: 0;
     bottom: 0;
     right: 0;
+    /* MainArea is absolutely positioned and has no intrinsic height. Without
+       an explicit viewport height the canvas collapses to the header height,
+       and overflow clipping hides the nodes and controls. */
+    height: 100dvh;
 
     overflow: hidden;
 `;
@@ -17,7 +21,7 @@ export const Backdrop = styled.div`
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background-image: url('/fon.jpg') center / cover no-repeat;
+    background: url('/fon.jpg') center / cover no-repeat;
 `;
 
 export const Canvas = styled.div`
