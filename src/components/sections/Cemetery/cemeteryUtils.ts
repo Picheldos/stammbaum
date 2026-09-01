@@ -41,7 +41,7 @@ export const findPeriodForYear = (year: number, periods: CemeteryPeriod[]): Ceme
 export const TRACK_PADDING = 80;
 
 /** Pixels per year at the FHD reference width (1920px). */
-export const PIXELS_PER_YEAR_DESKTOP = 6;
+export const PIXELS_PER_YEAR_DESKTOP = 19;
 /** Pixels per year on mobile (xs = 375px reference). */
 export const PIXELS_PER_YEAR_MOBILE = 4;
 

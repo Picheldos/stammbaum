@@ -1,20 +1,32 @@
 import styled, { css } from 'styled-components';
 import { color, font, hover, mediaBreakpointDown, mediaBreakpointUp, vh, vw } from '@/style/mixins';
-import { TIMELINE_AXIS_LEFT } from './cemeteryUtils';
+import {
+    CARD_GAP,
+    CARD_STACK_DESKTOP,
+    CARD_STACK_MOBILE,
+    LINE_BOTTOM_OFFSET,
+    TIMELINE_AXIS_LEFT
+} from './cemeteryUtils';
 
 /* ===================================================================== */
 /*  Page shell — sits inside Layout > MainArea                            */
 /* ===================================================================== */
 
-/** Full viewport slice below the header. `--vh` is set by useResize. */
+/** Full viewport slice below the header. `--vh` is set by useResize.
+ *  Flex column: nav rail on top, scrollable timeline in the middle
+ *  (fills / centers the remaining slice), add-button pinned to the bottom.
+ *  Desktop keeps `min-height` only — the timeline is never height-capped. */
 export const CemeterySection = styled.section`
     position: relative;
+    display: flex;
+    flex-direction: column;
     width: 100%;
     min-height: calc(var(--vh, 1vh) * 100 - 60px);
     padding: 0;
 
     ${mediaBreakpointDown('lg')} {
-        min-height: calc(var(--vh, 1vh) * 100 - 35px);
+        height: calc(var(--vh, 1vh) * 100 - 35px);
+        overflow: hidden;
         padding-top: 8px;
     }
 
@@ -26,23 +38,15 @@ export const CemeterySection = styled.section`
 /** Retro/Scandinavian meadow backdrop. Opacity is kept low so the timeline
  *  stays readable — the field is decorative only. */
 export const PageBackground = styled.div`
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    width: 102.97%;
-    height: 129.24%;
-    margin-left: -1.51%;
+    width: 100vw;
+    height: 100vh;
     opacity: 0.5;
-    background: url('/images/cemetery/meadow.svg') left top / 102.97% 129.24% no-repeat;
-    z-index: 0;
+    background: url('/images/cemetery/meadow.svg') center center / cover no-repeat;
+    z-index: -1;
     pointer-events: none;
-
-    ${mediaBreakpointDown('md')} {
-        width: 100%;
-        height: 100%;
-        margin-left: 0;
-        background-size: cover;
-    }
 `;
 
 /* ===================================================================== */
@@ -141,6 +145,11 @@ export const PeriodInputArrow = styled.svg`
     width: ${vw(16, 'xs')};
     height: ${vw(16, 'xs')};
     margin-left: ${vw(8, 'xs')};
+    color: inherit;
+
+    &.clickable {
+        cursor: pointer;
+    }
 
     ${mediaBreakpointUp('xl')} {
         width: ${vw(16, 'xl')};
@@ -180,10 +189,17 @@ export const NavIconButton = styled.button`
 /*  Timeline                                                            */
 /* ===================================================================== */
 
-/** Scrollable window. Horizontal on desktop, vertical on mobile. */
+/** Scrollable window. Horizontal on desktop, vertical on mobile.
+ *  `flex: 1` centers the timeline vertically inside the viewport slice
+ *  (desktop) / fills the remaining mobile slice; the axis + cards grow
+ *  from the middle outward, so no fixed height is imposed on the track. */
 export const ScrollViewport = styled.div`
     position: relative;
     z-index: 1;
+    display: flex;
+    flex: 1 1 auto;
+    min-height: 0;
+    align-items: center; /* vertical centering of the desktop track */
     overflow-x: auto;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
@@ -191,20 +207,21 @@ export const ScrollViewport = styled.div`
     scrollbar-gutter: stable;
 
     ${mediaBreakpointDown('md')} {
+        align-items: stretch;
         overflow-x: hidden;
         overflow-y: auto;
     }
 `;
 
-/** The track — sized from JS (width on desktop / height on mobile). */
-export const TimelineTrack = styled.div`
+/** The track — sized via width/height props (px on desktop / height on mobile). */
+export const TimelineTrack = styled.div<{ $width?: number; $height?: number }>`
     position: relative;
-    width: 1px; /* grown via inline style on desktop */
-    height: 1px;
+    flex: 0 0 auto;
+    width: ${({ $width }) => ($width ? `${$width}px` : '100%')};
+    height: ${({ $height }) => ($height ? `${$height}px` : '100%')};
 
     ${mediaBreakpointDown('md')} {
         width: 100%;
-        height: 1px; /* grown via inline style */
     }
 `;
 
@@ -258,6 +275,7 @@ export const CardAnchor = styled.div`
     width: max-content;
 `;
 
+
 export const YearDot = styled.span<{ $size: number }>`
     flex-shrink: 0;
     border-radius: 50%;
@@ -289,24 +307,47 @@ export const YearLabel = styled.span`
     }
 `;
 
-export const MajorDot = styled.span<{ $mobile: boolean; $axisPos: number }>`
+export const DeathYearLabel = styled.span<{ $mobile: boolean; $axisPos: number }>`
     position: absolute;
     z-index: 2;
-    width: ${vw(7, 'xs')};
-    height: ${vw(7, 'xs')};
-    border-radius: 50%;
-    background: ${color('cemeteryGray')};
-    transform: translate(-50%, -50%);
+    font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    color: ${color('cemeteryGray')};
+    white-space: nowrap;
 
     ${mediaBreakpointDown('md')} {
-        left: ${TIMELINE_AXIS_LEFT}px;
+        left: ${TIMELINE_AXIS_LEFT + 20}px;
         top: ${({ $axisPos }) => $axisPos}px;
-        transform: translateX(-50%);
+        transform: translateY(-50%);
     }
 
     ${mediaBreakpointUp('md')} {
         left: ${({ $axisPos }) => $axisPos}px;
-        top: 50%;
+        bottom: 16px; /* Увеличил отступ, чтобы был виден под маркером */
+        transform: translateX(-50%);
+    }
+`;
+
+/** Dot marking a single relative on the axis, aligned to the timeline line. */
+export const TimelineMarker = styled.div<{ $mobile: boolean; $axisPos: number }>`
+    position: absolute;
+    z-index: 2;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: ${color('cemeteryGray')};
+
+    ${mediaBreakpointDown('md')} {
+        left: ${TIMELINE_AXIS_LEFT}px;
+        top: ${({ $axisPos }) => $axisPos}px;
+        transform: translateY(-50%);
+    }
+
+    ${mediaBreakpointUp('md')} {
+        left: ${({ $axisPos }) => $axisPos}px;
+        bottom: 33px; /* Маркер на линии */
+        transform: translateX(-50%);
     }
 `;
 
@@ -405,21 +446,39 @@ export const AvatarInitials = styled.span`
 /*  Timeline connector (separate element, not part of the card)          */
 /* ===================================================================== */
 
-export const TimelineConnector = styled.span`
+export const TimelineConnector = styled.span<{
+    $direction: 'vertical' | 'horizontal';
+    $length: number;
+}>`
     position: absolute;
     z-index: 1;
     background: ${color('cemeteryGray')};
     pointer-events: none;
+
+    ${({ $direction, $length }) =>
+        $direction === 'vertical'
+            ? css`
+                  left: 50%;
+                  top: 100%;
+                  width: 1px;
+                  height: ${$length}px;
+                  transform: translateX(-50%);
+              `
+            : css`
+                  top: 50%;
+                  left: ${-$length}px;
+                  height: 1px;
+                  width: ${$length}px;
+                  transform: translateY(-50%);
+              `}
 `;
 
 /* ===================================================================== */
 /*  Cemetery person card (also the positioned anchor for the connector) */
 /* ===================================================================== */
 
-export const CemeteryPersonCard = styled.div`
+export const CemeteryPersonCard = styled.div<{ $row: number; $axisPos: number; $isDesktop: boolean }>`
     position: absolute;
-    left: 0; /* shifted inline per person */
-    bottom: 0; /* shifted inline per person (desktop) */
     transform: translateX(-50%);
     box-sizing: border-box;
     display: flex;
@@ -437,6 +496,18 @@ export const CemeteryPersonCard = styled.div`
     width: clamp(140px, 7.8vw, 150px);
     height: clamp(64px, 3.7vw, 70px);
 
+    ${({ $isDesktop, $row, $axisPos }) =>
+        $isDesktop
+            ? css`
+                  left: ${$axisPos}px;
+                  bottom: ${LINE_BOTTOM_OFFSET + ($row + 1) * CARD_STACK_DESKTOP}px;
+              `
+            : css`
+                  top: ${$axisPos}px;
+                  left: calc(${TIMELINE_AXIS_LEFT}px + ${CARD_GAP}px + ${$row * CARD_STACK_MOBILE}px);
+                  transform: translateY(-50%);
+              `}
+
     ${mediaBreakpointUp('xl')} {
         border: 1px solid ${color('cemeteryBorderAlt')}; /* 1200 tablet tint */
     }
@@ -446,10 +517,6 @@ export const CemeteryPersonCard = styled.div`
     }
 
     ${mediaBreakpointDown('md')} {
-        top: 0;
-        left: 0;
-        bottom: auto;
-        transform: translateY(-50%);
         width: min(140px, calc(100vw - 200px));
         height: auto;
         min-height: ${vw(56, 'xs')};

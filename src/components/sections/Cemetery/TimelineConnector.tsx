@@ -11,17 +11,11 @@ export interface TimelineConnectorProps {
 
 /**
  * Vertical (desktop) or horizontal (mobile) 1px line linking a card to the
- * timeline axis. Geometry is supplied inline so the same element adapts to
+ * timeline axis. Geometry is prop-driven so the same element adapts to
  * orientation without duplicated markup.
  */
 const TimelineConnector: React.FC<TimelineConnectorProps> = ({ direction, length }) => (
-    <StyledConnector
-        style={
-            direction === 'vertical'
-                ? { left: '50%', top: '100%', width: 1, height: length, transform: 'translateX(-50%)' }
-                : { top: '50%', left: -length, height: 1, width: length, transform: 'translateY(-50%)' }
-        }
-    />
+    <StyledConnector $direction={direction} $length={length} />
 );
 
 export default TimelineConnector;

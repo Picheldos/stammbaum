@@ -11,7 +11,9 @@ import {
     TimelineTrack,
     TimelineYear,
     YearDot,
-    YearLabel
+    YearLabel,
+    TimelineMarker,
+    DeathYearLabel
 } from './Cemetery.styled';
 import PeriodNavigation from './PeriodNavigation';
 import CemeteryPersonCard from './CemeteryPersonCard';
@@ -23,7 +25,6 @@ import {
     CARD_STACK_DESKTOP,
     CARD_STACK_MOBILE,
     findPeriodForYear,
-    TIMELINE_AXIS_LEFT,
     LINE_BOTTOM_OFFSET,
     PIXELS_PER_YEAR_DESKTOP,
     PIXELS_PER_YEAR_MOBILE,
@@ -116,9 +117,6 @@ const Cemetery: React.FC<CemeteryProps> = ({ periods: periodsProp, persons: pers
     const trackHeight = isDesktop
         ? (maxRow + 1) * CARD_STACK_DESKTOP + LINE_BOTTOM_OFFSET + 40
         : 2 * TRACK_PADDING + totalYears * pixelsPerYear;
-    const trackStyle: React.CSSProperties = isDesktop
-        ? { width: trackWidth, height: trackHeight }
-        : { height: trackHeight };
 
     // Keep the active chip in sync with manual scrolling. The scroll listener
     // is passive and state is updated at most once per animation frame, which
@@ -192,7 +190,7 @@ const Cemetery: React.FC<CemeteryProps> = ({ periods: periodsProp, persons: pers
             <PageBackground aria-hidden="true" />
             <PeriodNavigation periods={periods} activeId={activeId} onPeriodClick={handlePeriodClick} />
             <ScrollViewport ref={viewportRef}>
-                <TimelineTrack style={trackStyle}>
+                <TimelineTrack $width={trackWidth} $height={trackHeight}>
                     <TimelineLine $mobile={!isDesktop} />
                     {yearTicks.map((tick) => (
                         <TimelineYear key={tick.year} $mobile={!isDesktop} $axisPos={tick.axisPos}>
@@ -201,30 +199,23 @@ const Cemetery: React.FC<CemeteryProps> = ({ periods: periodsProp, persons: pers
                         </TimelineYear>
                     ))}
                     {personNodes.map((node) => {
-                        // `top`/`bottom` are neutralized so inline styles from the
-                        // other breakpoint never conflict with the CSS layout.
-                        const anchorStyle: React.CSSProperties = isDesktop
-                            ? {
-                                  top: 'auto',
-                                  left: node.axisPos,
-                                  bottom: LINE_BOTTOM_OFFSET + (node.row + 1) * CARD_STACK_DESKTOP
-                              }
-                            : {
-                                  bottom: 'auto',
-                                  top: node.axisPos,
-                                  left: `calc(${TIMELINE_AXIS_LEFT}px + ${CARD_GAP}px + ${node.row * CARD_STACK_MOBILE}px)`,
-                                  transform: 'translateY(-50%)'
-                              };
                         const connector = isDesktop
                             ? { direction: 'vertical' as const, length: (node.row + 1) * CARD_STACK_DESKTOP }
                             : { direction: 'horizontal' as const, length: CARD_GAP + node.row * CARD_STACK_MOBILE };
                         return (
-                            <CemeteryPersonCard
-                                key={node.id}
-                                person={node}
-                                anchorStyle={anchorStyle}
-                                connector={connector}
-                            />
+                            <React.Fragment key={node.id}>
+                                <TimelineMarker $mobile={!isDesktop} $axisPos={node.axisPos} />
+                                <DeathYearLabel $mobile={!isDesktop} $axisPos={node.axisPos}>
+                                    {node.deathYear}
+                                </DeathYearLabel>
+                                <CemeteryPersonCard
+                                    person={node}
+                                    $row={node.row}
+                                    $axisPos={node.axisPos}
+                                    $isDesktop={isDesktop}
+                                    connector={connector}
+                                />
+                            </React.Fragment>
                         );
                     })}
                 </TimelineTrack>
