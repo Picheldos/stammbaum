@@ -23,11 +23,16 @@ const colors = {
     /** Landing */
     landingPaper: '#F9F8F0',
     landingCard: '#EFD195',
-    landingCta: '#5E6D8B',
+    landingCta: '#576686',
     landingStepNum: '#C5CAC7',
-    treeStub: '#9AA89B',
+        treeStub: '#9AA89B',
     treeStubTrunk: '#7D6B5A',
-    avatarStub: '#BDB4A8'
+    avatarStub: '#BDB4A8',
+    /** Cemetery ("Virtual Cemetery") — extended palette, single source of truth */
+    meadowBlue: '#576686',
+    cemeteryGray: '#5A5A5A',
+    cemeteryBorder: '#5D5D5D',
+    cemeteryBorderAlt: '#6F654D'
 };
 
 export type Colors = keyof typeof colors;

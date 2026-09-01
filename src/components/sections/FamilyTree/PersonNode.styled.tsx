@@ -34,7 +34,7 @@ export const NodeWrapper = styled.div<{ $x: number; $y: number; $width: number; 
 export const NodeCard = styled.button<{ $hidden?: boolean }>`
     pointer-events: auto;
     position: relative;
-    width: ${vw(180, 'xs')};
+    width: ${vw(105, 'xs')};
     height: fit-content;
     padding: ${vw(16, 'xs')} ${vw(16, 'xs')} ${vw(16, 'xs')};
     padding-top: ${vw(56, 'xs')};
@@ -68,7 +68,7 @@ export const NodeCard = styled.button<{ $hidden?: boolean }>`
         width: ${vw(125, 'xl')};
         height: ${vw(50, 'xl')};
         padding: ${vw(12, 'xl')};
-        border-radius: 10px;
+        border-radius: 5px;
         box-shadow: 0 6px 18px rgba(47, 79, 58, 0.12);
         gap: 5px;
     }
@@ -88,17 +88,17 @@ export const NodeCard = styled.button<{ $hidden?: boolean }>`
  * with a small upward overhang (`top: -12.5`), matching the PersonCard design.
  */
 export const NodeAvatar = styled.div<{ $photo?: string }>`
-    width: ${vw(70, 'xs')};
-    height: ${vw(70, 'xs')};
+    width: ${vw(40, 'xs')};
+    height: ${vw(40, 'xs')};
     border-radius: 50%;
     background-color: ${color('avatarStub')};
     background-image: ${({ $photo }) => ($photo ? `url(${$photo})` : 'none')};
     background-size: cover;
     background-position: center;
-    border: ${vw(4, 'xs')} solid rgba(255, 255, 255, 0.75);
-    box-shadow: 0 ${vw(2, 'xs')} ${vw(6, 'xs')} rgba(0, 0, 0, 0.18), inset 0 ${vw(1, 'xs')} ${vw(3, 'xs')} rgba(0, 0, 0, 0.08);
+    border: ${vw(2, 'xs')} solid rgba(255, 255, 255, 0.75);
+    box-shadow: 0 ${vw(1, 'xs')} ${vw(3, 'xs')} rgba(0, 0, 0, 0.18), inset 0 ${vw(0.5, 'xs')} ${vw(1.5, 'xs')} rgba(0, 0, 0, 0.08);
     position: absolute;
-    top: ${vw(-35, 'xs')};
+    top: ${vw(-20, 'xs')};
     left: 50%;
     transform: translateX(-50%);
     z-index: 3;
@@ -155,7 +155,7 @@ export const NodeName = styled.span``;
  
 /** Lifespan line — mirrors `PersonCard.LifespanLine`. */
 export const NodeMeta = styled.span`
-    font-size: 8px !important;
+    font-size: 5px !important;
     opacity: 0.72;
     line-height: 1.25;
     

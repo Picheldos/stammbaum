@@ -116,7 +116,7 @@ export const CtaButton = styled.button`
     width: 100%;
     max-width: 18.5rem;
     padding: 0.9rem 1.5rem;
-    border-radius: 10px;
+    border-radius: 5px;
     font-size: 1rem;
     font-weight: 600;
     color: ${color('white')};

@@ -8,7 +8,7 @@ export const Bar = styled.header`
     display: flex;
     align-items: center;
     justify-content: center;     
-    min-height: 35px;
+    min-height: 55px;
     padding: 0 16px;
     background-color: ${color('forest')};
     color: ${color('white')};
@@ -104,7 +104,7 @@ export const AuthCluster = styled.div`
 export const BtnOutline = styled.button`
     ${font('headerNav')};
     padding: 8px 16px;
-    border-radius: 6px;
+    border-radius: 5px;
     border: 1px solid ${color('white')};
     background: transparent;
     color: ${color('white')};
@@ -119,7 +119,7 @@ export const BtnOutline = styled.button`
 export const BtnSolid = styled.button`
     ${font('headerNav')};
     padding: 8px 18px;
-    border-radius: 6px;
+    border-radius: 5px;
     border: none;
     background: ${color('white')};
     color: ${color('forestDeep')};

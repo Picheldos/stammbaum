@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback } from 'react';
 import { useTranslation } from 'next-i18next';
-import { Container, SandwichMenu, SandwichMenuHint, SandwichMenuLink, SandwichTop } from './Sandwich.styled';
+import { Container, SandwichMenu, SandwichMenuLink, SandwichTop } from './Sandwich.styled';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { SandwichState } from '@/recoil/sandwichState/athom';
 import { SizesState } from '@/recoil/commonState/athom';

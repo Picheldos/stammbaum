@@ -21,7 +21,6 @@ import {
     TreeLayer,
     TreeScene
 } from '@/components/sections/MainSection/MainSection.styled';
-import { AboutSection } from '@/components/sections/AboutSection/AboutSection';
 
 const parseCards = (value: unknown): PersonCardData[] =>
     Array.isArray(value)

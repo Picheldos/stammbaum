@@ -1,0 +1,25 @@
+{
+    "addButton": "Add Information",
+    "periodInput": "Enter period",
+    "periods": [
+        { "id": "1700-1750", "label": "1700-1750", "startYear": 1700, "endYear": 1750 },
+        { "id": "1750-1800", "label": "1750-1800", "startYear": 1750, "endYear": 1800 },
+        { "id": "1800-1850", "label": "1800-1850", "startYear": 1800, "endYear": 1850 },
+        { "id": "1850-1900", "label": "1850-1900", "startYear": 1850, "endYear": 1900 },
+        { "id": "1900-1950", "label": "1900-1950", "startYear": 1900, "endYear": 1950 },
+        { "id": "1950-2000", "label": "1950-2000", "startYear": 1950, "endYear": 2000 },
+        { "id": "2000-2026", "label": "2000-2026", "startYear": 2000, "endYear": 2026 }
+    ],
+    "persons": [
+        { "id": "p9", "firstName": "Feofan", "lastName": "Romanov", "relation": "Great-grandfather", "birthDate": "1690-06-01", "deathDate": "1740-09-12", "photoUrl": "/images/cemetery/avatar3.svg" },
+        { "id": "p10", "firstName": "Catherine", "lastName": "Ivanova", "relation": "Great-grandmother", "birthDate": "1760-03-15", "deathDate": "1783-07-20", "photoUrl": "/images/cemetery/avatar1.svg" },
+        { "id": "p1", "firstName": "Vladimir", "lastName": "Spiridonov", "relation": "Grandfather", "birthDate": "1768-08-14", "deathDate": "1814-08-14", "photoUrl": "/images/cemetery/avatar1.svg" },
+        { "id": "p2", "firstName": "Anna", "lastName": "Petrova", "relation": "Grandmother", "birthDate": "1795-03-03", "deathDate": "1814-05-22", "photoUrl": "/images/cemetery/avatar2.svg" },
+        { "id": "p3", "firstName": "Maria", "lastName": "Ivanova", "relation": "Great-grandmother", "birthDate": "1840-01-12", "deathDate": "1889-11-08", "photoUrl": "/images/cemetery/avatar3.svg" },
+        { "id": "p4", "firstName": "Alexei", "lastName": "Sidorov", "relation": "Great-grandfather", "birthDate": "1899-07-17", "deathDate": "1935-05-05", "photoUrl": "/images/cemetery/avatar1.svg" },
+        { "id": "p5", "firstName": "Lev", "lastName": "Mikhailov", "relation": "Grandfather", "birthDate": "1938-11-11", "deathDate": "1995-03-02", "photoUrl": "/images/cemetery/avatar2.svg" },
+        { "id": "p6", "firstName": "Dmitry", "lastName": "Kozlov", "relation": "Father", "birthDate": "1965-09-30", "deathDate": "2010-02-03", "photoUrl": "/images/cemetery/avatar3.svg" },
+        { "id": "p7", "firstName": "Sergei", "lastName": "Volkov", "relation": "Uncle", "birthDate": "1955-04-21", "deathDate": "2018-09-30", "photoUrl": "/images/cemetery/avatar1.svg" },
+        { "id": "p8", "firstName": "Elena", "lastName": "Orlova", "relation": "Great-grandmother", "birthDate": "1944-03-22", "deathDate": "2020-09-14", "photoUrl": "/images/cemetery/avatar2.svg" }
+    ]
+}
