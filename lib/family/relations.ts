@@ -72,12 +72,14 @@ export const formatFullName = (person: Person): string => {
     return parts.join(' ').trim();
 };
 
-export const formatShortName = (person: Person): string => {
+export const formatShortName = (
+    person: Pick<Person, 'lastName' | 'firstName'>
+): string => {
     const parts = [person.lastName, person.firstName].filter(Boolean);
     return parts.join(' ').trim() || '—';
 };
 
-export const formatLifespan = (person: Person): string => {
+export const formatLifespan = (person: Pick<Person, 'birthDate' | 'deathDate'>): string => {
     const left = person.birthDate ? formatDate(person.birthDate) : '';
     const right = person.deathDate ? formatDate(person.deathDate) : '';
     if (left && right) return `${left} — ${right}`;
@@ -93,4 +95,76 @@ export const formatDate = (iso: string): string => {
     const [y, m, d] = ymd.split('-');
     if (!y || !m || !d) return iso;
     return `${d}.${m}.${y}`;
+};
+
+/** Translation function used for relation labels (next-i18next `t`). */
+export type TranslationFn = (key: string, opts?: { defaultValue?: string }) => string;
+
+/**
+ * Human-readable label for a person relative to a "focus" person (the tree
+ * root). Shared by the family-tree canvas and the virtual-cemetery timeline so
+ * both pages show the same relative wording. Falls back to the generic
+ * "Relative" label when no matching edge is found.
+ */
+export const labelForRelation = (
+    person: Person,
+    focusId: string | undefined,
+    relations: PersonRelation[],
+    t: TranslationFn
+): string | undefined => {
+    if (!focusId) return undefined;
+    if (person.id === focusId) return t('relativeLabel.self', { defaultValue: 'Me' });
+
+    const parents = getParents(focusId, relations);
+    if (parents.includes(person.id)) {
+        return person.gender === 'male'
+            ? t('relativeLabel.father', { defaultValue: 'Father' })
+            : t('relativeLabel.mother', { defaultValue: 'Mother' });
+    }
+    const children = getChildren(focusId, relations);
+    if (children.includes(person.id)) {
+        return person.gender === 'male'
+            ? t('relativeLabel.son', { defaultValue: 'Son' })
+            : t('relativeLabel.daughter', { defaultValue: 'Daughter' });
+    }
+    const spouses = getSpouses(focusId, relations);
+    if (spouses.includes(person.id)) {
+        return person.gender === 'male'
+            ? t('relativeLabel.husband', { defaultValue: 'Husband' })
+            : t('relativeLabel.wife', { defaultValue: 'Wife' });
+    }
+    const siblings = getSiblings(focusId, relations);
+    if (siblings.includes(person.id)) {
+        return person.gender === 'male'
+            ? t('relativeLabel.brother', { defaultValue: 'Brother' })
+            : t('relativeLabel.sister', { defaultValue: 'Sister' });
+    }
+
+    // Grandparents
+    for (const parentId of parents) {
+        const grand = getParents(parentId, relations);
+        if (grand.includes(person.id)) {
+            return person.gender === 'male'
+                ? t('relativeLabel.grandfather', { defaultValue: 'Grandfather' })
+                : t('relativeLabel.grandmother', { defaultValue: 'Grandmother' });
+        }
+        const auntsUncles = getSiblings(parentId, relations);
+        if (auntsUncles.includes(person.id)) {
+            return person.gender === 'male'
+                ? t('relativeLabel.uncle', { defaultValue: 'Uncle' })
+                : t('relativeLabel.aunt', { defaultValue: 'Aunt' });
+        }
+    }
+
+    // Grandchildren
+    for (const childId of children) {
+        const grand = getChildren(childId, relations);
+        if (grand.includes(person.id)) {
+            return person.gender === 'male'
+                ? t('relativeLabel.grandson', { defaultValue: 'Grandson' })
+                : t('relativeLabel.granddaughter', { defaultValue: 'Granddaughter' });
+        }
+    }
+
+    return t('relativeLabel.relative', { defaultValue: 'Relative' });
 };

@@ -1,12 +1,6 @@
 import styled, { css } from 'styled-components';
 import { color, font, hover, mediaBreakpointDown, mediaBreakpointUp, vh, vw } from '@/style/mixins';
-import {
-    CARD_GAP,
-    CARD_STACK_DESKTOP,
-    CARD_STACK_MOBILE,
-    LINE_BOTTOM_OFFSET,
-    TIMELINE_AXIS_LEFT
-} from './cemeteryUtils';
+import { TIMELINE_AXIS_LEFT } from './cemeteryUtils';
 
 /* ===================================================================== */
 /*  Page shell — sits inside Layout > MainArea                            */
@@ -15,17 +9,18 @@ import {
 /** Full viewport slice below the header. `--vh` is set by useResize.
  *  Flex column: nav rail on top, scrollable timeline in the middle
  *  (fills / centers the remaining slice), add-button pinned to the bottom.
- *  Desktop keeps `min-height` only — the timeline is never height-capped. */
+ *  Height is always one full viewport minus the sticky header height
+ *  (55 px on mobile, 60 px from lg up). */
 export const CemeterySection = styled.section`
     position: relative;
     display: flex;
     flex-direction: column;
     width: 100%;
-    min-height: calc(var(--vh, 1vh) * 100 - 60px);
+    height: calc(var(--vh, 1vh) * 100 - 100px);
     padding: 0;
 
     ${mediaBreakpointDown('lg')} {
-        height: calc(var(--vh, 1vh) * 100 - 35px);
+        height: calc(var(--vh, 1vh) * 100 - 55px);
         overflow: hidden;
         padding-top: 8px;
     }
@@ -35,17 +30,17 @@ export const CemeterySection = styled.section`
     }
 `;
 
-/** Retro/Scandinavian meadow backdrop. Opacity is kept low so the timeline
- *  stays readable — the field is decorative only. */
+/**
+ * Retro/Scandinavian meadow backdrop. Opacity is kept low so the timeline
+ * stays readable — the field is decorative only. The picture is rendered
+ * with next/image (fill), the wrapper keeps it fixed behind the content.
+ */
 export const PageBackground = styled.div`
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    opacity: 0.5;
-    background: url('/images/cemetery/meadow.svg') center center / cover no-repeat;
-    z-index: -1;
     pointer-events: none;
 `;
 
@@ -56,7 +51,6 @@ export const PageBackground = styled.div`
 export const PeriodNavRail = styled.nav`
     position: relative;
     z-index: 2;
-    margin-top: ${vh(49)}; /* ~109px from viewport top on FHD */
     margin-bottom: ${vh(8)};
 
     ${mediaBreakpointDown('md')} {
@@ -95,94 +89,50 @@ export const PeriodChipRow = styled.div`
     }
 `;
 
-export const PeriodNavTools = styled.div`
+/* ===================================================================== */
+/*  Floating controls (search / menu) — same layout as the Family tree    */
+/* ===================================================================== */
+
+export const FloatingTopLeft = styled.div`
+    position: absolute;
+    top: -20px;
+    right: 50px;
     display: flex;
     align-items: center;
-    gap: ${vw(12, 'xs')};
-    margin-left: ${vw(12, 'xs')};
-
-    ${mediaBreakpointUp('lg')} {
-        margin-left: ${vw(24, 'mac')};
-    }
+    gap: 8px;
+    z-index: 6;
 `;
 
-export const PeriodInputWrap = styled.div`
-    position: relative;
+export const FloatingTopRight = styled.div`
+    position: absolute;
+    top: -20px;
+    right: 20px;
     display: flex;
     align-items: center;
-    width: ${vw(192, 'xs')};
-    height: ${vw(50, 'xs')};
-    border: 1px solid ${color('ink', 0.5)};
-    border-radius: 5px;
-    background: ${color('cream')};
-    padding: 0 ${vw(10, 'xs')};
-
-    ${mediaBreakpointUp('xl')} {
-        width: ${vw(192, 'xl')};
-        height: ${vw(50, 'xl')};
-    }
+    gap: 8px;
+    z-index: 6;
 `;
 
-export const PeriodInput = styled.input`
-    flex: 1;
+export const FloatingIconButton = styled.button`
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
     border: none;
-    outline: none;
     background: transparent;
-    ${font('font4')};
-    color: ${color('ink', 0.5)};
-
-    &::placeholder {
-        color: ${color('ink', 0.5)};
-    }
-
-    ${mediaBreakpointUp('xl')} {
-        font-size: ${vw(14, 'xl')};
-    }
-`;
-
-export const PeriodInputArrow = styled.svg`
-    flex-shrink: 0;
-    width: ${vw(16, 'xs')};
-    height: ${vw(16, 'xs')};
-    margin-left: ${vw(8, 'xs')};
-    color: inherit;
-
-    &.clickable {
-        cursor: pointer;
-    }
-
-    ${mediaBreakpointUp('xl')} {
-        width: ${vw(16, 'xl')};
-        height: ${vw(16, 'xl')};
-    }
-`;
-
-export const NavIconButton = styled.button`
+    color: ${color('textPrimary')};
+    cursor: pointer;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: ${vw(44, 'xs')};
-    height: ${vw(44, 'xs')};
-    border: none;
-    border-radius: 5px;
-    background: transparent;
-    color: ${color('ink')};
-    cursor: pointer;
 
     svg {
-        width: ${vw(22, 'xs')};
-        height: ${vw(22, 'xs')};
+        width: 22px;
+        height: 22px;
     }
 
-    ${mediaBreakpointUp('lg')} {
-        width: ${vw(56, 'xl')};
-        height: ${vw(56, 'xl')};
-
-        svg {
-            width: ${vw(28, 'xl')};
-            height: ${vw(28, 'xl')};
-        }
-    }
+    ${hover(css`
+        background: rgba(255, 255, 255, 0.4);
+    `)}
 `;
 
 /* ===================================================================== */
@@ -474,83 +424,9 @@ export const TimelineConnector = styled.span<{
 `;
 
 /* ===================================================================== */
-/*  Cemetery person card (also the positioned anchor for the connector) */
+/*  Cemetery person card moved to PersonNode (PersonNode.styled.tsx) —    */
+/*  the memorial card lives inside the shared tree/cemetery component.    */
 /* ===================================================================== */
-
-export const CemeteryPersonCard = styled.div<{ $row: number; $axisPos: number; $isDesktop: boolean }>`
-    position: absolute;
-    transform: translateX(-50%);
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: ${vw(4, 'xs')};
-    padding: ${vw(10, 'xs')} ${vw(10, 'xs')} ${vw(22, 'xs')};
-    border-radius: 5px;
-    background: ${color('cemeteryGray')};
-    color: ${color('cream')};
-    border: none;
-
-    /* desktop FHD: ~150 x 70 */
-    width: clamp(140px, 7.8vw, 150px);
-    height: clamp(64px, 3.7vw, 70px);
-
-    ${({ $isDesktop, $row, $axisPos }) =>
-        $isDesktop
-            ? css`
-                  left: ${$axisPos}px;
-                  bottom: ${LINE_BOTTOM_OFFSET + ($row + 1) * CARD_STACK_DESKTOP}px;
-              `
-            : css`
-                  top: ${$axisPos}px;
-                  left: calc(${TIMELINE_AXIS_LEFT}px + ${CARD_GAP}px + ${$row * CARD_STACK_MOBILE}px);
-                  transform: translateY(-50%);
-              `}
-
-    ${mediaBreakpointUp('xl')} {
-        border: 1px solid ${color('cemeteryBorderAlt')}; /* 1200 tablet tint */
-    }
-
-    ${mediaBreakpointUp('xxl')} {
-        border: none;
-    }
-
-    ${mediaBreakpointDown('md')} {
-        width: min(140px, calc(100vw - 200px));
-        height: auto;
-        min-height: ${vw(56, 'xs')};
-        padding: ${vw(12, 'xs')};
-        padding-top: ${vw(42, 'xs')};
-    }
-`;
-
-export const CardRelation = styled.span`
-    ${font('font9')};
-    font-weight: 600;
-    color: ${color('cream')};
-    line-height: 1.1;
-`;
-
-export const CardName = styled.span`
-    ${font('font8')};
-    font-weight: 400;
-    color: ${color('cream')};
-    line-height: 1.1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: 100%;
-`;
-
-export const CardDate = styled.span`
-    font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
-    font-size: clamp(6px, 0.5vw, 8px);
-    font-weight: 500;
-    line-height: 1.1;
-    color: ${color('cream')};
-    opacity: 0.92;
-`;
 
 /* ===================================================================== */
 /*  Add relative button (reusable, props-driven)                          */

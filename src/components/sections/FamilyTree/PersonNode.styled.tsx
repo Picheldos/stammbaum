@@ -1,5 +1,12 @@
 import styled, { css } from 'styled-components';
-import { color, font, hover, mediaBreakpointUp, vw } from '@/style/mixins';
+import { color, font, hover, mediaBreakpointDown, mediaBreakpointUp, vw } from '@/style/mixins';
+import {
+    CARD_GAP,
+    CARD_STACK_DESKTOP,
+    CARD_STACK_MOBILE,
+    LINE_BOTTOM_OFFSET,
+    TIMELINE_AXIS_LEFT
+} from '../Cemetery/cemeteryUtils';
  
 /**
  * Invisible bounding box that matches the layout slot (nodeWidth × nodeHeight
@@ -158,5 +165,103 @@ export const NodeMeta = styled.span`
     font-size: 5px !important;
     opacity: 0.72;
     line-height: 1.25;
-    
+`;
+/* ===================================================================== */
+/*  Cemetery variant — memorial card (moved from Cemetery.styled)         */
+/* ===================================================================== */
+
+/**
+ * Memorial card on the virtual-cemetery timeline. Sits absolutely on the
+ * track, anchored to the timeline axis via `$row`/`$axisPos` (bottom-anchored
+ * on desktop, stacked beside the axis on mobile). Uses the museum-gray
+ * cemetery palette (`cemeteryGray` + `cream`) so it reads as a different page
+ * object than the warm paper in-tree card.
+ */
+export const CemeteryNodeCard = styled.div<{
+    $row: number;
+    $axisPos: number;
+    $isDesktop: boolean;
+    $highlighted?: boolean;
+}>`
+    position: absolute;
+    transform: translateX(-50%);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: ${vw(4, 'xs')};
+    padding: ${vw(10, 'xs')} ${vw(10, 'xs')} ${vw(22, 'xs')};
+    border-radius: 5px;
+    background: ${color('cemeteryGray')};
+    color: ${color('cream')};
+    border: none;
+    transition: box-shadow 0.3s ease;
+
+    /* Search-match glow (mirrors the tree page search behavior). */
+    ${({ $highlighted }) =>
+        $highlighted &&
+        css`
+            z-index: 2;
+            box-shadow: 0 0 0 3px ${color('cream')}, 0 0 22px rgba(255, 255, 255, 0.55);
+        `}
+
+    /* desktop FHD: ~150 x 70 */
+    width: clamp(140px, 7.8vw, 150px);
+    height: clamp(64px, 3.7vw, 70px);
+
+    ${({ $isDesktop, $row, $axisPos }) =>
+        $isDesktop
+            ? css`
+                  left: ${$axisPos}px;
+                  bottom: ${LINE_BOTTOM_OFFSET + ($row + 1) * CARD_STACK_DESKTOP}px;
+              `
+            : css`
+                  top: ${$axisPos}px;
+                  left: calc(${TIMELINE_AXIS_LEFT}px + ${CARD_GAP}px + ${$row * CARD_STACK_MOBILE}px);
+                  transform: translateY(-50%);
+              `}
+
+    ${mediaBreakpointUp('xl')} {
+        border: 1px solid ${color('cemeteryBorderAlt')}; /* 1200 tablet tint */
+    }
+
+    ${mediaBreakpointUp('xxl')} {
+        border: none;
+    }
+
+    ${mediaBreakpointDown('md')} {
+        width: min(140px, calc(100vw - 200px));
+        height: auto;
+        min-height: ${vw(56, 'xs')};
+        padding: ${vw(12, 'xs')};
+        padding-top: ${vw(42, 'xs')};
+    }
+`;
+
+export const CemeteryNodeRelation = styled.span`
+    ${font('font9')};
+    font-weight: 600;
+    color: ${color('cream')};
+    line-height: 1.1;
+`;
+
+export const CemeteryNodeName = styled.span`
+    ${font('font8')};
+    font-weight: 400;
+    color: ${color('cream')};
+    line-height: 1.1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+`;
+
+export const CemeteryNodeMeta = styled.span`
+    font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
+    font-size: clamp(6px, 0.5vw, 8px);
+    font-weight: 500;
+    line-height: 1.1;
+    color: ${color('cream')};
+    opacity: 0.92;
 `;

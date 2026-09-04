@@ -1,6 +1,11 @@
 {
     "addButton": "Добавить информацию",
-    "periodInput": "Вбейте период",
+    "controls": {
+        "search": "Поиск",
+        "menu": "Меню",
+        "searchPrompt": "Поиск по фамилии или имени",
+        "notFound": "Человек не найден"
+    },
     "periods": [
         { "id": "1700-1750", "label": "1700-1750", "startYear": 1700, "endYear": 1750 },
         { "id": "1750-1800", "label": "1750-1800", "startYear": 1750, "endYear": 1800 },

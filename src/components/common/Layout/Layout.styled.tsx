@@ -17,4 +17,8 @@ export const MainArea = styled.main`
     ${mediaBreakpointUp('lg')} {
         padding: 60px 20px 0 20px;
     }
+
+    ${mediaBreakpointUp('fhd')} {
+        padding-top: 40px;
+    }
 `;

@@ -20,10 +20,9 @@ import {
 import { AddRelativeKind, Person, PersonRelation, Tree } from '@/lib/family/types';
 import {
     formatShortName,
-    getChildren,
     getParents,
-    getSiblings,
-    getSpouses
+    getSpouses,
+    labelForRelation
 } from '@/lib/family/relations';
 import { DEFAULT_LAYOUT_OPTIONS, layoutTree, NodePosition } from '@/lib/family/layout';
  
@@ -87,69 +86,6 @@ const SearchIcon: React.FC = () => (
         <line x1="20" y1="20" x2="16.5" y2="16.5" strokeLinecap="round" />
     </svg>
 );
- 
-const labelForRelation = (
-    person: Person,
-    focusId: string | undefined,
-    relations: PersonRelation[],
-    t: (key: string, opts?: { defaultValue?: string }) => string
-): string | undefined => {
-    if (!focusId) return undefined;
-    if (person.id === focusId) return t('relativeLabel.self', { defaultValue: 'Me' });
- 
-    const parents = getParents(focusId, relations);
-    if (parents.includes(person.id)) {
-        return person.gender === 'male'
-            ? t('relativeLabel.father', { defaultValue: 'Father' })
-            : t('relativeLabel.mother', { defaultValue: 'Mother' });
-    }
-    const children = getChildren(focusId, relations);
-    if (children.includes(person.id)) {
-        return person.gender === 'male'
-            ? t('relativeLabel.son', { defaultValue: 'Son' })
-            : t('relativeLabel.daughter', { defaultValue: 'Daughter' });
-    }
-    const spouses = getSpouses(focusId, relations);
-    if (spouses.includes(person.id)) {
-        return person.gender === 'male'
-            ? t('relativeLabel.husband', { defaultValue: 'Husband' })
-            : t('relativeLabel.wife', { defaultValue: 'Wife' });
-    }
-    const siblings = getSiblings(focusId, relations);
-    if (siblings.includes(person.id)) {
-        return person.gender === 'male'
-            ? t('relativeLabel.brother', { defaultValue: 'Brother' })
-            : t('relativeLabel.sister', { defaultValue: 'Sister' });
-    }
- 
-    // Grandparents
-    for (const parentId of parents) {
-        const grand = getParents(parentId, relations);
-        if (grand.includes(person.id)) {
-            return person.gender === 'male'
-                ? t('relativeLabel.grandfather', { defaultValue: 'Grandfather' })
-                : t('relativeLabel.grandmother', { defaultValue: 'Grandmother' });
-        }
-        const auntsUncles = getSiblings(parentId, relations);
-        if (auntsUncles.includes(person.id)) {
-            return person.gender === 'male'
-                ? t('relativeLabel.uncle', { defaultValue: 'Uncle' })
-                : t('relativeLabel.aunt', { defaultValue: 'Aunt' });
-        }
-    }
- 
-    // Grandchildren
-    for (const childId of children) {
-        const grand = getChildren(childId, relations);
-        if (grand.includes(person.id)) {
-            return person.gender === 'male'
-                ? t('relativeLabel.grandson', { defaultValue: 'Grandson' })
-                : t('relativeLabel.granddaughter', { defaultValue: 'Granddaughter' });
-        }
-    }
- 
-    return t('relativeLabel.relative', { defaultValue: 'Relative' });
-};
  
 const FamilyTree: React.FC = () => {
     const { t } = useTranslation('tree');

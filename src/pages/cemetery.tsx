@@ -13,7 +13,7 @@ const CemeteryPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = (
 };
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-    const translations = await serverSideTranslations(locale!, ['common', 'cemetery'], {
+    const translations = await serverSideTranslations(locale!, ['common', 'cemetery', 'tree'], {
         i18n: {
             locales: ['en', 'ru'],
             defaultLocale: 'en'
