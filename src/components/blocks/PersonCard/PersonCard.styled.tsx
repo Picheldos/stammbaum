@@ -4,7 +4,7 @@ import { color, mediaBreakpointUp, font, vw } from '@/style/mixins';
 export const Container = styled.div<{ $hidden?: boolean }>`
     pointer-events: auto;
     position: relative;
-    width: vw(180, 'xs');
+    width: ${vw(180, 'xs')};
     height: fit-content;
     padding: ${vw(16, 'xs')} ${vw(16, 'xs')} ${vw(16, 'xs')};
     padding-top: ${vw(56, 'xs')};
@@ -27,7 +27,7 @@ export const Container = styled.div<{ $hidden?: boolean }>`
     ${font('font8')};
 
     ${mediaBreakpointUp('md')} {
-        width: vw(180, 'md');
+        width: ${vw(180, 'md')};
         padding: ${vw(16, 'md')} ${vw(16, 'md')} ${vw(16, 'md')};
         padding-top: ${vw(56, 'md')};
         margin-top: 0;
@@ -44,6 +44,12 @@ export const Container = styled.div<{ $hidden?: boolean }>`
         border-radius: 10px;
         box-shadow: 0 6px 18px rgba(47, 79, 58, 0.12);
         gap: 5px;
+    }
+
+    @media (min-width: 1440px) {
+        width: 105px;
+        height: 66px;
+        padding: 10px;
     }
 `;
 

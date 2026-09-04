@@ -83,6 +83,12 @@ export const NodeCard = styled.button<{ $hidden?: boolean }>`
     ${mediaBreakpointUp('xl')} {
         padding: ${vw(13, 'xl')};
     }
+
+    @media (min-width: 1440px) {
+        width: 105px;
+        height: 66px;
+        padding: 10px;
+    }
  
     ${hover(css`
         box-shadow: 0 10px 24px rgba(47, 79, 58, 0.26);
@@ -231,11 +237,14 @@ export const CemeteryNodeCard = styled.div<{
     }
 
     ${mediaBreakpointDown('md')} {
-        width: min(140px, calc(100vw - 200px));
-        height: auto;
-        min-height: ${vw(56, 'xs')};
-        padding: ${vw(12, 'xs')};
-        padding-top: ${vw(42, 'xs')};
+        width: min(132px, calc(100vw - 32px));
+        padding: 42px 10px 10px;
+        gap: 4px;
+        border-radius: 8px;
+    }
+
+    ${mediaBreakpointDown('xs')} {
+        width: min(124px, calc(100vw - 28px));
     }
 `;
 

@@ -53,7 +53,7 @@ export const AboutBlock: React.FC<AboutBlockProps> = ({
             {title && <Title $variant={variant}>{title}</Title>}
             {subtitle && <Subtitle>{subtitle}</Subtitle>}
             
-            <PlusButton onClick={handlePlusClick}>+</PlusButton>
+            <PlusButton type="button" aria-label={title ? `Подробнее: ${title}` : 'Подробнее'} onClick={handlePlusClick}>+</PlusButton>
           </>
         )}
 

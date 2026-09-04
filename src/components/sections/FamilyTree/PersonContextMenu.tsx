@@ -45,7 +45,11 @@ const MenuList = styled.ul`
     background: ${color('landingCard')};
 `;
 
-const MenuItem = styled.li`
+const MenuItem = styled.button`
+    display: block;
+    width: 100%;
+    border: 0;
+    text-align: left;
     padding: 9px 16px;
     cursor: pointer;
     color: ${color('textPrimary')};
@@ -107,7 +111,7 @@ const PersonContextMenu: React.FC<PersonContextMenuProps> = ({
     }, [onClose]);
 
     return (
-        <MenuRoot ref={ref} $x={x} $y={y}>
+        <MenuRoot ref={ref} $x={x} $y={y} role="menu" aria-label={t('menu.title', { defaultValue: 'Person actions' })}>
             <MenuHeader>
                 <span>{formatShortName(person)}</span>
                 <MenuClose type="button" aria-label="close" onClick={onClose}>
@@ -115,17 +119,17 @@ const PersonContextMenu: React.FC<PersonContextMenuProps> = ({
                 </MenuClose>
             </MenuHeader>
             <MenuList>
-                <MenuItem onClick={onOpenCard}>{t('menu.openCard')}</MenuItem>
-                <MenuItem onClick={onEditCard}>{t('menu.editCard')}</MenuItem>
-                <MenuItem onClick={onAddRelative}>{t('menu.addRelative')}</MenuItem>
-                <MenuItem onClick={onViewRelations}>{t('menu.viewRelations')}</MenuItem>
-                <MenuItem onClick={onToggleHidden}>
+                <MenuItem type="button" role="menuitem" onClick={onOpenCard}>{t('menu.openCard')}</MenuItem>
+                <MenuItem type="button" role="menuitem" onClick={onEditCard}>{t('menu.editCard')}</MenuItem>
+                <MenuItem type="button" role="menuitem" onClick={onAddRelative}>{t('menu.addRelative')}</MenuItem>
+                <MenuItem type="button" role="menuitem" onClick={onViewRelations}>{t('menu.viewRelations')}</MenuItem>
+                <MenuItem type="button" role="menuitem" onClick={onToggleHidden}>
                     {person.isHidden ? t('menu.unhideRelative') : t('menu.hideRelative')}
                 </MenuItem>
-                <MenuItem onClick={onToggleShowHidden}>
+                <MenuItem type="button" role="menuitem" onClick={onToggleShowHidden}>
                     {showHiddenRelatives ? t('menu.hideHiddenRelatives') : t('menu.showHiddenRelatives')}
                 </MenuItem>
-                {canDelete && <MenuItem onClick={onDelete}>{t('menu.deleteRelative')}</MenuItem>}
+                {canDelete && <MenuItem type="button" role="menuitem" onClick={onDelete}>{t('menu.deleteRelative')}</MenuItem>}
             </MenuList>
         </MenuRoot>
     );

@@ -21,7 +21,7 @@ export const PlusButton = styled.button`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: background-color 0.2s ease, transform 0.2s ease;
 
   &:hover {
     ${plusButtonHoverStyles}
@@ -62,7 +62,7 @@ export const Container = styled.div<{ variant?: string; color?: string }>`
 
   ${({ variant }) =>
     variant === 'step' &&
-    css`ß
+    css`
       cursor: pointer;
 
       &:hover ${PlusButton} {

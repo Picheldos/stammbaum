@@ -144,6 +144,12 @@ export const CtaButton = styled.button`
         max-width: none;
         margin-top: ${vw(30, 'xs')};
     }
+
+    @media (min-width: 1440px) {
+        max-width: 460px;
+        min-height: 75px;
+        padding: 1rem 2rem;
+    }
 `;
 
 export const TreeScene = styled.div`
@@ -152,7 +158,7 @@ export const TreeScene = styled.div`
     flex-direction: column;
 
     ${mediaBreakpointDown('lg')} {
-        margin-top: ${vw(60, 'xs')};
+        margin-top: ${vw(20, 'xs')};
     }
 `;
 
@@ -165,7 +171,7 @@ export const TreeLayer = styled.div`
     z-index: 0;
 
     width: 100%;
-    height: ${vw(330, 'xs')};
+    height: ${vw(220, 'xs')};
 
     ${mediaBreakpointDown('lg')} {
         flex: unset;
@@ -174,15 +180,15 @@ export const TreeLayer = styled.div`
     }
 
     ${mediaBreakpointUp('lg')} {
-        inset: auto 0 0;
         justify-content: flex-end;
         pointer-events: none;
         position: absolute;
 
-        width: ${vw(585, 'xl')};
-        height: ${vh(946)};
+        width: ${vw(900)};
+        height: ${vw(750)};
         inset: auto 0 calc(0px - 60px - ${vw(40)});
     }
+
 
     /* ${mediaBreakpointUp('xxl')} {
         inset: auto 0 calc(0 - 60px - ${vw(40, 'xl')});;

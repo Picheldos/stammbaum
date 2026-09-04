@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
 import PersonCard from '@/components/blocks/PersonCard/PersonCard';
 import type { PersonCardData } from '@/components/blocks/PersonCard/PersonCard';
 import Image from 'next/image';
@@ -29,6 +30,7 @@ const parseCards = (value: unknown): PersonCardData[] =>
 
 const MainSection: React.FC = () => {
     const { t } = useTranslation('index');
+    const router = useRouter();
     const { isMobile } = useRecoilValue(SizesState);
 
     const cards = parseCards(t('cards', { returnObjects: true }));
@@ -62,7 +64,7 @@ const MainSection: React.FC = () => {
                             </StepItem>
                         ))}
                     </StepsList>
-                    <CtaButton type="button">{t('hero.cta')}</CtaButton>
+                    <CtaButton type="button" onClick={() => router.push('/tree')}>{t('hero.cta')}</CtaButton>
                 </HeroContent>
 
                 <TreeScene>
@@ -94,7 +96,7 @@ const MainSection: React.FC = () => {
                         />
                     </TreeLayer>
                 </TreeScene>
-                <CtaButton type="button">{t('hero.cta')}</CtaButton>
+                <CtaButton type="button" onClick={() => router.push('/tree')}>{t('hero.cta')}</CtaButton>
             </HeroGrid>
         </LandingRoot>
     );

@@ -260,11 +260,13 @@ const AddPersonModal: React.FC<AddPersonModalProps> = ({ open, mode, focusParent
         return `${role}: ${short}`;
     };
 
+    if (!open) return null;
+
     return (
-        <Overlay $open={open} onMouseDown={(e) => e.target === e.currentTarget && onCancel()}>
+        <Overlay $open={open} role="dialog" aria-modal="true" aria-labelledby="add-person-title" onMouseDown={(e) => e.target === e.currentTarget && onCancel()}>
             <ModalCard onMouseDown={(e) => e.stopPropagation()}>
                 <ModalHeader>
-                    <span>{headerTitle}</span>
+                    <span id="add-person-title">{headerTitle}</span>
                     <HeaderClose type="button" aria-label="close" onClick={onCancel}>
                         ×
                     </HeaderClose>

@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { color, font, hover } from '@/style/mixins';
+import { color, font, hover, mediaBreakpointDown, mediaBreakpointUp } from '@/style/mixins';
 
 /* ---------- Page-level shell ---------- */
 
@@ -12,9 +12,14 @@ export const TreeRoot = styled.section`
     /* MainArea is absolutely positioned and has no intrinsic height. Without
        an explicit viewport height the canvas collapses to the header height,
        and overflow clipping hides the nodes and controls. */
-    height: 100dvh;
+    height: calc(100dvh - 55px);
+    min-height: 0;
 
     overflow: hidden;
+
+    ${mediaBreakpointUp('lg')} {
+        height: calc(100dvh - 60px);
+    }
 `;
 
 export const Backdrop = styled.div`
@@ -62,7 +67,7 @@ export const ConnectionsSvg = styled.svg`
 export const ZoomControls = styled.div`
     position: absolute;
     right: 16px;
-    bottom: 16px;
+    bottom: max(16px, env(safe-area-inset-bottom));
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -126,12 +131,17 @@ export const IconButton = styled.button`
     ${hover(css`
         background: rgba(255, 255, 255, 0.4);
     `)}
+
+    &:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+    }
 `;
 
 export const AddRelativeCta = styled.button`
     position: absolute;
     left: 50%;
-    bottom: 24px;
+    bottom: max(24px, calc(env(safe-area-inset-bottom) + 8px));
     transform: translateX(-50%);
     background: ${color('landingCta')};
     color: ${color('white')};
@@ -147,6 +157,46 @@ export const AddRelativeCta = styled.button`
     ${hover(css`
         background: ${color('slateBlue')};
     `)}
+
+    ${mediaBreakpointDown('md')} {
+        bottom: max(84px, calc(env(safe-area-inset-bottom) + 68px));
+        padding: 11px 22px;
+        white-space: nowrap;
+    }
+`;
+
+export const SearchPopover = styled.form`
+    position: absolute;
+    top: 58px;
+    left: 16px;
+    z-index: 8;
+    display: flex;
+    gap: 8px;
+    width: min(320px, calc(100vw - 32px));
+    padding: 10px;
+    background: ${color('landingCard')};
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(47, 79, 58, 0.2);
+`;
+
+export const SearchInput = styled.input`
+    min-width: 0;
+    flex: 1;
+    padding: 9px 10px;
+    border: 1px solid ${color('forest', 0.35)};
+    border-radius: 5px;
+    background: ${color('white')};
+    color: ${color('textPrimary')};
+    font-size: 16px;
+`;
+
+export const SearchSubmit = styled.button`
+    flex: 0 0 auto;
+    padding: 9px 12px;
+    border-radius: 5px;
+    background: ${color('landingCta')};
+    color: ${color('white')};
+    cursor: pointer;
 `;
 
 /* ---------- Empty state ---------- */

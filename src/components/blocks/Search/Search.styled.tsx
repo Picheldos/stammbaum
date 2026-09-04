@@ -38,7 +38,7 @@ export const SearchTrigger = styled.button<{ $isOpen: boolean }>`
       position: absolute;
       left: 10px;
     `
-            : `position: none`};
+            : `position: static`};
 
     svg {
         width: ${vw(20, 'xs')};
@@ -89,7 +89,6 @@ export const SearchInput = styled.input`
     flex: 1;
     min-width: 0;
     border: none;
-    outline: none;
     background: transparent;
     ${font('font2')};
     font-size: ${vw(14, 'xs')};
@@ -106,6 +105,11 @@ export const SearchInput = styled.input`
 
     &::placeholder {
         color: ${color('darkGray')};
+    }
+
+    &:focus-visible {
+        outline: 2px solid ${color('forest')};
+        outline-offset: 2px;
     }
 
     ${mediaBreakpointUp('xl')} {

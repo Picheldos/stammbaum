@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
 import { useSession } from '@/hooks/useSession';
+import { useMedia } from '@/hooks/useMedia';
 import {
     addRelation,
     createPerson,
@@ -47,7 +48,10 @@ import {
     TreeImageLayer,
     TreeRoot,
     ZoomButton,
-    ZoomControls
+    ZoomControls,
+    SearchPopover,
+    SearchInput,
+    SearchSubmit
 } from './FamilyTree.styled';
  
 interface ContextMenuState {
@@ -105,6 +109,10 @@ const FamilyTree: React.FC = () => {
     const [addState, setAddState] = useState<AddPersonState | null>(null);
     const [card, setCard] = useState<CardState | null>(null);
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [searchOpen, setSearchOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [searchError, setSearchError] = useState('');
+    const isMobileViewport = useMedia('(max-width: 767px)', true);
  
     // Bootstrap: load (or create) the active tree for the signed-in user.
     useEffect(() => {
@@ -136,7 +144,7 @@ const FamilyTree: React.FC = () => {
     );
  
     // Pan + zoom state. (0,0) is the centre of the canvas.
-    const [scale, setScale] = useState(1.5);
+    const [scale, setScale] = useState(1);
     const [pan, setPan] = useState({ x: 0, y: 0 });
     const dragState = useRef<{ pointerId: number; startX: number; startY: number; baseX: number; baseY: number } | null>(
         null
@@ -180,8 +188,16 @@ const FamilyTree: React.FC = () => {
     const zoomIn = () => setScale((current) => Math.min(MAX_SCALE, current * 1.15));
     const zoomOut = () => setScale((current) => Math.max(MIN_SCALE, current / 1.15));
     const recenter = () => {
-        setScale(1);
-        setPan({ x: 0, y: 0 });
+        const nextScale = isMobileViewport ? 0.72 : 1;
+        setScale(nextScale);
+        if (layout) {
+            setPan({
+                x: -((layout.bounds.minX + layout.bounds.maxX) / 2) * nextScale,
+                y: -((layout.bounds.minY + layout.bounds.maxY) / 2) * nextScale
+            });
+        } else {
+            setPan({ x: 0, y: 0 });
+        }
     };
  
     const layout = useMemo(() => {
@@ -197,6 +213,50 @@ const FamilyTree: React.FC = () => {
         if (layout) layout.nodes.forEach((n) => map.set(n.personId, n));
         return map;
     }, [layout]);
+
+    useEffect(() => {
+        if (!layout) return;
+        const nextScale = isMobileViewport ? 0.72 : 1;
+        setScale(nextScale);
+        setPan({
+            x: -((layout.bounds.minX + layout.bounds.maxX) / 2) * nextScale,
+            y: -((layout.bounds.minY + layout.bounds.maxY) / 2) * nextScale
+        });
+    }, [layout, isMobileViewport]);
+
+    useEffect(() => {
+        if (!searchOpen) return;
+        const onKeyDown = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                setSearchOpen(false);
+                setSearchError('');
+            }
+        };
+        window.addEventListener('keydown', onKeyDown);
+        return () => window.removeEventListener('keydown', onKeyDown);
+    }, [searchOpen]);
+
+    const submitSearch = (event: React.FormEvent) => {
+        event.preventDefault();
+        const normalized = searchQuery.trim().toLowerCase();
+        if (!normalized) return;
+        const match = persons.find((p) => formatShortName(p).toLowerCase().includes(normalized));
+        if (!match) {
+            setSearchError(t('controls.notFound', { defaultValue: 'Person not found' }));
+            return;
+        }
+        const node = nodeIndex.get(match.id);
+        if (node) {
+            setPan({
+                x: -(node.x + DEFAULT_LAYOUT_OPTIONS.nodeWidth / 2) * scale,
+                y: -(node.y + DEFAULT_LAYOUT_OPTIONS.nodeHeight / 2) * scale
+            });
+        }
+        setCard({ personId: match.id, tab: 'info' });
+        setSearchOpen(false);
+        setSearchQuery('');
+        setSearchError('');
+    };
  
     /* ---------------------- Mutations ---------------------- */
  
@@ -410,7 +470,7 @@ const FamilyTree: React.FC = () => {
                     />
                 </TreeImageLayer>
                 <FloatingTopRight>
-                    <IconButton type="button" aria-label={t('controls.search', { defaultValue: 'Search' })}>
+                    <IconButton type="button" aria-label={t('controls.search', { defaultValue: 'Search' })} disabled>
                         <SearchIcon />
                     </IconButton>
                     <IconButton
@@ -521,29 +581,26 @@ const FamilyTree: React.FC = () => {
                 <IconButton
                     type="button"
                     aria-label={t('controls.search', { defaultValue: 'Search' })}
-                    onClick={() => {
-                        const query = window.prompt(t('controls.searchPrompt', { defaultValue: 'Search by name' }) || '');
-                        if (!query) return;
-                        const match = persons.find((p) =>
-                            formatShortName(p).toLowerCase().includes(query.toLowerCase())
-                        );
-                        if (!match) {
-                            window.alert(t('controls.notFound', { defaultValue: 'Person not found' }));
-                            return;
-                        }
-                        const node = nodeIndex.get(match.id);
-                        if (node) {
-                            setPan({
-                                x: -node.x * scale,
-                                y: -node.y * scale
-                            });
-                        }
-                        setCard({ personId: match.id, tab: 'info' });
-                    }}
+                    onClick={() => { setSearchOpen((value) => !value); setSearchError(''); }}
                 >
                     <SearchIcon />
                 </IconButton>
             </FloatingTopLeft>
+
+            {searchOpen && (
+                <SearchPopover onSubmit={submitSearch} aria-label={t('controls.search', { defaultValue: 'Search' })}>
+                    <SearchInput
+                        autoFocus
+                        type="search"
+                        aria-label={t('controls.searchPrompt', { defaultValue: 'Search by name' })}
+                        placeholder={t('controls.searchPrompt', { defaultValue: 'Search by name' })}
+                        value={searchQuery}
+                        onChange={(event) => { setSearchQuery(event.target.value); setSearchError(''); }}
+                    />
+                    <SearchSubmit type="submit">{t('controls.search', { defaultValue: 'Search' })}</SearchSubmit>
+                    {searchError && <span role="alert">{searchError}</span>}
+                </SearchPopover>
+            )}
  
             <FloatingTopRight>
                 <IconButton

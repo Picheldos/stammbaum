@@ -160,20 +160,20 @@ export const NextButton = styled(IconButton)`
 
 export const Body = styled.div`
   color: ${color('textPrimary')};
-  // margin-bottom: ${vw(32, 'xs')};
+  /* margin-bottom: ${vw(32, 'xs')};
 
   // ${mediaBreakpointUp('md')} {
   //   margin-bottom: ${vw(40, 'md')};
-  // }
+  // } */
 `;
 
 export const Subtitle = styled.div`
     ${font('font6')};
-`
+`;
 
 export const Text = styled.div`
     ${font('font5')};
-`
+`;
 
 export const Footer = styled.div<{ className?: string }>`
   display: flex;

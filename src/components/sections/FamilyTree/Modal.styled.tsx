@@ -10,6 +10,7 @@ export const Overlay = styled.div<{ $open: boolean }>`
     align-items: center;
     justify-content: center;
     padding: 16px;
+    overscroll-behavior: contain;
     opacity: ${({ $open }) => ($open ? 1 : 0)};
     pointer-events: ${({ $open }) => ($open ? 'auto' : 'none')};
     transition: opacity 0.2s ease;
@@ -44,6 +45,11 @@ export const HeaderClose = styled.button`
     cursor: pointer;
     font-size: 22px;
     line-height: 1;
+
+    &:focus-visible {
+        outline: 2px solid ${color('white')};
+        outline-offset: 2px;
+    }
 `;
 
 export const ModalBody = styled.div`

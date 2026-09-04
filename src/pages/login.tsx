@@ -15,7 +15,7 @@ const Page = styled.section`
 `;
 
 const Modal = styled.div`
-    width: 360px;
+    width: min(500px, calc(100vw - 32px));
     background: #ecd9bf;
     border-radius: 6px;
     box-shadow: 0 8px 0 rgba(0,0,0,0.06);
@@ -127,7 +127,7 @@ const LoginPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ m
     const router = useRouter();
     const isRu = router.locale === 'ru';
 
-    const [mode, setMode] = useState<'login' | 'register'>('login');
+    const [mode, setMode] = useState<'login' | 'register' | 'forgot'>('login');
 
     // login fields
     const [loginName, setLoginName] = useState('');
@@ -140,6 +140,8 @@ const LoginPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ m
     const [regPassword, setRegPassword] = useState('');
     const [regConfirm, setRegConfirm] = useState('');
     const [policy, setPolicy] = useState(false);
+    const [forgotEmail, setForgotEmail] = useState('');
+    const [resetSent, setResetSent] = useState(false);
 
     const handleLogin = (e: React.FormEvent) => {
         e.preventDefault();
@@ -196,13 +198,23 @@ const LoginPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ m
         router.push('/');
     };
 
+    const handleForgot = (e: React.FormEvent) => {
+        e.preventDefault();
+        setError('');
+        if (!validateEmail(forgotEmail)) {
+            setError(isRu ? 'Введите корректный email' : 'Enter a valid email');
+            return;
+        }
+        setResetSent(true);
+    };
+
     return (
         <Layout meta={meta} header={header} sandwich={sandwich}>
             <Page>
                 <Modal>
                     <ModalHeader>
                         <Title>{isRu ? 'Авторизация' : 'Authorization'}</Title>
-                        <Close aria-label="close">×</Close>
+                        <Close type="button" aria-label={isRu ? 'Закрыть' : 'Close'} onClick={() => router.push('/')}>×</Close>
                     </ModalHeader>
                     <ModalBody>
                         <Tabs>
@@ -214,24 +226,45 @@ const LoginPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ m
                             </Tab>
                         </Tabs>
 
-                        {mode === 'login' ? (
+                        {mode === 'forgot' ? (
+                            resetSent ? (
+                                <div role="status">
+                                    {isRu ? 'Инструкции по восстановлению отправлены на почту.' : 'Recovery instructions have been sent.'}
+                                    <button type="button" onClick={() => setMode('login')}>{isRu ? 'Вернуться ко входу' : 'Back to sign in'}</button>
+                                </div>
+                            ) : (
+                                <Form onSubmit={handleForgot}>
+                                    <label htmlFor="forgot-email">E-mail</label>
+                                    <Input id="forgot-email" name="email" type="email" autoComplete="email" placeholder="name@example.com" value={forgotEmail} onChange={(e) => setForgotEmail(e.target.value)} />
+                                    {error && <Error role="alert">{error}</Error>}
+                                    <Action type="submit">{isRu ? 'Отправить инструкции' : 'Send instructions'}</Action>
+                                </Form>
+                            )
+                        ) : mode === 'login' ? (
                             <Form onSubmit={handleLogin}>
-                                <Input placeholder={isRu ? 'Имя пользователя или e-mail' : 'Username or email'} value={loginName} onChange={(e) => setLoginName(e.target.value)} />
-                                <Input type="password" placeholder={isRu ? 'Пароль' : 'Password'} value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} />
-                                {error && <Error>{error}</Error>}
+                                <label htmlFor="login-name">{isRu ? 'Имя пользователя или e-mail' : 'Username or email'}</label>
+                                <Input id="login-name" name="username" autoComplete="username" placeholder={isRu ? 'Имя пользователя или e-mail' : 'Username or email'} value={loginName} onChange={(e) => setLoginName(e.target.value)} />
+                                <label htmlFor="login-password">{isRu ? 'Пароль' : 'Password'}</label>
+                                <Input id="login-password" name="password" type="password" autoComplete="current-password" placeholder={isRu ? 'Пароль' : 'Password'} value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} />
+                                {error && <Error role="alert">{error}</Error>}
                                 <Action type="submit">{isRu ? 'Войти в профиль' : 'Sign in'}</Action>
+                                <button type="button" onClick={() => { setMode('forgot'); setError(''); setResetSent(false); }}>{isRu ? 'Забыли пароль?' : 'Forgot password?'}</button>
                             </Form>
                         ) : (
                             <Form onSubmit={handleRegister}>
-                                <Input placeholder={isRu ? 'Имя пользователя' : 'Username'} value={regName} onChange={(e) => setRegName(e.target.value)} />
-                                <Input placeholder="E-mail" value={regEmail} onChange={(e) => setRegEmail(e.target.value)} />
-                                <Input type="password" placeholder={isRu ? 'Пароль' : 'Password'} value={regPassword} onChange={(e) => setRegPassword(e.target.value)} />
-                                <Input type="password" placeholder={isRu ? 'Введите пароль еще раз' : 'Confirm password'} value={regConfirm} onChange={(e) => setRegConfirm(e.target.value)} />
+                                <label htmlFor="reg-name">{isRu ? 'Имя пользователя' : 'Username'}</label>
+                                <Input id="reg-name" name="username" autoComplete="username" placeholder={isRu ? 'Имя пользователя' : 'Username'} value={regName} onChange={(e) => setRegName(e.target.value)} />
+                                <label htmlFor="reg-email">E-mail</label>
+                                <Input id="reg-email" name="email" type="email" autoComplete="email" placeholder="name@example.com" value={regEmail} onChange={(e) => setRegEmail(e.target.value)} />
+                                <label htmlFor="reg-password">{isRu ? 'Пароль' : 'Password'}</label>
+                                <Input id="reg-password" name="new-password" type="password" autoComplete="new-password" placeholder={isRu ? 'Пароль' : 'Password'} value={regPassword} onChange={(e) => setRegPassword(e.target.value)} />
+                                <label htmlFor="reg-confirm">{isRu ? 'Повторите пароль' : 'Confirm password'}</label>
+                                <Input id="reg-confirm" name="password-confirmation" type="password" autoComplete="new-password" placeholder={isRu ? 'Повторите пароль' : 'Confirm password'} value={regConfirm} onChange={(e) => setRegConfirm(e.target.value)} />
                                 <CheckboxRow>
                                     <input type="checkbox" checked={policy} onChange={(e) => setPolicy(e.target.checked)} />
                                     <span>{isRu ? 'Я ознакомился и согласен с политикой обработки персональных данных' : "I've read and agree with the personal data processing policy"}</span>
                                 </CheckboxRow>
-                                {error && <Error>{error}</Error>}
+                                {error && <Error role="alert">{error}</Error>}
                                 <Action type="submit">{isRu ? 'Зарегистрироваться' : 'Register'}</Action>
                             </Form>
                         )}

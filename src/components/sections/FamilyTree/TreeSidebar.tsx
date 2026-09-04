@@ -26,6 +26,10 @@ const Panel = styled.aside<{ $open: boolean }>`
     display: flex;
     flex-direction: column;
     z-index: 710;
+
+    @media (min-width: 1440px) {
+        width: min(578px, 30.1vw);
+    }
 `;
 
 const TopBar = styled.div`
@@ -71,7 +75,7 @@ const TreeSelect = styled.select`
     color: ${color('textPrimary')};
     padding: 10px 14px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23333333' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
@@ -121,7 +125,12 @@ const Menu = styled.ul`
     gap: 14px;
 `;
 
-const MenuItem = styled.li`
+const MenuItem = styled.button`
+    width: 100%;
+    border: 0;
+    background: transparent;
+    text-align: left;
+    padding: 9px 0;
     color: ${color('textPrimary')};
     ${font('font7')};
     cursor: pointer;
@@ -177,7 +186,7 @@ const TreeSidebar: React.FC<TreeSidebarProps> = ({
     return (
         <>
             <Backdrop $open={open} onClick={onClose} aria-hidden={!open} />
-            <Panel $open={open} aria-hidden={!open}>
+            {open && <Panel $open={open} aria-label={t('sidebar.title', { defaultValue: 'Tree menu' })}>
                 <TopBar>
                     <TreeSelect
                         value={activeTreeId}
@@ -195,14 +204,14 @@ const TreeSidebar: React.FC<TreeSidebarProps> = ({
                     </CloseBtn>
                 </TopBar>
                 <Menu>
-                    <MenuItem onClick={onNewTree}>{t('sidebar.newTree')}</MenuItem>
-                    <MenuItem onClick={onImportantDates}>{t('sidebar.importantDates')}</MenuItem>
-                    <MenuItem onClick={onGallery}>{t('sidebar.gallery')}</MenuItem>
-                    <MenuItem onClick={onInviteRelatives}>{t('sidebar.inviteRelatives')}</MenuItem>
-                    <MenuItem onClick={onDownloadForPrint}>{t('sidebar.downloadPrint')}</MenuItem>
-                    <MenuItem onClick={onContactUs}>{t('sidebar.contactUs')}</MenuItem>
+                    <MenuItem type="button" onClick={onNewTree}>{t('sidebar.newTree')}</MenuItem>
+                    <MenuItem type="button" onClick={onImportantDates}>{t('sidebar.importantDates')}</MenuItem>
+                    <MenuItem type="button" onClick={onGallery}>{t('sidebar.gallery')}</MenuItem>
+                    <MenuItem type="button" onClick={onInviteRelatives}>{t('sidebar.inviteRelatives')}</MenuItem>
+                    <MenuItem type="button" onClick={onDownloadForPrint}>{t('sidebar.downloadPrint')}</MenuItem>
+                    <MenuItem type="button" onClick={onContactUs}>{t('sidebar.contactUs')}</MenuItem>
                 </Menu>
-            </Panel>
+            </Panel>}
         </>
     );
 };

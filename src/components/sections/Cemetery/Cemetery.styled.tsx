@@ -22,7 +22,7 @@ export const CemeterySection = styled.section`
     ${mediaBreakpointDown('lg')} {
         height: calc(var(--vh, 1vh) * 100 - 55px);
         overflow: hidden;
-        padding-top: 8px;
+        padding-top: 0;
     }
 
     ${mediaBreakpointUp('lg')} {
@@ -52,13 +52,14 @@ export const PeriodNavRail = styled.nav`
     position: relative;
     z-index: 2;
     margin-bottom: ${vh(8)};
+    padding: 0 72px;
 
     ${mediaBreakpointDown('md')} {
         position: sticky;
-        top: 43px;
+        top: 0;
         margin-top: 0;
         margin-bottom: 12px;
-        padding: 8px;
+        padding: 52px 56px 8px;
         background: ${color('cream')};
         border-bottom: 1px solid ${color('cemeteryGray', 0.16)};
     }
@@ -95,8 +96,8 @@ export const PeriodChipRow = styled.div`
 
 export const FloatingTopLeft = styled.div`
     position: absolute;
-    top: -20px;
-    right: 50px;
+    top: 12px;
+    left: 16px;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -105,7 +106,7 @@ export const FloatingTopLeft = styled.div`
 
 export const FloatingTopRight = styled.div`
     position: absolute;
-    top: -20px;
+    top: 12px;
     right: 20px;
     display: flex;
     align-items: center;
@@ -320,7 +321,6 @@ export const PeriodChip = styled.button<{ $active?: boolean }>`
     border: 1px solid transparent;
     background: transparent;
     cursor: pointer;
-    outline: none;
     /* arrow-sided hexagon: left & right edges come to a point */
     clip-path: polygon(8px 0, calc(100% - 8px) 0, 100% 50%, calc(100% - 8px) 100%, 8px 100%, 0 50%);
     transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
@@ -347,6 +347,11 @@ export const PeriodChip = styled.button<{ $active?: boolean }>`
 
     &:active {
         transform: translateY(0);
+    }
+
+    &:focus-visible {
+        outline: 2px solid ${color('forest')};
+        outline-offset: 3px;
     }
 `;
 
@@ -438,7 +443,8 @@ export const AddRelativeButton = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: ${vh(30)} auto 0;
+    flex: 0 0 auto;
+    margin: 12px auto max(12px, env(safe-area-inset-bottom));
     width: clamp(280px, 22vw, 440px);
     height: clamp(52px, 3vw, 64px);
     border: none;
@@ -462,6 +468,42 @@ export const AddRelativeButton = styled.button`
 
     ${mediaBreakpointDown('lg')} {
         width: clamp(220px, 70vw, 320px);
-        height: clamp(44px, 3vw, 50px);
+        height: 50px;
+        margin-top: 10px;
     }
+`;
+
+export const SearchPopover = styled.form`
+    position: absolute;
+    top: 58px;
+    left: 16px;
+    z-index: 8;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    width: min(320px, calc(100vw - 32px));
+    padding: 10px;
+    background: ${color('cream')};
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(47, 79, 58, 0.2);
+`;
+
+export const SearchInput = styled.input`
+    min-width: 0;
+    flex: 1;
+    padding: 9px 10px;
+    border: 1px solid ${color('cemeteryGray', 0.45)};
+    border-radius: 5px;
+    background: ${color('white')};
+    color: ${color('textPrimary')};
+    font-size: 16px;
+`;
+
+export const SearchSubmit = styled.button`
+    flex: 0 0 auto;
+    padding: 9px 12px;
+    border-radius: 5px;
+    background: ${color('meadowBlue')};
+    color: ${color('cream')};
+    cursor: pointer;
 `;

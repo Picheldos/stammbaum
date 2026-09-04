@@ -2,6 +2,7 @@
 
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { useSetRecoilState } from 'recoil';
 import { SandwichState } from '@/recoil/sandwichState/athom';
@@ -23,7 +24,10 @@ import {
     YearDot,
     YearLabel,
     TimelineMarker,
-    DeathYearLabel
+    DeathYearLabel,
+    SearchPopover,
+    SearchInput,
+    SearchSubmit
 } from './Cemetery.styled';
 import PeriodNavigation from './PeriodNavigation';
 import PersonNode from '../FamilyTree/PersonNode';
@@ -71,6 +75,7 @@ const SearchIcon: React.FC = () => (
 const Cemetery: React.FC<CemeteryProps> = ({ periods: periodsProp, persons: personsProp }) => {
     const { t } = useTranslation('cemetery');
     const { t: tTree } = useTranslation('tree');
+    const router = useRouter();
     const { session } = useSession();
     const viewportRef = useRef<HTMLDivElement>(null);
     const openSandwich = useSetRecoilState(SandwichState);
@@ -142,6 +147,9 @@ const Cemetery: React.FC<CemeteryProps> = ({ periods: periodsProp, persons: pers
 
     const [activeId, setActiveId] = useState<string | null>(null);
     const [highlightId, setHighlightId] = useState<string | null>(null);
+    const [searchOpen, setSearchOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [searchError, setSearchError] = useState('');
     const frameRef = useRef<number | null>(null);
     const programmaticScrollRef = useRef(false);
 
@@ -184,15 +192,13 @@ const Cemetery: React.FC<CemeteryProps> = ({ periods: periodsProp, persons: pers
     };
 
     // Search over the memorial cards currently rendered on the timeline.
-    // Mirrors the tree-page flow: prompt → match by name → focus the result.
-    const handleSearchClick = () => {
-        const query = window.prompt(t('controls.searchPrompt', { defaultValue: 'Search by name' }) || '');
-        if (!query) return;
-
-        const normalized = query.trim().toLowerCase();
+    const submitSearch = (event: React.FormEvent) => {
+        event.preventDefault();
+        const normalized = searchQuery.trim().toLowerCase();
+        if (!normalized) return;
         const node = personNodes.find((n) => formatPersonName(n).toLowerCase().includes(normalized));
         if (!node) {
-            window.alert(t('controls.notFound', { defaultValue: 'Person not found' }));
+            setSearchError(t('controls.notFound', { defaultValue: 'Person not found' }));
             return;
         }
 
@@ -210,6 +216,9 @@ const Cemetery: React.FC<CemeteryProps> = ({ periods: periodsProp, persons: pers
         const period = findPeriodForYear(node.deathYear, periods);
         if (period) setActiveId(period.id);
         setHighlightId(node.id);
+        setSearchOpen(false);
+        setSearchQuery('');
+        setSearchError('');
     };
 
     // The search glow fades after a short pause so the timeline stays calm.
@@ -240,6 +249,20 @@ const Cemetery: React.FC<CemeteryProps> = ({ periods: periodsProp, persons: pers
     const trackHeight = isDesktop
         ? (maxRow + 1) * CARD_STACK_DESKTOP + LINE_BOTTOM_OFFSET + 40
         : 2 * TRACK_PADDING + totalYears * pixelsPerYear;
+
+    useEffect(() => {
+        if (activeId || periods.length === 0) return;
+        setActiveId(periods[periods.length - 1].id);
+    }, [activeId, periods]);
+
+    useEffect(() => {
+        if (isDesktop || !viewportRef.current || personNodes.length === 0) return;
+        const viewport = viewportRef.current;
+        const frame = window.requestAnimationFrame(() => {
+            viewport.scrollTop = Math.max(0, viewport.scrollHeight - viewport.clientHeight);
+        });
+        return () => window.cancelAnimationFrame(frame);
+    }, [isDesktop, personNodes.length, trackHeight]);
 
     // Keep the active chip in sync with manual scrolling. The scroll listener
     // is passive and state is updated at most once per animation frame, which
@@ -324,11 +347,25 @@ const Cemetery: React.FC<CemeteryProps> = ({ periods: periodsProp, persons: pers
                 <FloatingIconButton
                     type="button"
                     aria-label={t('controls.search', { defaultValue: 'Search' })}
-                    onClick={handleSearchClick}
+                    onClick={() => { setSearchOpen((value) => !value); setSearchError(''); }}
                 >
                     <SearchIcon />
                 </FloatingIconButton>
             </FloatingTopLeft>
+            {searchOpen && (
+                <SearchPopover onSubmit={submitSearch} aria-label={t('controls.search', { defaultValue: 'Search' })}>
+                    <SearchInput
+                        autoFocus
+                        type="search"
+                        aria-label={t('controls.searchPrompt', { defaultValue: 'Search by name' })}
+                        placeholder={t('controls.searchPrompt', { defaultValue: 'Search by name' })}
+                        value={searchQuery}
+                        onChange={(event) => { setSearchQuery(event.target.value); setSearchError(''); }}
+                    />
+                    <SearchSubmit type="submit">{t('controls.search', { defaultValue: 'Search' })}</SearchSubmit>
+                    {searchError && <span role="alert">{searchError}</span>}
+                </SearchPopover>
+            )}
             <FloatingTopRight>
                 <FloatingIconButton
                     type="button"
@@ -372,7 +409,7 @@ const Cemetery: React.FC<CemeteryProps> = ({ periods: periodsProp, persons: pers
                     })}
                 </TimelineTrack>
             </ScrollViewport>
-            <AddRelativeButton type="button" onClick={() => console.log('add relative')}>
+            <AddRelativeButton type="button" onClick={() => router.push('/tree')}>
                 {t('addButton')}
             </AddRelativeButton>
         </CemeterySection>

@@ -12,13 +12,13 @@ export const MainArea = styled.main`
     flex: 1 0 auto;
     width: 100%;
     position: relative;
-    padding: 0 ${vw(10, 'xs')} ${vw(36, 'xs')};
+    padding: 0 ${vw(10, 'xs')};
 
     ${mediaBreakpointUp('lg')} {
         padding: 60px 20px 0 20px;
     }
 
     ${mediaBreakpointUp('fhd')} {
-        padding-top: 40px;
+        padding-top: 0;
     }
 `;

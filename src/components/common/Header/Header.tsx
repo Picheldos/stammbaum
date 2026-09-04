@@ -86,8 +86,8 @@ const Header: React.FC<HeaderProps> = ({ variant = 'marketing' }) => {
                         <AuthCluster>
                             {!sessionUser ? (
                                 <>
-                                    <Link href="/login" style={{ textDecoration: 'none' }}>
-                                        <BtnOutline type="button">{t('signIn')}</BtnOutline>
+                                    <Link href="/tree" style={{ textDecoration: 'none' }}>
+                                        <BtnOutline type="button">{t('header.createTree')}</BtnOutline>
                                     </Link>
                                     <Link href="/login" style={{ textDecoration: 'none' }}>
                                         <BtnSolid type="button">{t('header.login')}</BtnSolid>

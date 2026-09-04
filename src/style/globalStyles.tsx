@@ -36,7 +36,6 @@ const GlobalStyle = createGlobalStyle`
 
     input:not([type="checkbox"]) {
         -webkit-appearance: none;
-        outline: none;
     }
 
     h1, h2, h3, h4, h5, span, a {
@@ -51,17 +50,16 @@ const GlobalStyle = createGlobalStyle`
     a {
         text-decoration: none;
         color: inherit;
-        outline: none;
     }
 
     button {
         font-family: var(--font-manrope), ${variables.fonts.proxima};
         border: none;
+    }
 
-        &, &:active,
-        &:focus {
-            outline: none;
-        }
+    :where(a, button, input, select, textarea):focus-visible {
+        outline: 3px solid ${color('forest')};
+        outline-offset: 3px;
     }
 `;
 
