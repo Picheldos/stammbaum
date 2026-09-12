@@ -19,3 +19,33 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 .vercel
+
+# Local MCP and browser verification artifacts
+.mcp.json
+.playwright-mcp/
+
+# Generated Figma exports and design inspection notes
+/docs/figma*/
+/docs/*figma*
+/figma-*
+
+# Generated local screenshots and inspection snapshots
+/*-320.png
+/*-768.png
+/*-1200.png
+/*-1920.png
+/auth-*.png
+/cemetery-*.png
+/home-*.png
+/landing-*.png
+/login-mobile.png
+/verification-*.png
+/*-snapshot.md
+/*-computed-*.json
+/tree-*.json
+/export-*.tsv
+/export-*.jsonl
+/auth-before-fhd-snapshot.txt
+
+# TypeScript incremental build metadata
+*.tsbuildinfo
