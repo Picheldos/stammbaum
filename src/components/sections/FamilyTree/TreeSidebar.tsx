@@ -39,16 +39,14 @@ const TopBar = styled.div`
     justify-content: space-between;
     gap: 12px;
     color: ${color('textPrimary')};
-    ${font('font3')};
-    font-weight: 600;
+    ${font('bodyLarge')};
 `;
 
 const CloseBtn = styled.button`
     background: transparent;
     border: none;
     color: ${color('textPrimary')};
-    font-size: 22px;
-    line-height: 1;
+    ${font('bodyLarge')};
     cursor: pointer;
     flex-shrink: 0;
     padding: 4px 8px;
@@ -70,8 +68,7 @@ const TreeSelect = styled.select`
     background: ${color('cream')};
     border: 2px solid ${color('forest')};
     border-radius: 8px;
-    ${font('font3')};
-    font-weight: 700;
+    ${font('mobileAction')};
     color: ${color('textPrimary')};
     padding: 10px 14px;
     cursor: pointer;
@@ -132,12 +129,16 @@ const MenuItem = styled.button`
     text-align: left;
     padding: 9px 0;
     color: ${color('textPrimary')};
-    ${font('font7')};
+    ${font('mobileAction')};
     cursor: pointer;
 
     &:hover {
         color: ${color('forest')};
     }
+`;
+
+const CondensedMenuItem = styled(MenuItem)`
+    ${font('mobileBody')};
 `;
 
 export interface TreeSidebarTreeOption {
@@ -207,9 +208,9 @@ const TreeSidebar: React.FC<TreeSidebarProps> = ({
                     <MenuItem type="button" onClick={onNewTree}>{t('sidebar.newTree')}</MenuItem>
                     <MenuItem type="button" onClick={onImportantDates}>{t('sidebar.importantDates')}</MenuItem>
                     <MenuItem type="button" onClick={onGallery}>{t('sidebar.gallery')}</MenuItem>
-                    <MenuItem type="button" onClick={onInviteRelatives}>{t('sidebar.inviteRelatives')}</MenuItem>
-                    <MenuItem type="button" onClick={onDownloadForPrint}>{t('sidebar.downloadPrint')}</MenuItem>
-                    <MenuItem type="button" onClick={onContactUs}>{t('sidebar.contactUs')}</MenuItem>
+                    <CondensedMenuItem type="button" onClick={onInviteRelatives}>{t('sidebar.inviteRelatives')}</CondensedMenuItem>
+                    <CondensedMenuItem type="button" onClick={onDownloadForPrint}>{t('sidebar.downloadPrint')}</CondensedMenuItem>
+                    <CondensedMenuItem type="button" onClick={onContactUs}>{t('sidebar.contactUs')}</CondensedMenuItem>
                 </Menu>
             </Panel>}
         </>

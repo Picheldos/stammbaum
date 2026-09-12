@@ -10,7 +10,7 @@ import { Container, FlexContainer } from './AboutSection.styled';
 const STEP_CONFIG = [
     { stepNumber: 1, color: '#576686' },
     { stepNumber: 2, color: '#64774A' },
-    { stepNumber: 3, color: '#64774A' },
+    { stepNumber: 3, color: '#64774A', textColor: '#30302A' },
     { stepNumber: 4, color: '#576686' }
 ] as const;
 
@@ -43,6 +43,7 @@ const AboutSection: React.FC = () => {
     const renderStepBlock = (step: (typeof STEP_CONFIG)[number] & { title: string; content: string }) => (
         <AboutBlock
             color={step.color}
+            textColor={'textColor' in step ? step.textColor : undefined}
             variant="step"
             stepNumber={step.stepNumber}
             title={step.title}

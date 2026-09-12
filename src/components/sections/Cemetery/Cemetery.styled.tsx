@@ -247,10 +247,8 @@ export const YearDot = styled.span<{ $size: number }>`
 export const YearLabel = styled.span`
     display: block;
     margin-top: ${vw(4, 'xs')};
-    ${font('font4')};
-    font-weight: 500;
+    ${font('labelStrong')};
     color: ${color('cemeteryGray')};
-    line-height: 1.1;
     white-space: nowrap;
 
     ${mediaBreakpointUp('md')} {
@@ -261,9 +259,7 @@ export const YearLabel = styled.span`
 export const DeathYearLabel = styled.span<{ $mobile: boolean; $axisPos: number }>`
     position: absolute;
     z-index: 2;
-    font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
-    font-size: 10px;
-    font-weight: 500;
+    ${font('label')};
     color: ${color('cemeteryGray')};
     white-space: nowrap;
 
@@ -313,9 +309,7 @@ export const PeriodChip = styled.button<{ $active?: boolean }>`
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    ${font('font3')};
-    line-height: 1.1;
-    font-weight: 500;
+    ${font('button')};
     text-align: center;
     color: ${color('ink')};
     border: 1px solid transparent;
@@ -353,6 +347,7 @@ export const PeriodChip = styled.button<{ $active?: boolean }>`
         outline: 2px solid ${color('forest')};
         outline-offset: 3px;
     }
+
 `;
 
 /* ===================================================================== */
@@ -385,15 +380,12 @@ export const CemeteryAvatar = styled.div<{ $fallback?: boolean }>`
     ${mediaBreakpointUp('lg')} {
         width: clamp(30px, 1.75vw, 36px);
         height: clamp(30px, 1.75vw, 36px);
-        transform: translate(-50%, -46%);
+        transform: translate(-50%, -65%);
     }
 `;
 
 export const AvatarInitials = styled.span`
-    font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
-    font-size: clamp(10px, 2vw, 13px);
-    font-weight: 600;
-    line-height: 1;
+    ${font('label')};
     color: ${color('textPrimary')};
 `;
 
@@ -452,8 +444,7 @@ export const AddRelativeButton = styled.button`
     background: ${color('meadowBlue')};
     color: ${color('cream')};
     cursor: pointer;
-    ${font('font3')};
-    font-weight: 500;
+    ${font('button')};
     text-align: center;
     transition: background-color 0.2s ease, transform 0.15s ease;
 
@@ -486,6 +477,8 @@ export const SearchPopover = styled.form`
     background: ${color('cream')};
     border-radius: 8px;
     box-shadow: 0 8px 24px rgba(47, 79, 58, 0.2);
+    ${font('mobileControl')};
+    color: #5d5d5d;
 `;
 
 export const SearchInput = styled.input`
@@ -495,8 +488,8 @@ export const SearchInput = styled.input`
     border: 1px solid ${color('cemeteryGray', 0.45)};
     border-radius: 5px;
     background: ${color('white')};
-    color: ${color('textPrimary')};
-    font-size: 16px;
+    color: #5d5d5d;
+    ${font('mobileControl')};
 `;
 
 export const SearchSubmit = styled.button`
@@ -506,4 +499,5 @@ export const SearchSubmit = styled.button`
     background: ${color('meadowBlue')};
     color: ${color('cream')};
     cursor: pointer;
+    ${font('mobileAction')};
 `;

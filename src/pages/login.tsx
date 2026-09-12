@@ -33,26 +33,27 @@ const ModalHeader = styled.div`
 
 const Title = styled.h3`
     margin: 0;
-    font-weight: 600;
+    ${font('mobileHeader')};
 `;
 
 const Close = styled.button`
     background: transparent;
     border: none;
     color: #fff;
-    font-size: 18px;
+    ${font('bodyLarge')};
     cursor: pointer;
 `;
 
 const ModalBody = styled.div`
     padding: 18px;
-    ${font('font2')};
+    ${font('mobileControl')};
 `;
 
 const Tabs = styled.div`
     display: flex;
     gap: 8px;
     margin-bottom: 12px;
+    ${font('mobileControl')};
 `;
 
 const Tab = styled.button<{ $active?: boolean }>`
@@ -62,12 +63,18 @@ const Tab = styled.button<{ $active?: boolean }>`
     padding: 6px 10px;
     border-radius: 4px;
     cursor: pointer;
+    ${font('mobileControl')};
 `;
 
 const Form = styled.form`
     display: flex;
     flex-direction: column;
     gap: 10px;
+
+    & > label {
+        ${font('mobileControl')};
+        color: #5d5d5d;
+    }
 `;
 
 const Input = styled.input`
@@ -75,14 +82,16 @@ const Input = styled.input`
     border-radius: 6px;
     border: 1px solid #e6d9c2;
     background: #fff;
+    color: #5d5d5d;
+    ${font('mobileControl')};
 `;
 
 const CheckboxRow = styled.label`
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 13px;
-    color: #5a5150;
+    ${font('mobileAuxiliary')};
+    color: #5d5d5d;
 `;
 
 const Action = styled.button`
@@ -92,12 +101,29 @@ const Action = styled.button`
     border-radius: 6px;
     border: none;
     cursor: pointer;
-    font-weight: 600;
+    ${font('mobileAction')};
+`;
+
+const AuxiliaryAction = styled.button`
+    align-self: flex-start;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: #5d5d5d;
+    cursor: pointer;
+    ${font('mobileAuxiliary')};
+`;
+
+const Status = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    ${font('mobileControl')};
 `;
 
 const Error = styled.div`
     color: #8b2b2b;
-    font-size: 13px;
+    ${font('label')};
 `;
 
 type User = { username: string; email: string; password: string };
@@ -228,10 +254,10 @@ const LoginPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ m
 
                         {mode === 'forgot' ? (
                             resetSent ? (
-                                <div role="status">
+                                <Status role="status">
                                     {isRu ? 'Инструкции по восстановлению отправлены на почту.' : 'Recovery instructions have been sent.'}
-                                    <button type="button" onClick={() => setMode('login')}>{isRu ? 'Вернуться ко входу' : 'Back to sign in'}</button>
-                                </div>
+                                    <AuxiliaryAction type="button" onClick={() => setMode('login')}>{isRu ? 'Вернуться ко входу' : 'Back to sign in'}</AuxiliaryAction>
+                                </Status>
                             ) : (
                                 <Form onSubmit={handleForgot}>
                                     <label htmlFor="forgot-email">E-mail</label>
@@ -248,7 +274,7 @@ const LoginPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ m
                                 <Input id="login-password" name="password" type="password" autoComplete="current-password" placeholder={isRu ? 'Пароль' : 'Password'} value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} />
                                 {error && <Error role="alert">{error}</Error>}
                                 <Action type="submit">{isRu ? 'Войти в профиль' : 'Sign in'}</Action>
-                                <button type="button" onClick={() => { setMode('forgot'); setError(''); setResetSent(false); }}>{isRu ? 'Забыли пароль?' : 'Forgot password?'}</button>
+                                <AuxiliaryAction type="button" onClick={() => { setMode('forgot'); setError(''); setResetSent(false); }}>{isRu ? 'Забыли пароль?' : 'Forgot password?'}</AuxiliaryAction>
                             </Form>
                         ) : (
                             <Form onSubmit={handleRegister}>

@@ -19,8 +19,7 @@ const Choice = styled.button`
     border-radius: 8px;
     padding: 12px;
     cursor: pointer;
-    ${font('font7')};
-    font-weight: 600;
+    ${font('mobileAction')};
 
     &:hover {
         background: ${color('slateBlue')};

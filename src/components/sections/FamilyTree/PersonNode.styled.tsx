@@ -60,7 +60,7 @@ export const NodeCard = styled.button<{ $hidden?: boolean }>`
     transition: transform 0.18s ease, box-shadow 0.18s ease;
     cursor: pointer;
  
-    ${font('font8')};
+    ${font('personName')};
  
     ${mediaBreakpointUp('md')} {
         width: ${vw(180, 'md')};
@@ -154,23 +154,22 @@ export const NodeAvatar = styled.div<{ $photo?: string }>`
  
 /** Relation line — mirrors `PersonCard.MetaLine`. */
 export const NodeRelation = styled.span`
-    ${font('font9')};
-    font-weight: 500;
-    opacity: 0.78;
-    line-height: 1.2;
+    ${font('personNameStrong')};
 `;
- 
+
 /**
  * Name line — equivalent to PersonCard's plain `<span>` between MetaLine and
- * LifespanLine. Inherits `font8` from the parent `NodeCard`.
+ * LifespanLine. Inherits its family from the parent card.
  */
-export const NodeName = styled.span``;
- 
+export const NodeName = styled.span`
+    ${font('personName')};
+    line-height: 1.366;
+`;
+
 /** Lifespan line — mirrors `PersonCard.LifespanLine`. */
 export const NodeMeta = styled.span`
-    font-size: 5px !important;
+    ${font('personLifespan')};
     opacity: 0.72;
-    line-height: 1.25;
 `;
 /* ===================================================================== */
 /*  Cemetery variant — memorial card (moved from Cemetery.styled)         */
@@ -196,8 +195,6 @@ export const CemeteryNodeCard = styled.div<{
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: ${vw(4, 'xs')};
-    padding: ${vw(10, 'xs')} ${vw(10, 'xs')} ${vw(22, 'xs')};
     border-radius: 5px;
     background: ${color('cemeteryGray')};
     color: ${color('cream')};
@@ -249,28 +246,33 @@ export const CemeteryNodeCard = styled.div<{
 `;
 
 export const CemeteryNodeRelation = styled.span`
-    ${font('font9')};
-    font-weight: 600;
+    ${font('personMetaStrong')};
     color: ${color('cream')};
-    line-height: 1.1;
+
+    ${mediaBreakpointUp('lg')} {
+        margin-top: ${vw(14)};
+    }
 `;
 
 export const CemeteryNodeName = styled.span`
-    ${font('font8')};
-    font-weight: 400;
+    ${font('personName')};
     color: ${color('cream')};
-    line-height: 1.1;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     width: 100%;
+
+    ${mediaBreakpointUp('lg')} {
+        margin-top: ${vw(12)};
+    }
 `;
 
 export const CemeteryNodeMeta = styled.span`
-    font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
-    font-size: clamp(6px, 0.5vw, 8px);
-    font-weight: 500;
-    line-height: 1.1;
+    ${font('personMeta')};
     color: ${color('cream')};
     opacity: 0.92;
+
+    ${mediaBreakpointUp('lg')} {
+        margin-top: ${vw(12)};
+    }
 `;

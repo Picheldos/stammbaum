@@ -3,6 +3,7 @@ import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 import { color, font } from '@/style/mixins';
 import { AddRelativeKind, Gender, Person } from '@/lib/family/types';
+import { readImageAsDataUrl } from '@/lib/family/image';
 import {
     Field,
     FieldLabel,
@@ -35,7 +36,7 @@ const SharedParentBlock = styled.fieldset`
 `;
 
 const SharedParentLegend = styled.legend`
-    ${font('font4')};
+    ${font('mobileControl')};
     color: ${color('textPrimary')};
     opacity: 0.75;
     padding: 0 4px;
@@ -45,7 +46,7 @@ const SharedParentOption = styled.label`
     display: flex;
     align-items: center;
     gap: 8px;
-    ${font('font7')};
+    ${font('mobileControl')};
     color: ${color('textPrimary')};
     cursor: pointer;
 
@@ -143,14 +144,6 @@ const initialValues = (mode: AddPersonMode): AddPersonValues => {
         photo: ''
     };
 };
-
-const readImageAsDataUrl = (file: File): Promise<string> =>
-    new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(typeof reader.result === 'string' ? reader.result : '');
-        reader.onerror = () => reject(reader.error);
-        reader.readAsDataURL(file);
-    });
 
 const AddPersonModal: React.FC<AddPersonModalProps> = ({ open, mode, focusParents, onCancel, onSubmit }) => {
     const { t } = useTranslation('tree');

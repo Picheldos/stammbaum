@@ -34,6 +34,9 @@ export const LogoText = styled.div`
 
 export const Wordmark = styled.span`
     ${font('logoSerif')};
+    font-size: 16px;
+    line-height: 1.333;
+    letter-spacing: 0;
     user-select: none;
     white-space: nowrap;
 `;

@@ -44,13 +44,12 @@ const Avatar = styled.div<{ $photo?: string }>`
 `;
 
 const HeroName = styled.div`
-    ${font('font3')};
-    font-weight: 700;
+    ${font('mobileHeader')};
     color: ${color('textPrimary')};
 `;
 
 const HeroMeta = styled.div`
-    ${font('font4')};
+    ${font('mobileControl')};
     color: ${color('textPrimary')};
     opacity: 0.75;
 `;
@@ -80,19 +79,24 @@ const ListItem = styled.button`
     align-items: center;
     gap: 12px;
     color: ${color('textPrimary')};
-    ${font('font7')};
+    ${font('mobileHeader')};
 `;
 
 const RemoveRelationButton = styled.button`
     flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     background: transparent;
     border: 1px solid rgba(94, 109, 139, 0.4);
     color: ${color('textPrimary')};
     border-radius: 50%;
     width: 24px;
     height: 24px;
+    padding: 0;
+    ${font('mobileHeader')};
+    font-weight: 400;
     line-height: 1;
-    font-size: 16px;
     cursor: pointer;
     opacity: 0.7;
 
@@ -113,7 +117,7 @@ const ListAvatar = styled.div<{ $photo?: string }>`
 `;
 
 const Empty = styled.div`
-    ${font('font4')};
+    ${font('mobileControl')};
     color: ${color('textPrimary')};
     opacity: 0.6;
 `;
@@ -131,8 +135,7 @@ const ActionButton = styled.button`
     border-radius: 8px;
     padding: 10px 14px;
     cursor: pointer;
-    ${font('font7')};
-    font-weight: 600;
+    ${font('mobileAction')};
 `;
 
 export type PersonCardTab = 'info' | 'parents' | 'spouses' | 'children' | 'siblings';

@@ -62,7 +62,7 @@ export const Header = styled.div`
 `;
 
 export const Title = styled.h2`
-  ${font('title2')};
+  ${font('sectionTitle')};
 
   color: ${color('textPrimary')};
 `;
@@ -168,11 +168,11 @@ export const Body = styled.div`
 `;
 
 export const Subtitle = styled.div`
-    ${font('font6')};
+    ${font('step')};
 `;
 
 export const Text = styled.div`
-    ${font('font5')};
+    ${font('cardTitle')};
 `;
 
 export const Footer = styled.div<{ className?: string }>`

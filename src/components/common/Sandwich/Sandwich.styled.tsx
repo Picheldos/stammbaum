@@ -44,7 +44,7 @@ export const SandwichMenu = styled.div`
 `;
 
 export const SandwichMenuLink = styled.span`
-    ${font('title3')};
+    ${font('mobileAction')};
     color: ${color('textPrimary')};
     display: block;
     padding: 10px 0;
@@ -59,7 +59,7 @@ export const SandwichMenuLink = styled.span`
 `;
 
 export const SandwichMenuHint = styled.span`
-    ${font('font7')};
+    ${font('bodySmall')};
     color: ${color('textPrimary')};
     opacity: 0.55;
     padding: 6px 0 2px;

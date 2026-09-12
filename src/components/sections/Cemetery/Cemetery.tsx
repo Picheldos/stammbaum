@@ -2,12 +2,11 @@
 
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'next-i18next';
-import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { useSetRecoilState } from 'recoil';
 import { SandwichState } from '@/recoil/sandwichState/athom';
 import { useSession } from '@/hooks/useSession';
-import { listPersons, listRelations, listTrees } from '@/lib/family/storage';
+import { createPerson, createTree, listPersons, listRelations, listTrees, updateTree, upsertUserPerson } from '@/lib/family/storage';
 import { labelForRelation } from '@/lib/family/relations';
 import type { Person, PersonRelation } from '@/lib/family/types';
 import {
@@ -50,6 +49,7 @@ import {
     parsePersons
 } from './cemeteryUtils';
 import { useMedia } from '@/hooks/useMedia';
+import CemeteryAddPersonModal, { type CemeteryPersonValues } from './CemeteryAddPersonModal';
 
 export interface CemeteryProps {
     periods?: CemeteryPeriod[];
@@ -75,7 +75,6 @@ const SearchIcon: React.FC = () => (
 const Cemetery: React.FC<CemeteryProps> = ({ periods: periodsProp, persons: personsProp }) => {
     const { t } = useTranslation('cemetery');
     const { t: tTree } = useTranslation('tree');
-    const router = useRouter();
     const { session } = useSession();
     const viewportRef = useRef<HTMLDivElement>(null);
     const openSandwich = useSetRecoilState(SandwichState);
@@ -88,14 +87,11 @@ const Cemetery: React.FC<CemeteryProps> = ({ periods: periodsProp, persons: pers
     const [familyPersons, setFamilyPersons] = useState<Person[] | null>(null);
     const [familyRelations, setFamilyRelations] = useState<PersonRelation[]>([]);
     const [focusId, setFocusId] = useState<string | undefined>(undefined);
+    const [addPersonOpen, setAddPersonOpen] = useState(false);
+    const [addPersonError, setAddPersonError] = useState('');
 
-    useEffect(() => {
-        if (!session) {
-            setFamilyPersons(null);
-            setFamilyRelations([]);
-            setFocusId(undefined);
-            return;
-        }
+    const reloadFamily = React.useCallback(() => {
+        if (!session) return;
         const tree = listTrees(session.username)[0];
         if (!tree) {
             setFamilyPersons([]);
@@ -107,6 +103,16 @@ const Cemetery: React.FC<CemeteryProps> = ({ periods: periodsProp, persons: pers
         setFamilyRelations(listRelations(tree.id));
         setFocusId(tree.rootPersonId);
     }, [session]);
+
+    useEffect(() => {
+        if (!session) {
+            setFamilyPersons(null);
+            setFamilyRelations([]);
+            setFocusId(undefined);
+            return;
+        }
+        reloadFamily();
+    }, [session, reloadFamily]);
 
     const periods = useMemo(
         () => parsePeriods(periodsProp ?? t('periods', { returnObjects: true })),
@@ -189,6 +195,35 @@ const Cemetery: React.FC<CemeteryProps> = ({ periods: periodsProp, persons: pers
 
     const handleMenuClick = () => {
         openSandwich(true);
+    };
+
+    const handleAddPerson = (values: CemeteryPersonValues) => {
+        if (!session) {
+            setAddPersonError(t('form.errors.signInRequired', { defaultValue: 'Sign in to save information' }));
+            return;
+        }
+
+        let tree = listTrees(session.username)[0];
+        if (!tree) {
+            tree = createTree(session.username, tTree('defaultTreeName', { defaultValue: 'Tree 1' }));
+        }
+
+        const isRoot = !tree.rootPersonId;
+        const person = createPerson({ ...values, treeId: tree.id });
+        if (isRoot) updateTree(tree.id, { rootPersonId: person.id });
+        upsertUserPerson({
+            userId: session.username,
+            treeId: tree.id,
+            personId: person.id,
+            isOwner: isRoot,
+            isRoot,
+            isHidden: false,
+            canEdit: true
+        });
+
+        reloadFamily();
+        setAddPersonError('');
+        setAddPersonOpen(false);
     };
 
     // Search over the memorial cards currently rendered on the timeline.
@@ -409,9 +444,24 @@ const Cemetery: React.FC<CemeteryProps> = ({ periods: periodsProp, persons: pers
                     })}
                 </TimelineTrack>
             </ScrollViewport>
-            <AddRelativeButton type="button" onClick={() => router.push('/tree')}>
+            <AddRelativeButton
+                type="button"
+                onClick={() => {
+                    setAddPersonError('');
+                    setAddPersonOpen(true);
+                }}
+            >
                 {t('addButton')}
             </AddRelativeButton>
+            <CemeteryAddPersonModal
+                open={addPersonOpen}
+                submitError={addPersonError}
+                onCancel={() => {
+                    setAddPersonError('');
+                    setAddPersonOpen(false);
+                }}
+                onSubmit={handleAddPerson}
+            />
         </CemeterySection>
     );
 };

@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import variables from './variables';
 import { color } from './mixins';
 
 const GlobalStyle = createGlobalStyle`
@@ -13,8 +12,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     html {
-        /* Основной шрифт — Manrope через CSS-переменную set в _app.tsx */
-        font-family: var(--font-manrope), ${variables.fonts.proxima};
+        font-family: var(--font-manrope), 'Manrope', Arial, sans-serif;
         scrollbar-gutter: stable;
         color: ${color('textPrimary')};
     }
@@ -53,7 +51,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     button {
-        font-family: var(--font-manrope), ${variables.fonts.proxima};
+        font-family: inherit;
         border: none;
     }
 

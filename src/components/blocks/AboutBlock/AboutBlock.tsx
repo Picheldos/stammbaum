@@ -12,6 +12,7 @@ export interface AboutBlockProps {
   popupContent?: string;
   className?: string;
   color?: string;
+  textColor?: string;
   onPopupOpen?: () => void;
 }
 
@@ -24,6 +25,7 @@ export const AboutBlock: React.FC<AboutBlockProps> = ({
   popupContent,
   className = '',
   color,
+  textColor,
   onPopupOpen,
 }) => {
   const handlePlusClick = () => {
@@ -33,7 +35,7 @@ export const AboutBlock: React.FC<AboutBlockProps> = ({
   };
 
   return (
-    <Container variant={variant} color={color} className={className}>
+    <Container variant={variant} color={color} $textColor={textColor} className={className}>
         {variant === 'image' && image && (
           <ImageContainer>
             <Image

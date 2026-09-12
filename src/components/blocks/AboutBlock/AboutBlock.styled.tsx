@@ -15,8 +15,7 @@ export const PlusButton = styled.button`
   border: 2px solid white;
   background: transparent;
   color: white;
-  font-size: 1.5rem;
-  font-weight: 200;
+  ${font('bodyLarge')};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,12 +29,12 @@ export const PlusButton = styled.button`
   ${mediaBreakpointUp('lg')} {
     width: ${vw(61)};
     height: ${vw(61)};
-      font-size: 2.1rem;
+      ${font('bodyLarge')};
 
   }
 `;
 
-export const Container = styled.div<{ variant?: string; color?: string }>`
+export const Container = styled.div<{ variant?: string; color?: string; $textColor?: string }>`
   border-radius: 5px;
   opacity: 1;
   transform: rotate(${vw(0, 'xs')}deg);
@@ -86,10 +85,10 @@ export const Container = styled.div<{ variant?: string; color?: string }>`
       }
     `}
 
-  ${({ color }) =>
+  ${({ color, $textColor }) =>
     color &&
     `
-      color: white;
+      color: ${$textColor ?? 'white'};
       background: ${color};
     `}
 
@@ -97,21 +96,22 @@ export const Container = styled.div<{ variant?: string; color?: string }>`
 `;
 
 export const Title = styled.div<{ $variant?: string }>`
-  ${font('font5')};
+  ${font('mobileBody')};
 
   ${({ $variant }) =>
     $variant !== 'text' &&
     css`
-      max-width: 135px;
+      max-width: 150px;
 
       ${mediaBreakpointUp('lg')} {
+        ${font('cardTitle')};
         max-width: ${vw(240)};
       }
     `}
 `;
 
 export const StepNumber = styled.h2`
-  ${font('title2')};
+  ${font('landingStepHeading')};
   margin-bottom: ${vw(10, 'xs')};
 
   ${mediaBreakpointUp('lg')} {
@@ -120,7 +120,7 @@ export const StepNumber = styled.h2`
 `;
 
 export const Subtitle = styled.p`
-  font-size: 1rem;
+  ${font('mobileBody')};
   opacity: 0.9;
 `;
 

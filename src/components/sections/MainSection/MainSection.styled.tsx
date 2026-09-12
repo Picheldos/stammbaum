@@ -1,4 +1,4 @@
-import { color, font, mediaBreakpointDown, mediaBreakpointUp, vh, vw } from '@/style/mixins';
+import { color, font, mediaBreakpointDown, mediaBreakpointUp, vw } from '@/style/mixins';
 import styled from 'styled-components';
 
 export const LandingRoot = styled.section`
@@ -42,11 +42,10 @@ export const HeroContent = styled.div`
 
 /* заголовок — типография из общего набора */
 export const HeroTitle = styled.h1`
-    ${font('title')};
-    color: ${color('textPrimary')};
+    ${font('heroTitle')};
+    line-height: 1.1;
+    color: ${color('ink')};
     max-width: ${vw(250, 'xs')};
-
-    line-height: 0.92;
 
     ${mediaBreakpointUp('lg')} {
         max-width: ${vw(920)};
@@ -72,9 +71,13 @@ export const StepItem = styled.li`
     align-items: center;
     color: ${color('textPrimary')};
 
+    ${mediaBreakpointDown('md')} {
+        color: ${color('darkGray')};
+    }
+
     text-align: left;
 
-    ${font('font6')};
+    ${font('step')};
 
     &:not(:last-of-type) {
         margin-bottom: ${vw(20, 'xs')};
@@ -88,27 +91,22 @@ export const StepItem = styled.li`
     }
 `;
 
-export const StepIndex = styled.span`
+export const StepIndex = styled.span<{ $weight: 500 | 700 | 800 }>`
     flex-shrink: 0;
     min-width: 2.85rem;
     ${font('stepIndex')};
-    font-weight: 300;
-    line-height: 1.08;
-    color: ${color('landingStepNum')};
+    font-weight: ${({ $weight }) => $weight};
+    color: #6f654d;
+    opacity: 0.4;
 
     ${mediaBreakpointUp('xl')} {
-        ${font('title')};
+        ${font('display')};
     }
 `;
 
 export const StepCopy = styled.span`
     flex: 1;
-    ${font('font3')};
-    font-weight: 400;
-
-    ${mediaBreakpointUp('xl')} {
-        line-height: 1.45;
-    }
+    ${font('mobileBody')};
 `;
 
 export const CtaButton = styled.button`
@@ -117,8 +115,7 @@ export const CtaButton = styled.button`
     max-width: 18.5rem;
     padding: 0.9rem 1.5rem;
     border-radius: 5px;
-    font-size: 1rem;
-    font-weight: 600;
+    ${font('mobileAction')};
     color: ${color('white')};
     background: ${color('landingCta')};
     cursor: pointer;

@@ -26,6 +26,7 @@ export interface Person {
     occupation?: string;
     biography?: string; // "заметка"
     photo?: string; // data URL (base64 from FileReader)
+    memorialPhoto?: string; // monument/memorial image data URL
     isHidden?: boolean; // соответствует флагу is_hidden из user_persons
     createdAt: string;
     updatedAt: string;

@@ -90,8 +90,7 @@ export const SearchInput = styled.input`
     min-width: 0;
     border: none;
     background: transparent;
-    ${font('font2')};
-    font-size: ${vw(14, 'xs')};
+    ${font('body')};
 
     &::-webkit-search-cancel-button,
     &::-webkit-search-decoration {
@@ -112,7 +111,4 @@ export const SearchInput = styled.input`
         outline-offset: 2px;
     }
 
-    ${mediaBreakpointUp('xl')} {
-        font-size: ${vw(18, 'mac')};
-    }
 `;

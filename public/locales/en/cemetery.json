@@ -1,5 +1,30 @@
 {
     "addButton": "Add Information",
+    "form": {
+        "personNamePlaceholder": "First name Last name",
+        "gender": { "female": "F", "male": "M" },
+        "fields": {
+            "lastName": "Last name",
+            "firstName": "First name",
+            "middleName": "Middle name",
+            "maidenName": "Maiden name",
+            "birthPlace": "Place of birth",
+            "birthDate": "Date of birth",
+            "deathDate": "Date of death",
+            "deathPlace": "Place of death",
+            "biography": "Additional information",
+            "relativePhoto": "Upload a relative's photo",
+            "memorialPhoto": "Upload a monument photo"
+        },
+        "additionalInformation": "Add additional information",
+        "save": "Save information",
+        "errors": {
+            "firstNameRequired": "Enter a first name",
+            "lastNameRequired": "Enter a last name",
+            "photo": "Could not read photo",
+            "signInRequired": "Sign in to save information"
+        }
+    },
     "controls": {
         "search": "Search",
         "menu": "Menu",

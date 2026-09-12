@@ -24,7 +24,7 @@ export const Container = styled.div<{ $hidden?: boolean }>`
     z-index: 2;
     cursor: default;
 
-    ${font('font8')};
+    ${font('personName')};
 
     ${mediaBreakpointUp('md')} {
         width: ${vw(180, 'md')};
@@ -105,14 +105,11 @@ export const AvatarStub = styled.div<{ $photo?: string }>`
 `;
 
 export const MetaLine = styled.span`
-    ${font('font9')};
-    font-weight: 500;
+    ${font('personMeta')};
     opacity: 0.78;
-    line-height: 1.2;
 `;
 
 export const LifespanLine = styled.span`
-    font-size: 5px!important;
+    ${font('personMeta')};
     opacity: 0.72;
-    line-height: 1.25;
 `;

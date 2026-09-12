@@ -50,7 +50,7 @@ export const Nav = styled.nav`
 `;
 
 export const NavLink = styled.span<{ $active?: boolean }>`
-    ${font('headerNav')};
+    ${font('navigation')};
     color: ${color('white')};
     opacity: ${({ $active }) => ($active ? 1 : 0.88)};
     padding: 4px 0;
@@ -102,7 +102,7 @@ export const AuthCluster = styled.div`
 `;
 
 export const BtnOutline = styled.button`
-    ${font('headerNav')};
+    ${font('navigation')};
     padding: 8px 16px;
     border-radius: 5px;
     border: 1px solid ${color('white')};
@@ -117,14 +117,12 @@ export const BtnOutline = styled.button`
 `;
 
 export const BtnSolid = styled.button`
-    ${font('headerNav')};
+    ${font('navigationStrong')};
     padding: 8px 18px;
     border-radius: 5px;
     border: none;
     background: ${color('white')};
     color: ${color('forestDeep')};
-    cursor: pointer;
-    font-weight: 600;
     transition: opacity 0.2s ease;
 
     ${hover(css`

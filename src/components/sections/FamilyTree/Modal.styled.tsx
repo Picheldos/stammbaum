@@ -34,8 +34,7 @@ export const ModalHeader = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    ${font('font7')};
-    font-weight: 600;
+    ${font('mobileHeader')};
 `;
 
 export const HeaderClose = styled.button`
@@ -43,8 +42,7 @@ export const HeaderClose = styled.button`
     border: none;
     color: ${color('white')};
     cursor: pointer;
-    font-size: 22px;
-    line-height: 1;
+    ${font('bodyLarge')};
 
     &:focus-visible {
         outline: 2px solid ${color('white')};
@@ -63,7 +61,7 @@ export const Tabs = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 6px 12px;
-    ${font('font7')};
+    ${font('mobileControl')};
     margin-bottom: 4px;
 `;
 
@@ -74,8 +72,7 @@ export const Tab = styled.button<{ $active?: boolean }>`
     border-radius: 4px;
     padding: 4px 10px;
     cursor: pointer;
-    ${font('font7')};
-    font-weight: ${({ $active }) => ($active ? 600 : 500)};
+    ${font('mobileControl')};
 
     ${hover(css`
         background: rgba(94, 109, 139, 0.18);
@@ -95,8 +92,7 @@ export const ToggleButton = styled.button<{ $active?: boolean }>`
     border-radius: 4px;
     padding: 4px 14px;
     cursor: pointer;
-    ${font('font7')};
-    font-weight: 600;
+    ${font('mobileControl')};
 `;
 
 export const Field = styled.div`
@@ -106,11 +102,8 @@ export const Field = styled.div`
 `;
 
 export const FieldLabel = styled.label`
-    ${font('font4')};
-    font-size: 11px;
-    text-transform: lowercase;
-    color: ${color('textPrimary')};
-    opacity: 0.7;
+    ${font('mobileControl')};
+    color: #5d5d5d;
 `;
 
 export const Input = styled.input`
@@ -119,7 +112,7 @@ export const Input = styled.input`
     border: 1px solid rgba(255, 255, 255, 0.6);
     background: ${color('white')};
     color: ${color('textPrimary')};
-    ${font('font7')};
+    ${font('mobileControl')};
 
     &::placeholder {
         color: ${color('darkGray')};
@@ -137,7 +130,7 @@ export const Textarea = styled.textarea`
     border: 1px solid rgba(255, 255, 255, 0.6);
     background: ${color('white')};
     color: ${color('textPrimary')};
-    ${font('font7')};
+    ${font('mobileControl')};
     min-height: 80px;
     resize: vertical;
 
@@ -155,7 +148,7 @@ export const FileInputRow = styled.label`
     background: ${color('white')};
     border-radius: 6px;
     border: 1px solid rgba(255, 255, 255, 0.6);
-    ${font('font7')};
+    ${font('mobileControl')};
     cursor: pointer;
 
     input[type='file'] {
@@ -167,11 +160,10 @@ export const Hint = styled.button`
     background: transparent;
     border: none;
     padding: 0;
-    color: ${color('textPrimary')};
+    color: #5d5d5d;
     text-decoration: underline;
     cursor: pointer;
-    ${font('font4')};
-    font-size: 11px;
+    ${font('mobileMicroLink')};
     text-align: left;
 `;
 
@@ -188,8 +180,7 @@ export const Primary = styled.button`
     border-radius: 8px;
     padding: 12px 16px;
     cursor: pointer;
-    ${font('font7')};
-    font-weight: 600;
+    ${font('mobileAction')};
 
     ${hover(css`
         background: ${color('slateBlue')};
@@ -198,8 +189,7 @@ export const Primary = styled.button`
 
 export const ErrorText = styled.div`
     color: #8b2b2b;
-    ${font('font4')};
-    font-size: 12px;
+    ${font('error')};
 `;
 
 export const InfoBlock = styled.div`
@@ -209,14 +199,11 @@ export const InfoBlock = styled.div`
 `;
 
 export const InfoLabel = styled.span`
-    ${font('font4')};
-    font-size: 11px;
-    color: ${color('textPrimary')};
-    opacity: 0.7;
+    ${font('mobileControl')};
+    color: #5d5d5d;
 `;
 
 export const InfoValue = styled.span`
-    ${font('font7')};
-    font-weight: 600;
+    ${font('mobileHeader')};
     color: ${color('textPrimary')};
 `;

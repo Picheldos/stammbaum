@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { font } from '@/style/mixins';
 
 const Body = styled.section`
-    ${font('font2')};
+    ${font('body')};
     padding-top: 2rem;
 `;
 

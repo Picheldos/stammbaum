@@ -13,7 +13,7 @@ const Gate = styled.div`
     padding: 40px 16px;
     text-align: center;
     color: ${color('textPrimary')};
-    ${font('font2')};
+    ${font('body')};
 `;
 
 interface AuthGuardProps {

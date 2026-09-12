@@ -28,6 +28,8 @@ const parseCards = (value: unknown): PersonCardData[] =>
         ? (value as PersonCardData[]).filter((c) => c && typeof c.name === 'string')
         : [];
 
+const STEP_INDEX_WEIGHTS = [800, 500, 700] as const;
+
 const MainSection: React.FC = () => {
     const { t } = useTranslation('index');
     const router = useRouter();
@@ -57,12 +59,15 @@ const MainSection: React.FC = () => {
                 <HeroContent>
                     <HeroTitle>{t('hero.title')}</HeroTitle>
                     <StepsList>
-                        {[1, 2, 3].map((n) => (
-                            <StepItem key={n}>
-                                <StepIndex>{n}/</StepIndex>
-                                <StepCopy>{t(`hero.step${n}`)}</StepCopy>
-                            </StepItem>
-                        ))}
+                        {STEP_INDEX_WEIGHTS.map((weight, index) => {
+                            const step = index + 1;
+                            return (
+                                <StepItem key={step}>
+                                    <StepIndex $weight={weight}>{step}/</StepIndex>
+                                    <StepCopy>{t(`hero.step${step}`)}</StepCopy>
+                                </StepItem>
+                            );
+                        })}
                     </StepsList>
                     <CtaButton type="button" onClick={() => router.push('/tree')}>{t('hero.cta')}</CtaButton>
                 </HeroContent>

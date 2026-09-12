@@ -1,5 +1,30 @@
 {
     "addButton": "Добавить информацию",
+    "form": {
+        "personNamePlaceholder": "Имя Фамилия",
+        "gender": { "female": "Жен", "male": "Муж" },
+        "fields": {
+            "lastName": "Фамилия",
+            "firstName": "Имя",
+            "middleName": "Отчество",
+            "maidenName": "Девичья фамилия",
+            "birthPlace": "Место рождения",
+            "birthDate": "Дата рождения",
+            "deathDate": "Дата смерти",
+            "deathPlace": "Место смерти",
+            "biography": "Дополнительная информация",
+            "relativePhoto": "Загрузить фотографию родственника",
+            "memorialPhoto": "Загрузить фотографию памятника"
+        },
+        "additionalInformation": "Добавить дополнительную информацию",
+        "save": "Сохранить информацию",
+        "errors": {
+            "firstNameRequired": "Укажите имя",
+            "lastNameRequired": "Укажите фамилию",
+            "photo": "Не удалось прочитать фотографию",
+            "signInRequired": "Войдите, чтобы сохранить информацию"
+        }
+    },
     "controls": {
         "search": "Поиск",
         "menu": "Меню",

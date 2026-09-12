@@ -7,7 +7,7 @@ export const Container = styled.button`
     background-color: ${color('brown')};
     text-align: center;
 
-    ${font('font2')};
+    ${font('body')};
     height: fit-content;
     padding: ${vw(12, 'xs')} ${vw(25, 'xs')};
     border-radius: 3px;

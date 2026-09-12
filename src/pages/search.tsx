@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import { font } from '@/style/mixins';
 
 const Body = styled.section`
-    ${font('font2')};
+    ${font('body')};
     padding: 2rem 0;
     max-width: 760px;
     margin: 0 auto;
@@ -25,7 +25,7 @@ const SearchInput = styled.input`
     padding: 12px 14px;
     border: 1px solid #637a4f;
     border-radius: 5px;
-    font-size: 16px;
+    ${font('body')};
 `;
 
 const SearchButton = styled.button`

@@ -71,7 +71,7 @@ export const MainPictureMenu = styled.div`
 `;
 
 export const MainPictureMenuItem = styled.div`
-    ${font('font4')};
+    ${font('label')};
     color: ${color('white')};
 
     width: fit-content;

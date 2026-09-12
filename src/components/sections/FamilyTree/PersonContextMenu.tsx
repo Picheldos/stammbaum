@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { useTranslation } from 'next-i18next';
 import { color, font } from '@/style/mixins';
 import { Person } from '@/lib/family/types';
@@ -25,8 +25,7 @@ const MenuHeader = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    ${font('font7')};
-    font-weight: 600;
+    ${font('mobileHeader')};
 `;
 
 const MenuClose = styled.button`
@@ -34,8 +33,7 @@ const MenuClose = styled.button`
     border: none;
     color: ${color('white')};
     cursor: pointer;
-    font-size: 18px;
-    line-height: 1;
+    ${font('bodyLarge')};
 `;
 
 const MenuList = styled.ul`
@@ -45,7 +43,7 @@ const MenuList = styled.ul`
     background: ${color('landingCard')};
 `;
 
-const MenuItem = styled.button`
+const MenuItem = styled.button<{ $condensed?: boolean }>`
     display: block;
     width: 100%;
     border: 0;
@@ -53,7 +51,13 @@ const MenuItem = styled.button`
     padding: 9px 16px;
     cursor: pointer;
     color: ${color('textPrimary')};
-    ${font('font7')};
+    ${font('mobileAction')};
+
+    ${({ $condensed }) =>
+        $condensed &&
+        css`
+            ${font('mobileBody')};
+        `}
 
     &:hover {
         background: rgba(74, 112, 67, 0.1);
@@ -122,7 +126,7 @@ const PersonContextMenu: React.FC<PersonContextMenuProps> = ({
                 <MenuItem type="button" role="menuitem" onClick={onOpenCard}>{t('menu.openCard')}</MenuItem>
                 <MenuItem type="button" role="menuitem" onClick={onEditCard}>{t('menu.editCard')}</MenuItem>
                 <MenuItem type="button" role="menuitem" onClick={onAddRelative}>{t('menu.addRelative')}</MenuItem>
-                <MenuItem type="button" role="menuitem" onClick={onViewRelations}>{t('menu.viewRelations')}</MenuItem>
+                <MenuItem $condensed type="button" role="menuitem" onClick={onViewRelations}>{t('menu.viewRelations')}</MenuItem>
                 <MenuItem type="button" role="menuitem" onClick={onToggleHidden}>
                     {person.isHidden ? t('menu.unhideRelative') : t('menu.hideRelative')}
                 </MenuItem>

@@ -83,8 +83,7 @@ export const ZoomButton = styled.button`
     color: ${color('textPrimary')};
     box-shadow: 0 4px 14px rgba(47, 79, 58, 0.2);
     cursor: pointer;
-    font-size: 18px;
-    line-height: 1;
+    ${font('bodyLarge')};
 
     ${hover(css`
         background: ${color('creamWarm')};
@@ -148,11 +147,10 @@ export const AddRelativeCta = styled.button`
     border: none;
     border-radius: 10px;
     padding: 14px 32px;
-    font-weight: 600;
     cursor: pointer;
     z-index: 5;
     box-shadow: 0 6px 18px rgba(94, 109, 139, 0.34);
-    ${font('font7')};
+    ${font('mobileAction')};
 
     ${hover(css`
         background: ${color('slateBlue')};
@@ -177,6 +175,8 @@ export const SearchPopover = styled.form`
     background: ${color('landingCard')};
     border-radius: 8px;
     box-shadow: 0 8px 24px rgba(47, 79, 58, 0.2);
+    ${font('mobileControl')};
+    color: #5d5d5d;
 `;
 
 export const SearchInput = styled.input`
@@ -186,8 +186,8 @@ export const SearchInput = styled.input`
     border: 1px solid ${color('forest', 0.35)};
     border-radius: 5px;
     background: ${color('white')};
-    color: ${color('textPrimary')};
-    font-size: 16px;
+    color: #5d5d5d;
+    ${font('mobileControl')};
 `;
 
 export const SearchSubmit = styled.button`
@@ -197,6 +197,7 @@ export const SearchSubmit = styled.button`
     background: ${color('landingCta')};
     color: ${color('white')};
     cursor: pointer;
+    ${font('mobileAction')};
 `;
 
 /* ---------- Empty state ---------- */
@@ -226,8 +227,7 @@ export const EmptyCard = styled.button`
     gap: 12px;
     box-shadow: 0 8px 24px rgba(47, 79, 58, 0.18);
     cursor: pointer;
-    ${font('font2')};
-    font-weight: 600;
+    ${font('mobileBody')};
     min-width: 220px;
     text-align: center;
 
@@ -252,10 +252,9 @@ export const EmptyCta = styled.button`
     border: none;
     border-radius: 10px;
     padding: 14px 28px;
-    font-weight: 600;
     cursor: pointer;
     box-shadow: 0 6px 18px rgba(94, 109, 139, 0.34);
-    ${font('font7')};
+    ${font('mobileAction')};
 
     ${hover(css`
         background: ${color('slateBlue')};
