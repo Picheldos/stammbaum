@@ -1,7 +1,6 @@
 import React from 'react';
-import { Container, LogoText, Wordmark } from '@/components/blocks/Logo/Logo.styled';
+import { Container, LogoLink, LogoText, Wordmark } from '@/components/blocks/Logo/Logo.styled';
 import Icon from '@/icons/logo.svg';
-import Link from 'next/link';
 
 export interface LogoProps {
     /** «Марк» — иконка + название (как в футере); «wordmark» — только название в шрифте логотипа */
@@ -21,9 +20,9 @@ const Logo: React.FC<LogoProps> = ({ presentation = 'mark', tone = 'dark' }) => 
         );
 
     return (
-        <Link href="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <LogoLink href="/">
             <Container $tone={tone}>{inner}</Container>
-        </Link>
+        </LogoLink>
     );
 };
 

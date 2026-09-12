@@ -1,68 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import styled, { css } from 'styled-components';
 import { useTranslation } from 'next-i18next';
-import { color, font } from '@/style/mixins';
 import { Person } from '@/lib/family/types';
 import { formatShortName } from '@/lib/family/relations';
-
-const MenuRoot = styled.div<{ $x: number; $y: number }>`
-    position: fixed;
-    top: ${({ $y }) => $y}px;
-    left: ${({ $x }) => $x}px;
-    width: 240px;
-    background: ${color('cream')};
-    border-radius: 8px;
-    box-shadow: 0 12px 28px rgba(47, 79, 58, 0.22);
-    border: 1px solid rgba(74, 112, 67, 0.18);
-    overflow: hidden;
-    z-index: 800;
-`;
-
-const MenuHeader = styled.div`
-    background: ${color('forest')};
-    color: ${color('white')};
-    padding: 10px 14px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    ${font('mobileHeader')};
-`;
-
-const MenuClose = styled.button`
-    background: transparent;
-    border: none;
-    color: ${color('white')};
-    cursor: pointer;
-    ${font('bodyLarge')};
-`;
-
-const MenuList = styled.ul`
-    list-style: none;
-    margin: 0;
-    padding: 8px 0;
-    background: ${color('landingCard')};
-`;
-
-const MenuItem = styled.button<{ $condensed?: boolean }>`
-    display: block;
-    width: 100%;
-    border: 0;
-    text-align: left;
-    padding: 9px 16px;
-    cursor: pointer;
-    color: ${color('textPrimary')};
-    ${font('mobileAction')};
-
-    ${({ $condensed }) =>
-        $condensed &&
-        css`
-            ${font('mobileBody')};
-        `}
-
-    &:hover {
-        background: rgba(74, 112, 67, 0.1);
-    }
-`;
+import { MenuClose, MenuHeader, MenuItem, MenuList, MenuRoot } from './PersonContextMenu.styled';
 
 export interface PersonContextMenuProps {
     person: Person;

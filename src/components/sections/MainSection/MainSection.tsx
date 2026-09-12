@@ -94,9 +94,9 @@ const MainSection: React.FC = () => {
                         <Image
                             src={isMobile ? '/images/index/tree-m.png' : '/images/index/tree.jpg'}
                             alt="decorative tree"
-                            layout={'fill'}
-                            objectFit={`cover`}
-                            style={{ pointerEvents: 'none' }}
+                            fill
+                            sizes={isMobile ? '100vw' : '47vw'}
+                            loading="eager"
                             aria-hidden
                         />
                     </TreeLayer>

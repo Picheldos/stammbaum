@@ -8,10 +8,10 @@ export const Container = styled.div`
     justify-content: flex-end;
     flex: 1;
     min-width: 0;
-    margin: 0 ${vw(12, 'xs')};
+    margin: 0 ${vw(10.24, 'xs')};
 
     ${mediaBreakpointUp('xl')} {
-        margin: 0 ${vw(40, 'mac')};
+        margin: 0 ${vw(40)};
     }
 `;
 
@@ -24,7 +24,7 @@ export const SearchTrigger = styled.button<{ $isOpen: boolean }>`
     border: none;
     background: transparent;
     cursor: pointer;
-    margin-right: ${vw(8, 'xs')};
+    margin-right: ${vw(6.827, 'xs')};
 
     ${({ $isOpen }) =>
         $isOpen
@@ -36,21 +36,21 @@ export const SearchTrigger = styled.button<{ $isOpen: boolean }>`
         100% { opacity: 1; }
       }
       position: absolute;
-      left: 10px;
+      left: ${vw(10, 'xs')};
     `
             : `position: static`};
 
     svg {
-        width: ${vw(20, 'xs')};
-        height: ${vw(23, 'xs')};
+        width: ${vw(17.067, 'xs')};
+        height: ${vw(19.627, 'xs')};
     }
 
     ${mediaBreakpointUp('xl')} {
-        margin-right: ${vw(12, 'mac')};
+        margin-right: ${vw(12)};
 
         svg {
-            width: ${vw(40, 'mac')};
-            height: ${vw(40, 'mac')};
+            width: ${vw(40)};
+            height: ${vw(40)};
         }
     }
 `;
@@ -66,6 +66,12 @@ export const SearchFieldWrap = styled.div<{ $isOpen: boolean }>`
     align-items: center;
 `;
 
+export const SearchForm = styled.form`
+    display: flex;
+    width: 100%;
+    min-width: 0;
+`;
+
 export const SearchInputInner = styled.div`
     display: flex;
     align-items: center;
@@ -74,14 +80,14 @@ export const SearchInputInner = styled.div`
     border: 1px solid ${color('black')};
     border-radius: 2px;
     background: transparent;
-    padding-left: ${vw(30, 'xs')};
-    padding-right: ${vw(10, 'xs')};
-    height: ${vw(40, 'xs')};
+    padding-left: ${vw(25.6, 'xs')};
+    padding-right: ${vw(8.533, 'xs')};
+    height: ${vw(34.133, 'xs')};
 
     ${mediaBreakpointUp('xl')} {
-        height: ${vw(56, 'mac')};
-        padding-left: ${vw(56, 'mac')};
-        padding-right: ${vw(16, 'mac')};
+        height: ${vw(56)};
+        padding-left: ${vw(56)};
+        padding-right: ${vw(16)};
     }
 `;
 
@@ -94,7 +100,6 @@ export const SearchInput = styled.input`
 
     &::-webkit-search-cancel-button,
     &::-webkit-search-decoration {
-        -webkit-appearance: none;
         appearance: none;
     }
 

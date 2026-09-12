@@ -10,16 +10,16 @@ export const Container = styled.div`
 `;
 
 export const HeaderMenuItem = styled.div`
-    margin-right: ${vw(25, 'xs')};
+    margin-right: ${vw(21.333, 'xs')};
     svg,
     a {
         margin-top: 3px;
-        width: ${vw(20, 'xs')};
-        height: ${vw(23, 'xs')};
+        width: ${vw(17.067, 'xs')};
+        height: ${vw(19.627, 'xs')};
 
         ${mediaBreakpointUp('xl')} {
-            width: ${vw(40, 'mac')};
-            height: ${vw(40, 'mac')};
+            width: ${vw(40)};
+            height: ${vw(40)};
             margin-top: 0;
         }
     }
@@ -29,7 +29,7 @@ export const HeaderMenuItem = styled.div`
     }
 
     ${mediaBreakpointUp('xl')} {
-        margin-right: ${vw(80, 'mac')};
+        margin-right: ${vw(80)};
     }
 `;
 
@@ -37,16 +37,16 @@ export const HeaderMenuItemBtn = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: ${vw(16, 'xs')};
+    height: ${vw(13.653, 'xs')};
 
     span {
-        width: ${vw(19, 'xs')};
+        width: ${vw(16.213, 'xs')};
         height: 2px;
         background: ${color('darkBrown')};
         border-radius: 5px;
 
         ${mediaBreakpointUp('xl')} {
-            width: ${vw(48, 'mac')};
+            width: ${vw(48)};
             height: 3px;
         }
     }
@@ -56,6 +56,6 @@ export const HeaderMenuItemBtn = styled.div`
     }
 
     ${mediaBreakpointUp('xl')} {
-        height: ${vw(38, 'mac')};
+        height: ${vw(38)};
     }
 `;

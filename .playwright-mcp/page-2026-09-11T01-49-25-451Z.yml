@@ -1,0 +1,83 @@
+- generic [active] [ref=f14e1]:
+  - generic [ref=f14e4]:
+    - generic [ref=f14e5]:
+      - banner [ref=f14e6]:
+        - generic [ref=f14e7]:
+          - link "Stammbaum" [ref=f14e9] [cursor=pointer]:
+            - /url: /ru
+          - generic [ref=f14e12]:
+            - button "RU" [ref=f14e13] [cursor=pointer]
+            - button "Открыть меню" [ref=f14e14] [cursor=pointer]
+      - main [ref=f14e17]:
+        - generic [ref=f14e18]:
+          - button "Поиск" [ref=f14e20] [cursor=pointer]
+          - button "Меню" [ref=f14e25] [cursor=pointer]
+          - navigation "periods" [ref=f14e30]:
+            - generic [ref=f14e31]:
+              - button "1700-1750" [ref=f14e32] [cursor=pointer]
+              - button "1750-1800" [ref=f14e33] [cursor=pointer]
+              - button "1800-1850" [ref=f14e34] [cursor=pointer]
+              - button "1850-1900" [ref=f14e35] [cursor=pointer]
+              - button "1900-1950" [ref=f14e36] [cursor=pointer]
+              - button "1950-2000" [ref=f14e37] [cursor=pointer]
+              - button "2000-2026" [pressed] [ref=f14e38] [cursor=pointer]
+          - generic [ref=f14e40]:
+            - generic [ref=f14e42]: "1700"
+            - generic [ref=f14e45]: "1750"
+            - generic [ref=f14e48]: "1800"
+            - generic [ref=f14e51]: "1850"
+            - generic [ref=f14e54]: "1900"
+            - generic [ref=f14e57]: "1950"
+            - generic [ref=f14e60]: "2000"
+            - generic [ref=f14e63]: "2026"
+            - generic [ref=f14e67]: "2020"
+            - figure "Петров Пётр" [ref=f14e68]:
+              - img "Петров Пётр" [ref=f14e69]:
+                - generic [ref=f14e70]: ПП
+              - generic "Отец" [ref=f14e71]
+              - generic [ref=f14e72]: 05.04.1950 — 07.06.2020
+          - button "Добавить информацию" [ref=f14e73] [cursor=pointer]
+          - dialog "Анна Иванова" [ref=f14e129]:
+            - generic [ref=f14e101]:
+              - generic [ref=f14e102]:
+                - generic [ref=f14e103]: Анна Иванова
+                - button "close" [ref=f14e104] [cursor=pointer]: ×
+              - generic [ref=f14e105]:
+                - generic [ref=f14e106]:
+                  - button "Жен" [ref=f14e107] [cursor=pointer]
+                  - button "Муж" [ref=f14e108] [cursor=pointer]
+                - textbox "Фамилия*" [ref=f14e109]: Иванова
+                - textbox "Имя*" [ref=f14e110]: Анна
+                - textbox "Отчество" [ref=f14e111]
+                - textbox "Девичья фамилия" [ref=f14e112]
+                - textbox "Место рождения" [ref=f14e113]
+                - generic [ref=f14e114]:
+                  - generic [ref=f14e115]: Дата рождения
+                  - textbox [ref=f14e116]
+                - generic [ref=f14e117]:
+                  - generic [ref=f14e118]: Дата смерти
+                  - textbox [ref=f14e119]
+                - textbox "Место смерти" [ref=f14e120]
+                - generic [ref=f14e121] [cursor=pointer]:
+                  - generic [ref=f14e122]: Загрузить фотографию родственника
+                  - generic [aria-hidden] [ref=f14e123]: ↓
+                - generic [ref=f14e124] [cursor=pointer]:
+                  - generic [ref=f14e125]: Загрузить фотографию памятника
+                  - generic [aria-hidden] [ref=f14e126]: ↓
+                - textbox "Дополнительная информация" [ref=f14e130]
+                - button "Сохранить информацию" [ref=f14e128] [cursor=pointer]
+    - generic [ref=f14e79]:
+      - link [ref=f14e82] [cursor=pointer]:
+        - /url: /ru/tree
+        - generic [ref=f14e83]: Семейное древо
+      - link [ref=f14e84] [cursor=pointer]:
+        - /url: /ru/cemetery
+        - generic [ref=f14e85]: Кладбище
+      - link [ref=f14e86] [cursor=pointer]:
+        - /url: /ru/login
+        - generic [ref=f14e87]: Вход/Регистрация
+      - link [ref=f14e88] [cursor=pointer]:
+        - /url: /ru/cemetery#
+        - generic [ref=f14e89]: Связаться с нами
+  - button "Open Next.js Dev Tools" [ref=f14e95] [cursor=pointer]
+  - alert [ref=f14e99]

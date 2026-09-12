@@ -1,0 +1,44 @@
+- generic [active] [ref=f7e1]:
+  - generic [ref=f7e4]:
+    - generic [ref=f7e5]:
+      - banner [ref=f7e6]:
+        - generic [ref=f7e7]:
+          - link "Stammbaum" [ref=f7e9] [cursor=pointer]:
+            - /url: /
+          - generic [ref=f7e12]:
+            - button "EN" [ref=f7e13] [cursor=pointer]
+            - button "Open menu" [ref=f7e14] [cursor=pointer]
+      - main [ref=f7e17]:
+        - generic [ref=f7e19]:
+          - generic [ref=f7e20]:
+            - heading "Authorization" [level=3] [ref=f7e21]
+            - button "Close" [ref=f7e22] [cursor=pointer]: ×
+          - generic [ref=f7e23]:
+            - generic [ref=f7e24]:
+              - button "Login" [ref=f7e25] [cursor=pointer]
+              - button "Register" [ref=f7e26] [cursor=pointer]
+            - generic [ref=f7e27]:
+              - generic [ref=f7e28]: Username or email
+              - textbox "Username or email" [ref=f7e29]
+              - generic [ref=f7e30]: Password
+              - textbox "Password" [ref=f7e31]
+              - button "Sign in" [ref=f7e32] [cursor=pointer]
+              - button "Forgot password?" [ref=f7e33]
+    - generic [ref=f7e39]:
+      - link [ref=f7e40] [cursor=pointer]:
+        - /url: /about
+        - generic [ref=f7e41]: About
+      - link [ref=f7e42] [cursor=pointer]:
+        - /url: /tree
+        - generic [ref=f7e43]: Family tree
+      - link [ref=f7e44] [cursor=pointer]:
+        - /url: /cemetery
+        - generic [ref=f7e45]: Cemetery
+      - link [ref=f7e46] [cursor=pointer]:
+        - /url: /login
+        - generic [ref=f7e47]: Sign
+      - link [ref=f7e48] [cursor=pointer]:
+        - /url: /login#
+        - generic [ref=f7e49]: Feedback
+  - button "Open Next.js Dev Tools" [ref=f7e55] [cursor=pointer]
+  - alert [ref=f7e59]

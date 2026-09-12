@@ -1,66 +1,26 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'next-i18next';
-import styled from 'styled-components';
-import { color, font } from '@/style/mixins';
 import { readImageAsDataUrl } from '@/lib/family/image';
+import {
+    AdditionalHint,
+    CemeteryModalCard,
+    CemeteryModalHeader,
+    CemeteryPrimary,
+    CemeteryTab,
+    UploadRow
+} from './CemeteryAddPersonModal.styled';
 import type { Gender } from '@/lib/family/types';
 import {
     ErrorText,
     Field,
     FieldLabel,
-    FileInputRow,
     HeaderClose,
-    Hint,
     Input,
     ModalBody,
-    ModalCard,
-    ModalHeader,
     Overlay,
-    Primary,
-    Tab,
     Tabs,
     Textarea
 } from '../FamilyTree/Modal.styled';
-
-const CemeteryModalCard = styled(ModalCard)`
-    width: min(420px, 100%);
-
-    ${Input}::placeholder,
-    ${Textarea}::placeholder {
-        color: #5d5d5d;
-        opacity: 1;
-    }
-`;
-
-const CemeteryModalHeader = styled(ModalHeader)`
-    color: ${color('cream')};
-
-    ${HeaderClose} {
-        color: ${color('cream')};
-    }
-`;
-
-const CemeteryTab = styled(Tab)`
-    color: ${({ $active }) => ($active ? color('cream') : color('ink'))};
-
-    &:hover {
-        color: ${({ $active }) => ($active ? color('cream') : color('ink'))};
-    }
-`;
-
-const CemeteryPrimary = styled(Primary)`
-    color: ${color('cream')};
-`;
-
-const UploadRow = styled(FileInputRow)`
-    ${font('mobileUpload')};
-    color: #5d5d5d;
-`;
-
-const AdditionalHint = styled(Hint)`
-    ${font('mobileOptionalAction')};
-    color: ${color('ink')};
-`;
 
 export interface CemeteryPersonValues {
     gender: Gender;

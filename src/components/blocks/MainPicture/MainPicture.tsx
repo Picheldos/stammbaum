@@ -14,7 +14,7 @@ const MainPicture: React.FC<MainPictureProps> = ({ image }) => {
 
     return (
         <Container>
-            <Image src={image} fill alt="main image" quality={100} style={{ objectFit: 'cover', objectPosition: 'center' }} sizes="100vw" />
+            <Image src={image} fill alt="main image" quality={100} sizes="100vw" />
 
             <MainPictureLabel>
                 <Image
@@ -22,7 +22,6 @@ const MainPicture: React.FC<MainPictureProps> = ({ image }) => {
                     alt="main label"
                     fill
                     quality={100}
-                    style={{ objectFit: 'cover', objectPosition: 'center' }}
                     sizes="(max-width: 1280px) 100vw, 40vw"
                 />
             </MainPictureLabel>

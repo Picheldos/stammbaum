@@ -374,7 +374,6 @@ const Cemetery: React.FC<CemeteryProps> = ({ periods: periodsProp, persons: pers
                     fill
                     alt=""
                     quality={100}
-                    style={{ objectFit: 'cover', objectPosition: 'center' }}
                     sizes="100vw"
                 />
             </PageBackground>

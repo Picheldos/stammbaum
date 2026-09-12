@@ -1,0 +1,138 @@
+- generic [ref=f15e1]:
+  - generic [ref=f15e4]:
+    - generic [ref=f15e5]:
+      - banner [ref=f15e6]:
+        - generic [ref=f15e7]:
+          - link "Stammbaum" [ref=f15e9] [cursor=pointer]:
+            - /url: /ru
+          - generic [ref=f15e12]:
+            - button "RU" [ref=f15e13] [cursor=pointer]
+            - button "Открыть меню" [ref=f15e14] [cursor=pointer]
+      - main [ref=f15e17]:
+        - generic [ref=f15e18]:
+          - button "Поиск" [ref=f15e20] [cursor=pointer]
+          - button "Меню" [ref=f15e25] [cursor=pointer]
+          - navigation "periods" [ref=f15e30]:
+            - generic [ref=f15e31]:
+              - button "1700-1750" [ref=f15e32] [cursor=pointer]
+              - button "1750-1800" [pressed] [ref=f15e33] [cursor=pointer]
+              - button "1800-1850" [ref=f15e34] [cursor=pointer]
+              - button "1850-1900" [ref=f15e35] [cursor=pointer]
+              - button "1900-1950" [ref=f15e36] [cursor=pointer]
+              - button "1950-2000" [ref=f15e37] [cursor=pointer]
+              - button "2000-2026" [ref=f15e38] [cursor=pointer]
+          - generic [ref=f15e40]:
+            - generic [ref=f15e42]: "1700"
+            - generic [ref=f15e45]: "1750"
+            - generic [ref=f15e48]: "1800"
+            - generic [ref=f15e51]: "1850"
+            - generic [ref=f15e54]: "1900"
+            - generic [ref=f15e57]: "1950"
+            - generic [ref=f15e60]: "2000"
+            - generic [ref=f15e63]: "2026"
+            - generic [ref=f15e67]: "1740"
+            - figure "Романов Феофан" [ref=f15e68]:
+              - img "Романов Феофан" [ref=f15e69]:
+                - img "Романов Феофан" [ref=f15e70]
+              - generic "Прадед" [ref=f15e71]
+              - generic [ref=f15e72]: 01.06.1690 — 12.09.1740
+            - generic [ref=f15e74]: "1783"
+            - figure "Иванова Екатерина" [ref=f15e75]:
+              - img "Иванова Екатерина" [ref=f15e76]:
+                - img "Иванова Екатерина" [ref=f15e77]
+              - generic "Прабабушка" [ref=f15e78]
+              - generic [ref=f15e79]: 15.03.1760 — 20.07.1783
+            - generic [ref=f15e81]: "1814"
+            - figure "Спиридонова Полина" [ref=f15e82]:
+              - img "Спиридонова Полина" [ref=f15e83]:
+                - img "Спиридонова Полина" [ref=f15e84]
+              - generic "Дедушка" [ref=f15e85]
+              - generic [ref=f15e86]: 14.08.1768 — 14.08.1814
+            - generic [ref=f15e88]: "1814"
+            - figure "Петрова Анна" [ref=f15e89]:
+              - img "Петрова Анна" [ref=f15e90]:
+                - img "Петрова Анна" [ref=f15e91]
+              - generic "Бабушка" [ref=f15e92]
+              - generic [ref=f15e93]: 03.03.1795 — 22.05.1814
+            - generic [ref=f15e95]: "1889"
+            - figure "Иванова Мария" [ref=f15e96]:
+              - img "Иванова Мария" [ref=f15e97]:
+                - img "Иванова Мария" [ref=f15e98]
+              - generic "Прабабушка" [ref=f15e99]
+              - generic [ref=f15e100]: 12.01.1840 — 08.11.1889
+            - generic [ref=f15e102]: "1935"
+            - figure "Сидоров Алексей" [ref=f15e103]:
+              - img "Сидоров Алексей" [ref=f15e104]:
+                - img "Сидоров Алексей" [ref=f15e105]
+              - generic "Прадед" [ref=f15e106]
+              - generic [ref=f15e107]: 17.07.1899 — 05.05.1935
+            - generic [ref=f15e109]: "1995"
+            - figure "Михайлов Лев" [ref=f15e110]:
+              - img "Михайлов Лев" [ref=f15e111]:
+                - img "Михайлов Лев" [ref=f15e112]
+              - generic "Дедушка" [ref=f15e113]
+              - generic [ref=f15e114]: 11.11.1938 — 02.03.1995
+            - generic [ref=f15e116]: "2010"
+            - figure "Козлов Дмитрий" [ref=f15e117]:
+              - img "Козлов Дмитрий" [ref=f15e118]:
+                - img "Козлов Дмитрий" [ref=f15e119]
+              - generic "Отец" [ref=f15e120]
+              - generic [ref=f15e121]: 30.09.1965 — 03.02.2010
+            - generic [ref=f15e123]: "2018"
+            - figure "Волков Сергей" [ref=f15e124]:
+              - img "Волков Сергей" [ref=f15e125]:
+                - img "Волков Сергей" [ref=f15e126]
+              - generic "Дядя" [ref=f15e127]
+              - generic [ref=f15e128]: 21.04.1955 — 30.09.2018
+            - generic [ref=f15e130]: "2020"
+            - figure "Орлова Елена" [ref=f15e131]:
+              - img "Орлова Елена" [ref=f15e132]:
+                - img "Орлова Елена" [ref=f15e133]
+              - generic "Прабабушка" [ref=f15e134]
+              - generic [ref=f15e135]: 22.03.1944 — 14.09.2020
+          - button "Добавить информацию" [ref=f15e136] [cursor=pointer]
+          - dialog "Анна Иванова" [ref=f15e192]:
+            - generic [ref=f15e164]:
+              - generic [ref=f15e165]:
+                - generic [ref=f15e166]: Анна Иванова
+                - button "close" [ref=f15e167] [cursor=pointer]: ×
+              - generic [ref=f15e168]:
+                - generic [ref=f15e169]:
+                  - button "Жен" [ref=f15e170] [cursor=pointer]
+                  - button "Муж" [ref=f15e171] [cursor=pointer]
+                - textbox "Фамилия*" [ref=f15e172]: Иванова
+                - textbox "Имя*" [ref=f15e173]: Анна
+                - textbox "Отчество" [ref=f15e174]
+                - textbox "Девичья фамилия" [ref=f15e175]
+                - textbox "Место рождения" [ref=f15e176]
+                - generic [ref=f15e177]:
+                  - generic [ref=f15e178]: Дата рождения
+                  - textbox [ref=f15e179]
+                - generic [ref=f15e180]:
+                  - generic [ref=f15e181]: Дата смерти
+                  - textbox [ref=f15e182]
+                - textbox "Место смерти" [ref=f15e183]
+                - generic [ref=f15e184] [cursor=pointer]:
+                  - generic [ref=f15e185]: Загрузить фотографию родственника
+                  - generic [aria-hidden] [ref=f15e186]: ↓
+                - generic [ref=f15e187] [cursor=pointer]:
+                  - generic [ref=f15e188]: Загрузить фотографию памятника
+                  - generic [aria-hidden] [ref=f15e189]: ↓
+                - button "Добавить дополнительную информацию" [ref=f15e190] [cursor=pointer]
+                - alert [ref=f15e193]: Войдите, чтобы сохранить информацию
+                - button "Сохранить информацию" [active] [ref=f15e191] [cursor=pointer]
+    - generic [ref=f15e142]:
+      - link [ref=f15e145] [cursor=pointer]:
+        - /url: /ru/tree
+        - generic [ref=f15e146]: Семейное древо
+      - link [ref=f15e147] [cursor=pointer]:
+        - /url: /ru/cemetery
+        - generic [ref=f15e148]: Кладбище
+      - link [ref=f15e149] [cursor=pointer]:
+        - /url: /ru/login
+        - generic [ref=f15e150]: Вход/Регистрация
+      - link [ref=f15e151] [cursor=pointer]:
+        - /url: /ru/cemetery#
+        - generic [ref=f15e152]: Связаться с нами
+  - button "Open Next.js Dev Tools" [ref=f15e158] [cursor=pointer]
+  - alert [ref=f15e162]

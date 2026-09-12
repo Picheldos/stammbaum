@@ -56,7 +56,7 @@ export const CARD_GAP = 8;
 
 /** Timeline line bottom offset (desktop, from track bottom). */
 export const LINE_BOTTOM_OFFSET = 36;
-/** Timeline line left offset (mobile) expressed as vw from `vw(30, 'xs')` = 8vw.
+/** Timeline line left offset (mobile) expressed as vw from `vw(25.6, 'xs')` = 8vw.
  *  Pixel equivalent at xs (375px) reference — used for JS-side card positioning. */
 export const LINE_LEFT_VW = 8;
 export const LINE_LEFT_PX_AT_XS = 30;

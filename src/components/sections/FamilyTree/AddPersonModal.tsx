@@ -1,8 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'next-i18next';
-import styled from 'styled-components';
-import { color, font } from '@/style/mixins';
 import { AddRelativeKind, Gender, Person } from '@/lib/family/types';
+import { SharedParentBlock, SharedParentLegend, SharedParentOption } from './AddPersonModal.styled';
 import { readImageAsDataUrl } from '@/lib/family/image';
 import {
     Field,
@@ -25,35 +24,6 @@ import {
     ErrorText
 } from './Modal.styled';
 import { formatShortName } from '@/lib/family/relations';
-
-const SharedParentBlock = styled.fieldset`
-    border: 1px solid rgba(94, 109, 139, 0.35);
-    border-radius: 6px;
-    padding: 10px 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-`;
-
-const SharedParentLegend = styled.legend`
-    ${font('mobileControl')};
-    color: ${color('textPrimary')};
-    opacity: 0.75;
-    padding: 0 4px;
-`;
-
-const SharedParentOption = styled.label`
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    ${font('mobileControl')};
-    color: ${color('textPrimary')};
-    cursor: pointer;
-
-    input {
-        accent-color: ${color('forest')};
-    }
-`;
 
 export type AddPersonMode =
     | { kind: 'self' }

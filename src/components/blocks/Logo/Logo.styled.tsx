@@ -1,5 +1,11 @@
 import styled from 'styled-components';
+import Link from 'next/link';
 import { color, font, mediaBreakpointDown, vw } from '@/style/mixins';
+
+export const LogoLink = styled(Link)`
+    color: inherit;
+    text-decoration: none;
+`;
 
 export const Container = styled.div<{ $tone: 'dark' | 'light' }>`
     display: flex;
@@ -16,8 +22,8 @@ export const Container = styled.div<{ $tone: 'dark' | 'light' }>`
         fill: ${({ $tone }) => ($tone === 'light' ? color('white') : 'inherit')};
 
         ${mediaBreakpointDown('xl')} {
-            height: ${vw(28, 'xs')};
-            width: ${vw(26, 'xs')};
+            height: ${vw(23.893, 'xs')};
+            width: ${vw(22.187, 'xs')};
         }
     }
 `;
@@ -34,7 +40,6 @@ export const LogoText = styled.div`
 
 export const Wordmark = styled.span`
     ${font('logoSerif')};
-    font-size: 16px;
     line-height: 1.333;
     letter-spacing: 0;
     user-select: none;

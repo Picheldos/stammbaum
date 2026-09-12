@@ -1,0 +1,74 @@
+- generic [active] [ref=f3e1]:
+  - generic [ref=f3e4]:
+    - generic [ref=f3e5]:
+      - banner [ref=f3e6]:
+        - generic [ref=f3e7]:
+          - link "Stammbaum" [ref=f3e9] [cursor=pointer]:
+            - /url: /ru
+          - generic [ref=f3e12]:
+            - button "RU" [ref=f3e13] [cursor=pointer]
+            - button "Открыть меню" [ref=f3e14] [cursor=pointer]
+      - main [ref=f3e17]:
+        - generic [ref=f3e19]:
+          - generic [ref=f3e20]:
+            - heading "Создайте свое генеалогическое древо вместе с Stammbaum" [level=1] [ref=f3e21]
+            - list [ref=f3e22]:
+              - listitem [ref=f3e23]:
+                - generic [ref=f3e24]: 1/
+                - generic [ref=f3e25]: Добавляйте в своё древо родных и близких
+              - listitem [ref=f3e26]:
+                - generic [ref=f3e27]: 2/
+                - generic [ref=f3e28]: Делитесь историей своей семьи с друзьями
+              - listitem [ref=f3e29]:
+                - generic [ref=f3e30]: 3/
+                - generic [ref=f3e31]: Сохраняйте важные даты и события
+          - generic [ref=f3e33]:
+            - region [ref=f3e35]:
+              - generic [ref=f3e37]: Дочь
+              - generic [ref=f3e38]: Спиридонова Полина
+              - generic [ref=f3e39]: 14.08.2002
+            - generic [ref=f3e40]:
+              - region [ref=f3e41]:
+                - generic [ref=f3e43]: Мама
+                - generic [ref=f3e44]: Спиридонова Ирина
+                - generic [ref=f3e45]: 27.11.1983
+              - region [ref=f3e46]:
+                - generic [ref=f3e48]: Папа
+                - generic [ref=f3e49]: Иванов Иван
+                - generic [ref=f3e50]: 15.06.1978
+            - generic [ref=f3e51]:
+              - region [ref=f3e52]:
+                - generic [ref=f3e54]: Бабушка
+                - generic [ref=f3e55]: Спиридонова Вера
+                - generic [ref=f3e56]: 09.03.1955 — 02.08.2020
+              - region [ref=f3e57]:
+                - generic [ref=f3e59]: Дедушка
+                - generic [ref=f3e60]: Спиридонов Михаил
+                - generic [ref=f3e61]: 21.07.1948
+              - region [ref=f3e62]:
+                - generic [ref=f3e64]: Бабушка
+                - generic [ref=f3e65]: Иванова Ольга
+                - generic [ref=f3e66]: 03.12.1949 — 31.05.2021
+              - region [ref=f3e67]:
+                - generic [ref=f3e69]: Дедушка
+                - generic [ref=f3e70]: Иванов Петр
+                - generic [ref=f3e71]: 09.06.1945 — 06.06.1985
+          - button "Создать древо" [ref=f3e73] [cursor=pointer]
+    - generic [ref=f3e79]:
+      - link [ref=f3e80] [cursor=pointer]:
+        - /url: /ru/about
+        - generic [ref=f3e81]: О проекте
+      - link [ref=f3e82] [cursor=pointer]:
+        - /url: /ru/tree
+        - generic [ref=f3e83]: Семейное древо
+      - link [ref=f3e84] [cursor=pointer]:
+        - /url: /ru/cemetery
+        - generic [ref=f3e85]: Кладбище
+      - link [ref=f3e86] [cursor=pointer]:
+        - /url: /ru/login
+        - generic [ref=f3e87]: Вход/Регистрация
+      - link [ref=f3e88] [cursor=pointer]:
+        - /url: /ru#
+        - generic [ref=f3e89]: Связаться с нами
+  - button "Open Next.js Dev Tools" [ref=f3e95] [cursor=pointer]
+  - alert [ref=f3e99]

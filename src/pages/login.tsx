@@ -2,129 +2,26 @@ import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import React, { useState } from 'react';
 import Layout from '@/components/common/Layout/Layout';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import styled from 'styled-components';
-import { font } from '@/style/mixins';
 import { useRouter } from 'next/router';
-
-const Page = styled.section`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: calc(100vh - 120px);
-    background: #f8f4ee;
-`;
-
-const Modal = styled.div`
-    width: min(500px, calc(100vw - 32px));
-    background: #ecd9bf;
-    border-radius: 6px;
-    box-shadow: 0 8px 0 rgba(0,0,0,0.06);
-    overflow: hidden;
-`;
-
-const ModalHeader = styled.div`
-    background: #637a4f;
-    color: #fff;
-    padding: 12px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-`;
-
-const Title = styled.h3`
-    margin: 0;
-    ${font('mobileHeader')};
-`;
-
-const Close = styled.button`
-    background: transparent;
-    border: none;
-    color: #fff;
-    ${font('bodyLarge')};
-    cursor: pointer;
-`;
-
-const ModalBody = styled.div`
-    padding: 18px;
-    ${font('mobileControl')};
-`;
-
-const Tabs = styled.div`
-    display: flex;
-    gap: 8px;
-    margin-bottom: 12px;
-    ${font('mobileControl')};
-`;
-
-const Tab = styled.button<{ $active?: boolean }>`
-    background: ${({ $active }) => ($active ? '#55607a' : 'transparent')};
-    color: ${({ $active }) => ($active ? '#fff' : '#2f3b4a')};
-    border: none;
-    padding: 6px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    ${font('mobileControl')};
-`;
-
-const Form = styled.form`
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-
-    & > label {
-        ${font('mobileControl')};
-        color: #5d5d5d;
-    }
-`;
-
-const Input = styled.input`
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px solid #e6d9c2;
-    background: #fff;
-    color: #5d5d5d;
-    ${font('mobileControl')};
-`;
-
-const CheckboxRow = styled.label`
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    ${font('mobileAuxiliary')};
-    color: #5d5d5d;
-`;
-
-const Action = styled.button`
-    background: #55607a;
-    color: #fff;
-    padding: 12px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    ${font('mobileAction')};
-`;
-
-const AuxiliaryAction = styled.button`
-    align-self: flex-start;
-    border: 0;
-    padding: 0;
-    background: transparent;
-    color: #5d5d5d;
-    cursor: pointer;
-    ${font('mobileAuxiliary')};
-`;
-
-const Status = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    ${font('mobileControl')};
-`;
-
-const Error = styled.div`
-    color: #8b2b2b;
-    ${font('label')};
-`;
+import {
+    Action,
+    AuxiliaryAction,
+    CheckboxRow,
+    Close,
+    Error,
+    FieldLabel,
+    Input,
+    LoginForm,
+    Modal,
+    ModalBody,
+    ModalHeader,
+    Page,
+    RegisterForm,
+    Status,
+    Tab,
+    Tabs,
+    Title
+} from '@/components/pages/LoginPage/LoginPage.styled';
 
 type User = { username: string; email: string; password: string };
 
@@ -237,7 +134,7 @@ const LoginPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ m
     return (
         <Layout meta={meta} header={header} sandwich={sandwich}>
             <Page>
-                <Modal>
+                <Modal $mode={mode}>
                     <ModalHeader>
                         <Title>{isRu ? 'Авторизация' : 'Authorization'}</Title>
                         <Close type="button" aria-label={isRu ? 'Закрыть' : 'Close'} onClick={() => router.push('/')}>×</Close>
@@ -259,40 +156,40 @@ const LoginPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ m
                                     <AuxiliaryAction type="button" onClick={() => setMode('login')}>{isRu ? 'Вернуться ко входу' : 'Back to sign in'}</AuxiliaryAction>
                                 </Status>
                             ) : (
-                                <Form onSubmit={handleForgot}>
-                                    <label htmlFor="forgot-email">E-mail</label>
+                                <LoginForm onSubmit={handleForgot}>
+                                    <FieldLabel htmlFor="forgot-email">E-mail</FieldLabel>
                                     <Input id="forgot-email" name="email" type="email" autoComplete="email" placeholder="name@example.com" value={forgotEmail} onChange={(e) => setForgotEmail(e.target.value)} />
                                     {error && <Error role="alert">{error}</Error>}
                                     <Action type="submit">{isRu ? 'Отправить инструкции' : 'Send instructions'}</Action>
-                                </Form>
+                                </LoginForm>
                             )
                         ) : mode === 'login' ? (
-                            <Form onSubmit={handleLogin}>
-                                <label htmlFor="login-name">{isRu ? 'Имя пользователя или e-mail' : 'Username or email'}</label>
+                            <LoginForm onSubmit={handleLogin}>
+                                <FieldLabel htmlFor="login-name">{isRu ? 'Имя пользователя или e-mail' : 'Username or email'}</FieldLabel>
                                 <Input id="login-name" name="username" autoComplete="username" placeholder={isRu ? 'Имя пользователя или e-mail' : 'Username or email'} value={loginName} onChange={(e) => setLoginName(e.target.value)} />
-                                <label htmlFor="login-password">{isRu ? 'Пароль' : 'Password'}</label>
+                                <FieldLabel htmlFor="login-password">{isRu ? 'Пароль' : 'Password'}</FieldLabel>
                                 <Input id="login-password" name="password" type="password" autoComplete="current-password" placeholder={isRu ? 'Пароль' : 'Password'} value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} />
                                 {error && <Error role="alert">{error}</Error>}
                                 <Action type="submit">{isRu ? 'Войти в профиль' : 'Sign in'}</Action>
                                 <AuxiliaryAction type="button" onClick={() => { setMode('forgot'); setError(''); setResetSent(false); }}>{isRu ? 'Забыли пароль?' : 'Forgot password?'}</AuxiliaryAction>
-                            </Form>
+                            </LoginForm>
                         ) : (
-                            <Form onSubmit={handleRegister}>
-                                <label htmlFor="reg-name">{isRu ? 'Имя пользователя' : 'Username'}</label>
-                                <Input id="reg-name" name="username" autoComplete="username" placeholder={isRu ? 'Имя пользователя' : 'Username'} value={regName} onChange={(e) => setRegName(e.target.value)} />
-                                <label htmlFor="reg-email">E-mail</label>
-                                <Input id="reg-email" name="email" type="email" autoComplete="email" placeholder="name@example.com" value={regEmail} onChange={(e) => setRegEmail(e.target.value)} />
-                                <label htmlFor="reg-password">{isRu ? 'Пароль' : 'Password'}</label>
-                                <Input id="reg-password" name="new-password" type="password" autoComplete="new-password" placeholder={isRu ? 'Пароль' : 'Password'} value={regPassword} onChange={(e) => setRegPassword(e.target.value)} />
-                                <label htmlFor="reg-confirm">{isRu ? 'Повторите пароль' : 'Confirm password'}</label>
-                                <Input id="reg-confirm" name="password-confirmation" type="password" autoComplete="new-password" placeholder={isRu ? 'Повторите пароль' : 'Confirm password'} value={regConfirm} onChange={(e) => setRegConfirm(e.target.value)} />
+                            <RegisterForm onSubmit={handleRegister}>
+                                <FieldLabel htmlFor="reg-name">{isRu ? 'Имя пользователя' : 'Username'}</FieldLabel>
+                                <Input id="reg-name" name="username" autoComplete="username" placeholder={isRu ? 'Имя пользователя*' : 'Username*'} value={regName} onChange={(e) => setRegName(e.target.value)} />
+                                <FieldLabel htmlFor="reg-email">E-mail</FieldLabel>
+                                <Input id="reg-email" name="email" type="email" autoComplete="email" placeholder="E-mail*" value={regEmail} onChange={(e) => setRegEmail(e.target.value)} />
+                                <FieldLabel htmlFor="reg-password">{isRu ? 'Пароль' : 'Password'}</FieldLabel>
+                                <Input id="reg-password" name="new-password" type="password" autoComplete="new-password" placeholder={isRu ? 'Пароль*' : 'Password*'} value={regPassword} onChange={(e) => setRegPassword(e.target.value)} />
+                                <FieldLabel htmlFor="reg-confirm">{isRu ? 'Повторите пароль' : 'Confirm password'}</FieldLabel>
+                                <Input id="reg-confirm" name="password-confirmation" type="password" autoComplete="new-password" placeholder={isRu ? 'Введите пароль еще раз*' : 'Enter password again*'} value={regConfirm} onChange={(e) => setRegConfirm(e.target.value)} />
                                 <CheckboxRow>
                                     <input type="checkbox" checked={policy} onChange={(e) => setPolicy(e.target.checked)} />
                                     <span>{isRu ? 'Я ознакомился и согласен с политикой обработки персональных данных' : "I've read and agree with the personal data processing policy"}</span>
                                 </CheckboxRow>
                                 {error && <Error role="alert">{error}</Error>}
                                 <Action type="submit">{isRu ? 'Зарегистрироваться' : 'Register'}</Action>
-                            </Form>
+                            </RegisterForm>
                         )}
                     </ModalBody>
                 </Modal>

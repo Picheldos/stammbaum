@@ -25,14 +25,30 @@ const colors = {
     landingCard: '#EFD195',
     landingCta: '#576686',
     landingStepNum: '#C5CAC7',
-        treeStub: '#9AA89B',
+    treeStub: '#9AA89B',
     treeStubTrunk: '#7D6B5A',
     avatarStub: '#BDB4A8',
     /** Cemetery ("Virtual Cemetery") — extended palette, single source of truth */
     meadowBlue: '#576686',
     cemeteryGray: '#5A5A5A',
     cemeteryBorder: '#5D5D5D',
-    cemeteryBorderAlt: '#6F654D'
+    cemeteryBorderAlt: '#6F654D',
+    /** Shared UI colors */
+    mutedText: '#5D5D5D',
+    authSurface: '#F8F4EE',
+    warmPaper: '#ECD9BF',
+    greenAccent: '#637A4F',
+    blueAction: '#55607A',
+    loginText: '#2F3B4A',
+    inputBorder: '#E6D9C2',
+    error: '#8B2B2B',
+    /** Illustration colors */
+    treeGreenLight: '#9BB37E',
+    treeGreen: '#4A7043',
+    treeBrown: '#735041',
+    treeBrownDark: '#3B2A22',
+    /** Shadow and overlay bases */
+    slateShadow: '#5E6D8B'
 };
 
 export type Colors = keyof typeof colors;

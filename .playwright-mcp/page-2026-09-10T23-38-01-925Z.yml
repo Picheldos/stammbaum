@@ -1,0 +1,48 @@
+- generic [ref=f7e1]:
+  - generic [ref=f7e4]:
+    - generic [ref=f7e5]:
+      - banner [ref=f7e6]:
+        - generic [ref=f7e7]:
+          - link "Stammbaum" [ref=f7e9] [cursor=pointer]:
+            - /url: /ru
+          - generic [ref=f7e12]:
+            - button "RU" [ref=f7e13] [cursor=pointer]
+            - button "Открыть меню" [ref=f7e14] [cursor=pointer]
+      - main [ref=f7e17]:
+        - generic [ref=f7e19]:
+          - generic [ref=f7e20]:
+            - heading "Авторизация" [level=3] [ref=f7e21]
+            - button "Закрыть" [ref=f7e22] [cursor=pointer]: ×
+          - generic [ref=f7e23]:
+            - generic [ref=f7e24]:
+              - button "Войти" [ref=f7e25] [cursor=pointer]
+              - button "Зарегистрироваться" [active] [ref=f7e26] [cursor=pointer]
+            - generic [ref=f7e27]:
+              - generic [ref=f7e28]: Имя пользователя
+              - textbox "Имя пользователя" [ref=f7e60]
+              - generic [ref=f7e30]: E-mail
+              - textbox "E-mail" [ref=f7e61]:
+                - /placeholder: name@example.com
+              - generic [ref=f7e62]: Пароль
+              - textbox "Пароль" [ref=f7e63]
+              - generic [ref=f7e64]: Повторите пароль
+              - textbox "Повторите пароль" [ref=f7e65]
+              - generic [ref=f7e66]:
+                - checkbox "Я ознакомился и согласен с политикой обработки персональных данных" [ref=f7e67]
+                - generic [ref=f7e68]: Я ознакомился и согласен с политикой обработки персональных данных
+              - button "Зарегистрироваться" [ref=f7e69] [cursor=pointer]
+    - generic [ref=f7e39]:
+      - link [ref=f7e42] [cursor=pointer]:
+        - /url: /ru/tree
+        - generic [ref=f7e43]: Семейное древо
+      - link [ref=f7e44] [cursor=pointer]:
+        - /url: /ru/cemetery
+        - generic [ref=f7e45]: Кладбище
+      - link [ref=f7e46] [cursor=pointer]:
+        - /url: /ru/login
+        - generic [ref=f7e47]: Вход/Регистрация
+      - link [ref=f7e48] [cursor=pointer]:
+        - /url: /ru/login#
+        - generic [ref=f7e49]: Связаться с нами
+  - button "Open Next.js Dev Tools" [ref=f7e55] [cursor=pointer]
+  - alert [ref=f7e59]

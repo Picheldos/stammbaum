@@ -1,0 +1,37 @@
+- generic [active] [ref=f4e1]:
+  - generic [ref=f4e4]:
+    - generic [ref=f4e5]:
+      - banner [ref=f4e6]:
+        - generic [ref=f4e7]:
+          - link "Stammbaum" [ref=f4e9] [cursor=pointer]:
+            - /url: /ru
+          - generic [ref=f4e12]:
+            - button "RU" [ref=f4e13] [cursor=pointer]
+            - button "Открыть меню" [ref=f4e14] [cursor=pointer]
+      - main [ref=f4e17]:
+        - generic [ref=f4e18]:
+          - generic [ref=f4e20]:
+            - button "Поиск" [disabled] [ref=f4e21]
+            - button "Меню" [ref=f4e25] [cursor=pointer]
+          - generic:
+            - button "Добавить информацию о себе" [ref=f4e30] [cursor=pointer]:
+              - generic [ref=f4e32]: Добавьте информацию о себе
+            - button "Добавить информацию" [ref=f4e33]
+    - generic [ref=f4e39]:
+      - link [ref=f4e40] [cursor=pointer]:
+        - /url: /ru/about
+        - generic [ref=f4e41]: О проекте
+      - link [ref=f4e42] [cursor=pointer]:
+        - /url: /ru/tree
+        - generic [ref=f4e43]: Семейное древо
+      - link [ref=f4e44] [cursor=pointer]:
+        - /url: /ru/cemetery
+        - generic [ref=f4e45]: Кладбище
+      - link [ref=f4e46] [cursor=pointer]:
+        - /url: /ru/login
+        - generic [ref=f4e47]: Вход/Регистрация
+      - link [ref=f4e48] [cursor=pointer]:
+        - /url: /ru/tree#
+        - generic [ref=f4e49]: Связаться с нами
+  - button "Open Next.js Dev Tools" [ref=f4e55] [cursor=pointer]
+  - alert [ref=f4e59]

@@ -1,20 +1,8 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
 import { useSession } from '@/hooks/useSession';
-import { color, font } from '@/style/mixins';
-
-const Gate = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 60vh;
-    padding: 40px 16px;
-    text-align: center;
-    color: ${color('textPrimary')};
-    ${font('body')};
-`;
+import { Gate } from './AuthGuard.styled';
 
 interface AuthGuardProps {
     children: React.ReactNode;

@@ -463,9 +463,9 @@ const FamilyTree: React.FC = () => {
                     <Image
                         src="/images/fon.jpg"
                         alt="decorative tree"
-                        layout={'fill'}
-                        objectFit={`cover`}
-                        style={{ pointerEvents: 'none' }}
+                        fill
+                        sizes="100vw"
+                        loading="eager"
                         aria-hidden
                     />
                 </TreeImageLayer>
@@ -539,9 +539,9 @@ const FamilyTree: React.FC = () => {
                 <Image
                     src="/images/fon.jpg"
                     alt="decorative tree"
-                    layout={'fill'}
-                    objectFit={`cover`}
-                    style={{ pointerEvents: 'none' }}
+                    fill
+                    sizes="100vw"
+                    loading="eager"
                     aria-hidden
                 />
             </TreeImageLayer>

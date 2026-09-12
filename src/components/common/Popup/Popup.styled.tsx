@@ -7,7 +7,7 @@ export const Overlay = styled.div<{ isOpen: boolean }>`
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: ${color('black', 0.6)};
   display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
   align-items: center;
   justify-content: center;
@@ -28,17 +28,17 @@ export const Content = styled.div<{ className?: string }>`
   justify-content: space-between;
 
   position: relative;
-  border-radius: ${vw(12, 'xs')};
-  padding: ${vw(32, 'xs')};
+  border-radius: ${vw(10.24, 'xs')};
+  padding: ${vw(27.307, 'xs')};
   max-width: 90%;
-  width: ${vw(500, 'xs')};
-  box-shadow: 0 ${vw(10, 'xs')} ${vw(40, 'xs')} rgba(0, 0, 0, 0.3);
+  width: ${vw(426.667, 'xs')};
+  box-shadow: 0 ${vw(8.533, 'xs')} ${vw(34.133, 'xs')} ${color('black', 0.3)};
   animation: slideUp 0.3s ease;
 
   background: ${color('popupBackground')};
 
   @keyframes slideUp {
-    from { transform: translateY(${vw(20, 'xs')}); opacity: 0; }
+    from { transform: translateY(${vw(17.067, 'xs')}); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
   }
 
@@ -49,7 +49,7 @@ export const Content = styled.div<{ className?: string }>`
   }
 
   ${mediaBreakpointUp('lg')} {
-    border-radius: ${vw(12, 'lg')};
+    border-radius: ${vw(12)};
     padding: ${vw(100)} ${vw(90)};
     width: ${vw(700)};
     height: ${vw(450)};
@@ -71,17 +71,17 @@ const iconLineStyles = `
   position: absolute;
   display: block;
   width: 2px;
-  height: 13px;
+  height: ${vw(13, 'xs')};
   background: ${color('textPrimary')};
   border-radius: 1px;
 `;
 
 export const IconButton = styled.button`
   position: absolute;
-  width: 16px;
-  height: 16px;
-  min-width: 16px;
-  min-height: 16px;
+  width: ${vw(16, 'xs')};
+  height: ${vw(16, 'xs')};
+  min-width: ${vw(16, 'xs')};
+  min-height: ${vw(16, 'xs')};
   padding: 0;
   border: none;
   background: none;
@@ -98,8 +98,8 @@ export const IconButton = styled.button`
 `;
 
 export const CloseButton = styled(IconButton)`
-  top: 30px;
-  right: 30px;
+  top: ${vw(30, 'xs')};
+  right: ${vw(30, 'xs')};
 
   span {
     left: 50%;
@@ -119,7 +119,7 @@ export const CloseButton = styled(IconButton)`
 `;
 
 export const PrevButton = styled(IconButton)`
-  left: 30px;
+  left: ${vw(30, 'xs')};
   top: 50%;
   transform: translateY(-50%);
 
@@ -139,7 +139,7 @@ export const PrevButton = styled(IconButton)`
 `;
 
 export const NextButton = styled(IconButton)`
-  right: 30px;
+  right: ${vw(30, 'xs')};
   top: 50%;
   transform: translateY(-50%);
 
@@ -160,7 +160,7 @@ export const NextButton = styled(IconButton)`
 
 export const Body = styled.div`
   color: ${color('textPrimary')};
-  /* margin-bottom: ${vw(32, 'xs')};
+  /* margin-bottom: ${vw(27.307, 'xs')};
 
   // ${mediaBreakpointUp('md')} {
   //   margin-bottom: ${vw(40, 'md')};
@@ -178,7 +178,7 @@ export const Text = styled.div`
 export const Footer = styled.div<{ className?: string }>`
   display: flex;
   justify-content: flex-end;
-  gap: ${vw(12, 'xs')};
+  gap: ${vw(10.24, 'xs')};
 
   ${mediaBreakpointUp('md')} {
     gap: ${vw(16, 'md')};

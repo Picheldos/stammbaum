@@ -8,17 +8,22 @@ export const Container = styled.div`
     position: relative;
 
     width: 100%;
-    height: ${vw(625, 'xs')};
+    height: ${vw(533.333, 'xs')};
 
-    margin-bottom: 14px;
+    margin-bottom: ${vw(14, 'xs')};
+
+    img {
+        object-fit: cover;
+        object-position: center;
+    }
 
     & > span {
         width: 100vw !important;
-        transform: translateX(${vw(-27, 'xs')});
+        transform: translateX(${vw(-23.04, 'xs')});
     }
 
     ${mediaBreakpointUp('xl')} {
-        height: ${vw(693, 'mac')};
+        height: ${vw(693)};
         margin-bottom: 0;
 
         & > span {
@@ -30,19 +35,19 @@ export const Container = styled.div`
 
 export const MainPictureLabel = styled.div`
     position: absolute;
-    height: 105px;
+    height: ${vw(105, 'xs')};
     width: 100%;
     transform: scale(0.8);
 
-    top: ${vw(465, 'xs')};
+    top: ${vw(396.8, 'xs')};
 
     ${mediaBreakpointUp('xl')} {
-        top: ${vw(24, 'mac')};
-        left: ${vw(594, 'mac')};
+        top: ${vw(24)};
+        left: ${vw(594)};
         transform: scale(0.85);
 
-        height: ${vw(158, 'mac')};
-        width: ${vw(645, 'mac')};
+        height: ${vw(158)};
+        width: ${vw(645)};
     }
 
     &,
@@ -57,9 +62,9 @@ export const MainPictureMenu = styled.div`
     justify-content: space-between;
     flex-direction: row;
 
-    width: ${vw(250, 'xs')};
-    top: ${vw(555, 'xs')};
-    left: ${vw(36, 'xs')};
+    width: ${vw(213.333, 'xs')};
+    top: ${vw(473.6, 'xs')};
+    left: ${vw(30.72, 'xs')};
 
     ${mediaBreakpointUp('xl')} {
         display: none;

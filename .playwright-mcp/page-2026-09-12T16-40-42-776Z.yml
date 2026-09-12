@@ -1,0 +1,54 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - banner [ref=e6]:
+        - generic [ref=e7]:
+          - link "Stammbaum" [ref=e9] [cursor=pointer]:
+            - /url: /
+          - generic [ref=e12]:
+            - button "EN" [ref=e13] [cursor=pointer]
+            - button "Open menu" [ref=e14] [cursor=pointer]
+      - main [ref=e17]:
+        - generic [ref=e18]:
+          - generic [ref=e20]:
+            - generic:
+              - button "Петрова Мария" [ref=e21] [cursor=pointer]:
+                - generic [ref=e22]: Mother
+                - generic [ref=e24]: 03.02.1955
+              - button "Петров Пётр" [ref=e25] [cursor=pointer]:
+                - generic [ref=e26]: Father
+                - generic [ref=e28]: 05.04.1950 — 07.06.2020
+              - button "Петров Иван" [ref=e29] [cursor=pointer]:
+                - generic [ref=e30]: Me
+                - generic [ref=e32]: 01.01.1980
+              - button "Петрова Анна" [ref=e33] [cursor=pointer]:
+                - generic [ref=e34]: Wife
+                - generic [ref=e36]: 09.08.1982
+              - button "Петров Алексей" [ref=e37] [cursor=pointer]:
+                - generic [ref=e38]: Son
+                - generic [ref=e40]: 11.10.2008
+          - button "Search" [ref=e42] [cursor=pointer]
+          - button "Menu" [ref=e47] [cursor=pointer]
+          - generic [ref=e52]:
+            - button "zoom in" [ref=e53] [cursor=pointer]: +
+            - button "zoom out" [ref=e54] [cursor=pointer]: −
+            - button "reset" [ref=e55] [cursor=pointer]: ◎
+          - button "Add a relative" [ref=e56] [cursor=pointer]
+    - generic [ref=e62]:
+      - link [ref=e63] [cursor=pointer]:
+        - /url: /about
+        - generic [ref=e64]: About
+      - link [ref=e65] [cursor=pointer]:
+        - /url: /tree
+        - generic [ref=e66]: Family tree
+      - link [ref=e67] [cursor=pointer]:
+        - /url: /cemetery
+        - generic [ref=e68]: Cemetery
+      - link [ref=e69] [cursor=pointer]:
+        - /url: /login
+        - generic [ref=e70]: Sign
+      - link [ref=e71] [cursor=pointer]:
+        - /url: /tree#
+        - generic [ref=e72]: Feedback
+  - button "Open Next.js Dev Tools" [ref=e78] [cursor=pointer]
+  - alert [ref=e82]

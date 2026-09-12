@@ -18,10 +18,6 @@ export const vw: (value: number, screenWidth?: Breakpoints | number) => string =
     return `${(value / widthInPx) * 100}vw`;
 };
 
-export const vh: (value: number, screenHeight?: number) => string = (value, screenHeight = 1080) => {
-    return `${(value / screenHeight) * 100}vh`;
-};
-
 export const color: (value: Colors, opacity?: number) => string = (value, opacity = 1) => {
     return rgba(colors[value], opacity);
 };
@@ -32,7 +28,7 @@ export const cols: (value: number) => string = (value) => {
 
 export const offset: (type: Offset) => string = (type) => {
     const size = {
-        mobile: 375,
+        mobile: 320,
         tablet: 768,
         desktop: 1920
     };

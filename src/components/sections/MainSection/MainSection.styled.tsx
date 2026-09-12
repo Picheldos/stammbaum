@@ -3,11 +3,11 @@ import styled from 'styled-components';
 
 export const LandingRoot = styled.section`
     width: 100%;
-    padding-top: ${vw(60, 'xs')};
+    padding-top: ${vw(51.2, 'xs')};
 
     ${mediaBreakpointUp('lg')} {
-        padding-top: ${vw(40, 'xl')};
-        height: calc(100vh - 60px - ${vw(40)});
+        padding-top: ${vw(40)};
+        height: calc(100vh - ${vw(60)} - ${vw(40)});
     }
 `;
 
@@ -16,7 +16,7 @@ export const HeroGrid = styled.div`
     align-items: start;
 
     ${mediaBreakpointUp('lg')} {
-        grid-template-columns: minmax(0, 1fr) minmax(280px, 1.08fr);
+        grid-template-columns: minmax(0, 1fr) minmax(${vw(280)}, 1.08fr);
         align-items: center;
         height: 100%;
 
@@ -45,7 +45,7 @@ export const HeroTitle = styled.h1`
     ${font('heroTitle')};
     line-height: 1.1;
     color: ${color('ink')};
-    max-width: ${vw(250, 'xs')};
+    max-width: ${vw(213.333, 'xs')};
 
     ${mediaBreakpointUp('lg')} {
         max-width: ${vw(920)};
@@ -59,16 +59,15 @@ export const StepsList = styled.ol`
     display: flex;
     flex-direction: column;
     ${mediaBreakpointDown('md')} {
-        max-width: ${vw(300, 'xs')};
-        margin-top: ${vw(40, 'xs')};
+        max-width: ${vw(256, 'xs')};
+        margin-top: ${vw(34.133, 'xs')};
     }
 `;
 
 export const StepItem = styled.li`
     display: flex;
     flex-direction: row;
-    gap: clamp(0.65rem, 2vw, 1rem);
-    align-items: center;
+    align-items: flex-end;
     color: ${color('textPrimary')};
 
     ${mediaBreakpointDown('md')} {
@@ -80,7 +79,7 @@ export const StepItem = styled.li`
     ${font('step')};
 
     &:not(:last-of-type) {
-        margin-bottom: ${vw(20, 'xs')};
+        margin-bottom: ${vw(17.067, 'xs')};
     }
 
     ${mediaBreakpointUp('xl')} {
@@ -93,10 +92,9 @@ export const StepItem = styled.li`
 
 export const StepIndex = styled.span<{ $weight: 500 | 700 | 800 }>`
     flex-shrink: 0;
-    min-width: 2.85rem;
     ${font('stepIndex')};
     font-weight: ${({ $weight }) => $weight};
-    color: #6f654d;
+    color: ${color('cemeteryBorderAlt')};
     opacity: 0.4;
 
     ${mediaBreakpointUp('xl')} {
@@ -106,25 +104,27 @@ export const StepIndex = styled.span<{ $weight: 500 | 700 | 800 }>`
 
 export const StepCopy = styled.span`
     flex: 1;
+    padding-bottom: 5px;
+    padding-left: 5px;
     ${font('mobileBody')};
 `;
 
 export const CtaButton = styled.button`
     align-self: flex-start;
     width: 100%;
-    max-width: 18.5rem;
-    padding: 0.9rem 1.5rem;
+    max-width: ${vw(296, 'xs')};
+    padding: ${vw(14.4, 'xs')} ${vw(24, 'xs')};
     border-radius: 5px;
     ${font('mobileAction')};
     color: ${color('white')};
     background: ${color('landingCta')};
     cursor: pointer;
-    box-shadow: 0 4px 14px rgba(94, 109, 139, 0.28);
+    box-shadow: 0 4px ${vw(14, 'xs')} ${color('slateShadow', 0.28)};
     transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
 
     &:hover {
         background: ${color('slateBlue')};
-        box-shadow: 0 6px 20px rgba(94, 109, 139, 0.34);
+        box-shadow: 0 ${vw(6, 'xs')} ${vw(20, 'xs')} ${color('slateShadow', 0.34)};
     }
 
     &:active {
@@ -136,16 +136,24 @@ export const CtaButton = styled.button`
         outline-offset: 3px;
     }
 
+    ${mediaBreakpointUp('lg')} {
+        box-shadow: 0 4px ${vw(14)} ${color('slateShadow', 0.28)};
+
+        &:hover {
+            box-shadow: 0 ${vw(6)} ${vw(20)} ${color('slateShadow', 0.34)};
+        }
+    }
+
     ${mediaBreakpointDown('md')} {
         align-self: stretch;
         max-width: none;
-        margin-top: ${vw(30, 'xs')};
+        margin-top: ${vw(25.6, 'xs')};
     }
 
     @media (min-width: 1440px) {
-        max-width: 460px;
-        min-height: 75px;
-        padding: 1rem 2rem;
+        max-width: ${vw(460)};
+        min-height: ${vw(75)};
+        padding: ${vw(16)} ${vw(32)};
     }
 `;
 
@@ -155,12 +163,18 @@ export const TreeScene = styled.div`
     flex-direction: column;
 
     ${mediaBreakpointDown('lg')} {
-        margin-top: ${vw(20, 'xs')};
+        margin-top: ${vw(17.067, 'xs')};
     }
 `;
 
 export const TreeLayer = styled.div`
+    position: relative;
     flex: 1;
+
+    img {
+        object-fit: cover;
+        pointer-events: none;
+    }
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -168,7 +182,7 @@ export const TreeLayer = styled.div`
     z-index: 0;
 
     width: 100%;
-    height: ${vw(220, 'xs')};
+    height: ${vw(187.733, 'xs')};
 
     ${mediaBreakpointDown('lg')} {
         flex: unset;
@@ -188,7 +202,7 @@ export const TreeLayer = styled.div`
 
 
     /* ${mediaBreakpointUp('xxl')} {
-        inset: auto 0 calc(0 - 60px - ${vw(40, 'xl')});;
+        inset: auto 0 calc(0 - 60px - ${vw(40)});;
     } */
 `;
 
@@ -198,28 +212,36 @@ export const CardsOverlay = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    margin-top: ${vw(145, 'xl')};
+    margin-top: ${vw(145)};
     pointer-events: none;
-    gap: clamp(14px, 2.8vh, 28px);
+    gap: clamp(${vw(14, 'xs')}, 2.8vh, ${vw(28, 'xs')});
     z-index: 1;
 
     ${mediaBreakpointDown('lg')} {
         position: static;
         inset: unset;
         order: 3;
-        padding: 20px 0 0;
-        gap: 16px;
+        padding: ${vw(20, 'xs')} 0 0;
+        gap: ${vw(16, 'xs')};
         pointer-events: auto;
         align-items: center;
         flex-grow: 0;
-        margin-bottom: 8px;
+        margin-bottom: ${vw(8, 'xs')};
     }
 `;
 
 export const CardTier = styled.div<{ $compact?: boolean }>`
     display: flex;
     justify-content: center;
-    gap: ${({ $compact }) => ($compact ? 'clamp(8px, 2vw, 16px)' : 'clamp(10px, 2vw, 32px)')};
+    gap: ${({ $compact }) =>
+        $compact
+            ? `clamp(${vw(8, 'xs')}, 2vw, ${vw(16, 'xs')})`
+            : `clamp(${vw(10, 'xs')}, 2vw, ${vw(32, 'xs')})`};
+
+    ${mediaBreakpointUp('lg')} {
+        gap: ${({ $compact }) =>
+            $compact ? `clamp(${vw(8)}, 2vw, ${vw(16)})` : `clamp(${vw(10)}, 2vw, ${vw(32)})`};
+    }
     flex-wrap: wrap;
     width: 100%;
 `;

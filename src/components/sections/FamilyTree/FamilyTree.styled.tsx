@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { color, font, hover, mediaBreakpointDown, mediaBreakpointUp } from '@/style/mixins';
+import { color, font, hover, mediaBreakpointDown, mediaBreakpointUp, vw } from '@/style/mixins';
 
 /* ---------- Page-level shell ---------- */
 
@@ -44,6 +44,11 @@ export const TreeImageLayer = styled.div`
     position: relative;
     width: 100%;
     height: 100%;
+
+    img {
+        object-fit: cover;
+        pointer-events: none;
+    }
 `;
 
 export const Scene = styled.div<{ $x: number; $y: number; $scale: number }>`
@@ -55,8 +60,17 @@ export const Scene = styled.div<{ $x: number; $y: number; $scale: number }>`
     will-change: transform;
 `;
 
-export const ConnectionsSvg = styled.svg`
+export const ConnectionsSvg = styled.svg<{
+    $left: number;
+    $top: number;
+    $width: number;
+    $height: number;
+}>`
     position: absolute;
+    left: ${({ $left }) => $left}px;
+    top: ${({ $top }) => $top}px;
+    width: ${({ $width }) => $width}px;
+    height: ${({ $height }) => $height}px;
     pointer-events: none;
     overflow: visible;
     z-index: 0;
@@ -66,24 +80,36 @@ export const ConnectionsSvg = styled.svg`
 
 export const ZoomControls = styled.div`
     position: absolute;
-    right: 16px;
-    bottom: max(16px, env(safe-area-inset-bottom));
+    right: ${vw(16, 'xs')};
+    bottom: max(${vw(16, 'xs')}, env(safe-area-inset-bottom));
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: ${vw(8, 'xs')};
     z-index: 5;
+
+    ${mediaBreakpointUp('lg')} {
+        right: ${vw(16)};
+        bottom: max(${vw(16)}, env(safe-area-inset-bottom));
+        gap: ${vw(8)};
+    }
 `;
 
 export const ZoomButton = styled.button`
-    width: 36px;
-    height: 36px;
+    width: ${vw(36, 'xs')};
+    height: ${vw(36, 'xs')};
     border-radius: 50%;
     border: none;
     background: ${color('cream')};
     color: ${color('textPrimary')};
-    box-shadow: 0 4px 14px rgba(47, 79, 58, 0.2);
+    box-shadow: 0 4px ${vw(14, 'xs')} ${color('forestDeep', 0.2)};
     cursor: pointer;
     ${font('bodyLarge')};
+
+    ${mediaBreakpointUp('lg')} {
+        width: ${vw(36)};
+        height: ${vw(36)};
+        box-shadow: 0 4px ${vw(14)} ${color('forestDeep', 0.2)};
+    }
 
     ${hover(css`
         background: ${color('creamWarm')};
@@ -92,27 +118,39 @@ export const ZoomButton = styled.button`
 
 export const FloatingTopRight = styled.div`
     position: absolute;
-    top: 16px;
-    right: 16px;
+    top: ${vw(16, 'xs')};
+    right: ${vw(16, 'xs')};
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: ${vw(8, 'xs')};
     z-index: 6;
+
+    ${mediaBreakpointUp('lg')} {
+        top: ${vw(16)};
+        right: ${vw(16)};
+        gap: ${vw(8)};
+    }
 `;
 
 export const FloatingTopLeft = styled.div`
     position: absolute;
-    top: 16px;
-    left: 16px;
+    top: ${vw(16, 'xs')};
+    left: ${vw(16, 'xs')};
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: ${vw(8, 'xs')};
     z-index: 6;
+
+    ${mediaBreakpointUp('lg')} {
+        top: ${vw(16)};
+        left: ${vw(16)};
+        gap: ${vw(8)};
+    }
 `;
 
 export const IconButton = styled.button`
-    width: 36px;
-    height: 36px;
+    width: ${vw(36, 'xs')};
+    height: ${vw(36, 'xs')};
     border-radius: 50%;
     border: none;
     background: transparent;
@@ -123,12 +161,22 @@ export const IconButton = styled.button`
     justify-content: center;
 
     svg {
-        width: 22px;
-        height: 22px;
+        width: ${vw(22, 'xs')};
+        height: ${vw(22, 'xs')};
+    }
+
+    ${mediaBreakpointUp('lg')} {
+        width: ${vw(36)};
+        height: ${vw(36)};
+
+        svg {
+            width: ${vw(22)};
+            height: ${vw(22)};
+        }
     }
 
     ${hover(css`
-        background: rgba(255, 255, 255, 0.4);
+        background: ${color('white', 0.4)};
     `)}
 
     &:disabled {
@@ -140,64 +188,90 @@ export const IconButton = styled.button`
 export const AddRelativeCta = styled.button`
     position: absolute;
     left: 50%;
-    bottom: max(24px, calc(env(safe-area-inset-bottom) + 8px));
+    bottom: max(${vw(24, 'xs')}, calc(env(safe-area-inset-bottom) + ${vw(8, 'xs')}));
     transform: translateX(-50%);
     background: ${color('landingCta')};
     color: ${color('white')};
     border: none;
-    border-radius: 10px;
-    padding: 14px 32px;
+    border-radius: ${vw(10, 'xs')};
+    padding: ${vw(14, 'xs')} ${vw(32, 'xs')};
     cursor: pointer;
     z-index: 5;
-    box-shadow: 0 6px 18px rgba(94, 109, 139, 0.34);
+    box-shadow: 0 ${vw(6, 'xs')} ${vw(18, 'xs')} ${color('slateShadow', 0.34)};
     ${font('mobileAction')};
+
+    ${mediaBreakpointUp('lg')} {
+        border-radius: ${vw(10)};
+        padding: ${vw(14)} ${vw(32)};
+        box-shadow: 0 ${vw(6)} ${vw(18)} ${color('slateShadow', 0.34)};
+    }
 
     ${hover(css`
         background: ${color('slateBlue')};
     `)}
 
     ${mediaBreakpointDown('md')} {
-        bottom: max(84px, calc(env(safe-area-inset-bottom) + 68px));
-        padding: 11px 22px;
+        bottom: max(${vw(84, 'xs')}, calc(env(safe-area-inset-bottom) + ${vw(68, 'xs')}));
+        padding: ${vw(11, 'xs')} ${vw(22, 'xs')};
         white-space: nowrap;
     }
 `;
 
 export const SearchPopover = styled.form`
     position: absolute;
-    top: 58px;
-    left: 16px;
+    top: ${vw(58, 'xs')};
+    left: ${vw(16, 'xs')};
     z-index: 8;
     display: flex;
-    gap: 8px;
-    width: min(320px, calc(100vw - 32px));
-    padding: 10px;
+    gap: ${vw(8, 'xs')};
+    width: min(100%, calc(100vw - ${vw(32, 'xs')}));
+    max-width: ${vw(320, 'xs')};
+    padding: ${vw(10, 'xs')};
     background: ${color('landingCard')};
-    border-radius: 8px;
-    box-shadow: 0 8px 24px rgba(47, 79, 58, 0.2);
+    border-radius: ${vw(8, 'xs')};
+    box-shadow: 0 ${vw(8, 'xs')} ${vw(24, 'xs')} ${color('forestDeep', 0.2)};
     ${font('mobileControl')};
-    color: #5d5d5d;
+    color: ${color('mutedText')};
+
+    ${mediaBreakpointUp('lg')} {
+        top: ${vw(58)};
+        left: ${vw(16)};
+        gap: ${vw(8)};
+        width: ${vw(320)};
+        max-width: none;
+        padding: ${vw(10)};
+        border-radius: ${vw(8)};
+        box-shadow: 0 ${vw(8)} ${vw(24)} ${color('forestDeep', 0.2)};
+    }
 `;
 
 export const SearchInput = styled.input`
     min-width: 0;
     flex: 1;
-    padding: 9px 10px;
+    padding: ${vw(9, 'xs')} ${vw(10, 'xs')};
     border: 1px solid ${color('forest', 0.35)};
     border-radius: 5px;
     background: ${color('white')};
-    color: #5d5d5d;
+    color: ${color('mutedText')};
     ${font('mobileControl')};
+
+    ${mediaBreakpointUp('lg')} {
+        padding: ${vw(9)} ${vw(10)};
+    }
 `;
 
 export const SearchSubmit = styled.button`
     flex: 0 0 auto;
-    padding: 9px 12px;
+    padding: ${vw(9, 'xs')} ${vw(12, 'xs')};
     border-radius: 5px;
     background: ${color('landingCta')};
     color: ${color('white')};
     cursor: pointer;
     ${font('mobileAction')};
+
+    ${mediaBreakpointUp('lg')} {
+        padding: ${vw(9)} ${vw(12)};
+    }
 `;
 
 /* ---------- Empty state ---------- */
@@ -209,27 +283,39 @@ export const EmptyOverlay = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 24px;
+    gap: ${vw(24, 'xs')};
     z-index: 4;
     pointer-events: none;
+
+    ${mediaBreakpointUp('lg')} {
+        gap: ${vw(24)};
+    }
 `;
 
 export const EmptyCard = styled.button`
     pointer-events: auto;
-    background: #ecd9bf;
+    background: ${color('warmPaper')};
     color: ${color('textPrimary')};
-    border: 1px solid rgba(255, 255, 255, 0.45);
-    padding: 16px 24px;
-    border-radius: 8px;
+    border: 1px solid ${color('white', 0.45)};
+    padding: ${vw(16, 'xs')} ${vw(24, 'xs')};
+    border-radius: ${vw(8, 'xs')};
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
-    box-shadow: 0 8px 24px rgba(47, 79, 58, 0.18);
+    gap: ${vw(12, 'xs')};
+    box-shadow: 0 ${vw(8, 'xs')} ${vw(24, 'xs')} ${color('forestDeep', 0.18)};
     cursor: pointer;
     ${font('mobileBody')};
-    min-width: 220px;
+    min-width: ${vw(220, 'xs')};
     text-align: center;
+
+    ${mediaBreakpointUp('lg')} {
+        padding: ${vw(16)} ${vw(24)};
+        border-radius: ${vw(8)};
+        gap: ${vw(12)};
+        box-shadow: 0 ${vw(8)} ${vw(24)} ${color('forestDeep', 0.18)};
+        min-width: ${vw(220)};
+    }
 
     ${hover(css`
         background: ${color('creamWarm')};
@@ -237,12 +323,18 @@ export const EmptyCard = styled.button`
 `;
 
 export const EmptyAvatar = styled.div`
-    width: 44px;
-    height: 44px;
+    width: ${vw(44, 'xs')};
+    height: ${vw(44, 'xs')};
     border-radius: 50%;
     background: ${color('avatarStub')};
-    margin-bottom: 6px;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08);
+    margin-bottom: ${vw(6, 'xs')};
+    box-shadow: inset 0 1px 3px ${color('black', 0.08)};
+
+    ${mediaBreakpointUp('lg')} {
+        width: ${vw(44)};
+        height: ${vw(44)};
+        margin-bottom: ${vw(6)};
+    }
 `;
 
 export const EmptyCta = styled.button`
@@ -250,11 +342,17 @@ export const EmptyCta = styled.button`
     background: ${color('landingCta')};
     color: ${color('white')};
     border: none;
-    border-radius: 10px;
-    padding: 14px 28px;
+    border-radius: ${vw(10, 'xs')};
+    padding: ${vw(14, 'xs')} ${vw(28, 'xs')};
     cursor: pointer;
-    box-shadow: 0 6px 18px rgba(94, 109, 139, 0.34);
+    box-shadow: 0 ${vw(6, 'xs')} ${vw(18, 'xs')} ${color('slateShadow', 0.34)};
     ${font('mobileAction')};
+
+    ${mediaBreakpointUp('lg')} {
+        border-radius: ${vw(10)};
+        padding: ${vw(14)} ${vw(28)};
+        box-shadow: 0 ${vw(6)} ${vw(18)} ${color('slateShadow', 0.34)};
+    }
 
     ${hover(css`
         background: ${color('slateBlue')};

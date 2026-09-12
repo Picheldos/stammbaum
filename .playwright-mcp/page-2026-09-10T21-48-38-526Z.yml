@@ -1,0 +1,27 @@
+- generic [ref=f5e4]:
+  - generic [ref=f5e5]:
+    - banner [ref=f5e6]:
+      - generic [ref=f5e7]:
+        - link "Stammbaum" [ref=f5e9] [cursor=pointer]:
+          - /url: /
+        - generic [ref=f5e12]:
+          - button "EN" [ref=f5e13] [cursor=pointer]
+          - button "Open menu" [ref=f5e14] [cursor=pointer]
+    - main [ref=f5e17]:
+      - generic [ref=f5e18]: Loading...
+  - generic [ref=f5e24]:
+    - link [ref=f5e25] [cursor=pointer]:
+      - /url: /about
+      - generic [ref=f5e26]: About
+    - link [ref=f5e27] [cursor=pointer]:
+      - /url: /tree
+      - generic [ref=f5e28]: Family tree
+    - link [ref=f5e29] [cursor=pointer]:
+      - /url: /cemetery
+      - generic [ref=f5e30]: Cemetery
+    - link [ref=f5e31] [cursor=pointer]:
+      - /url: /login
+      - generic [ref=f5e32]: Sign
+    - link [ref=f5e33] [cursor=pointer]:
+      - /url: /tree#
+      - generic [ref=f5e34]: Feedback

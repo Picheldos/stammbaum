@@ -1,0 +1,8 @@
+{
+    "mcpServers": {
+        "windows-computer-use": {
+            "command": "python",
+            "args": ["-m", "windows_computer_use"]
+        }
+    }
+}

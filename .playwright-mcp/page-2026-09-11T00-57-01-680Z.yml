@@ -1,0 +1,38 @@
+- generic [ref=f10e1]:
+  - generic [ref=f10e4]:
+    - generic [ref=f10e5]:
+      - banner [ref=f10e6]:
+        - generic [ref=f10e7]:
+          - link "Stammbaum" [ref=f10e9] [cursor=pointer]:
+            - /url: /ru
+          - generic [ref=f10e12]:
+            - button "RU" [ref=f10e13] [cursor=pointer]
+            - button "Открыть меню" [ref=f10e14] [cursor=pointer]
+      - main [ref=f10e17]:
+        - generic [ref=f10e18]:
+          - button "Search" [ref=f10e100] [cursor=pointer]
+          - button "Menu" [ref=f10e101] [cursor=pointer]
+          - navigation "periods" [ref=f10e30]
+          - generic [ref=f10e40]:
+            - generic [ref=f10e67]: "2020"
+            - figure "Петров Пётр" [ref=f10e68]:
+              - img "Петров Пётр" [ref=f10e69]:
+                - generic [ref=f10e70]: ПП
+              - generic "Отец" [ref=f10e71]
+              - generic [ref=f10e72]: 05.04.1950 — 07.06.2020
+          - button "addButton" [active] [ref=f10e102] [cursor=pointer]
+    - generic [ref=f10e79]:
+      - link [ref=f10e82] [cursor=pointer]:
+        - /url: /ru/tree
+        - generic [ref=f10e83]: Семейное древо
+      - link [ref=f10e84] [cursor=pointer]:
+        - /url: /ru/cemetery
+        - generic [ref=f10e85]: Кладбище
+      - link [ref=f10e86] [cursor=pointer]:
+        - /url: /ru/login
+        - generic [ref=f10e87]: Вход/Регистрация
+      - link [ref=f10e88] [cursor=pointer]:
+        - /url: /ru/tree#
+        - generic [ref=f10e89]: Связаться с нами
+  - button "Open Next.js Dev Tools" [ref=f10e95] [cursor=pointer]
+  - alert [ref=f10e99]: Кладбище — Stammbaum

@@ -7,6 +7,7 @@ module.exports = {
   
     images: {
       domains: [],
+      qualities: [75, 100],
     },
   
     // ✅ Turbopack конфигурация (заменяет webpack для SVGR)

@@ -43,8 +43,6 @@ export const AboutBlock: React.FC<AboutBlockProps> = ({
               fill
               alt="Family"
               quality={100}
-              style={{ objectFit: 'cover', objectPosition: 'center' }}
-
             />
           </ImageContainer>
         )}

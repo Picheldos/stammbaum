@@ -1,10 +1,9 @@
 import React, { useEffect, useCallback } from 'react';
 import { useTranslation } from 'next-i18next';
-import { Container, SandwichMenu, SandwichMenuLink, SandwichTop } from './Sandwich.styled';
+import { Container, MenuLink, SandwichMenu, SandwichMenuLink, SandwichTop } from './Sandwich.styled';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { SandwichState } from '@/recoil/sandwichState/athom';
 import { SizesState } from '@/recoil/commonState/athom';
-import Link from 'next/link';
 import CloseButton from '@/components/ui/CloseButton/CloseButton';
 
 export interface SandwichProps {}
@@ -51,9 +50,9 @@ const Sandwich: React.FC<SandwichProps> = () => {
             </SandwichTop>
             <SandwichMenu>
                 {items.map(({ href, labelKey }) => (
-                    <Link key={href} href={href} onClick={close} style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <MenuLink key={href} href={href} onClick={close}>
                         <SandwichMenuLink as="span">{t(labelKey)}</SandwichMenuLink>
-                    </Link>
+                    </MenuLink>
                 ))}
                 {/* <SandwichMenuHint>{t('header.createTree')}</SandwichMenuHint>
                 <SandwichMenuHint>{t('header.login')}</SandwichMenuHint> */}

@@ -1,7 +1,18 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
-import { color, font } from '@/style/mixins';
+import {
+    ActionButton,
+    ActionRow,
+    Avatar,
+    Empty,
+    Hero,
+    HeroMeta,
+    HeroName,
+    ListAvatar,
+    ListItem,
+    ListRow,
+    RemoveRelationButton
+} from './PersonCardModal.styled';
 import { Person, PersonRelation } from '@/lib/family/types';
 import {
     buildLookup,
@@ -24,119 +35,6 @@ import {
     Tab,
     Tabs
 } from './Modal.styled';
-
-const Hero = styled.div`
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 4px;
-`;
-
-const Avatar = styled.div<{ $photo?: string }>`
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    background-color: ${color('avatarStub')};
-    background-image: ${({ $photo }) => ($photo ? `url(${$photo})` : 'none')};
-    background-size: cover;
-    background-position: center;
-    border: 2px solid ${color('white')};
-`;
-
-const HeroName = styled.div`
-    ${font('mobileHeader')};
-    color: ${color('textPrimary')};
-`;
-
-const HeroMeta = styled.div`
-    ${font('mobileControl')};
-    color: ${color('textPrimary')};
-    opacity: 0.75;
-`;
-
-const ListRow = styled.div`
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 6px;
-    padding: 4px 6px 4px 0;
-
-    &:hover {
-        background: ${color('white')};
-    }
-`;
-
-const ListItem = styled.button`
-    flex: 1;
-    background: transparent;
-    border: none;
-    border-radius: 6px;
-    padding: 6px 6px 6px 12px;
-    text-align: left;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: ${color('textPrimary')};
-    ${font('mobileHeader')};
-`;
-
-const RemoveRelationButton = styled.button`
-    flex: 0 0 auto;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
-    border: 1px solid rgba(94, 109, 139, 0.4);
-    color: ${color('textPrimary')};
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    padding: 0;
-    ${font('mobileHeader')};
-    font-weight: 400;
-    line-height: 1;
-    cursor: pointer;
-    opacity: 0.7;
-
-    &:hover {
-        opacity: 1;
-        background: rgba(94, 109, 139, 0.15);
-    }
-`;
-
-const ListAvatar = styled.div<{ $photo?: string }>`
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background-color: ${color('avatarStub')};
-    background-image: ${({ $photo }) => ($photo ? `url(${$photo})` : 'none')};
-    background-size: cover;
-    background-position: center;
-`;
-
-const Empty = styled.div`
-    ${font('mobileControl')};
-    color: ${color('textPrimary')};
-    opacity: 0.6;
-`;
-
-const ActionRow = styled.div`
-    margin-top: 12px;
-    display: flex;
-    gap: 8px;
-`;
-
-const ActionButton = styled.button`
-    background: ${color('landingCta')};
-    color: ${color('white')};
-    border: none;
-    border-radius: 8px;
-    padding: 10px 14px;
-    cursor: pointer;
-    ${font('mobileAction')};
-`;
 
 export type PersonCardTab = 'info' | 'parents' | 'spouses' | 'children' | 'siblings';
 

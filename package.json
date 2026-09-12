@@ -7,7 +7,7 @@
         "build": "next build",
         "start": "next start",
         "clean": "rimraf .next",
-        "lint": "next lint",
+        "lint": "eslint src --ext .ts,.tsx",
         "lint:css": "stylelint ./src/**/*.styled.tsx",
         "format": "prettier --write ./**/*.{ts,tsx} --config ./.prettierrc"
     },

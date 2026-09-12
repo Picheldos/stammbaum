@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-import { Container, SearchTrigger, SearchFieldWrap, SearchInputInner, SearchInput } from './Search.styled';
+import { Container, SearchTrigger, SearchFieldWrap, SearchForm, SearchInputInner, SearchInput } from './Search.styled';
 import SearchIcon from '@/icons/seach1.svg';
 
 export interface SearchProps {}
@@ -74,11 +74,11 @@ const Search: React.FC<SearchProps> = () => {
                 <SearchIcon />
             </SearchTrigger>
             <SearchFieldWrap $isOpen={isOpen}>
-                <form onSubmit={handleSubmit} style={{ display: 'flex', width: '100%', minWidth: 0 }}>
+                <SearchForm onSubmit={handleSubmit}>
                     <SearchInputInner>
                         <SearchInput ref={inputRef} type="search" autoComplete="off" />
                     </SearchInputInner>
-                </form>
+                </SearchForm>
             </SearchFieldWrap>
         </Container>
     );

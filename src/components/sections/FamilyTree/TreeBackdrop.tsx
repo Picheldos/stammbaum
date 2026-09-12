@@ -1,4 +1,5 @@
 import React from 'react';
+import { color } from '@/style/mixins';
 
 /**
  * Stylised silhouette of a deciduous tree (crown + trunk + visible roots) used
@@ -9,12 +10,12 @@ const TreeBackdrop: React.FC<{ className?: string }> = ({ className }) => (
     <svg className={className} viewBox="0 0 800 560" xmlns="http://www.w3.org/2000/svg" aria-hidden>
         <defs>
             <radialGradient id="crown" cx="50%" cy="40%" r="60%">
-                <stop offset="0%" stopColor="#9bb37e" />
-                <stop offset="100%" stopColor="#4a7043" stopOpacity="0.85" />
+                <stop offset="0%" stopColor={color('treeGreenLight')} />
+                <stop offset="100%" stopColor={color('treeGreen')} stopOpacity="0.85" />
             </radialGradient>
             <linearGradient id="trunk" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#735041" />
-                <stop offset="100%" stopColor="#3b2a22" />
+                <stop offset="0%" stopColor={color('treeBrown')} />
+                <stop offset="100%" stopColor={color('treeBrownDark')} />
             </linearGradient>
         </defs>
         <ellipse cx="400" cy="170" rx="280" ry="170" fill="url(#crown)" opacity="0.85" />
@@ -28,7 +29,7 @@ const TreeBackdrop: React.FC<{ className?: string }> = ({ className }) => (
         <path
             d="M380 510 C320 530 260 535 180 530 M420 510 C480 530 540 535 620 530 M395 540 C360 555 300 555 240 553 M405 540 C440 555 500 555 560 553"
             fill="none"
-            stroke="#3b2a22"
+            stroke={color('treeBrownDark')}
             strokeWidth="4"
             strokeLinecap="round"
             opacity="0.7"

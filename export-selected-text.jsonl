@@ -1,0 +1,3858 @@
+﻿{
+  "frame": "284:2569",
+  "name": "При нажатии на иф родители",
+  "box": {
+    "x": 3707,
+    "y": 4014,
+    "width": 320,
+    "height": 596
+  },
+  "text": [
+    {
+      "id": "I284:2571;231:225",
+      "name": "О проекте",
+      "characters": "",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на иф родители(284:2569) > INSTANCE:пункты меню(284:2571) > TEXT:О проекте(I284:2571;231:225)",
+      "box": {
+        "x": 3771,
+        "y": 4025,
+        "width": 0,
+        "height": 14
+      },
+      "style": {
+        "fontFamily": "Playfair Display",
+        "fontPostScriptName": "PlayfairDisplay-Medium",
+        "fontWeight": 500,
+        "fontSize": 20,
+        "lineHeightPx": 26.65999984741211,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2573",
+      "name": "Stammbaum",
+      "characters": "Stammbaum",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на иф родители(284:2569) > TEXT:Stammbaum(284:2573)",
+      "box": {
+        "x": 3716,
+        "y": 4026,
+        "width": 92,
+        "height": 11
+      },
+      "style": {
+        "fontFamily": "Playfair Display",
+        "fontPostScriptName": "PlayfairDisplay-Regular",
+        "fontWeight": 400,
+        "fontSize": 16,
+        "lineHeightPx": 21.327999114990234,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "I284:2574;231:225",
+      "name": "О проекте",
+      "characters": "RU",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на иф родители(284:2569) > INSTANCE:пункты меню(284:2574) > TEXT:О проекте(I284:2574;231:225)",
+      "box": {
+        "x": 3966,
+        "y": 4027,
+        "width": 17,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "I284:2581;240:530",
+      "name": "Создать древо",
+      "characters": "Редактировать",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на иф родители(284:2569) > INSTANCE:Frame 41(284:2581) > TEXT:Создать древо(I284:2581;240:530)",
+      "box": {
+        "x": 3815.5,
+        "y": 4511,
+        "width": 103,
+        "height": 10
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 14,
+        "lineHeightPx": 19.124000549316406,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "I284:2582;280:1114",
+      "name": "Родители",
+      "characters": "Родители",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на иф родители(284:2569) > INSTANCE:Frame 58(284:2582) > TEXT:Родители(I284:2582;280:1114)",
+      "box": {
+        "x": 3829,
+        "y": 4164,
+        "width": 57,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2583",
+      "name": "Супруги",
+      "characters": "Супруги",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на иф родители(284:2569) > TEXT:Супруги(284:2583)",
+      "box": {
+        "x": 3902,
+        "y": 4164,
+        "width": 49,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2584",
+      "name": "Дети",
+      "characters": "Дети",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на иф родители(284:2569) > TEXT:Дети(284:2584)",
+      "box": {
+        "x": 3961,
+        "y": 4164,
+        "width": 30,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2585",
+      "name": "Бр",
+      "characters": "Бр",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на иф родители(284:2569) > TEXT:Бр(284:2585)",
+      "box": {
+        "x": 4001,
+        "y": 4164,
+        "width": 15,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2586",
+      "name": "Информация",
+      "characters": "Информация",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на иф родители(284:2569) > TEXT:Информация(284:2586)",
+      "box": {
+        "x": 3737,
+        "y": 4164,
+        "width": 76,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2588",
+      "name": "Дата рождения",
+      "characters": "Дата рождения",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на иф родители(284:2569) > TEXT:Дата рождения(284:2588)",
+      "box": {
+        "x": 3737,
+        "y": 4256,
+        "width": 89,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2589",
+      "name": "Место рождения",
+      "characters": "Место рождения",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на иф родители(284:2569) > TEXT:Место рождения(284:2589)",
+      "box": {
+        "x": 3737,
+        "y": 4307,
+        "width": 98,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2590",
+      "name": "Дата смерти",
+      "characters": "Дата смерти",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на иф родители(284:2569) > TEXT:Дата смерти(284:2590)",
+      "box": {
+        "x": 3737,
+        "y": 4358,
+        "width": 74,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2591",
+      "name": "Место смерти",
+      "characters": "Место смерти",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на иф родители(284:2569) > TEXT:Место смерти(284:2591)",
+      "box": {
+        "x": 3737,
+        "y": 4409,
+        "width": 90,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2592",
+      "name": "Имя Фамилия Отчество",
+      "characters": "Имя Фамилия Отчество",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на иф родители(284:2569) > TEXT:Имя Фамилия Отчество(284:2592)",
+      "box": {
+        "x": 3737,
+        "y": 4224,
+        "width": 181,
+        "height": 12
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 16,
+        "lineHeightPx": 21.856000900268555,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2593",
+      "name": "01.01.2000",
+      "characters": "01.01.2000",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на иф родители(284:2569) > TEXT:01.01.2000(284:2593)",
+      "box": {
+        "x": 3737,
+        "y": 4275,
+        "width": 80,
+        "height": 12
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 16,
+        "lineHeightPx": 21.856000900268555,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2594",
+      "name": "Россия, г. Санкт-Петербург",
+      "characters": "Россия, г. Санкт-Петербург",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на иф родители(284:2569) > TEXT:Россия, г. Санкт-Петербург(284:2594)",
+      "box": {
+        "x": 3737,
+        "y": 4326,
+        "width": 213,
+        "height": 12
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 16,
+        "lineHeightPx": 21.856000900268555,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2595",
+      "name": "01.01.2000",
+      "characters": "01.01.2000",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на иф родители(284:2569) > TEXT:01.01.2000(284:2595)",
+      "box": {
+        "x": 3737,
+        "y": 4377,
+        "width": 80,
+        "height": 12
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 16,
+        "lineHeightPx": 21.856000900268555,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2596",
+      "name": "Германия, г. Мюнхен",
+      "characters": "Германия, г. Мюнхен ",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на иф родители(284:2569) > TEXT:Германия, г. Мюнхен(284:2596)",
+      "box": {
+        "x": 3737,
+        "y": 4428,
+        "width": 160,
+        "height": 12
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 16,
+        "lineHeightPx": 21.856000900268555,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "I284:2597;260:883",
+      "name": "Добавить дополнительную информацию",
+      "characters": "Добавить дополнительную информацию",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на иф родители(284:2569) > INSTANCE:Frame 53(284:2597) > TEXT:Добавить дополнительную информацию(I284:2597;260:883)",
+      "box": {
+        "x": 3737,
+        "y": 4460,
+        "width": 159,
+        "height": 6
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 8,
+        "lineHeightPx": 10.928000450134277,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textDecoration": "UNDERLINE",
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2609",
+      "name": "Имя Фамилия",
+      "characters": "Имя Фамилия",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на иф родители(284:2569) > TEXT:Имя Фамилия(284:2609)",
+      "box": {
+        "x": 3737,
+        "y": 4121,
+        "width": 104,
+        "height": 12
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 16,
+        "lineHeightPx": 21.856000900268555,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,255,255,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2610",
+      "name": "Отец",
+      "characters": "Отец",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на иф родители(284:2569) > TEXT:Отец(284:2610)",
+      "box": {
+        "x": 3794,
+        "y": 4194,
+        "width": 30,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "I284:2622;280:1114",
+      "name": "Родители",
+      "characters": "Мать",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на иф родители(284:2569) > INSTANCE:Frame 59(284:2622) > TEXT:Родители(I284:2622;280:1114)",
+      "box": {
+        "x": 3745,
+        "y": 4194,
+        "width": 30,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    }
+  ]
+}
+{
+  "frame": "284:2626",
+  "name": "При нажатии на ИФ супруги",
+  "box": {
+    "x": 4075,
+    "y": 4014,
+    "width": 320,
+    "height": 596
+  },
+  "text": [
+    {
+      "id": "I284:2628;231:225",
+      "name": "О проекте",
+      "characters": "",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ супруги(284:2626) > INSTANCE:пункты меню(284:2628) > TEXT:О проекте(I284:2628;231:225)",
+      "box": {
+        "x": 4139,
+        "y": 4025,
+        "width": 0,
+        "height": 14
+      },
+      "style": {
+        "fontFamily": "Playfair Display",
+        "fontPostScriptName": "PlayfairDisplay-Medium",
+        "fontWeight": 500,
+        "fontSize": 20,
+        "lineHeightPx": 26.65999984741211,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2630",
+      "name": "Stammbaum",
+      "characters": "Stammbaum",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ супруги(284:2626) > TEXT:Stammbaum(284:2630)",
+      "box": {
+        "x": 4084,
+        "y": 4026,
+        "width": 92,
+        "height": 11
+      },
+      "style": {
+        "fontFamily": "Playfair Display",
+        "fontPostScriptName": "PlayfairDisplay-Regular",
+        "fontWeight": 400,
+        "fontSize": 16,
+        "lineHeightPx": 21.327999114990234,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "I284:2631;231:225",
+      "name": "О проекте",
+      "characters": "RU",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ супруги(284:2626) > INSTANCE:пункты меню(284:2631) > TEXT:О проекте(I284:2631;231:225)",
+      "box": {
+        "x": 4334,
+        "y": 4027,
+        "width": 17,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "I284:2638;240:530",
+      "name": "Создать древо",
+      "characters": "Редактировать",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ супруги(284:2626) > INSTANCE:Frame 41(284:2638) > TEXT:Создать древо(I284:2638;240:530)",
+      "box": {
+        "x": 4183.5,
+        "y": 4511,
+        "width": 103,
+        "height": 10
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 14,
+        "lineHeightPx": 19.124000549316406,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2641",
+      "name": "Дети",
+      "characters": "Дети",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ супруги(284:2626) > TEXT:Дети(284:2641)",
+      "box": {
+        "x": 4329,
+        "y": 4164,
+        "width": 30,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2642",
+      "name": "Бр",
+      "characters": "Бр",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ супруги(284:2626) > TEXT:Бр(284:2642)",
+      "box": {
+        "x": 4369,
+        "y": 4164,
+        "width": 16,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2643",
+      "name": "Информация",
+      "characters": "Информация",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ супруги(284:2626) > TEXT:Информация(284:2643)",
+      "box": {
+        "x": 4105,
+        "y": 4164,
+        "width": 76,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2644",
+      "name": "Дата рождения",
+      "characters": "Дата рождения",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ супруги(284:2626) > TEXT:Дата рождения(284:2644)",
+      "box": {
+        "x": 4105,
+        "y": 4256,
+        "width": 89,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2645",
+      "name": "Место рождения",
+      "characters": "Место рождения",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ супруги(284:2626) > TEXT:Место рождения(284:2645)",
+      "box": {
+        "x": 4105,
+        "y": 4307,
+        "width": 98,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2646",
+      "name": "Дата смерти",
+      "characters": "Дата смерти",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ супруги(284:2626) > TEXT:Дата смерти(284:2646)",
+      "box": {
+        "x": 4105,
+        "y": 4358,
+        "width": 74,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2647",
+      "name": "Место смерти",
+      "characters": "Место смерти",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ супруги(284:2626) > TEXT:Место смерти(284:2647)",
+      "box": {
+        "x": 4105,
+        "y": 4409,
+        "width": 90,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2648",
+      "name": "Имя Фамилия Отчество",
+      "characters": "Имя Фамилия Отчество",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ супруги(284:2626) > TEXT:Имя Фамилия Отчество(284:2648)",
+      "box": {
+        "x": 4105,
+        "y": 4224,
+        "width": 181,
+        "height": 12
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 16,
+        "lineHeightPx": 21.856000900268555,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2649",
+      "name": "01.01.2000",
+      "characters": "01.01.2000",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ супруги(284:2626) > TEXT:01.01.2000(284:2649)",
+      "box": {
+        "x": 4105,
+        "y": 4275,
+        "width": 80,
+        "height": 12
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 16,
+        "lineHeightPx": 21.856000900268555,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2650",
+      "name": "Россия, г. Санкт-Петербург",
+      "characters": "Россия, г. Санкт-Петербург",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ супруги(284:2626) > TEXT:Россия, г. Санкт-Петербург(284:2650)",
+      "box": {
+        "x": 4105,
+        "y": 4326,
+        "width": 213,
+        "height": 12
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 16,
+        "lineHeightPx": 21.856000900268555,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2651",
+      "name": "01.01.2000",
+      "characters": "01.01.2000",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ супруги(284:2626) > TEXT:01.01.2000(284:2651)",
+      "box": {
+        "x": 4105,
+        "y": 4377,
+        "width": 80,
+        "height": 12
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 16,
+        "lineHeightPx": 21.856000900268555,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2652",
+      "name": "Германия, г. Мюнхен",
+      "characters": "Германия, г. Мюнхен ",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ супруги(284:2626) > TEXT:Германия, г. Мюнхен(284:2652)",
+      "box": {
+        "x": 4105,
+        "y": 4428,
+        "width": 160,
+        "height": 12
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 16,
+        "lineHeightPx": 21.856000900268555,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "I284:2653;260:883",
+      "name": "Добавить дополнительную информацию",
+      "characters": "Добавить дополнительную информацию",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ супруги(284:2626) > INSTANCE:Frame 53(284:2653) > TEXT:Добавить дополнительную информацию(I284:2653;260:883)",
+      "box": {
+        "x": 4105,
+        "y": 4460,
+        "width": 159,
+        "height": 6
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 8,
+        "lineHeightPx": 10.928000450134277,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textDecoration": "UNDERLINE",
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2654",
+      "name": "Имя Фамилия",
+      "characters": "Имя Фамилия",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ супруги(284:2626) > TEXT:Имя Фамилия(284:2654)",
+      "box": {
+        "x": 4105,
+        "y": 4121,
+        "width": 104,
+        "height": 12
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 16,
+        "lineHeightPx": 21.856000900268555,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,255,255,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "I284:2657;280:1114",
+      "name": "Родители",
+      "characters": "Супруга",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ супруги(284:2626) > INSTANCE:Frame 59(284:2657) > TEXT:Родители(I284:2657;280:1114)",
+      "box": {
+        "x": 4113,
+        "y": 4194,
+        "width": 48,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2692",
+      "name": "Родители",
+      "characters": "Родители",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ супруги(284:2626) > TEXT:Родители(284:2692)",
+      "box": {
+        "x": 4191,
+        "y": 4164,
+        "width": 57,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "I284:2693;280:1114",
+      "name": "Родители",
+      "characters": "Супруги",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ супруги(284:2626) > INSTANCE:Frame 60(284:2693) > TEXT:Родители(I284:2693;280:1114)",
+      "box": {
+        "x": 4264,
+        "y": 4164,
+        "width": 49,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2671",
+      "name": "Супруг",
+      "characters": "Супруг",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ супруги(284:2626) > TEXT:Супруг(284:2671)",
+      "box": {
+        "x": 4177,
+        "y": 4194,
+        "width": 42,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    }
+  ]
+}
+{
+  "frame": "284:2696",
+  "name": "При нажатии на ИФ дети",
+  "box": {
+    "x": 4435,
+    "y": 4014,
+    "width": 320,
+    "height": 596
+  },
+  "text": [
+    {
+      "id": "I284:2698;231:225",
+      "name": "О проекте",
+      "characters": "",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ дети(284:2696) > INSTANCE:пункты меню(284:2698) > TEXT:О проекте(I284:2698;231:225)",
+      "box": {
+        "x": 4499,
+        "y": 4025,
+        "width": 0,
+        "height": 14
+      },
+      "style": {
+        "fontFamily": "Playfair Display",
+        "fontPostScriptName": "PlayfairDisplay-Medium",
+        "fontWeight": 500,
+        "fontSize": 20,
+        "lineHeightPx": 26.65999984741211,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2700",
+      "name": "Stammbaum",
+      "characters": "Stammbaum",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ дети(284:2696) > TEXT:Stammbaum(284:2700)",
+      "box": {
+        "x": 4444,
+        "y": 4026,
+        "width": 92,
+        "height": 11
+      },
+      "style": {
+        "fontFamily": "Playfair Display",
+        "fontPostScriptName": "PlayfairDisplay-Regular",
+        "fontWeight": 400,
+        "fontSize": 16,
+        "lineHeightPx": 21.327999114990234,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "I284:2701;231:225",
+      "name": "О проекте",
+      "characters": "RU",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ дети(284:2696) > INSTANCE:пункты меню(284:2701) > TEXT:О проекте(I284:2701;231:225)",
+      "box": {
+        "x": 4694,
+        "y": 4027,
+        "width": 17,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "I284:2708;240:530",
+      "name": "Создать древо",
+      "characters": "Редактировать",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ дети(284:2696) > INSTANCE:Frame 41(284:2708) > TEXT:Создать древо(I284:2708;240:530)",
+      "box": {
+        "x": 4543.5,
+        "y": 4511,
+        "width": 103,
+        "height": 10
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 14,
+        "lineHeightPx": 19.124000549316406,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2709",
+      "name": "Супруги",
+      "characters": "Супруги",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ дети(284:2696) > TEXT:Супруги(284:2709)",
+      "box": {
+        "x": 4618,
+        "y": 4164,
+        "width": 49,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2710",
+      "name": "Бр",
+      "characters": "Бр",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ дети(284:2696) > TEXT:Бр(284:2710)",
+      "box": {
+        "x": 4729,
+        "y": 4164,
+        "width": 16,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2711",
+      "name": "Информация",
+      "characters": "Информация",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ дети(284:2696) > TEXT:Информация(284:2711)",
+      "box": {
+        "x": 4465,
+        "y": 4164,
+        "width": 76,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2712",
+      "name": "Дата рождения",
+      "characters": "Дата рождения",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ дети(284:2696) > TEXT:Дата рождения(284:2712)",
+      "box": {
+        "x": 4465,
+        "y": 4256,
+        "width": 89,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2713",
+      "name": "Место рождения",
+      "characters": "Место рождения",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ дети(284:2696) > TEXT:Место рождения(284:2713)",
+      "box": {
+        "x": 4465,
+        "y": 4307,
+        "width": 98,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2714",
+      "name": "Дата смерти",
+      "characters": "Дата смерти",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ дети(284:2696) > TEXT:Дата смерти(284:2714)",
+      "box": {
+        "x": 4465,
+        "y": 4358,
+        "width": 74,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2715",
+      "name": "Место смерти",
+      "characters": "Место смерти",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ дети(284:2696) > TEXT:Место смерти(284:2715)",
+      "box": {
+        "x": 4465,
+        "y": 4409,
+        "width": 90,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2716",
+      "name": "Имя Фамилия Отчество",
+      "characters": "Имя Фамилия Отчество",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ дети(284:2696) > TEXT:Имя Фамилия Отчество(284:2716)",
+      "box": {
+        "x": 4465,
+        "y": 4224,
+        "width": 181,
+        "height": 12
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 16,
+        "lineHeightPx": 21.856000900268555,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2717",
+      "name": "01.01.2000",
+      "characters": "01.01.2000",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ дети(284:2696) > TEXT:01.01.2000(284:2717)",
+      "box": {
+        "x": 4465,
+        "y": 4275,
+        "width": 80,
+        "height": 12
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 16,
+        "lineHeightPx": 21.856000900268555,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2718",
+      "name": "Россия, г. Санкт-Петербург",
+      "characters": "Россия, г. Санкт-Петербург",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ дети(284:2696) > TEXT:Россия, г. Санкт-Петербург(284:2718)",
+      "box": {
+        "x": 4465,
+        "y": 4326,
+        "width": 213,
+        "height": 12
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 16,
+        "lineHeightPx": 21.856000900268555,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2719",
+      "name": "01.01.2000",
+      "characters": "01.01.2000",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ дети(284:2696) > TEXT:01.01.2000(284:2719)",
+      "box": {
+        "x": 4465,
+        "y": 4377,
+        "width": 80,
+        "height": 12
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 16,
+        "lineHeightPx": 21.856000900268555,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2720",
+      "name": "Германия, г. Мюнхен",
+      "characters": "Германия, г. Мюнхен ",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ дети(284:2696) > TEXT:Германия, г. Мюнхен(284:2720)",
+      "box": {
+        "x": 4465,
+        "y": 4428,
+        "width": 160,
+        "height": 12
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 16,
+        "lineHeightPx": 21.856000900268555,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "I284:2721;260:883",
+      "name": "Добавить дополнительную информацию",
+      "characters": "Добавить дополнительную информацию",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ дети(284:2696) > INSTANCE:Frame 53(284:2721) > TEXT:Добавить дополнительную информацию(I284:2721;260:883)",
+      "box": {
+        "x": 4465,
+        "y": 4460,
+        "width": 159,
+        "height": 6
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 8,
+        "lineHeightPx": 10.928000450134277,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textDecoration": "UNDERLINE",
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2722",
+      "name": "Имя Фамилия",
+      "characters": "Имя Фамилия",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ дети(284:2696) > TEXT:Имя Фамилия(284:2722)",
+      "box": {
+        "x": 4465,
+        "y": 4121,
+        "width": 104,
+        "height": 12
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 16,
+        "lineHeightPx": 21.856000900268555,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,255,255,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "I284:2724;280:1114",
+      "name": "Родители",
+      "characters": "Дочь",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ дети(284:2696) > INSTANCE:Frame 59(284:2724) > TEXT:Родители(I284:2724;280:1114)",
+      "box": {
+        "x": 4473,
+        "y": 4194,
+        "width": 30,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2725",
+      "name": "Родители",
+      "characters": "Родители",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ дети(284:2696) > TEXT:Родители(284:2725)",
+      "box": {
+        "x": 4551,
+        "y": 4164,
+        "width": 57,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "I284:2726;280:1114",
+      "name": "Родители",
+      "characters": "Дети",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ дети(284:2696) > INSTANCE:Frame 60(284:2726) > TEXT:Родители(I284:2726;280:1114)",
+      "box": {
+        "x": 4683,
+        "y": 4164,
+        "width": 30,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2727",
+      "name": "Сын",
+      "characters": "Сын",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ дети(284:2696) > TEXT:Сын(284:2727)",
+      "box": {
+        "x": 4519,
+        "y": 4194,
+        "width": 25,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    }
+  ]
+}
+{
+  "frame": "284:2741",
+  "name": "При нажатии на ИФ баратья",
+  "box": {
+    "x": 4803,
+    "y": 4014,
+    "width": 320,
+    "height": 596
+  },
+  "text": [
+    {
+      "id": "I284:2743;231:225",
+      "name": "О проекте",
+      "characters": "",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ баратья(284:2741) > INSTANCE:пункты меню(284:2743) > TEXT:О проекте(I284:2743;231:225)",
+      "box": {
+        "x": 4867,
+        "y": 4025,
+        "width": 0,
+        "height": 14
+      },
+      "style": {
+        "fontFamily": "Playfair Display",
+        "fontPostScriptName": "PlayfairDisplay-Medium",
+        "fontWeight": 500,
+        "fontSize": 20,
+        "lineHeightPx": 26.65999984741211,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2745",
+      "name": "Stammbaum",
+      "characters": "Stammbaum",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ баратья(284:2741) > TEXT:Stammbaum(284:2745)",
+      "box": {
+        "x": 4812,
+        "y": 4026,
+        "width": 92,
+        "height": 11
+      },
+      "style": {
+        "fontFamily": "Playfair Display",
+        "fontPostScriptName": "PlayfairDisplay-Regular",
+        "fontWeight": 400,
+        "fontSize": 16,
+        "lineHeightPx": 21.327999114990234,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "I284:2746;231:225",
+      "name": "О проекте",
+      "characters": "RU",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ баратья(284:2741) > INSTANCE:пункты меню(284:2746) > TEXT:О проекте(I284:2746;231:225)",
+      "box": {
+        "x": 5062,
+        "y": 4027,
+        "width": 17,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "I284:2753;240:530",
+      "name": "Создать древо",
+      "characters": "Редактировать",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ баратья(284:2741) > INSTANCE:Frame 41(284:2753) > TEXT:Создать древо(I284:2753;240:530)",
+      "box": {
+        "x": 4911.5,
+        "y": 4511,
+        "width": 103,
+        "height": 10
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 14,
+        "lineHeightPx": 19.124000549316406,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2754",
+      "name": "Супруги",
+      "characters": "Супруги",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ баратья(284:2741) > TEXT:Супруги(284:2754)",
+      "box": {
+        "x": 4900,
+        "y": 4164,
+        "width": 49,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2755",
+      "name": "Дети",
+      "characters": "Дети",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ баратья(284:2741) > TEXT:Дети(284:2755)",
+      "box": {
+        "x": 4959,
+        "y": 4164,
+        "width": 30,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2757",
+      "name": "Дата рождения",
+      "characters": "Дата рождения",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ баратья(284:2741) > TEXT:Дата рождения(284:2757)",
+      "box": {
+        "x": 4833,
+        "y": 4256,
+        "width": 89,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2758",
+      "name": "Место рождения",
+      "characters": "Место рождения",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ баратья(284:2741) > TEXT:Место рождения(284:2758)",
+      "box": {
+        "x": 4833,
+        "y": 4307,
+        "width": 98,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2759",
+      "name": "Дата смерти",
+      "characters": "Дата смерти",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ баратья(284:2741) > TEXT:Дата смерти(284:2759)",
+      "box": {
+        "x": 4833,
+        "y": 4358,
+        "width": 74,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2760",
+      "name": "Место смерти",
+      "characters": "Место смерти",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ баратья(284:2741) > TEXT:Место смерти(284:2760)",
+      "box": {
+        "x": 4833,
+        "y": 4409,
+        "width": 90,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2761",
+      "name": "Имя Фамилия Отчество",
+      "characters": "Имя Фамилия Отчество",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ баратья(284:2741) > TEXT:Имя Фамилия Отчество(284:2761)",
+      "box": {
+        "x": 4833,
+        "y": 4224,
+        "width": 181,
+        "height": 12
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 16,
+        "lineHeightPx": 21.856000900268555,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2762",
+      "name": "01.01.2000",
+      "characters": "01.01.2000",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ баратья(284:2741) > TEXT:01.01.2000(284:2762)",
+      "box": {
+        "x": 4833,
+        "y": 4275,
+        "width": 80,
+        "height": 12
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 16,
+        "lineHeightPx": 21.856000900268555,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2763",
+      "name": "Россия, г. Санкт-Петербург",
+      "characters": "Россия, г. Санкт-Петербург",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ баратья(284:2741) > TEXT:Россия, г. Санкт-Петербург(284:2763)",
+      "box": {
+        "x": 4833,
+        "y": 4326,
+        "width": 213,
+        "height": 12
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 16,
+        "lineHeightPx": 21.856000900268555,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2764",
+      "name": "01.01.2000",
+      "characters": "01.01.2000",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ баратья(284:2741) > TEXT:01.01.2000(284:2764)",
+      "box": {
+        "x": 4833,
+        "y": 4377,
+        "width": 80,
+        "height": 12
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 16,
+        "lineHeightPx": 21.856000900268555,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2765",
+      "name": "Германия, г. Мюнхен",
+      "characters": "Германия, г. Мюнхен ",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ баратья(284:2741) > TEXT:Германия, г. Мюнхен(284:2765)",
+      "box": {
+        "x": 4833,
+        "y": 4428,
+        "width": 160,
+        "height": 12
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 16,
+        "lineHeightPx": 21.856000900268555,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "I284:2766;260:883",
+      "name": "Добавить дополнительную информацию",
+      "characters": "Добавить дополнительную информацию",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ баратья(284:2741) > INSTANCE:Frame 53(284:2766) > TEXT:Добавить дополнительную информацию(I284:2766;260:883)",
+      "box": {
+        "x": 4833,
+        "y": 4460,
+        "width": 159,
+        "height": 6
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 8,
+        "lineHeightPx": 10.928000450134277,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textDecoration": "UNDERLINE",
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2767",
+      "name": "Имя Фамилия",
+      "characters": "Имя Фамилия",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ баратья(284:2741) > TEXT:Имя Фамилия(284:2767)",
+      "box": {
+        "x": 4833,
+        "y": 4121,
+        "width": 104,
+        "height": 12
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 16,
+        "lineHeightPx": 21.856000900268555,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,255,255,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "I284:2769;280:1114",
+      "name": "Родители",
+      "characters": "Брат",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ баратья(284:2741) > INSTANCE:Frame 59(284:2769) > TEXT:Родители(I284:2769;280:1114)",
+      "box": {
+        "x": 4841,
+        "y": 4194,
+        "width": 28,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2770",
+      "name": "Родители",
+      "characters": "Родители",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ баратья(284:2741) > TEXT:Родители(284:2770)",
+      "box": {
+        "x": 4833,
+        "y": 4164,
+        "width": 57,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "I284:2771;280:1114",
+      "name": "Родители",
+      "characters": "Братья/Сестры",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ баратья(284:2741) > INSTANCE:Frame 60(284:2771) > TEXT:Родители(I284:2771;280:1114)",
+      "box": {
+        "x": 5005,
+        "y": 4164,
+        "width": 90,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2772",
+      "name": "Сестра",
+      "characters": "Сестра",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ баратья(284:2741) > TEXT:Сестра(284:2772)",
+      "box": {
+        "x": 4885,
+        "y": 4194,
+        "width": 43,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    }
+  ]
+}
+{
+  "frame": "283:2502",
+  "name": "При нажатии на ИФ",
+  "box": {
+    "x": 3339,
+    "y": 4014,
+    "width": 320,
+    "height": 596
+  },
+  "text": [
+    {
+      "id": "I283:2504;231:225",
+      "name": "О проекте",
+      "characters": "",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ(283:2502) > INSTANCE:пункты меню(283:2504) > TEXT:О проекте(I283:2504;231:225)",
+      "box": {
+        "x": 3403,
+        "y": 4025,
+        "width": 0,
+        "height": 14
+      },
+      "style": {
+        "fontFamily": "Playfair Display",
+        "fontPostScriptName": "PlayfairDisplay-Medium",
+        "fontWeight": 500,
+        "fontSize": 20,
+        "lineHeightPx": 26.65999984741211,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "283:2506",
+      "name": "Stammbaum",
+      "characters": "Stammbaum",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ(283:2502) > TEXT:Stammbaum(283:2506)",
+      "box": {
+        "x": 3348,
+        "y": 4026,
+        "width": 92,
+        "height": 11
+      },
+      "style": {
+        "fontFamily": "Playfair Display",
+        "fontPostScriptName": "PlayfairDisplay-Regular",
+        "fontWeight": 400,
+        "fontSize": 16,
+        "lineHeightPx": 21.327999114990234,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "I283:2507;231:225",
+      "name": "О проекте",
+      "characters": "RU",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ(283:2502) > INSTANCE:пункты меню(283:2507) > TEXT:О проекте(I283:2507;231:225)",
+      "box": {
+        "x": 3598,
+        "y": 4027,
+        "width": 17,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "I283:2543;240:530",
+      "name": "Создать древо",
+      "characters": "Редактировать",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ(283:2502) > INSTANCE:Frame 41(283:2543) > TEXT:Создать древо(I283:2543;240:530)",
+      "box": {
+        "x": 3447.5,
+        "y": 4500,
+        "width": 103,
+        "height": 10
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 14,
+        "lineHeightPx": 19.124000549316406,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "I283:2544;280:1114",
+      "name": "Родители",
+      "characters": "Информация",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ(283:2502) > INSTANCE:Frame 58(283:2544) > TEXT:Родители(I283:2544;280:1114)",
+      "box": {
+        "x": 3377,
+        "y": 4164,
+        "width": 76,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "283:2550",
+      "name": "Супруги",
+      "characters": "Супруги",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ(283:2502) > TEXT:Супруги(283:2550)",
+      "box": {
+        "x": 3536,
+        "y": 4164,
+        "width": 49,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "283:2551",
+      "name": "Дети",
+      "characters": "Дети",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ(283:2502) > TEXT:Дети(283:2551)",
+      "box": {
+        "x": 3595,
+        "y": 4164,
+        "width": 30,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "283:2552",
+      "name": "Бр",
+      "characters": "Бр",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ(283:2502) > TEXT:Бр(283:2552)",
+      "box": {
+        "x": 3635,
+        "y": 4164,
+        "width": 16,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "283:2553",
+      "name": "Родители",
+      "characters": "Родители",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ(283:2502) > TEXT:Родители(283:2553)",
+      "box": {
+        "x": 3469,
+        "y": 4164,
+        "width": 57,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2555",
+      "name": "Имя Фамилия Отчество",
+      "characters": "Имя Фамилия Отчество",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ(283:2502) > TEXT:Имя Фамилия Отчество(284:2555)",
+      "box": {
+        "x": 3369,
+        "y": 4194,
+        "width": 136,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2556",
+      "name": "Дата рождения",
+      "characters": "Дата рождения",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ(283:2502) > TEXT:Дата рождения(284:2556)",
+      "box": {
+        "x": 3369,
+        "y": 4245,
+        "width": 89,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2557",
+      "name": "Место рождения",
+      "characters": "Место рождения",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ(283:2502) > TEXT:Место рождения(284:2557)",
+      "box": {
+        "x": 3369,
+        "y": 4296,
+        "width": 98,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2558",
+      "name": "Дата смерти",
+      "characters": "Дата смерти",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ(283:2502) > TEXT:Дата смерти(284:2558)",
+      "box": {
+        "x": 3369,
+        "y": 4347,
+        "width": 74,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2559",
+      "name": "Место смерти",
+      "characters": "Место смерти",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ(283:2502) > TEXT:Место смерти(284:2559)",
+      "box": {
+        "x": 3369,
+        "y": 4398,
+        "width": 90,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2560",
+      "name": "Имя Фамилия Отчество",
+      "characters": "Имя Фамилия Отчество",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ(283:2502) > TEXT:Имя Фамилия Отчество(284:2560)",
+      "box": {
+        "x": 3369,
+        "y": 4213,
+        "width": 181,
+        "height": 12
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 16,
+        "lineHeightPx": 21.856000900268555,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2561",
+      "name": "01.01.2000",
+      "characters": "01.01.2000",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ(283:2502) > TEXT:01.01.2000(284:2561)",
+      "box": {
+        "x": 3369,
+        "y": 4264,
+        "width": 80,
+        "height": 12
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 16,
+        "lineHeightPx": 21.856000900268555,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2562",
+      "name": "Россия, г. Санкт-Петербург",
+      "characters": "Россия, г. Санкт-Петербург",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ(283:2502) > TEXT:Россия, г. Санкт-Петербург(284:2562)",
+      "box": {
+        "x": 3369,
+        "y": 4315,
+        "width": 213,
+        "height": 12
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 16,
+        "lineHeightPx": 21.856000900268555,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2563",
+      "name": "01.01.2000",
+      "characters": "01.01.2000",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ(283:2502) > TEXT:01.01.2000(284:2563)",
+      "box": {
+        "x": 3369,
+        "y": 4366,
+        "width": 80,
+        "height": 12
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 16,
+        "lineHeightPx": 21.856000900268555,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2564",
+      "name": "Германия, г. Мюнхен",
+      "characters": "Германия, г. Мюнхен ",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ(283:2502) > TEXT:Германия, г. Мюнхен(284:2564)",
+      "box": {
+        "x": 3369,
+        "y": 4417,
+        "width": 160,
+        "height": 12
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 16,
+        "lineHeightPx": 21.856000900268555,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "I284:2566;260:883",
+      "name": "Добавить дополнительную информацию",
+      "characters": "Добавить дополнительную информацию",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ(283:2502) > INSTANCE:Frame 53(284:2566) > TEXT:Добавить дополнительную информацию(I284:2566;260:883)",
+      "box": {
+        "x": 3369,
+        "y": 4449,
+        "width": 159,
+        "height": 6
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 8,
+        "lineHeightPx": 10.928000450134277,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textDecoration": "UNDERLINE",
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2608",
+      "name": "Имя Фамилия",
+      "characters": "Имя Фамилия",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:При нажатии на ИФ(283:2502) > TEXT:Имя Фамилия(284:2608)",
+      "box": {
+        "x": 3369,
+        "y": 4121,
+        "width": 104,
+        "height": 12
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 16,
+        "lineHeightPx": 21.856000900268555,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,255,255,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    }
+  ]
+}
+{
+  "frame": "561:5418",
+  "name": "поиск",
+  "box": {
+    "x": 3243,
+    "y": 5035,
+    "width": 320,
+    "height": 592
+  },
+  "text": [
+    {
+      "id": "I561:5420;231:225",
+      "name": "О проекте",
+      "characters": "",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:поиск(561:5418) > INSTANCE:пункты меню(561:5420) > TEXT:О проекте(I561:5420;231:225)",
+      "box": {
+        "x": 3307,
+        "y": 5046,
+        "width": 0,
+        "height": 14
+      },
+      "style": {
+        "fontFamily": "Playfair Display",
+        "fontPostScriptName": "PlayfairDisplay-Medium",
+        "fontWeight": 500,
+        "fontSize": 20,
+        "lineHeightPx": 26.65999984741211,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "561:5422",
+      "name": "Stammbaum",
+      "characters": "Stammbaum",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:поиск(561:5418) > TEXT:Stammbaum(561:5422)",
+      "box": {
+        "x": 3252,
+        "y": 5047,
+        "width": 92,
+        "height": 11
+      },
+      "style": {
+        "fontFamily": "Playfair Display",
+        "fontPostScriptName": "PlayfairDisplay-Regular",
+        "fontWeight": 400,
+        "fontSize": 16,
+        "lineHeightPx": 21.327999114990234,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "I561:5423;231:225",
+      "name": "О проекте",
+      "characters": "RU",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:поиск(561:5418) > INSTANCE:пункты меню(561:5423) > TEXT:О проекте(I561:5423;231:225)",
+      "box": {
+        "x": 3502,
+        "y": 5048,
+        "width": 17,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "561:5434",
+      "name": "Поиск",
+      "characters": "Поиск",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:поиск(561:5418) > TEXT:Поиск(561:5434)",
+      "box": {
+        "x": 3283,
+        "y": 5123,
+        "width": 36,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "I561:5453;240:530",
+      "name": "Создать древо",
+      "characters": "Искать",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:поиск(561:5418) > INSTANCE:Frame 41(561:5453) > TEXT:Создать древо(I561:5453;240:530)",
+      "box": {
+        "x": 3379,
+        "y": 5574,
+        "width": 48,
+        "height": 10
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 14,
+        "lineHeightPx": 19.124000549316406,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    }
+  ]
+}
+{
+  "frame": "561:5466",
+  "name": "удачный поиск",
+  "box": {
+    "x": 3589,
+    "y": 5035,
+    "width": 320,
+    "height": 592
+  },
+  "text": [
+    {
+      "id": "I561:5468;231:225",
+      "name": "О проекте",
+      "characters": "",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:удачный поиск(561:5466) > INSTANCE:пункты меню(561:5468) > TEXT:О проекте(I561:5468;231:225)",
+      "box": {
+        "x": 3653,
+        "y": 5046,
+        "width": 0,
+        "height": 14
+      },
+      "style": {
+        "fontFamily": "Playfair Display",
+        "fontPostScriptName": "PlayfairDisplay-Medium",
+        "fontWeight": 500,
+        "fontSize": 20,
+        "lineHeightPx": 26.65999984741211,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "561:5470",
+      "name": "Stammbaum",
+      "characters": "Stammbaum",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:удачный поиск(561:5466) > TEXT:Stammbaum(561:5470)",
+      "box": {
+        "x": 3598,
+        "y": 5047,
+        "width": 92,
+        "height": 11
+      },
+      "style": {
+        "fontFamily": "Playfair Display",
+        "fontPostScriptName": "PlayfairDisplay-Regular",
+        "fontWeight": 400,
+        "fontSize": 16,
+        "lineHeightPx": 21.327999114990234,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "I561:5471;231:225",
+      "name": "О проекте",
+      "characters": "RU",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:удачный поиск(561:5466) > INSTANCE:пункты меню(561:5471) > TEXT:О проекте(I561:5471;231:225)",
+      "box": {
+        "x": 3848,
+        "y": 5048,
+        "width": 17,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "561:5477",
+      "name": "Спиридонова",
+      "characters": "Спиридонова",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:удачный поиск(561:5466) > TEXT:Спиридонова(561:5477)",
+      "box": {
+        "x": 3629,
+        "y": 5123,
+        "width": 80,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "561:5486",
+      "name": "Спиридонова Полина (бабушка)",
+      "characters": "Спиридонова Полина (бабушка)",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:удачный поиск(561:5466) > TEXT:Спиридонова Полина (бабушка)(561:5486)",
+      "box": {
+        "x": 3619,
+        "y": 5168,
+        "width": 187,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "561:5487",
+      "name": "Спиридонова Полина (прабабушка)",
+      "characters": "Спиридонова Полина (прабабушка)",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:удачный поиск(561:5466) > TEXT:Спиридонова Полина (прабабушка)(561:5487)",
+      "box": {
+        "x": 3619,
+        "y": 5192,
+        "width": 208,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "I561:5478;240:530",
+      "name": "Создать древо",
+      "characters": "Искать",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:удачный поиск(561:5466) > INSTANCE:Frame 41(561:5478) > TEXT:Создать древо(I561:5478;240:530)",
+      "box": {
+        "x": 3725,
+        "y": 5574,
+        "width": 48,
+        "height": 10
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 14,
+        "lineHeightPx": 19.124000549316406,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    }
+  ]
+}
+{
+  "frame": "561:5488",
+  "name": "неудача",
+  "box": {
+    "x": 3944,
+    "y": 5035,
+    "width": 320,
+    "height": 592
+  },
+  "text": [
+    {
+      "id": "I561:5490;231:225",
+      "name": "О проекте",
+      "characters": "",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:неудача(561:5488) > INSTANCE:пункты меню(561:5490) > TEXT:О проекте(I561:5490;231:225)",
+      "box": {
+        "x": 4008,
+        "y": 5046,
+        "width": 0,
+        "height": 14
+      },
+      "style": {
+        "fontFamily": "Playfair Display",
+        "fontPostScriptName": "PlayfairDisplay-Medium",
+        "fontWeight": 500,
+        "fontSize": 20,
+        "lineHeightPx": 26.65999984741211,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "561:5492",
+      "name": "Stammbaum",
+      "characters": "Stammbaum",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:неудача(561:5488) > TEXT:Stammbaum(561:5492)",
+      "box": {
+        "x": 3953,
+        "y": 5047,
+        "width": 92,
+        "height": 11
+      },
+      "style": {
+        "fontFamily": "Playfair Display",
+        "fontPostScriptName": "PlayfairDisplay-Regular",
+        "fontWeight": 400,
+        "fontSize": 16,
+        "lineHeightPx": 21.327999114990234,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "I561:5493;231:225",
+      "name": "О проекте",
+      "characters": "RU",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:неудача(561:5488) > INSTANCE:пункты меню(561:5493) > TEXT:О проекте(I561:5493;231:225)",
+      "box": {
+        "x": 4203,
+        "y": 5048,
+        "width": 17,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "561:5499",
+      "name": "Спиридонова",
+      "characters": "Спиридонова",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:неудача(561:5488) > TEXT:Спиридонова(561:5499)",
+      "box": {
+        "x": 3984,
+        "y": 5123,
+        "width": 80,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "561:5500",
+      "name": "Ничего не найдено",
+      "characters": "Ничего не найдено",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:неудача(561:5488) > TEXT:Ничего не найдено(561:5500)",
+      "box": {
+        "x": 3974,
+        "y": 5168,
+        "width": 111,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "I561:5502;240:530",
+      "name": "Создать древо",
+      "characters": "Искать",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:неудача(561:5488) > INSTANCE:Frame 41(561:5502) > TEXT:Создать древо(I561:5502;240:530)",
+      "box": {
+        "x": 4080,
+        "y": 5574,
+        "width": 48,
+        "height": 10
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 14,
+        "lineHeightPx": 19.124000549316406,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    }
+  ]
+}
+{
+  "frame": "284:2785",
+  "name": "кладбище добавление инфы",
+  "box": {
+    "x": 1499,
+    "y": 5035,
+    "width": 320,
+    "height": 740
+  },
+  "text": [
+    {
+      "id": "I284:2787;231:225",
+      "name": "О проекте",
+      "characters": "",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:кладбище добавление инфы(284:2785) > INSTANCE:пункты меню(284:2787) > TEXT:О проекте(I284:2787;231:225)",
+      "box": {
+        "x": 1563,
+        "y": 5046,
+        "width": 0,
+        "height": 14
+      },
+      "style": {
+        "fontFamily": "Playfair Display",
+        "fontPostScriptName": "PlayfairDisplay-Medium",
+        "fontWeight": 500,
+        "fontSize": 20,
+        "lineHeightPx": 26.65999984741211,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2789",
+      "name": "Stammbaum",
+      "characters": "Stammbaum",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:кладбище добавление инфы(284:2785) > TEXT:Stammbaum(284:2789)",
+      "box": {
+        "x": 1508,
+        "y": 5047,
+        "width": 92,
+        "height": 11
+      },
+      "style": {
+        "fontFamily": "Playfair Display",
+        "fontPostScriptName": "PlayfairDisplay-Regular",
+        "fontWeight": 400,
+        "fontSize": 16,
+        "lineHeightPx": 21.327999114990234,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "I284:2790;231:225",
+      "name": "О проекте",
+      "characters": "RU",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:кладбище добавление инфы(284:2785) > INSTANCE:пункты меню(284:2790) > TEXT:О проекте(I284:2790;231:225)",
+      "box": {
+        "x": 1758,
+        "y": 5048,
+        "width": 17,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2796",
+      "name": "Имя Фамилия",
+      "characters": "Имя Фамилия",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:кладбище добавление инфы(284:2785) > TEXT:Имя Фамилия(284:2796)",
+      "box": {
+        "x": 1529,
+        "y": 5100,
+        "width": 104,
+        "height": 12
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 16,
+        "lineHeightPx": 21.856000900268555,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2798",
+      "name": "Муж",
+      "characters": "Муж",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:кладбище добавление инфы(284:2785) > TEXT:Муж(284:2798)",
+      "box": {
+        "x": 1579,
+        "y": 5148,
+        "width": 26,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2800",
+      "name": "Фамилия*",
+      "characters": "Фамилия*",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:кладбище добавление инфы(284:2785) > TEXT:Фамилия*(284:2800)",
+      "box": {
+        "x": 1539,
+        "y": 5193,
+        "width": 60,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2802",
+      "name": "Имя*",
+      "characters": "Имя*",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:кладбище добавление инфы(284:2785) > TEXT:Имя*(284:2802)",
+      "box": {
+        "x": 1539,
+        "y": 5243,
+        "width": 30,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2804",
+      "name": "Отчество",
+      "characters": "Отчество",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:кладбище добавление инфы(284:2785) > TEXT:Отчество(284:2804)",
+      "box": {
+        "x": 1539,
+        "y": 5293,
+        "width": 56,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2806",
+      "name": "Девичья фамилия",
+      "characters": "Девичья фамилия",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:кладбище добавление инфы(284:2785) > TEXT:Девичья фамилия(284:2806)",
+      "box": {
+        "x": 1539,
+        "y": 5343,
+        "width": 104,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2808",
+      "name": "Место рождения",
+      "characters": "Место рождения",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:кладбище добавление инфы(284:2785) > TEXT:Место рождения(284:2808)",
+      "box": {
+        "x": 1539,
+        "y": 5393,
+        "width": 98,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2902",
+      "name": "Дата смерти",
+      "characters": "Дата смерти",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:кладбище добавление инфы(284:2785) > TEXT:Дата смерти(284:2902)",
+      "box": {
+        "x": 1539,
+        "y": 5493,
+        "width": 74,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2810",
+      "name": "Дата рождения",
+      "characters": "Дата рождения",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:кладбище добавление инфы(284:2785) > TEXT:Дата рождения(284:2810)",
+      "box": {
+        "x": 1539,
+        "y": 5443,
+        "width": 89,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2904",
+      "name": "Место смерти",
+      "characters": "Место смерти",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:кладбище добавление инфы(284:2785) > TEXT:Место смерти(284:2904)",
+      "box": {
+        "x": 1539,
+        "y": 5543,
+        "width": 83,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2812",
+      "name": "Загрузить фотографию родственника",
+      "characters": "Загрузить фотографию родственника",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:кладбище добавление инфы(284:2785) > TEXT:Загрузить фотографию родственника(284:2812)",
+      "box": {
+        "x": 1540,
+        "y": 5587,
+        "width": 141,
+        "height": 21
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 12,
+        "lineHeightPercent": 73.20643615722656,
+        "lineHeightUnit": "FONT_SIZE_%",
+        "letterSpacing": 0,
+        "textAutoResize": "HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2913",
+      "name": "Загрузить фотографию помятника",
+      "characters": "Загрузить фотографию\nпомятника",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:кладбище добавление инфы(284:2785) > TEXT:Загрузить фотографию помятника(284:2913)",
+      "box": {
+        "x": 1539,
+        "y": 5637,
+        "width": 141,
+        "height": 21
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 12,
+        "lineHeightPercent": 73.20643615722656,
+        "lineHeightUnit": "FONT_SIZE_%",
+        "letterSpacing": 0,
+        "textAutoResize": "HEIGHT"
+      },
+      "color": "rgba(93,93,93,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "284:2818",
+      "name": "Добавить дополнительную информацию",
+      "characters": "Добавить дополнительную информацию",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:кладбище добавление инфы(284:2785) > TEXT:Добавить дополнительную информацию(284:2818)",
+      "box": {
+        "x": 1529,
+        "y": 5678,
+        "width": 156,
+        "height": 6
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Regular",
+        "fontWeight": 400,
+        "fontSize": 8,
+        "lineHeightPx": 10.928000450134277,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textDecoration": "UNDERLINE",
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(48,48,42,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "I284:2820;280:1114",
+      "name": "Родители",
+      "characters": "Жен",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:кладбище добавление инфы(284:2785) > INSTANCE:Frame 58(284:2820) > TEXT:Родители(I284:2820;280:1114)",
+      "box": {
+        "x": 1537,
+        "y": 5148,
+        "width": 25,
+        "height": 9
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 12,
+        "lineHeightPx": 16.392000198364258,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    },
+    {
+      "id": "I284:2919;240:530",
+      "name": "Создать древо",
+      "characters": "Сохранить информацию",
+      "ancestry": "DOCUMENT:Document(0:0) > CANVAS:макеты(31:56) > FRAME:кладбище добавление инфы(284:2785) > INSTANCE:Frame 41(284:2919) > TEXT:Создать древо(I284:2919;240:530)",
+      "box": {
+        "x": 1576,
+        "y": 5729,
+        "width": 166,
+        "height": 10
+      },
+      "style": {
+        "fontFamily": "Manrope",
+        "fontPostScriptName": "Manrope-Medium",
+        "fontWeight": 500,
+        "fontSize": 14,
+        "lineHeightPx": 19.124000549316406,
+        "lineHeightPercent": 100,
+        "lineHeightUnit": "INTRINSIC_%",
+        "letterSpacing": 0,
+        "textAutoResize": "WIDTH_AND_HEIGHT"
+      },
+      "color": "rgba(255,252,246,1)",
+      "effectiveOpacity": 1,
+      "fillStyleId": null
+    }
+  ]
+}

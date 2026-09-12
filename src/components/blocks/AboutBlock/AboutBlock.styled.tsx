@@ -9,12 +9,12 @@ export const PlusButton = styled.button`
   margin-top: auto;
   margin-left: auto;
 
-  width: 40px;
-  height: 40px;
+  width: ${vw(40, 'xs')};
+  height: ${vw(40, 'xs')};
   border-radius: 50%;
-  border: 2px solid white;
+  border: 2px solid ${color('white')};
   background: transparent;
-  color: white;
+  color: ${color('white')};
   ${font('bodyLarge')};
   display: flex;
   align-items: center;
@@ -41,14 +41,14 @@ export const Container = styled.div<{ variant?: string; color?: string; $textCol
   display: flex;
   flex-direction: column;
 
-  margin-bottom: 10px;
+  margin-bottom: ${vw(10, 'xs')};
 
-  padding: ${vw(20, 'xs')};
-  height: ${vw(140, 'xs')};
+  padding: ${vw(17.067, 'xs')};
+  height: ${vw(119.467, 'xs')};
 
   ${mediaBreakpointUp('lg')} {
-    width: ${vw(283, 'xl')};
-    height: ${vw(260, 'xl')};
+    width: ${vw(283)};
+    height: ${vw(260)};
     padding: ${vw(30)};
   }
 
@@ -101,7 +101,7 @@ export const Title = styled.div<{ $variant?: string }>`
   ${({ $variant }) =>
     $variant !== 'text' &&
     css`
-      max-width: 150px;
+      max-width: ${vw(150, 'xs')};
 
       ${mediaBreakpointUp('lg')} {
         ${font('cardTitle')};
@@ -112,7 +112,7 @@ export const Title = styled.div<{ $variant?: string }>`
 
 export const StepNumber = styled.h2`
   ${font('landingStepHeading')};
-  margin-bottom: ${vw(10, 'xs')};
+  margin-bottom: ${vw(8.533, 'xs')};
 
   ${mediaBreakpointUp('lg')} {
     margin-bottom: ${vw(30)};
@@ -128,4 +128,9 @@ export const ImageContainer = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
+
+  img {
+    object-fit: cover;
+    object-position: center;
+  }
 `;

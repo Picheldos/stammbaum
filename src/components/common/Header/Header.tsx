@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
@@ -18,7 +17,9 @@ import {
     LogoCol,
     Nav,
     NavLink,
-    RightCol
+    RightCol,
+    StyledLink,
+    Username
 } from './Header.styled';
 
 export type AppHeaderVariant = 'marketing' | 'app';
@@ -67,11 +68,11 @@ const Header: React.FC<HeaderProps> = ({ variant = 'marketing' }) => {
                         {navItems.map(({ href, labelKey }) => {
                             const active = pathname === href || pathname.startsWith(`${href}/`);
                             return (
-                                <Link key={href} href={href} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                <StyledLink key={href} href={href}>
                                     <NavLink as="span" $active={active}>
                                         {t(labelKey)}
                                     </NavLink>
-                                </Link>
+                                </StyledLink>
                             );
                         })}
                     </Nav>
@@ -86,16 +87,16 @@ const Header: React.FC<HeaderProps> = ({ variant = 'marketing' }) => {
                         <AuthCluster>
                             {!sessionUser ? (
                                 <>
-                                    <Link href="/tree" style={{ textDecoration: 'none' }}>
+                                    <StyledLink href="/tree">
                                         <BtnOutline type="button">{t('header.createTree')}</BtnOutline>
-                                    </Link>
-                                    <Link href="/login" style={{ textDecoration: 'none' }}>
+                                    </StyledLink>
+                                    <StyledLink href="/login">
                                         <BtnSolid type="button">{t('header.login')}</BtnSolid>
-                                    </Link>
+                                    </StyledLink>
                                 </>
                             ) : (
                                 <>
-                                    <div style={{ color: 'white', opacity: 0.95 }}>{sessionUser.username}</div>
+                                    <Username>{sessionUser.username}</Username>
                                     <BtnOutline
                                         type="button"
                                         onClick={() => {

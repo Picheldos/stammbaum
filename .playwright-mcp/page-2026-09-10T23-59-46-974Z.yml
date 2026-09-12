@@ -1,0 +1,66 @@
+- generic [ref=f8e1]:
+  - generic [ref=f8e4]:
+    - generic [ref=f8e5]:
+      - banner [ref=f8e6]:
+        - generic [ref=f8e7]:
+          - link "Stammbaum" [ref=f8e9] [cursor=pointer]:
+            - /url: /ru
+          - generic [ref=f8e12]:
+            - button "RU" [ref=f8e13] [cursor=pointer]
+            - button "Открыть меню" [ref=f8e14] [cursor=pointer]
+      - main [ref=f8e17]:
+        - generic [ref=f8e18]:
+          - generic [ref=f8e60]:
+            - generic:
+              - button "Петрова Мария" [ref=f8e61] [cursor=pointer]:
+                - generic [ref=f8e62]: Мать
+                - generic [ref=f8e64]: 03.02.1955
+              - button "Петров Пётр" [ref=f8e65] [cursor=pointer]:
+                - generic [ref=f8e66]: Отец
+                - generic [ref=f8e68]: 05.04.1950 — 07.06.2020
+              - button "Петров Иван" [ref=f8e69] [cursor=pointer]:
+                - generic [ref=f8e70]: Я
+                - generic [ref=f8e72]: 01.01.1980
+              - button "Петрова Анна" [ref=f8e73] [cursor=pointer]:
+                - generic [ref=f8e74]: Жена
+                - generic [ref=f8e76]: 09.08.1982
+              - button "Петров Алексей" [ref=f8e77] [cursor=pointer]:
+                - generic [ref=f8e78]: Сын
+                - generic [ref=f8e80]: 11.10.2008
+          - button "Поиск" [ref=f8e82] [cursor=pointer]
+          - button "Меню" [ref=f8e87] [cursor=pointer]
+          - generic [ref=f8e92]:
+            - button "zoom in" [ref=f8e93] [cursor=pointer]: +
+            - button "zoom out" [ref=f8e94] [cursor=pointer]: −
+            - button "reset" [ref=f8e95] [cursor=pointer]: ◎
+          - button "Добавить родственника" [ref=f8e96]
+          - generic [ref=f8e113]:
+            - generic [ref=f8e114]:
+              - generic [ref=f8e115]: Петров Иван
+              - button "close" [ref=f8e116] [cursor=pointer]: ×
+            - generic [ref=f8e117]:
+              - generic [ref=f8e120]:
+                - generic [ref=f8e121]: Петров Иван
+                - generic [ref=f8e122]: 01.01.1980
+              - generic [ref=f8e123]:
+                - button "Информация" [active] [ref=f8e124] [cursor=pointer]
+                - button "Родители" [ref=f8e125] [cursor=pointer]
+                - button "Супруги" [ref=f8e126] [cursor=pointer]
+                - button "Дети" [ref=f8e127] [cursor=pointer]
+                - button "Братья и сёстры" [ref=f8e128] [cursor=pointer]
+              - button "Редактировать" [ref=f8e200] [cursor=pointer]
+    - generic [ref=f8e39]:
+      - link [ref=f8e42] [cursor=pointer]:
+        - /url: /ru/tree
+        - generic [ref=f8e43]: Семейное древо
+      - link [ref=f8e44] [cursor=pointer]:
+        - /url: /ru/cemetery
+        - generic [ref=f8e45]: Кладбище
+      - link [ref=f8e46] [cursor=pointer]:
+        - /url: /ru/login
+        - generic [ref=f8e47]: Вход/Регистрация
+      - link [ref=f8e48] [cursor=pointer]:
+        - /url: /ru/tree#
+        - generic [ref=f8e49]: Связаться с нами
+  - button "Open Next.js Dev Tools" [ref=f8e55] [cursor=pointer]
+  - alert [ref=f8e59]

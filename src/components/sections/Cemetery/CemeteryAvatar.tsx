@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 import { CemeteryAvatar as StyledAvatar, AvatarInitials } from './Cemetery.styled';
 import type { CemeteryPerson } from './Cemetery.types';
@@ -22,7 +23,7 @@ const CemeteryAvatar: React.FC<CemeteryAvatarProps> = ({ person }) => {
     if (person.photoUrl) {
         return (
             <StyledAvatar role="img" aria-label={label} title={label}>
-                <img src={person.photoUrl} alt={label} loading="lazy" />
+                <Image src={person.photoUrl} alt={label} fill sizes="36px" unoptimized />
             </StyledAvatar>
         );
     }

@@ -1,0 +1,41 @@
+- generic [active] [ref=f8e1]:
+  - generic [ref=f8e4]:
+    - generic [ref=f8e5]:
+      - banner [ref=f8e6]:
+        - generic [ref=f8e7]:
+          - link "Stammbaum" [ref=f8e9] [cursor=pointer]:
+            - /url: /ru
+          - generic [ref=f8e12]:
+            - button "RU" [ref=f8e13] [cursor=pointer]
+            - button "Открыть меню" [ref=f8e14] [cursor=pointer]
+      - main [ref=f8e17]:
+        - generic [ref=f8e18]:
+          - generic [ref=f8e60]:
+            - generic:
+              - button "Петрова Мария" [ref=f8e61] [cursor=pointer]
+              - button "Петров Пётр" [ref=f8e65] [cursor=pointer]
+              - button "Петров Иван" [ref=f8e69] [cursor=pointer]
+              - button "Петрова Анна" [ref=f8e73] [cursor=pointer]
+              - button "Петров Алексей" [ref=f8e77] [cursor=pointer]
+          - button "Поиск" [ref=f8e82] [cursor=pointer]
+          - button "Меню" [ref=f8e87] [cursor=pointer]
+          - generic [ref=f8e92]:
+            - button "zoom in" [ref=f8e93] [cursor=pointer]: +
+            - button "zoom out" [ref=f8e94] [cursor=pointer]: −
+            - button "reset" [ref=f8e95] [cursor=pointer]: ◎
+          - button "Добавить родственника" [ref=f8e96]
+    - generic [ref=f8e39]:
+      - link [ref=f8e42] [cursor=pointer]:
+        - /url: /ru/tree
+        - generic [ref=f8e43]: Семейное древо
+      - link [ref=f8e44] [cursor=pointer]:
+        - /url: /ru/cemetery
+        - generic [ref=f8e45]: Кладбище
+      - link [ref=f8e46] [cursor=pointer]:
+        - /url: /ru/login
+        - generic [ref=f8e47]: Вход/Регистрация
+      - link [ref=f8e48] [cursor=pointer]:
+        - /url: /ru/tree#
+        - generic [ref=f8e49]: Связаться с нами
+  - button "Open Next.js Dev Tools" [ref=f8e55] [cursor=pointer]
+  - alert [ref=f8e59]

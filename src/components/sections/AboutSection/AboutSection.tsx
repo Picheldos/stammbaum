@@ -1,6 +1,7 @@
 import { AboutBlock } from '@/components/blocks/AboutBlock/AboutBlock';
 import { Popup } from '@/components/common/Popup/Popup';
 import { SizesState } from '@/recoil/commonState/athom';
+import colors from '@/style/colors';
 import { useTranslation } from 'next-i18next';
 import React, { useMemo, useState } from 'react';
 import { useRecoilValue } from 'recoil';
@@ -8,10 +9,10 @@ import { useRecoilValue } from 'recoil';
 import { Container, FlexContainer } from './AboutSection.styled';
 
 const STEP_CONFIG = [
-    { stepNumber: 1, color: '#576686' },
-    { stepNumber: 2, color: '#64774A' },
-    { stepNumber: 3, color: '#64774A', textColor: '#30302A' },
-    { stepNumber: 4, color: '#576686' }
+    { stepNumber: 1, color: colors.landingCta },
+    { stepNumber: 2, color: colors.forest },
+    { stepNumber: 3, color: colors.forest, textColor: colors.ink },
+    { stepNumber: 4, color: colors.landingCta }
 ] as const;
 
 type StepTranslation = {

@@ -5,7 +5,7 @@ export const Container = styled.section`
 
   h1 {
     ${font('landingHeading')};
-    margin-bottom: ${vw(30, 'xs')};
+    margin-bottom: ${vw(25.6, 'xs')};
 
     ${mediaBreakpointUp('md')} {
       padding-top: ${vw(40)};

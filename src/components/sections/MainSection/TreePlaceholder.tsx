@@ -1,17 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
 import { color } from '@/style/mixins';
+import { SvgRoot } from './TreePlaceholder.styled';
 
 /** Декоративная заглушка дерева — силуэт без растровых иллюстраций */
-export const SvgRoot = styled.svg`
-    display: block;
-    width: min(92%, 420px);
-    height: auto;
-    margin: 0 auto;
-    opacity: 0.92;
-
-    /* привязка к нижнему краю блока через flex на родителе */
-`;
 
 const TreePlaceholder: React.FC<{ className?: string }> = ({ className }) => (
     <SvgRoot className={className} viewBox="0 0 320 340" xmlns="http://www.w3.org/2000/svg" aria-hidden>

@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { color, font, hover, mediaBreakpointDown, mediaBreakpointUp, vh, vw } from '@/style/mixins';
+import { color, font, hover, mediaBreakpointDown, mediaBreakpointUp, vw } from '@/style/mixins';
 import { TIMELINE_AXIS_LEFT } from './cemeteryUtils';
 
 /* ===================================================================== */
@@ -10,7 +10,7 @@ import { TIMELINE_AXIS_LEFT } from './cemeteryUtils';
  *  Flex column: nav rail on top, scrollable timeline in the middle
  *  (fills / centers the remaining slice), add-button pinned to the bottom.
  *  Height is always one full viewport minus the sticky header height
- *  (55 px on mobile, 60 px from lg up). */
+ *  (mobile and desktop header offsets are kept as raw viewport-height CSS). */
 export const CemeterySection = styled.section`
     position: relative;
     display: flex;
@@ -26,7 +26,7 @@ export const CemeterySection = styled.section`
     }
 
     ${mediaBreakpointUp('lg')} {
-        padding: 0 20px;
+        padding: 0 ${vw(20)};
     }
 `;
 
@@ -42,6 +42,11 @@ export const PageBackground = styled.div`
     width: 100vw;
     height: 100vh;
     pointer-events: none;
+
+    img {
+        object-fit: cover;
+        object-position: center;
+    }
 `;
 
 /* ===================================================================== */
@@ -51,15 +56,15 @@ export const PageBackground = styled.div`
 export const PeriodNavRail = styled.nav`
     position: relative;
     z-index: 2;
-    margin-bottom: ${vh(8)};
-    padding: 0 72px;
+    margin-bottom: ${vw(8)};
+    padding: 0 ${vw(72)};
 
     ${mediaBreakpointDown('md')} {
         position: sticky;
         top: 0;
         margin-top: 0;
-        margin-bottom: 12px;
-        padding: 52px 56px 8px;
+        margin-bottom: ${vw(12, 'xs')};
+        padding: ${vw(52, 'xs')} ${vw(56, 'xs')} ${vw(8, 'xs')};
         background: ${color('cream')};
         border-bottom: 1px solid ${color('cemeteryGray', 0.16)};
     }
@@ -69,24 +74,24 @@ export const PeriodChipRow = styled.div`
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: ${vw(12, 'xs')};
+    gap: ${vw(10.24, 'xs')};
 
     ${mediaBreakpointDown('md')} {
         flex-wrap: nowrap;
         overflow-x: auto;
         overflow-y: hidden;
         -webkit-overflow-scrolling: touch;
-        padding-bottom: 6px;
+        padding-bottom: ${vw(6, 'xs')};
 
         &::after {
             content: '';
             display: inline-block;
-            width: 8px;
+            width: ${vw(8, 'xs')};
         }
     }
 
     ${mediaBreakpointUp('lg')} {
-        gap: ${vw(16, 'mac')};
+        gap: ${vw(16)};
     }
 `;
 
@@ -96,27 +101,39 @@ export const PeriodChipRow = styled.div`
 
 export const FloatingTopLeft = styled.div`
     position: absolute;
-    top: 12px;
-    left: 16px;
+    top: ${vw(12, 'xs')};
+    left: ${vw(16, 'xs')};
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: ${vw(8, 'xs')};
     z-index: 6;
+
+    ${mediaBreakpointUp('lg')} {
+        top: ${vw(12)};
+        left: ${vw(16)};
+        gap: ${vw(8)};
+    }
 `;
 
 export const FloatingTopRight = styled.div`
     position: absolute;
-    top: 12px;
-    right: 20px;
+    top: ${vw(12, 'xs')};
+    right: ${vw(20, 'xs')};
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: ${vw(8, 'xs')};
     z-index: 6;
+
+    ${mediaBreakpointUp('lg')} {
+        top: ${vw(12)};
+        right: ${vw(20)};
+        gap: ${vw(8)};
+    }
 `;
 
 export const FloatingIconButton = styled.button`
-    width: 36px;
-    height: 36px;
+    width: ${vw(36, 'xs')};
+    height: ${vw(36, 'xs')};
     border-radius: 50%;
     border: none;
     background: transparent;
@@ -127,12 +144,22 @@ export const FloatingIconButton = styled.button`
     justify-content: center;
 
     svg {
-        width: 22px;
-        height: 22px;
+        width: ${vw(22, 'xs')};
+        height: ${vw(22, 'xs')};
+    }
+
+    ${mediaBreakpointUp('lg')} {
+        width: ${vw(36)};
+        height: ${vw(36)};
+
+        svg {
+            width: ${vw(22)};
+            height: ${vw(22)};
+        }
     }
 
     ${hover(css`
-        background: rgba(255, 255, 255, 0.4);
+        background: ${color('white', 0.4)};
     `)}
 `;
 
@@ -210,7 +237,7 @@ export const TimelineYear = styled.div<{ $mobile: boolean; $axisPos: number }>`
         transform: translateY(-50%);
         display: flex;
         align-items: center;
-        gap: ${vw(8, 'xs')};
+        gap: ${vw(6.827, 'xs')};
     }
 
     ${mediaBreakpointUp('md')} {
@@ -246,7 +273,7 @@ export const YearDot = styled.span<{ $size: number }>`
 
 export const YearLabel = styled.span`
     display: block;
-    margin-top: ${vw(4, 'xs')};
+    margin-top: ${vw(3.413, 'xs')};
     ${font('labelStrong')};
     color: ${color('cemeteryGray')};
     white-space: nowrap;
@@ -300,40 +327,53 @@ export const TimelineMarker = styled.div<{ $mobile: boolean; $axisPos: number }>
 
 /** Anchor wrapping a card + its connector for a single relative. */
 /* ===================================================================== */
-/*  Period chip — slanted "arrow" sides via clip-path (not a plain       */
-/*  rounded rectangle). Reproduces Figma Rectangle 69/72/77 shape.        */
+/*  Period chip — rounded vector path from the Figma design              */
 /* ===================================================================== */
 
 export const PeriodChip = styled.button<{ $active?: boolean }>`
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    ${font('button')};
-    text-align: center;
-    color: ${color('ink')};
-    border: 1px solid transparent;
+    width: ${vw(142, 'xs')};
+    height: ${vw(47, 'xs')};
+    padding: 0;
+    border: 0;
     background: transparent;
     cursor: pointer;
-    /* arrow-sided hexagon: left & right edges come to a point */
-    clip-path: polygon(8px 0, calc(100% - 8px) 0, 100% 50%, calc(100% - 8px) 100%, 8px 100%, 0 50%);
-    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+    transition: transform 0.15s ease;
 
-    width: clamp(132px, 7vw, 166px);
-    height: clamp(44px, 2.9vw, 55px);
+    ${mediaBreakpointUp('lg')} {
+        width: ${vw(163)};
+        height: ${vw(55)};
+    }
 
-    ${({ $active }) =>
-        $active
-            ? css`
-                  background: ${color('meadowBlue')};
-                  color: ${color('cream')};
-                  border-color: ${color('meadowBlue')};
-              `
-            : css`
-                  background: transparent;
-                  color: ${color('ink')};
-                  border-color: ${color('ink', 0.5)};
-              `}
+    svg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+        pointer-events: none;
+    }
+
+    path {
+        fill: ${({ $active }) => ($active ? color('meadowBlue') : 'transparent')};
+        stroke: ${({ $active }) => ($active ? color('meadowBlue') : color('ink', 0.5))};
+        stroke-width: 1;
+        transition: fill 0.2s ease, stroke 0.2s ease;
+    }
+
+    span {
+        position: relative;
+        z-index: 1;
+        ${font('button')};
+        color: ${({ $active }) => ($active ? color('cream') : color('ink'))};
+        text-align: center;
+        white-space: nowrap;
+        transition: color 0.2s ease;
+    }
 
     ${hover(css`
         transform: translateY(-1px);
@@ -347,7 +387,6 @@ export const PeriodChip = styled.button<{ $active?: boolean }>`
         outline: 2px solid ${color('forest')};
         outline-offset: 3px;
     }
-
 `;
 
 /* ===================================================================== */
@@ -359,8 +398,8 @@ export const CemeteryAvatar = styled.div<{ $fallback?: boolean }>`
     left: 50%;
     top: 0;
     transform: translate(-50%, -42%);
-    width: clamp(28px, 2vw, 36px);
-    height: clamp(28px, 2vw, 36px);
+    width: clamp(${vw(28, 'xs')}, 2vw, ${vw(36, 'xs')});
+    height: clamp(${vw(28, 'xs')}, 2vw, ${vw(36, 'xs')});
     border-radius: 50%;
     border: 1px solid ${color('cemeteryBorder')};
     background: ${color('avatarStub')};
@@ -378,8 +417,8 @@ export const CemeteryAvatar = styled.div<{ $fallback?: boolean }>`
     }
 
     ${mediaBreakpointUp('lg')} {
-        width: clamp(30px, 1.75vw, 36px);
-        height: clamp(30px, 1.75vw, 36px);
+        width: clamp(${vw(30)}, 1.75vw, ${vw(36)});
+        height: clamp(${vw(30)}, 1.75vw, ${vw(36)});
         transform: translate(-50%, -65%);
     }
 `;
@@ -436,9 +475,9 @@ export const AddRelativeButton = styled.button`
     align-items: center;
     justify-content: center;
     flex: 0 0 auto;
-    margin: 12px auto max(12px, env(safe-area-inset-bottom));
-    width: clamp(280px, 22vw, 440px);
-    height: clamp(52px, 3vw, 64px);
+    margin: ${vw(10, 'xs')} auto max(${vw(12, 'xs')}, env(safe-area-inset-bottom));
+    width: clamp(${vw(220, 'xs')}, 70vw, ${vw(320, 'xs')});
+    height: ${vw(50, 'xs')};
     border: none;
     border-radius: 5px;
     background: ${color('meadowBlue')};
@@ -448,6 +487,12 @@ export const AddRelativeButton = styled.button`
     text-align: center;
     transition: background-color 0.2s ease, transform 0.15s ease;
 
+    ${mediaBreakpointUp('lg')} {
+        margin: ${vw(12)} auto max(${vw(12)}, env(safe-area-inset-bottom));
+        width: clamp(${vw(280)}, 22vw, ${vw(440)});
+        height: clamp(${vw(52)}, 3vw, ${vw(64)});
+    }
+
     ${hover(css`
         background: ${color('slateBlue')};
         transform: translateY(-1px);
@@ -456,48 +501,62 @@ export const AddRelativeButton = styled.button`
     &:active {
         transform: translateY(0);
     }
-
-    ${mediaBreakpointDown('lg')} {
-        width: clamp(220px, 70vw, 320px);
-        height: 50px;
-        margin-top: 10px;
-    }
 `;
 
 export const SearchPopover = styled.form`
     position: absolute;
-    top: 58px;
-    left: 16px;
+    top: ${vw(58, 'xs')};
+    left: ${vw(16, 'xs')};
     z-index: 8;
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    width: min(320px, calc(100vw - 32px));
-    padding: 10px;
+    gap: ${vw(8, 'xs')};
+    width: min(100%, calc(100vw - ${vw(32, 'xs')}));
+    max-width: ${vw(320, 'xs')};
+    padding: ${vw(10, 'xs')};
     background: ${color('cream')};
-    border-radius: 8px;
-    box-shadow: 0 8px 24px rgba(47, 79, 58, 0.2);
+    border-radius: ${vw(8, 'xs')};
+    box-shadow: 0 ${vw(8, 'xs')} ${vw(24, 'xs')} ${color('forestDeep', 0.2)};
     ${font('mobileControl')};
-    color: #5d5d5d;
+    color: ${color('mutedText')};
+
+    ${mediaBreakpointUp('lg')} {
+        top: ${vw(58)};
+        left: ${vw(16)};
+        gap: ${vw(8)};
+        width: ${vw(320)};
+        max-width: none;
+        padding: ${vw(10)};
+        border-radius: ${vw(8)};
+        box-shadow: 0 ${vw(8)} ${vw(24)} ${color('forestDeep', 0.2)};
+    }
 `;
 
 export const SearchInput = styled.input`
     min-width: 0;
     flex: 1;
-    padding: 9px 10px;
+    padding: ${vw(9, 'xs')} ${vw(10, 'xs')};
     border: 1px solid ${color('cemeteryGray', 0.45)};
     border-radius: 5px;
     background: ${color('white')};
-    color: #5d5d5d;
+    color: ${color('mutedText')};
     ${font('mobileControl')};
+
+    ${mediaBreakpointUp('lg')} {
+        padding: ${vw(9)} ${vw(10)};
+    }
 `;
 
 export const SearchSubmit = styled.button`
     flex: 0 0 auto;
-    padding: 9px 12px;
+    padding: ${vw(9, 'xs')} ${vw(12, 'xs')};
     border-radius: 5px;
     background: ${color('meadowBlue')};
     color: ${color('cream')};
     cursor: pointer;
     ${font('mobileAction')};
+
+    ${mediaBreakpointUp('lg')} {
+        padding: ${vw(9)} ${vw(12)};
+    }
 `;
