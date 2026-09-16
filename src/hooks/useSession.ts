@@ -1,9 +1,13 @@
 /**
- * Session/auth helper backed by LocalStorage. Mirrors the existing pattern
- * established in `pages/login.tsx` (keys `stammbaum_session` / `stammbaum_users`).
+ * Session/auth helper backed by the real backend.
+ *
+ * Источник истины — accessToken (lib/api.ts) + GET /users/me.
+ * Refresh-token живёт только в HttpOnly cookie и из JS недоступен.
+ * Интерфейс хука сохранён: { session, ready, refresh }.
  */
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { clearAccessSession, getAccessToken, getCurrentUser, refreshAccessToken, UserRead } from '@/lib/api';
 
 export interface Session {
     username: string;
@@ -11,53 +15,85 @@ export interface Session {
     token: string;
 }
 
-const KEY = 'stammbaum_session';
+const toSession = (user: UserRead): Session => ({
+    username: user.displayName,
+    email: user.email,
+    token: getAccessToken() ?? ''
+});
 
 export const readSession = (): Session | null => {
     if (typeof window === 'undefined') return null;
+    // Синхронное чтение невозможно (нужен /users/me) — см. useSession.
+    // Оставлено для совместимости: возвращает null, реальная сессия грузится асинхронно.
     try {
-        const raw = window.localStorage.getItem(KEY);
-        if (!raw) return null;
-        const parsed = JSON.parse(raw);
-        if (parsed && typeof parsed === 'object' && typeof parsed.username === 'string') {
-            return parsed as Session;
+        const legacy = window.localStorage.getItem('stammbaum_session');
+        if (legacy) {
+            const parsed = JSON.parse(legacy);
+            if (parsed && typeof parsed === 'object' && typeof parsed.username === 'string') {
+                return parsed as Session;
+            }
         }
-        return null;
-    } catch {
-        return null;
-    }
-};
-
-export const clearSession = (): void => {
-    if (typeof window === 'undefined') return;
-    try {
-        window.localStorage.removeItem(KEY);
     } catch {
         // ignore
     }
+    return null;
+};
+
+export const clearSession = (): void => {
+    clearAccessSession();
 };
 
 /**
- * Hook that exposes the current session and tracks login/logout that happens
- * in other tabs (storage event) or other components in this tab (custom event).
- *
- * `ready` flips to `true` only after the first client-side read so SSR doesn't
- * trigger redirect logic before LocalStorage is available.
+ * Hook that exposes the current backend session.
+ * `ready` flips to `true` only after the first bootstrap attempt
+ * (accessToken -> /users/me, fallback -> refresh -> /users/me).
  */
-export const useSession = (): { session: Session | null; ready: boolean; refresh: () => void } => {
+export const useSession = (): { session: Session | null; ready: boolean; user: UserRead | null; refresh: () => void } => {
     const [session, setSession] = useState<Session | null>(null);
+    const [user, setUser] = useState<UserRead | null>(null);
     const [ready, setReady] = useState(false);
+    const inFlight = useRef(false);
 
     const refresh = useCallback(() => {
-        setSession(readSession());
+        if (inFlight.current) return;
+        inFlight.current = true;
+        const load = async () => {
+            try {
+                const token = getAccessToken();
+                if (!token) {
+                    setSession(null);
+                    setUser(null);
+                    return;
+                }
+                try {
+                    const me = await getCurrentUser();
+                    setUser(me);
+                    setSession(toSession(me));
+                } catch {
+                    // access протух — пробуем silent refresh один раз
+                    try {
+                        await refreshAccessToken();
+                        const me = await getCurrentUser();
+                        setUser(me);
+                        setSession(toSession(me));
+                    } catch {
+                        setSession(null);
+                        setUser(null);
+                    }
+                }
+            } finally {
+                setReady(true);
+                inFlight.current = false;
+            }
+        };
+        void load();
     }, []);
 
     useEffect(() => {
         refresh();
-        setReady(true);
 
         const onStorage = (event: StorageEvent) => {
-            if (event.key === KEY) refresh();
+            if (event.key === 'stammbaum_access_token' || event.key === 'stammbaum_session') refresh();
         };
         const onCustom = () => refresh();
 
@@ -69,7 +105,7 @@ export const useSession = (): { session: Session | null; ready: boolean; refresh
         };
     }, [refresh]);
 
-    return { session, ready, refresh };
+    return { session, ready, user, refresh };
 };
 
 /** Fire a custom event so any `useSession` consumer in the same tab updates. */

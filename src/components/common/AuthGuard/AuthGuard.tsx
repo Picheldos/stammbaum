@@ -21,11 +21,14 @@ const AuthGuard: React.FC<AuthGuardProps> = ({ children, redirectTo = '/login' }
 
     useEffect(() => {
         if (!ready) return;
+        // Публичные страницы, к которым не требуется авторизация.
+        const publicPaths = ['/login', '/register', '/forgot', '/verify-email', '/reset-password'];
+        if (publicPaths.includes(router.pathname)) return;
         if (!session) {
             const next = encodeURIComponent(router.asPath || '/tree');
             router.replace(`${redirectTo}?next=${next}`);
         }
-    }, [ready, session, redirectTo, router]);
+    }, [ready, session, redirectTo, router, router.pathname]);
 
     if (!ready) return <Gate>{t('authGuard.loading', { defaultValue: '…' })}</Gate>;
     if (!session) return <Gate>{t('authGuard.redirecting', { defaultValue: '…' })}</Gate>;
