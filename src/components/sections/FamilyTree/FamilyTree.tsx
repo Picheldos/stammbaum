@@ -420,7 +420,10 @@ const FamilyTree: React.FC = () => {
                 return;
             }
             const link = async (type: PersonRelation['type'], fromId: string, toId: string): Promise<void> => {
-                await attachRelationBackend(activeTreeId, type, fromId, toId);
+                const ok = await attachRelationBackend(activeTreeId, type, fromId, toId);
+                if (!ok) {
+                    throw new Error(t('errors.relationFailed', { defaultValue: 'Failed to save relation' }));
+                }
             };
  
         switch (mode.relation) {
