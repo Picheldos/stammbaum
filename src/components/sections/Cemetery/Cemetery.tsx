@@ -6,7 +6,14 @@ import Image from 'next/image';
 import { useSetRecoilState } from 'recoil';
 import { SandwichState } from '@/recoil/sandwichState/athom';
 import { useSession } from '@/hooks/useSession';
-import { createPerson, createTree, listPersons, listRelations, listTrees, updateTree, upsertUserPerson } from '@/lib/family/storage';
+import {
+    createPerson as apiCreatePerson,
+    createTree as apiCreateTree,
+    formatBackendError,
+    listTrees as apiListTrees,
+    toBackendPersonInput,
+    updateTree as apiUpdateTree
+} from '@/lib/api';
 import { labelForRelation } from '@/lib/family/relations';
 import type { Person, PersonRelation } from '@/lib/family/types';
 import {
@@ -92,16 +99,25 @@ const Cemetery: React.FC<CemeteryProps> = ({ periods: periodsProp, persons: pers
 
     const reloadFamily = React.useCallback(() => {
         if (!session) return;
-        const tree = listTrees(session.username)[0];
-        if (!tree) {
-            setFamilyPersons([]);
-            setFamilyRelations([]);
-            setFocusId(undefined);
-            return;
-        }
-        setFamilyPersons(listPersons(tree.id));
-        setFamilyRelations(listRelations(tree.id));
-        setFocusId(tree.rootPersonId);
+        (async () => {
+            try {
+                const { listTrees, getTreeSnapshot, toLocalPerson, toLocalRelation } = await import('@/lib/api');
+                const page = await listTrees(50, 0);
+                const tree = page.items[0];
+                if (!tree) {
+                    setFamilyPersons([]);
+                    setFamilyRelations([]);
+                    setFocusId(undefined);
+                    return;
+                }
+                const snapshot = await getTreeSnapshot(tree.id);
+                setFamilyPersons(snapshot.persons.map(toLocalPerson));
+                setFamilyRelations(snapshot.relations.map(toLocalRelation));
+                setFocusId(snapshot.tree.rootPersonId ?? undefined);
+            } catch {
+                // Тихо оставляем демо-данные при ошибке бэка.
+            }
+        })();
     }, [session]);
 
     useEffect(() => {
@@ -197,33 +213,46 @@ const Cemetery: React.FC<CemeteryProps> = ({ periods: periodsProp, persons: pers
         openSandwich(true);
     };
 
-    const handleAddPerson = (values: CemeteryPersonValues) => {
+    const handleAddPerson = async (values: CemeteryPersonValues) => {
         if (!session) {
             setAddPersonError(t('form.errors.signInRequired', { defaultValue: 'Sign in to save information' }));
             return;
         }
 
-        let tree = listTrees(session.username)[0];
-        if (!tree) {
-            tree = createTree(session.username, tTree('defaultTreeName', { defaultValue: 'Tree 1' }));
+        try {
+            const page = await apiListTrees(50, 0);
+            let tree = page.items[0];
+            if (!tree) {
+                tree = await apiCreateTree(tTree('defaultTreeName', { defaultValue: 'Tree 1' }));
+            }
+
+            const isRoot = !tree.rootPersonId;
+            const created = await apiCreatePerson(
+                tree.id,
+                toBackendPersonInput({
+                    gender: values.gender,
+                    firstName: values.firstName,
+                    lastName: values.lastName,
+                    middleName: values.middleName,
+                    maidenName: values.maidenName,
+                    birthDate: values.birthDate,
+                    birthPlace: values.birthPlace,
+                    deathDate: values.deathDate,
+                    deathPlace: values.deathPlace,
+                    biography: values.biography,
+                    photo: values.photo || values.memorialPhoto
+                })
+            );
+            if (isRoot) {
+                await apiUpdateTree(tree.id, { rootPersonId: created.id });
+            }
+
+            reloadFamily();
+            setAddPersonError('');
+            setAddPersonOpen(false);
+        } catch (error) {
+            setAddPersonError(formatBackendError(error, t('form.errors.saveFailed', { defaultValue: 'Failed to save person' })));
         }
-
-        const isRoot = !tree.rootPersonId;
-        const person = createPerson({ ...values, treeId: tree.id });
-        if (isRoot) updateTree(tree.id, { rootPersonId: person.id });
-        upsertUserPerson({
-            userId: session.username,
-            treeId: tree.id,
-            personId: person.id,
-            isOwner: isRoot,
-            isRoot,
-            isHidden: false,
-            canEdit: true
-        });
-
-        reloadFamily();
-        setAddPersonError('');
-        setAddPersonOpen(false);
     };
 
     // Search over the memorial cards currently rendered on the timeline.

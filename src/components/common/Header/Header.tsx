@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
@@ -6,6 +6,8 @@ import Logo from '@/components/blocks/Logo/Logo';
 import LangSwitch from '@/components/ui/LangSwitch/LangSwitch';
 import { SandwichState } from '@/recoil/sandwichState/athom';
 import { SizesState } from '@/recoil/commonState/athom';
+import { logoutUser } from '@/lib/api';
+import { useSession } from '@/hooks/useSession';
 import {
     AuthCluster,
     Bar,
@@ -32,7 +34,7 @@ const Header: React.FC<HeaderProps> = ({ variant = 'marketing' }) => {
     const { t } = useTranslation('common');
     const { pathname } = useRouter();
     const router = useRouter();
-    const [sessionUser, setSessionUser] = useState<{ username: string; email: string } | null>(null);
+    const { session, refresh } = useSession();
     const setSandwichOpen = useSetRecoilState(SandwichState);
 
     const toggleMenu = () => setSandwichOpen((open) => !open);
@@ -49,16 +51,8 @@ const Header: React.FC<HeaderProps> = ({ variant = 'marketing' }) => {
     const navItems = isMobile ? allNavItems.filter((item) => item.href !== '/about') : allNavItems;
 
     useEffect(() => {
-        try {
-            const raw = localStorage.getItem('stammbaum_session');
-            if (raw) {
-                const s = JSON.parse(raw);
-                setSessionUser({ username: s.username, email: s.email });
-            }
-        } catch (e) {
-            // ignore
-        }
-    }, []);
+        refresh();
+    }, [pathname, refresh]);
 
     return (
         <Bar role="banner">
@@ -85,7 +79,7 @@ const Header: React.FC<HeaderProps> = ({ variant = 'marketing' }) => {
                 <RightCol>
                     {marketing && (
                         <AuthCluster>
-                            {!sessionUser ? (
+                            {!session ? (
                                 <>
                                     <StyledLink href="/tree">
                                         <BtnOutline type="button">{t('header.createTree')}</BtnOutline>
@@ -96,17 +90,14 @@ const Header: React.FC<HeaderProps> = ({ variant = 'marketing' }) => {
                                 </>
                             ) : (
                                 <>
-                                    <Username>{sessionUser.username}</Username>
+                                    <Username>{session.username}</Username>
                                     <BtnOutline
                                         type="button"
                                         onClick={() => {
-                                            try {
-                                                localStorage.removeItem('stammbaum_session');
-                                            } catch (e) {
-                                                // ignore
-                                            }
-                                            setSessionUser(null);
-                                            router.push('/');
+                                            void logoutUser().finally(() => {
+                                                refresh();
+                                                router.push('/');
+                                            });
                                         }}
                                     >
                                         {t('header.logout')}

@@ -2,6 +2,13 @@ import styled, { css } from 'styled-components';
 import { color, mediaBreakpointUp, vw } from '@/style/mixins';
 
 type AuthMode = 'login' | 'register' | 'forgot';
+export type AuthContentMode = AuthMode | 'auth';
+
+const authCardHeight = (mode: AuthContentMode): number => {
+    if (mode === 'register') return 376;
+    if (mode === 'auth') return 260; // verify-email / reset-password
+    return 262;
+};
 
 const manrope = css`
     font-family: 'Manrope', sans-serif;
@@ -26,10 +33,10 @@ export const Page = styled.section`
     }
 `;
 
-export const Modal = styled.div<{ $mode: AuthMode }>`
+export const Modal = styled.div<{ $mode: AuthContentMode }>`
     position: relative;
     width: ${vw(300, 'xs')};
-    height: ${({ $mode }) => vw($mode === 'register' ? 376 : 262, 'xs')};
+    height: ${({ $mode }) => vw(authCardHeight($mode), 'xs')};
     border-radius: ${vw(5, 'xs')};
 
     && {
@@ -40,7 +47,7 @@ export const Modal = styled.div<{ $mode: AuthMode }>`
         position: absolute;
         inset: 0 0 auto;
         z-index: 0;
-        height: ${({ $mode }) => vw($mode === 'register' ? 326 : 212, 'xs')};
+        height: ${({ $mode }) => vw($mode === 'auth' ? 220 : ($mode === 'register' ? 326 : 212), 'xs')};
         border-radius: ${vw(5, 'xs')};
         background: ${color('popupBackground')};
         box-shadow: ${vw(2, 'xs')} ${vw(2, 'xs')} ${vw(4, 'xs')} ${color('black', 0.25)};
@@ -49,7 +56,7 @@ export const Modal = styled.div<{ $mode: AuthMode }>`
 
     ${mediaBreakpointUp('lg')} {
         width: ${vw(500)};
-        height: ${({ $mode }) => vw($mode === 'register' ? 645 : 484)};
+        height: ${({ $mode }) => vw($mode === 'auth' ? 484 : ($mode === 'register' ? 645 : 484))};
         background: ${color('popupBackground')};
         box-shadow: none;
 
