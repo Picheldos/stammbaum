@@ -9,19 +9,18 @@ export const PlusButton = styled.button`
   margin-top: auto;
   margin-left: auto;
 
-  width: 40px;
-  height: 40px;
+  width: ${vw(40, 'xs')};
+  height: ${vw(40, 'xs')};
   border-radius: 50%;
-  border: 2px solid white;
+  border: 2px solid ${color('white')};
   background: transparent;
-  color: white;
-  font-size: 1.5rem;
-  font-weight: 200;
+  color: ${color('white')};
+  ${font('bodyLarge')};
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: background-color 0.2s ease, transform 0.2s ease;
 
   &:hover {
     ${plusButtonHoverStyles}
@@ -30,26 +29,26 @@ export const PlusButton = styled.button`
   ${mediaBreakpointUp('lg')} {
     width: ${vw(61)};
     height: ${vw(61)};
-      font-size: 2.1rem;
+      ${font('bodyLarge')};
 
   }
 `;
 
-export const Container = styled.div<{ variant?: string; color?: string }>`
+export const Container = styled.div<{ variant?: string; color?: string; $textColor?: string }>`
   border-radius: 5px;
   opacity: 1;
   transform: rotate(${vw(0, 'xs')}deg);
   display: flex;
   flex-direction: column;
 
-  margin-bottom: 10px;
+  margin-bottom: ${vw(10, 'xs')};
 
-  padding: ${vw(20, 'xs')};
-  height: ${vw(140, 'xs')};
+  padding: ${vw(17.067, 'xs')};
+  height: ${vw(119.467, 'xs')};
 
   ${mediaBreakpointUp('lg')} {
-    width: ${vw(283, 'xl')};
-    height: ${vw(260, 'xl')};
+    width: ${vw(283)};
+    height: ${vw(260)};
     padding: ${vw(30)};
   }
 
@@ -62,7 +61,7 @@ export const Container = styled.div<{ variant?: string; color?: string }>`
 
   ${({ variant }) =>
     variant === 'step' &&
-    css`ß
+    css`
       cursor: pointer;
 
       &:hover ${PlusButton} {
@@ -86,10 +85,10 @@ export const Container = styled.div<{ variant?: string; color?: string }>`
       }
     `}
 
-  ${({ color }) =>
+  ${({ color, $textColor }) =>
     color &&
     `
-      color: white;
+      color: ${$textColor ?? 'white'};
       background: ${color};
     `}
 
@@ -97,22 +96,23 @@ export const Container = styled.div<{ variant?: string; color?: string }>`
 `;
 
 export const Title = styled.div<{ $variant?: string }>`
-  ${font('font5')};
+  ${font('mobileBody')};
 
   ${({ $variant }) =>
     $variant !== 'text' &&
     css`
-      max-width: 135px;
+      max-width: ${vw(150, 'xs')};
 
       ${mediaBreakpointUp('lg')} {
+        ${font('cardTitle')};
         max-width: ${vw(240)};
       }
     `}
 `;
 
 export const StepNumber = styled.h2`
-  ${font('title2')};
-  margin-bottom: ${vw(10, 'xs')};
+  ${font('landingStepHeading')};
+  margin-bottom: ${vw(8.533, 'xs')};
 
   ${mediaBreakpointUp('lg')} {
     margin-bottom: ${vw(30)};
@@ -120,7 +120,7 @@ export const StepNumber = styled.h2`
 `;
 
 export const Subtitle = styled.p`
-  font-size: 1rem;
+  ${font('mobileBody')};
   opacity: 0.9;
 `;
 
@@ -128,4 +128,9 @@ export const ImageContainer = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
+
+  img {
+    object-fit: cover;
+    object-position: center;
+  }
 `;

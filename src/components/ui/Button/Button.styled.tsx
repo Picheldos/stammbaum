@@ -7,9 +7,9 @@ export const Container = styled.button`
     background-color: ${color('brown')};
     text-align: center;
 
-    ${font('font2')};
+    ${font('body')};
     height: fit-content;
-    padding: ${vw(12, 'xs')} ${vw(25, 'xs')};
+    padding: ${vw(10.24, 'xs')} ${vw(21.333, 'xs')};
     border-radius: 3px;
 
     &:hover {
@@ -19,7 +19,7 @@ export const Container = styled.button`
 
     ${mediaBreakpointUp('xl')} {
         padding: ${vw(10)} ${vw(25)};
-        height: ${vw(104, 'mac')};
+        height: ${vw(104)};
         width: 100%;
     }
 `;

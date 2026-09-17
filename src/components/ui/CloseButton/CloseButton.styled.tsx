@@ -9,14 +9,14 @@ export const Container = styled.div<{ $tone?: 'dark' | 'light' }>`
 
     span {
         width: 2px;
-        height: ${vw(26, 'xs')};
+        height: ${vw(22.187, 'xs')};
         background: ${({ $tone }) => ($tone === 'light' ? color('forest') : color('darkBrown'))};
         border-radius: 5px;
         transform: rotate(45deg);
 
         ${mediaBreakpointUp('xl')} {
             width: 3px;
-            height: ${vw(48, 'mac')};
+            height: ${vw(48)};
         }
 
         &:first-child {

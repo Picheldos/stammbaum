@@ -1,10 +1,26 @@
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { useRecoilValue } from 'recoil';
 import Layout from '@/components/common/Layout/Layout';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { AboutSection } from '@/components/sections/AboutSection/AboutSection';
+import AboutSection from '@/components/sections/AboutSection/AboutSection';
+import { SizesState } from '@/recoil/commonState/athom';
 
 const AboutPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ meta, header, sandwich }) => {
+    const router = useRouter();
+    const { isMobile } = useRecoilValue(SizesState);
+
+    useEffect(() => {
+        if (isMobile) {
+            router.replace('/');
+        }
+    }, [isMobile, router]);
+
+    if (isMobile) {
+        return null;
+    }
+
     return (
         <Layout meta={meta} header={header} sandwich={sandwich}>
             <AboutSection />

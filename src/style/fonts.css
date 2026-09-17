@@ -1,10 +1,5 @@
-/* Fonts are provided via next/font in _app.tsx as CSS variables:
-   --font-manrope and --font-playfair-display. Local @font-face declarations
-   removed to avoid conflicts. If you need local fallbacks, add them here
-   mapping to the same variable names. */
-
+/* Font families are provided by next/font in _app.tsx. */
 :root {
-    /* Placeholder variables (actual values set by next/font on root div) */
-    --font-manrope: 'Manrope, Arial, sans-serif';
-    --font-playfair-display: 'Playfair Display, Georgia, serif';
+    --font-manrope: 'Manrope';
+    --font-playfair-display: 'Playfair Display';
 }

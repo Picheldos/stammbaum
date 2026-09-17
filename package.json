@@ -7,13 +7,14 @@
         "build": "next build",
         "start": "next start",
         "clean": "rimraf .next",
-        "lint": "next lint",
+        "lint": "eslint src --ext .ts,.tsx",
         "lint:css": "stylelint ./src/**/*.styled.tsx",
         "format": "prettier --write ./**/*.{ts,tsx} --config ./.prettierrc"
     },
     "dependencies": {
         "axios": "^0.27.2",
         "cookies-next": "^5.1.0",
+        "dotenv": "^17.4.2",
         "gsap": "^3.10.4",
         "next": "^16.2.6",
         "next-i18next": "^11.0.0",

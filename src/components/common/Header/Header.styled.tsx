@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
-import { color, font, hover, mediaBreakpointUp, vw } from '@/style/mixins';
+import Link from 'next/link';
+import { color, font, hover, mediaBreakpointDown, mediaBreakpointUp, vw } from '@/style/mixins';
 
 export const Bar = styled.header`
     position: sticky;
@@ -8,45 +9,59 @@ export const Bar = styled.header`
     display: flex;
     align-items: center;
     justify-content: center;     
-    min-height: 56px;
-    padding: 0 16px;
+    min-height: ${vw(55, 'xs')};
+    padding: 0 ${vw(16, 'xs')};
     background-color: ${color('forest')};
     color: ${color('white')};
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 0 ${color('black', 0.08)};
 
     ${mediaBreakpointUp('lg')} {
-        min-height: 60px;
-        padding: 0 ${vw(20, 'mac')};
+        min-height: ${vw(60)};
+        padding: 0 ${vw(20)};
     }
 `;
 
 export const BarInner = styled.div`
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    display: flex;
     align-items: center;
     width: 100%;
-    gap: 8px;
+    gap: ${vw(8, 'xs')};
 `;
 
 export const LeftCol = styled.div`
     display: flex;
+    flex: 1 1 0;
     align-items: center;
-    justify-self: start;
+    justify-content: flex-start;
     min-width: 0;
+
+    ${mediaBreakpointDown('xl')} {
+        display: none;
+    }
 `;
 
 export const Nav = styled.nav`
     display: none;
     align-items: center;
-    gap: 28px;
+    gap: ${vw(28)};
 
     ${mediaBreakpointUp('lg')} {
         display: flex;
     }
 `;
 
+export const StyledLink = styled(Link)`
+    color: inherit;
+    text-decoration: none;
+`;
+
+export const Username = styled.div`
+    color: ${color('white')};
+    opacity: 0.95;
+`;
+
 export const NavLink = styled.span<{ $active?: boolean }>`
-    ${font('headerNav')};
+    ${font('navigation')};
     color: ${color('white')};
     opacity: ${({ $active }) => ($active ? 1 : 0.88)};
     padding: 4px 0;
@@ -66,7 +81,7 @@ export const NavLink = styled.span<{ $active?: boolean }>`
 `;
 
 export const LogoCol = styled.div`
-    justify-self: center;
+    flex: 0 0 auto;
     text-align: center;
 
     a {
@@ -76,20 +91,21 @@ export const LogoCol = styled.div`
 
 export const RightCol = styled.div`
     display: flex;
+    flex: 1 1 0;
     align-items: center;
     justify-content: flex-end;
-    gap: 10px;
+    gap: ${vw(10, 'xs')};
     min-width: 0;
 
     ${mediaBreakpointUp('lg')} {
-        gap: 16px;
+        gap: ${vw(16)};
     }
 `;
 
 export const AuthCluster = styled.div`
     display: none;
     align-items: center;
-    gap: 12px;
+    gap: ${vw(12)};
 
     ${mediaBreakpointUp('lg')} {
         display: flex;
@@ -97,9 +113,9 @@ export const AuthCluster = styled.div`
 `;
 
 export const BtnOutline = styled.button`
-    ${font('headerNav')};
-    padding: 8px 16px;
-    border-radius: 6px;
+    ${font('navigation')};
+    padding: ${vw(8)} ${vw(16)};
+    border-radius: 5px;
     border: 1px solid ${color('white')};
     background: transparent;
     color: ${color('white')};
@@ -107,19 +123,17 @@ export const BtnOutline = styled.button`
     transition: background 0.2s ease, color 0.2s ease;
 
     ${hover(css`
-        background: rgba(255, 255, 255, 0.12);
+        background: ${color('white', 0.12)};
     `)}
 `;
 
 export const BtnSolid = styled.button`
-    ${font('headerNav')};
-    padding: 8px 18px;
-    border-radius: 6px;
+    ${font('navigationStrong')};
+    padding: ${vw(8)} ${vw(18)};
+    border-radius: 5px;
     border: none;
     background: ${color('white')};
     color: ${color('forestDeep')};
-    cursor: pointer;
-    font-weight: 600;
     transition: opacity 0.2s ease;
 
     ${hover(css`
@@ -131,8 +145,8 @@ export const Burger = styled.button`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 20px;
-    height: 7px;
+    width: ${vw(20, 'xs')};
+    height: ${vw(7, 'xs')};
     padding: 0;
     background: transparent;
     border: none;

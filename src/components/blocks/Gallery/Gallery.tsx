@@ -32,7 +32,6 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
                                     fill
                                     alt="product image"
                                     quality={100}
-                                    style={{ objectFit: 'cover', objectPosition: 'center' }}
                                     sizes="40vw"
                                 />
                             </GalleryImage>
@@ -47,7 +46,6 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
                             fill
                             alt="Catalogue"
                             quality={100}
-                            style={{ objectFit: 'cover', objectPosition: 'center' }}
                             sizes="(max-width: 1280px) 160px, 250px"
                         />
                     </GalleryImage>

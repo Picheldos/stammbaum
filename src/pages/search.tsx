@@ -1,23 +1,31 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
-import React from 'react';
+import React, { useState } from 'react';
 import Layout from '@/components/common/Layout/Layout';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
-import styled from 'styled-components';
-import { font } from '@/style/mixins';
-
-const Body = styled.section`
-    ${font('font2')};
-    padding-top: 2rem;
-`;
+import {
+    Body,
+    SearchButton,
+    SearchForm,
+    SearchInput,
+    VisuallyHiddenLabel
+} from '@/components/pages/SearchPage/SearchPage.styled';
 
 const SearchPage: React.FC<InferGetServerSidePropsType<typeof getServerSideProps>> = ({ meta, header, sandwich, query }) => {
     const { t } = useTranslation('search');
+    const [value, setValue] = useState(query);
     const titleLine = query.trim() ? t('titleQuery', { query: query.trim() }) : t('title');
 
     return (
         <Layout meta={meta} header={header} sandwich={sandwich}>
-            <Body>{titleLine}</Body>
+            <Body>
+                <h1>{titleLine}</h1>
+                <SearchForm action="/search" method="get">
+                    <VisuallyHiddenLabel htmlFor="site-search">Search</VisuallyHiddenLabel>
+                    <SearchInput id="site-search" name="q" type="search" autoComplete="off" value={value} onChange={(event) => setValue(event.target.value)} placeholder="Search…" />
+                    <SearchButton type="submit">Search</SearchButton>
+                </SearchForm>
+            </Body>
         </Layout>
     );
 };

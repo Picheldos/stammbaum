@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Link from 'next/link';
 import { color, font, vw } from '@/style/mixins';
 
 export const Container = styled.div<{ open: boolean }>`
@@ -10,11 +11,11 @@ export const Container = styled.div<{ open: boolean }>`
     display: flex;
     flex-direction: column;
 
-    width: ${vw(227, 'xs')};
-    padding: ${vw(16, 'xs')} ${vw(22, 'xs')} ${vw(28, 'xs')};
+    width: ${vw(193.707, 'xs')};
+    padding: ${vw(13.653, 'xs')} ${vw(18.773, 'xs')} ${vw(23.893, 'xs')};
     background: ${color('cream')};
     border-left: 1px solid ${color('darkGray')};
-    box-shadow: -8px 0 28px rgba(47, 79, 58, 0.14);
+    box-shadow: ${vw(-8, 'xs')} 0 ${vw(28, 'xs')} ${color('forestDeep', 0.14)};
 
     transform: translateX(100%);
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -32,7 +33,7 @@ export const SandwichTop = styled.div`
     justify-content: flex-end;
     width: 100%;
     flex-shrink: 0;
-    height: 20px;
+    height: ${vw(20, 'xs')};
 `;
 
 export const SandwichMenu = styled.div`
@@ -43,11 +44,16 @@ export const SandwichMenu = styled.div`
     min-height: 0;
 `;
 
+export const MenuLink = styled(Link)`
+    color: inherit;
+    text-decoration: none;
+`;
+
 export const SandwichMenuLink = styled.span`
-    ${font('title3')};
+    ${font('mobileAction')};
     color: ${color('textPrimary')};
     display: block;
-    padding: 10px 0;
+    padding: ${vw(10, 'xs')} 0;
     transition: color 0.2s ease-in-out;
 
     @media (hover: hover) {
@@ -59,14 +65,14 @@ export const SandwichMenuLink = styled.span`
 `;
 
 export const SandwichMenuHint = styled.span`
-    ${font('font7')};
+    ${font('bodySmall')};
     color: ${color('textPrimary')};
     opacity: 0.55;
-    padding: 6px 0 2px;
+    padding: ${vw(6, 'xs')} 0 2px;
 
     &:first-of-type {
-        margin-top: 12px;
-        padding-top: 16px;
+        margin-top: ${vw(12, 'xs')};
+        padding-top: ${vw(16, 'xs')};
         border-top: 1px solid ${color('gray')};
     }
 `;

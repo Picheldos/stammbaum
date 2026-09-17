@@ -1,31 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
-import { color, font } from '@/style/mixins';
 import { AddRelativeKind, Person } from '@/lib/family/types';
 import { formatShortName } from '@/lib/family/relations';
+import { Choice, Grid } from './AddRelativePicker.styled';
 import { HeaderClose, ModalBody, ModalCard, ModalHeader, Overlay } from './Modal.styled';
-
-const Grid = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-`;
-
-const Choice = styled.button`
-    background: ${color('landingCta')};
-    color: ${color('white')};
-    border: none;
-    border-radius: 8px;
-    padding: 12px;
-    cursor: pointer;
-    ${font('font7')};
-    font-weight: 600;
-
-    &:hover {
-        background: ${color('slateBlue')};
-    }
-`;
 
 export interface AddRelativePickerProps {
     open: boolean;

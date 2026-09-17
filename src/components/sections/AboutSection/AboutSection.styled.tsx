@@ -4,8 +4,8 @@ import { font, mediaBreakpointUp, vw } from '@/style/mixins';
 export const Container = styled.section`
 
   h1 {
-    ${font('title2')};
-    margin-bottom: ${vw(30, 'xs')};
+    ${font('landingHeading')};
+    margin-bottom: ${vw(25.6, 'xs')};
 
     ${mediaBreakpointUp('md')} {
       padding-top: ${vw(40)};

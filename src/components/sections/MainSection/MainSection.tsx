@@ -1,8 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
 import PersonCard from '@/components/blocks/PersonCard/PersonCard';
 import type { PersonCardData } from '@/components/blocks/PersonCard/PersonCard';
 import Image from 'next/image';
+import { useRecoilValue } from 'recoil';
+import { SizesState } from '@/recoil/commonState/athom';
 
 import {
     CardTier,
@@ -25,8 +28,12 @@ const parseCards = (value: unknown): PersonCardData[] =>
         ? (value as PersonCardData[]).filter((c) => c && typeof c.name === 'string')
         : [];
 
+const STEP_INDEX_WEIGHTS = [800, 500, 700] as const;
+
 const MainSection: React.FC = () => {
     const { t } = useTranslation('index');
+    const router = useRouter();
+    const { isMobile } = useRecoilValue(SizesState);
 
     const cards = parseCards(t('cards', { returnObjects: true }));
 
@@ -52,43 +59,49 @@ const MainSection: React.FC = () => {
                 <HeroContent>
                     <HeroTitle>{t('hero.title')}</HeroTitle>
                     <StepsList>
-                        {[1, 2, 3].map((n) => (
-                            <StepItem key={n}>
-                                <StepIndex>{n}/</StepIndex>
-                                <StepCopy>{t(`hero.step${n}`)}</StepCopy>
-                            </StepItem>
-                        ))}
+                        {STEP_INDEX_WEIGHTS.map((weight, index) => {
+                            const step = index + 1;
+                            return (
+                                <StepItem key={step}>
+                                    <StepIndex $weight={weight}>{step}/</StepIndex>
+                                    <StepCopy>{t(`hero.step${step}`)}</StepCopy>
+                                </StepItem>
+                            );
+                        })}
                     </StepsList>
-                    <CtaButton type="button">{t('hero.cta')}</CtaButton>
+                    <CtaButton type="button" onClick={() => router.push('/tree')}>{t('hero.cta')}</CtaButton>
                 </HeroContent>
 
                 <TreeScene>
-                    <CardsOverlay>
-                        <CardTier>
-                            <PersonCard data={c0} />
-                        </CardTier>
-                        <CardTier>
-                            <PersonCard data={c1} />
-                            <PersonCard data={c2} />
-                        </CardTier>
-                        <CardTier $compact>
-                            <PersonCard data={c3} />
-                            <PersonCard data={c4} />
-                            <PersonCard data={c5} />
-                            <PersonCard data={c6} />
-                        </CardTier>
-                    </CardsOverlay>
+                    {!isMobile && (
+                        <CardsOverlay>
+                            <CardTier>
+                                <PersonCard data={c0} />
+                            </CardTier>
+                            <CardTier>
+                                <PersonCard data={c1} />
+                                <PersonCard data={c2} />
+                            </CardTier>
+                            <CardTier $compact>
+                                <PersonCard data={c3} />
+                                <PersonCard data={c4} />
+                                <PersonCard data={c5} />
+                                <PersonCard data={c6} />
+                            </CardTier>
+                        </CardsOverlay>
+                    )}
                     <TreeLayer>
                         <Image
-                            src="/images/index/tree.jpg"
+                            src={isMobile ? '/images/index/tree-m.png' : '/images/index/tree.jpg'}
                             alt="decorative tree"
-                            layout={'fill'}
-                            objectFit={`cover`}
-                            style={{ pointerEvents: 'none' }}
+                            fill
+                            sizes={isMobile ? '100vw' : '47vw'}
+                            loading="eager"
                             aria-hidden
                         />
                     </TreeLayer>
                 </TreeScene>
+                <CtaButton type="button" onClick={() => router.push('/tree')}>{t('hero.cta')}</CtaButton>
             </HeroGrid>
         </LandingRoot>
     );

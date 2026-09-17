@@ -1,9 +1,9 @@
 import React, { useEffect, useCallback } from 'react';
 import { useTranslation } from 'next-i18next';
-import { Container, SandwichMenu, SandwichMenuHint, SandwichMenuLink, SandwichTop } from './Sandwich.styled';
-import { useRecoilState } from 'recoil';
+import { Container, MenuLink, SandwichMenu, SandwichMenuLink, SandwichTop } from './Sandwich.styled';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { SandwichState } from '@/recoil/sandwichState/athom';
-import Link from 'next/link';
+import { SizesState } from '@/recoil/commonState/athom';
 import CloseButton from '@/components/ui/CloseButton/CloseButton';
 
 export interface SandwichProps {}
@@ -31,13 +31,17 @@ const Sandwich: React.FC<SandwichProps> = () => {
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, [sandwichState, close]);
 
-    const items: { href: string; labelKey: string }[] = [
+    const { isMobile } = useRecoilValue(SizesState);
+
+    const allItems: { href: string; labelKey: string }[] = [
         { href: '/about', labelKey: 'nav.about' },
         { href: '/tree', labelKey: 'nav.tree' },
         { href: '/cemetery', labelKey: 'nav.cemetery' },
         { href: '/login', labelKey: 'nav.enter' },
         {  href: '#', labelKey: 'nav.feedback' }
     ];
+
+    const items = isMobile ? allItems.filter((item) => item.href !== '/about') : allItems;
 
     return (
         <Container open={sandwichState} className="sandwich-container" aria-hidden={!sandwichState}>
@@ -46,9 +50,9 @@ const Sandwich: React.FC<SandwichProps> = () => {
             </SandwichTop>
             <SandwichMenu>
                 {items.map(({ href, labelKey }) => (
-                    <Link key={href} href={href} onClick={close} style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <MenuLink key={href} href={href} onClick={close}>
                         <SandwichMenuLink as="span">{t(labelKey)}</SandwichMenuLink>
-                    </Link>
+                    </MenuLink>
                 ))}
                 {/* <SandwichMenuHint>{t('header.createTree')}</SandwichMenuHint>
                 <SandwichMenuHint>{t('header.login')}</SandwichMenuHint> */}

@@ -6,10 +6,10 @@ export const Container = styled.div`
     flex-direction: row;
 
     width: 100%;
-    margin-bottom: 14px;
+    margin-bottom: ${vw(14, 'xs')};
 
     ${mediaBreakpointUp('xl')} {
-        width: ${vw(580, 'mac')};
+        width: ${vw(580)};
         margin-bottom: 0;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -21,19 +21,24 @@ export const Container = styled.div`
 
         .swiper-slide {
             width: fit-content;
-            margin-right: ${vw(14, 'xs')};
+            margin-right: ${vw(11.947, 'xs')};
         }
     }
 `;
 export const GalleryImage = styled.div`
     position: relative;
-    width: ${vw(160, 'xs')};
-    height: ${vw(200, 'xs')};
+    width: ${vw(136.533, 'xs')};
+    height: ${vw(170.667, 'xs')};
+
+    img {
+        object-fit: cover;
+        object-position: center;
+    }
 
     ${mediaBreakpointUp('xl')} {
-        width: ${vw(250, 'mac')};
-        height: ${vw(320, 'mac')};
+        width: ${vw(250)};
+        height: ${vw(320)};
 
-        margin-top: ${vw(50, 'mac')};
+        margin-top: ${vw(50)};
     }
 `;

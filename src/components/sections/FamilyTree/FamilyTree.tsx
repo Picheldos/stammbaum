@@ -2,28 +2,34 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
 import { useSession } from '@/hooks/useSession';
+import { useMedia } from '@/hooks/useMedia';
 import {
-    addRelation,
-    createPerson,
-    createTree,
-    listPersons,
-    listRelations,
-    listTrees,
-    PersonInput,
-    removePerson,
-    removeRelation, 
-    setPersonHidden,
-    updatePerson,
-    updateTree,
-    upsertUserPerson
-} from '@/lib/family/storage';
+    ApiError,
+    addRelative as apiAddRelative,
+    createPerson as apiCreatePerson,
+    createRelation as apiCreateRelation,
+    createTree as apiCreateTree,
+    deletePerson as apiDeletePerson,
+    deleteRelation as apiDeleteRelation,
+    formatBackendError,
+    getTreeSnapshot,
+    listTrees as apiListTrees,
+    RelativeKind,
+    toBackendPersonInput,
+    toLocalPerson,
+    toLocalRelation,
+    toLocalTree,
+    updatePerson as apiUpdatePerson,
+    updatePersonPreferences as apiUpdatePersonPreferences,
+    updateTree as apiUpdateTree
+} from '@/lib/api';
+import type { PersonInput as LocalPersonInput } from '@/lib/family/storage';
 import { AddRelativeKind, Person, PersonRelation, Tree } from '@/lib/family/types';
 import {
     formatShortName,
-    getChildren,
     getParents,
-    getSiblings,
-    getSpouses
+    getSpouses,
+    labelForRelation
 } from '@/lib/family/relations';
 import { DEFAULT_LAYOUT_OPTIONS, layoutTree, NodePosition } from '@/lib/family/layout';
  
@@ -48,7 +54,10 @@ import {
     TreeImageLayer,
     TreeRoot,
     ZoomButton,
-    ZoomControls
+    ZoomControls,
+    SearchPopover,
+    SearchInput,
+    SearchSubmit
 } from './FamilyTree.styled';
  
 interface ContextMenuState {
@@ -88,75 +97,14 @@ const SearchIcon: React.FC = () => (
     </svg>
 );
  
-const labelForRelation = (
-    person: Person,
-    focusId: string | undefined,
-    relations: PersonRelation[],
-    t: (key: string, opts?: { defaultValue?: string }) => string
-): string | undefined => {
-    if (!focusId) return undefined;
-    if (person.id === focusId) return t('relativeLabel.self', { defaultValue: 'Me' });
- 
-    const parents = getParents(focusId, relations);
-    if (parents.includes(person.id)) {
-        return person.gender === 'male'
-            ? t('relativeLabel.father', { defaultValue: 'Father' })
-            : t('relativeLabel.mother', { defaultValue: 'Mother' });
-    }
-    const children = getChildren(focusId, relations);
-    if (children.includes(person.id)) {
-        return person.gender === 'male'
-            ? t('relativeLabel.son', { defaultValue: 'Son' })
-            : t('relativeLabel.daughter', { defaultValue: 'Daughter' });
-    }
-    const spouses = getSpouses(focusId, relations);
-    if (spouses.includes(person.id)) {
-        return person.gender === 'male'
-            ? t('relativeLabel.husband', { defaultValue: 'Husband' })
-            : t('relativeLabel.wife', { defaultValue: 'Wife' });
-    }
-    const siblings = getSiblings(focusId, relations);
-    if (siblings.includes(person.id)) {
-        return person.gender === 'male'
-            ? t('relativeLabel.brother', { defaultValue: 'Brother' })
-            : t('relativeLabel.sister', { defaultValue: 'Sister' });
-    }
- 
-    // Grandparents
-    for (const parentId of parents) {
-        const grand = getParents(parentId, relations);
-        if (grand.includes(person.id)) {
-            return person.gender === 'male'
-                ? t('relativeLabel.grandfather', { defaultValue: 'Grandfather' })
-                : t('relativeLabel.grandmother', { defaultValue: 'Grandmother' });
-        }
-        const auntsUncles = getSiblings(parentId, relations);
-        if (auntsUncles.includes(person.id)) {
-            return person.gender === 'male'
-                ? t('relativeLabel.uncle', { defaultValue: 'Uncle' })
-                : t('relativeLabel.aunt', { defaultValue: 'Aunt' });
-        }
-    }
- 
-    // Grandchildren
-    for (const childId of children) {
-        const grand = getChildren(childId, relations);
-        if (grand.includes(person.id)) {
-            return person.gender === 'male'
-                ? t('relativeLabel.grandson', { defaultValue: 'Grandson' })
-                : t('relativeLabel.granddaughter', { defaultValue: 'Granddaughter' });
-        }
-    }
- 
-    return t('relativeLabel.relative', { defaultValue: 'Relative' });
-};
- 
 const FamilyTree: React.FC = () => {
     const { t } = useTranslation('tree');
     const { session } = useSession();
  
     const [tick, setTick] = useState(0);
     const reload = useCallback(() => setTick((n) => n + 1), []);
+    const [busy, setBusy] = useState(false);
+    const [backendError, setBackendError] = useState('');
  
     const [trees, setTrees] = useState<Tree[]>([]);
     const [activeTreeId, setActiveTreeId] = useState<string>('');
@@ -169,17 +117,37 @@ const FamilyTree: React.FC = () => {
     const [addState, setAddState] = useState<AddPersonState | null>(null);
     const [card, setCard] = useState<CardState | null>(null);
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [searchOpen, setSearchOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [searchError, setSearchError] = useState('');
+    const isMobileViewport = useMedia('(max-width: 767px)', true);
  
     // Bootstrap: load (or create) the active tree for the signed-in user.
     useEffect(() => {
         if (!session) return;
-        let userTrees = listTrees(session.username);
-        if (userTrees.length === 0) {
-            createTree(session.username, t('defaultTreeName', { defaultValue: 'Tree 1' }));
-            userTrees = listTrees(session.username);
-        }
-        setTrees(userTrees);
-        setActiveTreeId((current) => (current && userTrees.some((tr) => tr.id === current) ? current : userTrees[0].id));
+        let cancelled = false;
+        (async () => {
+            try {
+                const page = await apiListTrees(50, 0);
+                let items = page.items;
+                if (items.length === 0) {
+                    const created = await apiCreateTree(t('defaultTreeName', { defaultValue: 'Tree 1' }));
+                    items = [created];
+                }
+                if (cancelled) return;
+                setTrees(items.map(toLocalTree));
+                setActiveTreeId((current) =>
+                    current && items.some((tr) => tr.id === current) ? current : items[0].id
+                );
+            } catch (error) {
+                if (!cancelled) {
+                    setBackendError(formatBackendError(error, t('errors.loadFailed', { defaultValue: 'Failed to load trees' })));
+                }
+            }
+        })();
+        return () => {
+            cancelled = true;
+        };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [session, tick]);
  
@@ -189,8 +157,26 @@ const FamilyTree: React.FC = () => {
             setRelations([]);
             return;
         }
-        setPersons(listPersons(activeTreeId));
-        setRelations(listRelations(activeTreeId));
+        let cancelled = false;
+        (async () => {
+            try {
+                const snapshot = await getTreeSnapshot(activeTreeId);
+                if (cancelled) return;
+                setPersons(snapshot.persons.map(toLocalPerson));
+                setRelations(snapshot.relations.map(toLocalRelation));
+                setTrees((prev) =>
+                    prev.map((tr) => (tr.id === activeTreeId ? toLocalTree(snapshot.tree) : tr))
+                );
+            } catch (error) {
+                if (!cancelled) {
+                    setBackendError(formatBackendError(error, t('errors.loadFailed', { defaultValue: 'Failed to load tree' })));
+                }
+            }
+        })();
+        return () => {
+            cancelled = true;
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [activeTreeId, tick]);
  
     const activeTree = useMemo(() => trees.find((tr) => tr.id === activeTreeId) || null, [trees, activeTreeId]);
@@ -200,7 +186,7 @@ const FamilyTree: React.FC = () => {
     );
  
     // Pan + zoom state. (0,0) is the centre of the canvas.
-    const [scale, setScale] = useState(1.5);
+    const [scale, setScale] = useState(1);
     const [pan, setPan] = useState({ x: 0, y: 0 });
     const dragState = useRef<{ pointerId: number; startX: number; startY: number; baseX: number; baseY: number } | null>(
         null
@@ -244,8 +230,16 @@ const FamilyTree: React.FC = () => {
     const zoomIn = () => setScale((current) => Math.min(MAX_SCALE, current * 1.15));
     const zoomOut = () => setScale((current) => Math.max(MIN_SCALE, current / 1.15));
     const recenter = () => {
-        setScale(1);
-        setPan({ x: 0, y: 0 });
+        const nextScale = isMobileViewport ? 0.72 : 1;
+        setScale(nextScale);
+        if (layout) {
+            setPan({
+                x: -((layout.bounds.minX + layout.bounds.maxX) / 2) * nextScale,
+                y: -((layout.bounds.minY + layout.bounds.maxY) / 2) * nextScale
+            });
+        } else {
+            setPan({ x: 0, y: 0 });
+        }
     };
  
     const layout = useMemo(() => {
@@ -261,96 +255,205 @@ const FamilyTree: React.FC = () => {
         if (layout) layout.nodes.forEach((n) => map.set(n.personId, n));
         return map;
     }, [layout]);
+
+    useEffect(() => {
+        if (!layout) return;
+        const nextScale = isMobileViewport ? 0.72 : 1;
+        setScale(nextScale);
+        setPan({
+            x: -((layout.bounds.minX + layout.bounds.maxX) / 2) * nextScale,
+            y: -((layout.bounds.minY + layout.bounds.maxY) / 2) * nextScale
+        });
+    }, [layout, isMobileViewport]);
+
+    useEffect(() => {
+        if (!searchOpen) return;
+        const onKeyDown = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                setSearchOpen(false);
+                setSearchError('');
+            }
+        };
+        window.addEventListener('keydown', onKeyDown);
+        return () => window.removeEventListener('keydown', onKeyDown);
+    }, [searchOpen]);
+
+    const submitSearch = (event: React.FormEvent) => {
+        event.preventDefault();
+        const normalized = searchQuery.trim().toLowerCase();
+        if (!normalized) return;
+        const match = persons.find((p) => formatShortName(p).toLowerCase().includes(normalized));
+        if (!match) {
+            setSearchError(t('controls.notFound', { defaultValue: 'Person not found' }));
+            return;
+        }
+        const node = nodeIndex.get(match.id);
+        if (node) {
+            setPan({
+                x: -(node.x + DEFAULT_LAYOUT_OPTIONS.nodeWidth / 2) * scale,
+                y: -(node.y + DEFAULT_LAYOUT_OPTIONS.nodeHeight / 2) * scale
+            });
+        }
+        setCard({ personId: match.id, tab: 'info' });
+        setSearchOpen(false);
+        setSearchQuery('');
+        setSearchError('');
+    };
  
     /* ---------------------- Mutations ---------------------- */
  
-    const persistPerson = (input: PersonInput): Person => {
-        const person = createPerson(input);
-        reload();
-        return person;
+    const persistPersonBackend = async (treeId: string, input: LocalPersonInput): Promise<Person | null> => {
+        try {
+            const created = await apiCreatePerson(treeId, toBackendPersonInput(input));
+            return toLocalPerson(created);
+        } catch (error) {
+            setBackendError(formatBackendError(error, t('errors.saveFailed', { defaultValue: 'Failed to save person' })));
+            return null;
+        }
     };
  
-    const attachRelation = (
+    const attachRelationBackend = async (
+        treeId: string,
         type: PersonRelation['type'],
         fromId: string,
         toId: string,
         extras: Pick<PersonRelation, 'marriageDate' | 'divorceDate'> = {}
-    ) => {
-        if (!activeTreeId) return;
-        addRelation(activeTreeId, type, fromId, toId, extras);
+    ): Promise<boolean> => {
+        try {
+            await apiCreateRelation(treeId, {
+                fromId,
+                toId,
+                type,
+                marriageDate: extras.marriageDate ?? null,
+                divorceDate: extras.divorceDate ?? null
+            });
+            return true;
+        } catch (error) {
+            setBackendError(formatBackendError(error, t('errors.relationFailed', { defaultValue: 'Failed to save relation' })));
+            return false;
+        }
     };
  
-    const handleAddSelf = (values: AddPersonValues) => {
+    const handleAddSelf = async (values: AddPersonValues) => {
         if (!session || !activeTreeId) return;
-        const person = persistPerson({ ...values, treeId: activeTreeId });
-        updateTree(activeTreeId, { rootPersonId: person.id });
-        upsertUserPerson({
-            userId: session.username,
-            treeId: activeTreeId,
-            personId: person.id,
-            isOwner: true,
-            isRoot: true,
-            isHidden: false,
-            canEdit: true
-        });
-        setAddState(null);
-        reload();
+        setBusy(true);
+        try {
+            // setAsRoot: бэк сам назначает созданного человека корнем дерева.
+            await apiCreatePerson(activeTreeId, { ...toBackendPersonInput(values), setAsRoot: true });
+            setAddState(null);
+            reload();
+        } catch (error) {
+            setBackendError(formatBackendError(error, t('errors.saveFailed', { defaultValue: 'Failed to save person' })));
+        } finally {
+            setBusy(false);
+        }
     };
  
-    const handleSavePerson = (values: AddPersonValues) => {
+    const uiToRelativeKind = (relation: string): RelativeKind => {
+        switch (relation) {
+            case 'mother': return 'mother';
+            case 'father': return 'father';
+            case 'spouse': return 'spouse';
+            case 'son': return 'son';
+            case 'daughter': return 'daughter';
+            case 'brother': return 'brother';
+            case 'sister': return 'sister';
+            default: return 'sibling';
+        }
+    };
+
+    const handleSavePersonBackend = async (values: AddPersonValues) => {
         if (!addState) return;
         const mode = addState.mode;
         if (mode.kind === 'self') {
-            handleAddSelf(values);
+            await handleAddSelf(values);
             return;
         }
         if (mode.kind === 'edit') {
-            updatePerson(mode.person.id, { ...values, treeId: mode.person.treeId });
-            setAddState(null);
-            reload();
+            setBusy(true);
+            try {
+                await apiUpdatePerson(mode.person.id, toBackendPersonInput(values));
+                setAddState(null);
+                reload();
+            } catch (error) {
+                setBackendError(formatBackendError(error, t('errors.saveFailed', { defaultValue: 'Failed to save person' })));
+            } finally {
+                setBusy(false);
+            }
             return;
         }
-        // mode.kind === 'relative'
+        // mode.kind === 'relative': atomic POST /relatives, fallback — person+relation.
         if (!activeTreeId) return;
-        const relativeOf = mode.relativeOf;
-        const created = persistPerson({ ...values, treeId: activeTreeId });
+        setBusy(true);
+        setBackendError('');
+        try {
+            const relativeOf = mode.relativeOf;
+            const kind = uiToRelativeKind(mode.relation);
+            const parents = getParents(relativeOf.id, relations);
+            const sharedParentIds = (() => {
+                if (mode.relation !== 'brother' && mode.relation !== 'sister') return undefined;
+                const requested = values.sharedParentIds;
+                const shared = requested && requested.length > 0 ? requested.filter((id) => parents.includes(id)) : parents;
+                return shared.length > 0 ? shared.slice(0, 2) : undefined;
+            })();
+            let atomicOk = false;
+            try {
+                await apiAddRelative(activeTreeId, {
+                    relativeOfId: relativeOf.id,
+                    kind,
+                    person: toBackendPersonInput(values),
+                    ...(sharedParentIds ? { sharedParentIds } : {})
+                });
+                atomicOk = true;
+            } catch (error) {
+                if (!(error instanceof ApiError) || (error.status !== 400 && error.status !== 409 && error.status !== 422)) throw error;
+            }
+            if (atomicOk) {
+                setAddState(null);
+                setPicker(null);
+                reload();
+                return;
+            }
+            const created = await persistPersonBackend(activeTreeId, { ...values, treeId: activeTreeId });
+            if (!created) {
+                setBusy(false);
+                return;
+            }
+            const link = async (type: PersonRelation['type'], fromId: string, toId: string): Promise<void> => {
+                const ok = await attachRelationBackend(activeTreeId, type, fromId, toId);
+                if (!ok) {
+                    throw new Error(t('errors.relationFailed', { defaultValue: 'Failed to save relation' }));
+                }
+            };
  
         switch (mode.relation) {
             case 'mother':
             case 'father':
-                attachRelation('parent', created.id, relativeOf.id);
+                await link('parent', created.id, relativeOf.id);
                 break;
             case 'son':
             case 'daughter': {
-                attachRelation('parent', relativeOf.id, created.id);
-                // If the focused person has a single spouse, attach that spouse as a co-parent too.
+                await link('parent', relativeOf.id, created.id);
                 const spouses = getSpouses(relativeOf.id, relations);
-                if (spouses.length === 1) attachRelation('parent', spouses[0], created.id);
+                if (spouses.length === 1) await link('parent', spouses[0], created.id);
                 break;
             }
             case 'spouse':
-                attachRelation('spouse', relativeOf.id, created.id);
+                await link('spouse', relativeOf.id, created.id);
                 break;
             case 'brother':
             case 'sister': {
-                const parents = getParents(relativeOf.id, relations);
-                if (parents.length > 0) {
-                    // If the modal returned a sharedParentIds subset (half-sibling case)
-                    // honour it, otherwise default to all parents (full sibling).
+                const siblingParents = getParents(relativeOf.id, relations);
+                if (siblingParents.length > 0) {
                     const requested = values.sharedParentIds;
-                    const shared =
-                        requested && requested.length > 0
-                            ? requested.filter((id) => parents.includes(id))
-                            : parents;
+                    const shared = requested && requested.length > 0 ? requested.filter((id) => siblingParents.includes(id)) : siblingParents;
                     if (shared.length > 0) {
-                        shared.forEach((parentId) => attachRelation('parent', parentId, created.id));
+                        for (const parentId of shared) await link('parent', parentId, created.id);
                     } else {
-                        // No shared parents picked at all → record an explicit sibling edge so
-                        // the layout still knows they belong together as a step-sibling.
-                        attachRelation('sibling', relativeOf.id, created.id);
+                        await link('sibling', relativeOf.id, created.id);
                     }
                 } else {
-                    attachRelation('sibling', relativeOf.id, created.id);
+                    await link('sibling', relativeOf.id, created.id);
                 }
                 break;
             }
@@ -358,6 +461,11 @@ const FamilyTree: React.FC = () => {
         setAddState(null);
         setPicker(null);
         reload();
+        } catch (error) {
+            setBackendError(formatBackendError(error, t('errors.saveFailed', { defaultValue: 'Failed to save person' })));
+        } finally {
+            setBusy(false);
+        }
     };
  
     /**
@@ -365,7 +473,7 @@ const FamilyTree: React.FC = () => {
      * person card to let users clean up incorrect parent/spouse/sibling/child
      * links without cascade-deleting either person.
      */
-    const handleRemoveRelation = (
+    const handleRemoveRelation = async (
         person: Person,
         otherId: string,
         kind: 'parent' | 'spouse' | 'child' | 'sibling'
@@ -396,25 +504,37 @@ const FamilyTree: React.FC = () => {
                 ? window.confirm(t('confirmRemoveRelation', { defaultValue: 'Remove this relation?' }))
                 : true;
         if (!confirmed) return;
-        removeRelation(target.id);
+        try {
+            await apiDeleteRelation(target.id);
+        } catch (error) {
+            setBackendError(formatBackendError(error, t('errors.deleteFailed', { defaultValue: 'Failed to delete' })));
+        }
         reload();
     };
  
-    const handleHideToggle = (person: Person) => {
-        setPersonHidden(person.treeId, person.id, !person.isHidden);
+    const handleHideToggle = async (person: Person) => {
+        try {
+            await apiUpdatePersonPreferences(person.treeId, person.id, !person.isHidden);
+        } catch (error) {
+            setBackendError(formatBackendError(error, t('errors.saveFailed', { defaultValue: 'Failed to save' })));
+        }
         setContextMenu(null);
         reload();
     };
  
-    const handleDeletePerson = (person: Person) => {
+    const handleDeletePerson = async (person: Person) => {
         const confirmed =
             typeof window !== 'undefined'
                 ? window.confirm(t('confirmDelete', { defaultValue: 'Delete this person from the tree?' }))
                 : true;
         if (!confirmed) return;
-        removePerson(person.id);
-        if (activeTree?.rootPersonId === person.id) {
-            updateTree(person.treeId, { rootPersonId: undefined });
+        try {
+            await apiDeletePerson(person.id);
+            if (activeTree?.rootPersonId === person.id) {
+                await apiUpdateTree(person.treeId, { rootPersonId: null });
+            }
+        } catch (error) {
+            setBackendError(formatBackendError(error, t('errors.deleteFailed', { defaultValue: 'Failed to delete' })));
         }
         setCard(null);
         setContextMenu(null);
@@ -423,14 +543,18 @@ const FamilyTree: React.FC = () => {
  
     /* ---------------------- Sidebar handlers ---------------------- */
  
-    const handleNewTree = () => {
+    const handleNewTree = async () => {
         if (!session) return;
         const name = window.prompt(t('sidebar.newTreePrompt', { defaultValue: 'Name of the new tree' }), `Tree ${trees.length + 1}`);
         if (!name) return;
-        const tree = createTree(session.username, name.trim());
-        setActiveTreeId(tree.id);
-        setSidebarOpen(false);
-        reload();
+        try {
+            const tree = await apiCreateTree(name.trim());
+            setActiveTreeId(tree.id);
+            setSidebarOpen(false);
+            reload();
+        } catch (error) {
+            setBackendError(formatBackendError(error, t('errors.saveFailed', { defaultValue: 'Failed to save' })));
+        }
     };
  
     const placeholderAction = (key: string) => () => {
@@ -467,14 +591,14 @@ const FamilyTree: React.FC = () => {
                     <Image
                         src="/images/fon.jpg"
                         alt="decorative tree"
-                        layout={'fill'}
-                        objectFit={`cover`}
-                        style={{ pointerEvents: 'none' }}
+                        fill
+                        sizes="100vw"
+                        loading="eager"
                         aria-hidden
                     />
                 </TreeImageLayer>
                 <FloatingTopRight>
-                    <IconButton type="button" aria-label={t('controls.search', { defaultValue: 'Search' })}>
+                    <IconButton type="button" aria-label={t('controls.search', { defaultValue: 'Search' })} disabled>
                         <SearchIcon />
                     </IconButton>
                     <IconButton
@@ -517,7 +641,7 @@ const FamilyTree: React.FC = () => {
                     open={Boolean(addState)}
                     mode={addState?.mode ?? { kind: 'self' }}
                     onCancel={() => setAddState(null)}
-                    onSubmit={handleSavePerson}
+                    onSubmit={(values) => { void handleSavePersonBackend(values); }}
                 />
             </TreeRoot>
         );
@@ -543,9 +667,9 @@ const FamilyTree: React.FC = () => {
                 <Image
                     src="/images/fon.jpg"
                     alt="decorative tree"
-                    layout={'fill'}
-                    objectFit={`cover`}
-                    style={{ pointerEvents: 'none' }}
+                    fill
+                    sizes="100vw"
+                    loading="eager"
                     aria-hidden
                 />
             </TreeImageLayer>
@@ -585,29 +709,26 @@ const FamilyTree: React.FC = () => {
                 <IconButton
                     type="button"
                     aria-label={t('controls.search', { defaultValue: 'Search' })}
-                    onClick={() => {
-                        const query = window.prompt(t('controls.searchPrompt', { defaultValue: 'Search by name' }) || '');
-                        if (!query) return;
-                        const match = persons.find((p) =>
-                            formatShortName(p).toLowerCase().includes(query.toLowerCase())
-                        );
-                        if (!match) {
-                            window.alert(t('controls.notFound', { defaultValue: 'Person not found' }));
-                            return;
-                        }
-                        const node = nodeIndex.get(match.id);
-                        if (node) {
-                            setPan({
-                                x: -node.x * scale,
-                                y: -node.y * scale
-                            });
-                        }
-                        setCard({ personId: match.id, tab: 'info' });
-                    }}
+                    onClick={() => { setSearchOpen((value) => !value); setSearchError(''); }}
                 >
                     <SearchIcon />
                 </IconButton>
             </FloatingTopLeft>
+
+            {searchOpen && (
+                <SearchPopover onSubmit={submitSearch} aria-label={t('controls.search', { defaultValue: 'Search' })}>
+                    <SearchInput
+                        autoFocus
+                        type="search"
+                        aria-label={t('controls.searchPrompt', { defaultValue: 'Search by name' })}
+                        placeholder={t('controls.searchPrompt', { defaultValue: 'Search by name' })}
+                        value={searchQuery}
+                        onChange={(event) => { setSearchQuery(event.target.value); setSearchError(''); }}
+                    />
+                    <SearchSubmit type="submit">{t('controls.search', { defaultValue: 'Search' })}</SearchSubmit>
+                    {searchError && <span role="alert">{searchError}</span>}
+                </SearchPopover>
+            )}
  
             <FloatingTopRight>
                 <IconButton
@@ -618,6 +739,20 @@ const FamilyTree: React.FC = () => {
                     <BurgerIcon />
                 </IconButton>
             </FloatingTopRight>
+
+            {(busy) && (
+                <SearchPopover aria-label={t('controls.loading', { defaultValue: 'Loading' })}>
+                    <span role="status">{t('controls.loading', { defaultValue: 'Loading…' })}</span>
+                </SearchPopover>
+            )}
+            {backendError && (
+                <SearchPopover aria-label={t('controls.error', { defaultValue: 'Error' })}>
+                    <span role="alert">{backendError}</span>
+                    <SearchSubmit type="button" onClick={() => { setBackendError(''); reload(); }}>
+                        {t('controls.retry', { defaultValue: 'Retry' })}
+                    </SearchSubmit>
+                </SearchPopover>
+            )}
  
             <ZoomControls>
                 <ZoomButton type="button" aria-label="zoom in" onClick={zoomIn}>
@@ -659,12 +794,12 @@ const FamilyTree: React.FC = () => {
                         setCard({ personId: contextMenuPerson.id, tab: 'parents' });
                         setContextMenu(null);
                     }}
-                    onToggleHidden={() => handleHideToggle(contextMenuPerson)}
+                    onToggleHidden={() => { void handleHideToggle(contextMenuPerson); }}
                     onToggleShowHidden={() => {
                         setShowHidden((v) => !v);
                         setContextMenu(null);
                     }}
-                    onDelete={() => handleDeletePerson(contextMenuPerson)}
+                    onDelete={() => { void handleDeletePerson(contextMenuPerson); }}
                 />
             )}
  
@@ -684,7 +819,7 @@ const FamilyTree: React.FC = () => {
                 mode={addState?.mode ?? { kind: 'self' }}
                 focusParents={addPersonFocusParents}
                 onCancel={() => setAddState(null)}
-                onSubmit={handleSavePerson}
+                onSubmit={(values) => { void handleSavePersonBackend(values); }}
             />
  
             <PersonCardModal
@@ -713,7 +848,7 @@ const FamilyTree: React.FC = () => {
                     setAddState({ mode: { kind: 'relative', relativeOf: person, relation: 'sister' } });
                 }}
  
-                onRemoveRelation={handleRemoveRelation}
+                onRemoveRelation={(person, relativeId, kind) => { void handleRemoveRelation(person, relativeId, kind); }}
             />
  
             <TreeSidebar
