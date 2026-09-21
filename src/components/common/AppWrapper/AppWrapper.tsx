@@ -6,6 +6,7 @@ import { SwitchTransition, Transition } from 'react-transition-group';
 import { useRecoilState } from 'recoil';
 import { TransitionTimeoutState, TransitionTransitState } from '@/recoil/transitionState/athom';
 import TransitionLayer from '@/components/common/TransitionLayer/TransitionLayer';
+import Preloader from '@/components/common/Preloader/Preloader';
 
 const AppWrapper: React.FC<AppProps> = ({ Component, pageProps, router }) => {
     const { asPath } = router;
@@ -25,6 +26,7 @@ const AppWrapper: React.FC<AppProps> = ({ Component, pageProps, router }) => {
                 </Transition>
             </SwitchTransition>
             <TransitionLayer visible={transit} />
+            <Preloader />
         </Container>
     );
 };
