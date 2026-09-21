@@ -350,7 +350,6 @@ export const clearAccessSession = (): void => {
     try {
         window.localStorage.removeItem(ACCESS_KEY);
         window.localStorage.removeItem(ACCESS_EXP_KEY);
-        window.localStorage.removeItem('stammbaum_session');
         window.dispatchEvent(new Event('stammbaum:session'));
     } catch {
         // ignore
