@@ -4,7 +4,9 @@ import { color, mediaBreakpointUp, vw } from '@/style/mixins';
 export const PageShell = styled.div`
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    /* Header теперь рендерится в AppWrapper над PageShell и не участвует
+       в переходах, поэтому shell занимает всё место под ним. */
+    flex: 1 0 auto;
     background-color: ${color('cream')};
 `;
 

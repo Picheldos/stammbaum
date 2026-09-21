@@ -5,7 +5,9 @@ import { color, font, hover, mediaBreakpointDown, mediaBreakpointUp, vw } from '
 export const Bar = styled.header`
     position: sticky;
     top: 0;
-    z-index: 100;
+    /* Выше TransitionLayer (z-index: 200): во время перехода между страницами
+       шапка должна оставаться видимой и не скрываться за overlay перехода. */
+    z-index: 300;
     display: flex;
     align-items: center;
     justify-content: center;     
@@ -66,7 +68,7 @@ export const NavLink = styled.span<{ $active?: boolean }>`
     opacity: ${({ $active }) => ($active ? 1 : 0.88)};
     padding: 4px 0;
     border-bottom: 2px solid transparent;
-    transition: opacity 0.2s ease, border-color 0.2s ease;
+    transition: opacity 0.3s ease-in-out, border-color 0.3s ease-in-out;
     white-space: nowrap;
 
     ${({ $active }) =>
@@ -120,7 +122,7 @@ export const BtnOutline = styled.button`
     background: transparent;
     color: ${color('white')};
     cursor: pointer;
-    transition: background 0.2s ease, color 0.2s ease;
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 
     ${hover(css`
         background: ${color('white', 0.12)};
@@ -134,7 +136,7 @@ export const BtnSolid = styled.button`
     border: none;
     background: ${color('white')};
     color: ${color('forestDeep')};
-    transition: opacity 0.2s ease;
+    transition: opacity 0.3s ease-in-out;
 
     ${hover(css`
         opacity: 0.92;

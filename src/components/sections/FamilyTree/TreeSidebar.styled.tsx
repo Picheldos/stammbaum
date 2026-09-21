@@ -7,7 +7,7 @@ export const Backdrop = styled.div<{ $open: boolean }>`
     background: ${color('black', 0.18)};
     opacity: ${({ $open }) => ($open ? 1 : 0)};
     pointer-events: ${({ $open }) => ($open ? 'auto' : 'none')};
-    transition: opacity 0.25s ease;
+    transition: opacity 0.3s ease-in-out;
     z-index: 700;
 `;
 
@@ -53,7 +53,7 @@ export const CloseBtn = styled.button`
     cursor: pointer;
     flex-shrink: 0;
     padding: 4px ${vw(8, 'xs')};
-    transition: color 0.2s ease;
+    transition: color 0.3s ease-in-out;
 
     &:hover { color: ${color('forest')}; }
     &:focus-visible {
@@ -72,7 +72,7 @@ export const TreeSelect = styled.select`
     color: ${color('textPrimary')};
     padding: ${vw(10, 'xs')} ${vw(32, 'xs')} ${vw(10, 'xs')} ${vw(14, 'xs')};
     cursor: pointer;
-    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23333333' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
@@ -119,6 +119,7 @@ export const MenuItem = styled.button`
     color: ${color('textPrimary')};
     ${font('mobileAction')};
     cursor: pointer;
+    transition: color 0.3s ease-in-out;
     &:hover { color: ${color('forest')}; }
 
     ${mediaBreakpointUp('xl')} {
@@ -205,7 +206,7 @@ export const RestoreButton = styled.button`
     padding: ${vw(5, 'xs')} ${vw(12, 'xs')};
     ${font('mobileControl')};
     cursor: pointer;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 
     &:hover {
         background: ${color('forest')};

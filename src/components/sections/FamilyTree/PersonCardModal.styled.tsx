@@ -47,6 +47,7 @@ export const ListRow = styled.div`
     background: ${color('ink', 0.06)};
     border-radius: ${vw(6, 'xs')};
     padding: 4px ${vw(6, 'xs')} 4px 0;
+    transition: background-color 0.3s ease-in-out;
     &:hover { background: ${color('ink', 0.1)}; }
 
     ${mediaBreakpointUp('lg')} {
@@ -94,6 +95,7 @@ export const RemoveRelationButton = styled.button`
     line-height: 1;
     cursor: pointer;
     opacity: 0.7;
+    transition: opacity 0.3s ease-in-out, background-color 0.3s ease-in-out;
     &:hover { opacity: 1; background: ${color('ink', 0.08)}; }
 
     ${mediaBreakpointUp('lg')} {

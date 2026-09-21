@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import Head from 'next/head';
-import Header from '../Header/Header';
 import { BasePageProps } from '@/interfaces';
 import Sandwich from '@/components/common/Sandwich/Sandwich';
 import { SizesState } from '@/recoil/commonState/athom';
@@ -11,6 +10,9 @@ import { MainArea, PageShell } from '@/components/common/Layout/Layout.styled';
 interface LayoutProps extends React.PropsWithChildren<BasePageProps> {}
 
 const Layout: React.FC<LayoutProps> = ({ children, meta, header, sandwich }) => {
+    // Header рендерится в AppWrapper вне SwitchTransition: конфиг приходит из
+    // pageProps, поэтому здесь он не нужен — страница не должна его монтировать.
+    void header;
     const setSizesState = useSetRecoilState(SizesState);
     const sizes = useResize();
 
@@ -34,7 +36,6 @@ const Layout: React.FC<LayoutProps> = ({ children, meta, header, sandwich }) => 
             </Head>
 
             <PageShell>
-                <Header {...header} />
                 <MainArea>{children}</MainArea>
                 { /* <Footer /> */ }
             </PageShell>

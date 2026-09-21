@@ -21,7 +21,7 @@ export const Overlay = styled.div<{ isOpen: boolean }>`
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  animation: fadeIn 0.15s ease;
+  animation: fadeIn 0.3s ease-in-out;
 
   @keyframes fadeIn {
     from { opacity: 0; }
@@ -41,7 +41,7 @@ export const Content = styled.div<{ className?: string }>`
   padding: ${vw(24, 'xs')} ${vw(16, 'xs')};
   border-radius: 5px;
   box-shadow: 2px 2px 4px ${color('black', 0.25)};
-  animation: slideUp 0.3s ease;
+  animation: slideUp 0.3s ease-in-out;
   background: ${color('popupBackground')};
 
   @keyframes slideUp {
@@ -117,6 +117,7 @@ export const IconButton = styled.button`
 
   span {
     ${iconLineStyles}
+    transition: opacity 0.3s ease-in-out;
   }
 
   &:hover span {

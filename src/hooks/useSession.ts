@@ -21,22 +21,18 @@ const toSession = (user: UserRead): Session => ({
     token: getAccessToken() ?? ''
 });
 
-export const readSession = (): Session | null => {
-    if (typeof window === 'undefined') return null;
-    // Синхронное чтение невозможно (нужен /users/me) — см. useSession.
-    // Оставлено для совместимости: возвращает null, реальная сессия грузится асинхронно.
+// Ключ сессии из старых сборок. Сейчас источник истины — accessToken
+// (lib/api.ts) + HttpOnly refresh-cookie stammbaum_refresh, поэтому JSON-снимок
+// сессии в localStorage больше не читается и не пишется. Чистим лежалые записи.
+const LEGACY_SESSION_KEY = 'stammbaum_session';
+
+const purgeLegacyStorage = (): void => {
+    if (typeof window === 'undefined') return;
     try {
-        const legacy = window.localStorage.getItem('stammbaum_session');
-        if (legacy) {
-            const parsed = JSON.parse(legacy);
-            if (parsed && typeof parsed === 'object' && typeof parsed.username === 'string') {
-                return parsed as Session;
-            }
-        }
+        window.localStorage.removeItem(LEGACY_SESSION_KEY);
     } catch {
         // ignore
     }
-    return null;
 };
 
 export const clearSession = (): void => {
@@ -90,10 +86,11 @@ export const useSession = (): { session: Session | null; ready: boolean; user: U
     }, []);
 
     useEffect(() => {
+        purgeLegacyStorage();
         refresh();
 
         const onStorage = (event: StorageEvent) => {
-            if (event.key === 'stammbaum_access_token' || event.key === 'stammbaum_session') refresh();
+            if (event.key === 'stammbaum_access_token') refresh();
         };
         const onCustom = () => refresh();
 

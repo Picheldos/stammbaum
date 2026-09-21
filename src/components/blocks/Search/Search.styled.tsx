@@ -61,7 +61,7 @@ export const SearchFieldWrap = styled.div<{ $isOpen: boolean }>`
     max-width: ${({ $isOpen }) => ($isOpen ? '100%' : 0)};
     overflow: hidden;
     opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
-    transition: max-width 0.5s ease-out, opacity 0.25s ease-out;
+    transition: max-width 0.5s ease-out, opacity 0.3s ease-in-out;
     display: flex;
     align-items: center;
 `;

@@ -121,7 +121,7 @@ export const CtaButton = styled.button`
     background: ${color('landingCta')};
     cursor: pointer;
     box-shadow: 0 4px ${vw(14, 'xs')} ${color('slateShadow', 0.28)};
-    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background 0.3s ease-in-out;
 
     &:hover {
         background: ${color('slateBlue')};

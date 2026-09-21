@@ -20,7 +20,7 @@ export const Container = styled.div<{ $hidden?: boolean }>`
     color: ${color('textPrimary')};
     border: 1px solid ${color('ink', 0.75)};
     opacity: ${({ $hidden }) => ($hidden ? 0.45 : 1)};
-    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     z-index: 2;
     cursor: default;
 

@@ -8,6 +8,7 @@ export const Container = styled.div<{ $light?: boolean; $compact?: boolean }>`
     ${({ $compact }) => $compact && xlFontSize(14)};
     ${({ $compact }) => $compact && xlOnly('font-weight', '500')};
     padding: 4px ${vw(6, 'xs')};
+    transition: opacity 0.3s ease-in-out;
 
     ${({ $compact }) =>
         $compact &&

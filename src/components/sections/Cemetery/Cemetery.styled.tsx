@@ -324,7 +324,7 @@ export const PeriodChip = styled.button<{ $active?: boolean }>`
     border: 0;
     background: transparent;
     cursor: pointer;
-    transition: transform 0.15s ease;
+    transition: transform 0.3s ease-in-out;
 
     ${mediaBreakpointUp('lg')} {
         width: ${vw(163)};
@@ -344,7 +344,7 @@ export const PeriodChip = styled.button<{ $active?: boolean }>`
         fill: ${({ $active }) => ($active ? color('meadowBlue') : 'transparent')};
         stroke: ${({ $active }) => ($active ? color('meadowBlue') : color('ink', 0.5))};
         stroke-width: 1;
-        transition: fill 0.2s ease, stroke 0.2s ease;
+        transition: fill 0.3s ease-in-out, stroke 0.3s ease-in-out;
     }
 
     span {
@@ -354,7 +354,7 @@ export const PeriodChip = styled.button<{ $active?: boolean }>`
         color: ${({ $active }) => ($active ? color('cream') : color('ink'))};
         text-align: center;
         white-space: nowrap;
-        transition: color 0.2s ease;
+        transition: color 0.3s ease-in-out;
     }
 
     ${hover(css`
@@ -467,7 +467,7 @@ export const AddRelativeButton = styled.button`
     cursor: pointer;
     ${font('button')};
     text-align: center;
-    transition: background-color 0.2s ease, transform 0.15s ease;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
 
     ${mediaBreakpointUp('lg')} {
         margin: ${vw(12)} auto max(${vw(12)}, env(safe-area-inset-bottom));

@@ -63,6 +63,7 @@ export const MenuItem = styled.button<{ $condensed?: boolean }>`
     cursor: pointer;
     color: ${color('ink')};
     ${font('mobileAction')};
+    transition: background-color 0.3s ease-in-out;
 
     ${({ $condensed }) =>
         $condensed &&
