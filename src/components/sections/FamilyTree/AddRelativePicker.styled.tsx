@@ -19,6 +19,7 @@ export const Choice = styled.button`
     padding: ${vw(12, 'xs')};
     cursor: pointer;
     ${font('mobileAction')};
+    transition: background-color 0.3s ease-in-out;
 
     &:hover {
         background: ${color('slateBlue')};

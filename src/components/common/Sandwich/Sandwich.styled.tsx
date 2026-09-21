@@ -71,7 +71,7 @@ export const SandwichMenuLink = styled.span`
     color: ${color('textPrimary')};
     display: block;
     padding: ${vw(10, 'xs')} 0;
-    transition: color 0.2s ease-in-out;
+    transition: color 0.3s ease-in-out;
 
     @media (hover: hover) {
         &:hover {

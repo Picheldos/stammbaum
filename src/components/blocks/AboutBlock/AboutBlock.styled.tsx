@@ -20,7 +20,7 @@ export const PlusButton = styled.button`
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.2s ease;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
 
     &:hover {
         ${plusButtonHoverStyles}

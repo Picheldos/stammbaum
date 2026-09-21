@@ -104,6 +104,7 @@ export const ZoomButton = styled.button`
     box-shadow: 0 4px ${vw(14, 'xs')} ${color('forestDeep', 0.2)};
     cursor: pointer;
     ${font('bodyLarge')};
+    transition: background-color 0.3s ease-in-out;
 
     ${mediaBreakpointUp('lg')} {
         width: ${vw(36)};
@@ -159,6 +160,7 @@ export const IconButton = styled.button`
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    transition: background-color 0.3s ease-in-out;
 
     svg {
         width: ${vw(22, 'xs')};
@@ -199,6 +201,7 @@ export const AddRelativeCta = styled.button`
     z-index: 5;
     box-shadow: 0 ${vw(6, 'xs')} ${vw(18, 'xs')} ${color('slateShadow', 0.34)};
     ${font('mobileAction')};
+    transition: background-color 0.3s ease-in-out;
 
     ${mediaBreakpointUp('lg')} {
         border-radius: ${vw(10)};
@@ -308,6 +311,7 @@ export const EmptyCard = styled.button`
     ${font('mobileBody')};
     min-width: ${vw(220, 'xs')};
     text-align: center;
+    transition: background-color 0.3s ease-in-out;
 
     ${mediaBreakpointUp('lg')} {
         padding: ${vw(16)} ${vw(24)};
@@ -347,6 +351,7 @@ export const EmptyCta = styled.button`
     cursor: pointer;
     box-shadow: 0 ${vw(6, 'xs')} ${vw(18, 'xs')} ${color('slateShadow', 0.34)};
     ${font('mobileAction')};
+    transition: background-color 0.3s ease-in-out;
 
     ${mediaBreakpointUp('lg')} {
         border-radius: ${vw(10)};

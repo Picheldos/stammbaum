@@ -13,7 +13,7 @@ export const Overlay = styled.div<{ $open: boolean }>`
     overscroll-behavior: contain;
     opacity: ${({ $open }) => ($open ? 1 : 0)};
     pointer-events: ${({ $open }) => ($open ? 'auto' : 'none')};
-    transition: opacity 0.2s ease;
+    transition: opacity 0.3s ease-in-out;
 `;
 
 export type ModalVariant = 'tree' | 'cemetery';
@@ -155,6 +155,7 @@ export const Tab = styled.button<{ $active?: boolean }>`
     padding: 4px ${vw(10, 'xs')};
     cursor: pointer;
     ${font('mobileControl')};
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 
     ${mediaBreakpointUp('lg')} {
         padding: 4px ${vw(10)};
@@ -301,6 +302,7 @@ export const Primary = styled.button`
     padding: ${vw(12, 'xs')} ${vw(16, 'xs')};
     cursor: pointer;
     ${font('mobileAction')};
+    transition: background-color 0.3s ease-in-out;
 
     ${mediaBreakpointUp('lg')} {
         border-radius: ${vw(8)};

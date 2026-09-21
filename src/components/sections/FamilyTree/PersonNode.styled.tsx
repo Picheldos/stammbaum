@@ -57,7 +57,7 @@ export const NodeCard = styled.button<{ $hidden?: boolean }>`
     color: ${color('textPrimary')};
     border: 1px solid ${color('ink', 0.75)};
     opacity: ${({ $hidden }) => ($hidden ? 0.45 : 1)};
-    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     cursor: pointer;
  
     ${font('personName')};
@@ -199,7 +199,7 @@ export const CemeteryNodeCard = styled.div<{
     background: ${color('cemeteryGray')};
     color: ${color('cream')};
     border: none;
-    transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease-in-out;
     cursor: pointer;
 
     /* Search-match glow (mirrors the tree page search behavior). */
