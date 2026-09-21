@@ -54,7 +54,7 @@ const MainSection: React.FC = () => {
 
                 <TreeLayer ref={treeRef}>
                     <Image
-                        src={isMobile ? '/images/index/tree-m.png' : '/images/index/tree.png'}
+                        src={isMobile ? '/images/home/tree-m.png' : '/images/home/tree.png'}
                         alt="decorative tree"
                         fill
                         sizes={isMobile ? '100vw' : '47vw'}
