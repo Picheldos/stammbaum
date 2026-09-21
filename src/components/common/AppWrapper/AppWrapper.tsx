@@ -7,11 +7,16 @@ import { useRecoilState } from 'recoil';
 import { TransitionTimeoutState, TransitionTransitState } from '@/recoil/transitionState/athom';
 import TransitionLayer from '@/components/common/TransitionLayer/TransitionLayer';
 import Preloader from '@/components/common/Preloader/Preloader';
+import useSmoothScroll from '@/hooks/useSmoothScroll';
 
 const AppWrapper: React.FC<AppProps> = ({ Component, pageProps, router }) => {
     const { asPath } = router;
     const [transit, setTransit] = useRecoilState(TransitionTransitState);
     const [timeout, setTimeoutState] = useRecoilState(TransitionTimeoutState);
+
+    // Инерционный скролл — только там, где скроллится сама страница.
+    // На инструментах (tree/cemetery, variant: 'app') колесо занято зумом/таймлайном.
+    useSmoothScroll(pageProps?.header?.variant !== 'app');
 
     useEffect(() => {
         setTimeoutState(800);

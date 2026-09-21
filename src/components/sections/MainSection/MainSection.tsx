@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { useRecoilValue } from 'recoil';
 import { SizesState } from '@/recoil/commonState/athom';
+import useParallax from '@/hooks/useParallax';
 import useRevealOnScroll from '@/hooks/useRevealOnScroll';
 
 import {
@@ -26,6 +27,11 @@ const MainSection: React.FC = () => {
     const router = useRouter();
     const { isMobile } = useRecoilValue(SizesState);
     const heroTitleRef = useRevealOnScroll<HTMLHeadingElement>();
+    const treeRef = useRef<HTMLDivElement>(null);
+
+    // Параллакс дерева: слой дрейфует вверх при скролле, создавая глубину.
+    // На мобильных отключён — там дерево маленькое и макет другой.
+    useParallax(treeRef, { from: 60, to: -60, disabled: isMobile });
 
     return (
         <LandingRoot>
@@ -46,7 +52,7 @@ const MainSection: React.FC = () => {
                     <CtaButton type="button" onClick={() => router.push('/tree')}>{t('hero.cta')}</CtaButton>
                 </HeroContent>
 
-                <TreeLayer>
+                <TreeLayer ref={treeRef}>
                     <Image
                         src={isMobile ? '/images/index/tree-m.png' : '/images/index/tree.png'}
                         alt="decorative tree"
