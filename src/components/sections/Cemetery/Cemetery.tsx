@@ -7,20 +7,27 @@ import { useSetRecoilState } from 'recoil';
 import { SandwichState } from '@/recoil/sandwichState/athom';
 import { useSession } from '@/hooks/useSession';
 import {
+    addRelative as apiAddRelative,
+    ApiError,
     createPerson as apiCreatePerson,
+    createRelation as apiCreateRelation,
     createTree as apiCreateTree,
+    deleteRelation as apiDeleteRelation,
     formatBackendError,
     listTrees as apiListTrees,
+    RelativeKind,
     toBackendPersonInput,
+    toLocalPerson,
+    updatePerson as apiUpdatePerson,
     updateTree as apiUpdateTree
 } from '@/lib/api';
-import { labelForRelation } from '@/lib/family/relations';
-import type { Person, PersonRelation } from '@/lib/family/types';
+import { getParents, getSpouses, labelForRelation } from '@/lib/family/relations';
+import { AddRelativeKind, Person, PersonRelation } from '@/lib/family/types';
+import type { PersonInput as LocalPersonInput } from '@/lib/family/storage';
 import {
     AddRelativeButton,
     CemeterySection,
     FloatingIconButton,
-    FloatingTopLeft,
     FloatingTopRight,
     PageBackground,
     ScrollViewport,
@@ -37,6 +44,8 @@ import {
 } from './Cemetery.styled';
 import PeriodNavigation from './PeriodNavigation';
 import PersonNode from '../FamilyTree/PersonNode';
+import PersonCardModal, { PersonCardTab } from '../FamilyTree/PersonCardModal';
+import AddPersonModal, { AddPersonMode, AddPersonValues } from '../FamilyTree/AddPersonModal';
 import type { CemeteryPeriod, CemeteryPerson } from './Cemetery.types';
 import {
     CARD_GAP,
@@ -61,6 +70,10 @@ import CemeteryAddPersonModal, { type CemeteryPersonValues } from './CemeteryAdd
 export interface CemeteryProps {
     periods?: CemeteryPeriod[];
     persons?: CemeteryPerson[];
+}
+
+interface AddPersonState {
+    mode: AddPersonMode;
 }
 
 const BurgerIcon: React.FC = () => (
@@ -96,6 +109,9 @@ const Cemetery: React.FC<CemeteryProps> = ({ periods: periodsProp, persons: pers
     const [focusId, setFocusId] = useState<string | undefined>(undefined);
     const [addPersonOpen, setAddPersonOpen] = useState(false);
     const [addPersonError, setAddPersonError] = useState('');
+    const [card, setCard] = useState<{ personId: string; tab: PersonCardTab } | null>(null);
+    const [addState, setAddState] = useState<AddPersonState | null>(null);
+    const [backendError, setBackendError] = useState('');
 
     const reloadFamily = React.useCallback(() => {
         if (!session) return;
@@ -255,6 +271,159 @@ const Cemetery: React.FC<CemeteryProps> = ({ periods: periodsProp, persons: pers
         }
     };
 
+    /* ---------------------- Mutations ---------------------- */
+
+    /** Resolve the current user's active tree, creating one if needed. */
+    const getActiveTreeId = async (): Promise<string | null> => {
+        if (!session) return null;
+        try {
+            const page = await apiListTrees(50, 0);
+            let tree = page.items[0];
+            if (!tree) {
+                tree = await apiCreateTree(tTree('defaultTreeName', { defaultValue: 'Tree 1' }));
+            }
+            return tree.id;
+        } catch {
+            return null;
+        }
+    };
+
+    const persistPersonBackend = async (treeId: string, input: LocalPersonInput): Promise<Person | null> => {
+        try {
+            const created = await apiCreatePerson(treeId, toBackendPersonInput(input));
+            return toLocalPerson(created);
+        } catch (error) {
+            setBackendError(formatBackendError(error, tTree('errors.saveFailed', { defaultValue: 'Failed to save person' })));
+            return null;
+        }
+    };
+
+    const attachRelationBackend = async (
+        treeId: string,
+        type: PersonRelation['type'],
+        fromId: string,
+        toId: string
+    ): Promise<boolean> => {
+        try {
+            await apiCreateRelation(treeId, { fromId, toId, type, marriageDate: null, divorceDate: null });
+            return true;
+        } catch (error) {
+            setBackendError(formatBackendError(error, tTree('errors.relationFailed', { defaultValue: 'Failed to save relation' })));
+            return false;
+        }
+    };
+
+    const uiToRelativeKind = (relation: string): RelativeKind => {
+        switch (relation) {
+            case 'mother': return 'mother';
+            case 'father': return 'father';
+            case 'spouse': return 'spouse';
+            case 'son': return 'son';
+            case 'daughter': return 'daughter';
+            case 'brother': return 'brother';
+            case 'sister': return 'sister';
+            default: return 'sibling';
+        }
+    };
+
+    const handleSavePersonBackend = async (values: AddPersonValues) => {
+        if (!addState) return;
+        const mode = addState.mode;
+        if (mode.kind === 'self') {
+            // Self mode is handled by CemeteryAddPersonModal; fallthrough here.
+            return;
+        }
+        if (mode.kind === 'edit') {
+            try {
+                await apiUpdatePerson(mode.person.id, toBackendPersonInput(values));
+                setAddState(null);
+                reloadFamily();
+            } catch (error) {
+                setBackendError(formatBackendError(error, tTree('errors.saveFailed', { defaultValue: 'Failed to save person' })));
+            }
+            return;
+        }
+        // mode.kind === 'relative': atomic POST /relatives, fallback — person+relation.
+        const treeId = await getActiveTreeId();
+        if (!treeId) return;
+        setBackendError('');
+        try {
+            const relativeOf = mode.relativeOf;
+            const kind = uiToRelativeKind(mode.relation);
+            const parents = getParents(relativeOf.id, familyRelations);
+            const sharedParentIds = (() => {
+                if (mode.relation !== 'brother' && mode.relation !== 'sister') return undefined;
+                const requested = values.sharedParentIds;
+                const shared = requested && requested.length > 0 ? requested.filter((id) => parents.includes(id)) : parents;
+                return shared.length > 0 ? shared.slice(0, 2) : undefined;
+            })();
+            let atomicOk = false;
+            try {
+                await apiAddRelative(treeId, {
+                    relativeOfId: relativeOf.id,
+                    kind,
+                    person: toBackendPersonInput(values),
+                    ...(sharedParentIds ? { sharedParentIds } : {})
+                });
+                atomicOk = true;
+            } catch (error) {
+                if (!(error instanceof ApiError) || (error.status !== 400 && error.status !== 409 && error.status !== 422)) throw error;
+            }
+            if (atomicOk) {
+                setAddState(null);
+                reloadFamily();
+                return;
+            }
+            const created = await persistPersonBackend(treeId, { ...values, treeId });
+            if (!created) {
+                return;
+            }
+            const link = async (type: PersonRelation['type'], fromId: string, toId: string): Promise<void> => {
+                const ok = await attachRelationBackend(treeId, type, fromId, toId);
+                if (!ok) {
+                    throw new Error(tTree('errors.relationFailed', { defaultValue: 'Failed to save relation' }));
+                }
+            };
+
+            switch (mode.relation) {
+                case 'mother':
+                case 'father':
+                    await link('parent', created.id, relativeOf.id);
+                    break;
+                case 'son':
+                case 'daughter': {
+                    await link('parent', relativeOf.id, created.id);
+                    const spouses = getSpouses(relativeOf.id, familyRelations);
+                    if (spouses.length === 1) await link('parent', spouses[0], created.id);
+                    break;
+                }
+                case 'spouse':
+                    await link('spouse', relativeOf.id, created.id);
+                    break;
+                case 'brother':
+                case 'sister': {
+                    const siblingParents = getParents(relativeOf.id, familyRelations);
+                    if (siblingParents.length > 0) {
+                        const requested = values.sharedParentIds;
+                        const shared = requested && requested.length > 0 ? requested.filter((id) => siblingParents.includes(id)) : siblingParents;
+                        if (shared.length > 0) {
+                            for (const parentId of shared) await link('parent', parentId, created.id);
+                        } else {
+                            await link('sibling', relativeOf.id, created.id);
+                        }
+                    } else {
+                        await link('sibling', relativeOf.id, created.id);
+                    }
+                    break;
+                }
+            }
+            setAddState(null);
+            reloadFamily();
+        } catch (error) {
+            setBackendError(formatBackendError(error, tTree('errors.saveFailed', { defaultValue: 'Failed to save person' })));
+        }
+    };
+
     // Search over the memorial cards currently rendered on the timeline.
     const submitSearch = (event: React.FormEvent) => {
         event.preventDefault();
@@ -406,15 +575,6 @@ const Cemetery: React.FC<CemeteryProps> = ({ periods: periodsProp, persons: pers
                     sizes="100vw"
                 />
             </PageBackground>
-            <FloatingTopLeft>
-                <FloatingIconButton
-                    type="button"
-                    aria-label={t('controls.search', { defaultValue: 'Search' })}
-                    onClick={() => { setSearchOpen((value) => !value); setSearchError(''); }}
-                >
-                    <SearchIcon />
-                </FloatingIconButton>
-            </FloatingTopLeft>
             {searchOpen && (
                 <SearchPopover onSubmit={submitSearch} aria-label={t('controls.search', { defaultValue: 'Search' })}>
                     <SearchInput
@@ -429,7 +589,22 @@ const Cemetery: React.FC<CemeteryProps> = ({ periods: periodsProp, persons: pers
                     {searchError && <span role="alert">{searchError}</span>}
                 </SearchPopover>
             )}
+            {backendError && (
+                <SearchPopover aria-label={t('controls.error', { defaultValue: 'Error' })}>
+                    <span role="alert">{backendError}</span>
+                    <SearchSubmit type="button" onClick={() => { setBackendError(''); reloadFamily(); }}>
+                        {t('controls.retry', { defaultValue: 'Retry' })}
+                    </SearchSubmit>
+                </SearchPopover>
+            )}
             <FloatingTopRight>
+                <FloatingIconButton
+                    type="button"
+                    aria-label={t('controls.search', { defaultValue: 'Search' })}
+                    onClick={() => { setSearchOpen((value) => !value); setSearchError(''); }}
+                >
+                    <SearchIcon />
+                </FloatingIconButton>
                 <FloatingIconButton
                     type="button"
                     aria-label={t('controls.menu', { defaultValue: 'Menu' })}
@@ -466,6 +641,7 @@ const Cemetery: React.FC<CemeteryProps> = ({ periods: periodsProp, persons: pers
                                     isDesktop={isDesktop}
                                     highlighted={node.id === highlightId}
                                     connector={connector}
+                                    onClick={() => setCard({ personId: node.id, tab: 'info' })}
                                 />
                             </React.Fragment>
                         );
@@ -489,6 +665,97 @@ const Cemetery: React.FC<CemeteryProps> = ({ periods: periodsProp, persons: pers
                     setAddPersonOpen(false);
                 }}
                 onSubmit={handleAddPerson}
+            />
+
+            {/*
+                Person card modal — mirrors the tree page flow. Only available for
+                signed-in users where we have the full `Person` objects in
+                `familyPersons`; anonymous visitors see the demo timeline without
+                the ability to open full cards (their data is the slim
+                `CemeteryPerson` type).
+            */}
+            {familyPersons && card && (() => {
+                const fullPerson = familyPersons.find((p) => p.id === card.personId);
+                if (!fullPerson) return null;
+                return (
+                    <PersonCardModal
+                        open={true}
+                        variant="cemetery"
+                        person={fullPerson}
+                        persons={familyPersons}
+                        relations={familyRelations}
+                        initialTab={card.tab}
+                        onClose={() => setCard(null)}
+                        onEdit={(person) => {
+                            setAddState({ mode: { kind: 'edit', person } });
+                            setCard(null);
+                        }}
+                        onSelectPerson={(id) => setCard({ personId: id, tab: 'info' })}
+                        onAddParent={(person) => {
+                            const kind: AddRelativeKind = person.gender === 'male' ? 'father' : 'mother';
+                            setAddState({ mode: { kind: 'relative', relativeOf: person, relation: kind } });
+                            setCard(null);
+                        }}
+                        onAddSpouse={(person) => {
+                            setAddState({ mode: { kind: 'relative', relativeOf: person, relation: 'spouse' } });
+                            setCard(null);
+                        }}
+                        onAddChild={(person) => {
+                            setAddState({ mode: { kind: 'relative', relativeOf: person, relation: 'daughter' } });
+                            setCard(null);
+                        }}
+                        onAddSibling={(person) => {
+                            setAddState({ mode: { kind: 'relative', relativeOf: person, relation: 'sister' } });
+                            setCard(null);
+                        }}
+                        onRemoveRelation={async (person, relativeId, kind) => {
+                    // Reuse the tree page's relation-removal logic via a confirmation prompt.
+                    const confirmed =
+                        typeof window !== 'undefined'
+                            ? window.confirm('Remove this relation?')
+                            : true;
+                    if (!confirmed) return;
+                    try {
+                        // Find the matching relation edge to delete.
+                        const target = (() => {
+                            switch (kind) {
+                                case 'parent':
+                                    return familyRelations.find(
+                                        (r) => r.type === 'parent' && r.fromId === relativeId && r.toId === person.id
+                                    );
+                                case 'child':
+                                    return familyRelations.find(
+                                        (r) => r.type === 'parent' && r.fromId === person.id && r.toId === relativeId
+                                    );
+                                case 'spouse': {
+                                    const [a, b] = person.id < relativeId ? [person.id, relativeId] : [relativeId, person.id];
+                                    return familyRelations.find((r) => r.type === 'spouse' && r.fromId === a && r.toId === b);
+                                }
+                                case 'sibling': {
+                                    const [a, b] = person.id < relativeId ? [person.id, relativeId] : [relativeId, person.id];
+                                    return familyRelations.find((r) => r.type === 'sibling' && r.fromId === a && r.toId === b);
+                                }
+                                default:
+                                    return undefined;
+                            }
+                        })();
+                        if (!target) return;
+                        await apiDeleteRelation(target.id);
+                    } catch {
+                        // Silently handle — user can retry.
+                    }
+                    reloadFamily();
+                }}
+                    />
+                );
+            })()}
+
+            <AddPersonModal
+                open={Boolean(addState)}
+                variant="cemetery"
+                mode={addState?.mode ?? { kind: 'self' }}
+                onCancel={() => setAddState(null)}
+                onSubmit={(values) => { void handleSavePersonBackend(values); }}
             />
         </CemeterySection>
     );

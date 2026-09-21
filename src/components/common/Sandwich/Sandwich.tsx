@@ -1,9 +1,8 @@
 import React, { useEffect, useCallback } from 'react';
 import { useTranslation } from 'next-i18next';
 import { Container, MenuLink, SandwichMenu, SandwichMenuLink, SandwichTop } from './Sandwich.styled';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { SandwichState } from '@/recoil/sandwichState/athom';
-import { SizesState } from '@/recoil/commonState/athom';
 import CloseButton from '@/components/ui/CloseButton/CloseButton';
 
 export interface SandwichProps {}
@@ -31,17 +30,12 @@ const Sandwich: React.FC<SandwichProps> = () => {
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, [sandwichState, close]);
 
-    const { isMobile } = useRecoilValue(SizesState);
-
-    const allItems: { href: string; labelKey: string }[] = [
-        { href: '/about', labelKey: 'nav.about' },
+    const items: { href: string; labelKey: string }[] = [
         { href: '/tree', labelKey: 'nav.tree' },
         { href: '/cemetery', labelKey: 'nav.cemetery' },
         { href: '/login', labelKey: 'nav.enter' },
-        {  href: '#', labelKey: 'nav.feedback' }
+        { href: '#', labelKey: 'nav.feedback' }
     ];
-
-    const items = isMobile ? allItems.filter((item) => item.href !== '/about') : allItems;
 
     return (
         <Container open={sandwichState} className="sandwich-container" aria-hidden={!sandwichState}>

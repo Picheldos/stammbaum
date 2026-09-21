@@ -38,6 +38,8 @@
         "inviteRelatives": "Invite relatives",
         "downloadPrint": "Download for print",
         "contactUs": "Contact us",
+        "hiddenRelatives": "Hidden relatives",
+        "restoreRelative": "Restore",
         "placeholder": {
             "importantDates": "The \"Important dates\" section will be available later.",
             "gallery": "Photo gallery will be available later.",

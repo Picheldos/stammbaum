@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import { AddRelativeKind, Gender, Person } from '@/lib/family/types';
-import { SharedParentBlock, SharedParentLegend, SharedParentOption } from './AddPersonModal.styled';
+import { AddPersonCard, SharedParentBlock, SharedParentLegend, SharedParentOption } from './AddPersonModal.styled';
 import { readImageAsDataUrl } from '@/lib/family/image';
 import {
     Field,
@@ -13,8 +13,8 @@ import {
     Hints,
     Input,
     ModalBody,
-    ModalCard,
     ModalHeader,
+    ModalVariant,
     Overlay,
     Primary,
     Tab,
@@ -55,6 +55,8 @@ export interface AddPersonModalProps {
     mode: AddPersonMode;
     /** Parents of the focus person — used to render half-sibling parent picker. */
     focusParents?: Person[];
+    /** Theme of the modal — `tree` (cream, default) or `cemetery` (dark). */
+    variant?: ModalVariant;
     onCancel: () => void;
     onSubmit: (values: AddPersonValues) => void;
 }
@@ -115,7 +117,7 @@ const initialValues = (mode: AddPersonMode): AddPersonValues => {
     };
 };
 
-const AddPersonModal: React.FC<AddPersonModalProps> = ({ open, mode, focusParents, onCancel, onSubmit }) => {
+const AddPersonModal: React.FC<AddPersonModalProps> = ({ open, mode, focusParents, variant = 'tree', onCancel, onSubmit }) => {
     const { t } = useTranslation('tree');
     const [values, setValues] = useState<AddPersonValues>(() => initialValues(mode));
     const [showDeath, setShowDeath] = useState<boolean>(false);
@@ -227,7 +229,7 @@ const AddPersonModal: React.FC<AddPersonModalProps> = ({ open, mode, focusParent
 
     return (
         <Overlay $open={open} role="dialog" aria-modal="true" aria-labelledby="add-person-title" onMouseDown={(e) => e.target === e.currentTarget && onCancel()}>
-            <ModalCard onMouseDown={(e) => e.stopPropagation()}>
+            <AddPersonCard $variant={variant} onMouseDown={(e) => e.stopPropagation()}>
                 <ModalHeader>
                     <span id="add-person-title">{headerTitle}</span>
                     <HeaderClose type="button" aria-label="close" onClick={onCancel}>
@@ -380,7 +382,7 @@ const AddPersonModal: React.FC<AddPersonModalProps> = ({ open, mode, focusParent
 
                     <Primary type="submit">{t('addPerson.actions.save', { defaultValue: 'Save changes' })}</Primary>
                 </ModalBody>
-            </ModalCard>
+            </AddPersonCard>
         </Overlay>
     );
 };

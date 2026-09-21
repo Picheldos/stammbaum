@@ -1,15 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
-import PersonCard from '@/components/blocks/PersonCard/PersonCard';
-import type { PersonCardData } from '@/components/blocks/PersonCard/PersonCard';
 import Image from 'next/image';
 import { useRecoilValue } from 'recoil';
 import { SizesState } from '@/recoil/commonState/athom';
 
 import {
-    CardTier,
-    CardsOverlay,
     CtaButton,
     HeroContent,
     HeroGrid,
@@ -19,14 +15,8 @@ import {
     StepIndex,
     StepItem,
     StepsList,
-    TreeLayer,
-    TreeScene
+    TreeLayer
 } from '@/components/sections/MainSection/MainSection.styled';
-
-const parseCards = (value: unknown): PersonCardData[] =>
-    Array.isArray(value)
-        ? (value as PersonCardData[]).filter((c) => c && typeof c.name === 'string')
-        : [];
 
 const STEP_INDEX_WEIGHTS = [800, 500, 700] as const;
 
@@ -34,24 +24,6 @@ const MainSection: React.FC = () => {
     const { t } = useTranslation('index');
     const router = useRouter();
     const { isMobile } = useRecoilValue(SizesState);
-
-    const cards = parseCards(t('cards', { returnObjects: true }));
-
-    const [c0, c1, c2, c3, c4, c5, c6] = [
-        cards[0],
-        cards[1],
-        cards[2],
-        cards[3],
-        cards[4],
-        cards[5],
-        cards[6]
-    ].map((card) =>
-        card ?? {
-            relation: '—',
-            name: '',
-            lifespan: ''
-        }
-    );
 
     return (
         <LandingRoot>
@@ -72,36 +44,17 @@ const MainSection: React.FC = () => {
                     <CtaButton type="button" onClick={() => router.push('/tree')}>{t('hero.cta')}</CtaButton>
                 </HeroContent>
 
-                <TreeScene>
-                    {!isMobile && (
-                        <CardsOverlay>
-                            <CardTier>
-                                <PersonCard data={c0} />
-                            </CardTier>
-                            <CardTier>
-                                <PersonCard data={c1} />
-                                <PersonCard data={c2} />
-                            </CardTier>
-                            <CardTier $compact>
-                                <PersonCard data={c3} />
-                                <PersonCard data={c4} />
-                                <PersonCard data={c5} />
-                                <PersonCard data={c6} />
-                            </CardTier>
-                        </CardsOverlay>
-                    )}
-                    <TreeLayer>
-                        <Image
-                            src={isMobile ? '/images/index/tree-m.png' : '/images/index/tree.jpg'}
-                            alt="decorative tree"
-                            fill
-                            sizes={isMobile ? '100vw' : '47vw'}
-                            loading="eager"
-                            aria-hidden
-                        />
-                    </TreeLayer>
-                </TreeScene>
-                <CtaButton type="button" onClick={() => router.push('/tree')}>{t('hero.cta')}</CtaButton>
+                <TreeLayer>
+                    <Image
+                        src={isMobile ? '/images/index/tree-m.png' : '/images/index/tree.png'}
+                        alt="decorative tree"
+                        fill
+                        sizes={isMobile ? '100vw' : '47vw'}
+                        loading="eager"
+                        aria-hidden
+                    />
+                </TreeLayer>
+                {isMobile && <CtaButton type="button" onClick={() => router.push('/tree')}>{t('hero.cta')}</CtaButton>}
             </HeroGrid>
         </LandingRoot>
     );

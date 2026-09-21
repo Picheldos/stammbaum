@@ -38,6 +38,8 @@
         "inviteRelatives": "Пригласить родственников",
         "downloadPrint": "Скачать для печати",
         "contactUs": "Связаться с нами",
+        "hiddenRelatives": "Скрытые родственники",
+        "restoreRelative": "Вернуть",
         "placeholder": {
             "importantDates": "Раздел «Важные даты» появится позже.",
             "gallery": "Фотогалерея появится позже.",

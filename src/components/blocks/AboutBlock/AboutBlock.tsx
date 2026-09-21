@@ -1,70 +1,96 @@
-import React from 'react';
+import Plus from '@/icons/plus.svg';
 import Image from 'next/image';
-import { Container, Title, Subtitle, PlusButton, ImageContainer, StepNumber } from './AboutBlock.styled';
+import React from 'react';
+import { Container, ImageContainer, PlusButton, StepNumber, Subtitle, TextContainer, Title } from './AboutBlock.styled';
 
 export interface AboutBlockProps {
-  variant?: 'step' | 'image' | 'text' | 'empty';
-  stepNumber?: number;
-  title?: string;
-  subtitle?: string;
-  image?: string;
-  popupTitle?: string;
-  popupContent?: string;
-  className?: string;
-  color?: string;
-  textColor?: string;
-  onPopupOpen?: () => void;
+    variant?: 'step' | 'image' | 'text' | 'empty';
+    stepNumber?: number;
+    title?: string;
+    subtitle?: string;
+    image?: string;
+    className?: string;
+    color?: string;
+    textColor?: string;
+    onPopupOpen?: () => void;
 }
 
 export const AboutBlock: React.FC<AboutBlockProps> = ({
-  variant = 'step',
-  stepNumber,
-  title,
-  subtitle,
-  image,
-  popupContent,
-  className = '',
-  color,
-  textColor,
-  onPopupOpen,
+    variant = 'step',
+    stepNumber,
+    title,
+    subtitle,
+    image,
+    className = '',
+    color,
+    textColor,
+    onPopupOpen
 }) => {
-  const handlePlusClick = () => {
-    if (popupContent && onPopupOpen) {
-      onPopupOpen();
-    }
-  };
+    const isClickableStep = variant === 'step' && Boolean(onPopupOpen);
 
-  return (
-    <Container variant={variant} color={color} $textColor={textColor} className={className}>
-        {variant === 'image' && image && (
-          <ImageContainer>
-            <Image
-              src={image}
-              fill
-              alt="Family"
-              quality={100}
-            />
-          </ImageContainer>
-        )}
+    const handleStepOpen = () => {
+        if (isClickableStep && onPopupOpen) {
+            onPopupOpen();
+        }
+    };
 
-        {variant === 'step' && (
-          <>
-            {stepNumber && <StepNumber>Шаг {stepNumber}</StepNumber>}
-            {title && <Title $variant={variant}>{title}</Title>}
-            {subtitle && <Subtitle>{subtitle}</Subtitle>}
-            
-            <PlusButton type="button" aria-label={title ? `Подробнее: ${title}` : 'Подробнее'} onClick={handlePlusClick}>+</PlusButton>
-          </>
-        )}
+    const handleStepKeyDown = (event: React.KeyboardEvent) => {
+        if (!isClickableStep) {
+            return;
+        }
 
-        {variant === 'text' && (
-          <>
-            {title && <Title $variant={variant}>{title}</Title>}
-            {subtitle && <Subtitle>{subtitle}</Subtitle>}
-          </>
-        )}
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            handleStepOpen();
+        }
+    };
 
-        {variant === 'empty' && <div className="empty-block" />}
-    </Container>
-  );
+    return (
+        <Container
+            variant={variant}
+            color={color}
+            $textColor={textColor}
+            className={className}
+            onClick={isClickableStep ? handleStepOpen : undefined}
+            onKeyDown={isClickableStep ? handleStepKeyDown : undefined}
+            tabIndex={isClickableStep ? 0 : undefined}
+            role={isClickableStep ? 'button' : undefined}
+        >
+            {variant === 'image' && image && (
+                <ImageContainer>
+                    <Image src={image} fill alt="Family" quality={100} />
+                </ImageContainer>
+            )}
+
+            {variant === 'step' && (
+                <>
+                    <TextContainer>
+                        {stepNumber && <StepNumber>Шаг {stepNumber}</StepNumber>}
+                        {title && <Title $variant={variant}>{title}</Title>}
+                        {subtitle && <Subtitle>{subtitle}</Subtitle>}
+                    </TextContainer>
+                    <PlusButton
+                        type="button"
+                        aria-label={title ? `Подробнее: ${title}` : 'Подробнее'}
+                        onClick={(event) => {
+                            event.stopPropagation();
+                            handleStepOpen();
+                        }}
+                        tabIndex={-1}
+                    >
+                        <Plus aria-hidden />
+                    </PlusButton>
+                </>
+            )}
+
+            {variant === 'text' && (
+                <>
+                    {title && <Title $variant={variant}>{title}</Title>}
+                    {subtitle && <Subtitle>{subtitle}</Subtitle>}
+                </>
+            )}
+
+            {variant === 'empty' && <div className="empty-block" />}
+        </Container>
+    );
 };

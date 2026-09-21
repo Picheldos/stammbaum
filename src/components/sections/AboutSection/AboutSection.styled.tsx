@@ -3,6 +3,8 @@ import { font, mediaBreakpointUp, vw } from '@/style/mixins';
 
 export const Container = styled.section`
 
+  margin-top: ${vw(100, 'xs')};
+
   h1 {
     ${font('landingHeading')};
     margin-bottom: ${vw(25.6, 'xs')};
@@ -11,6 +13,11 @@ export const Container = styled.section`
       padding-top: ${vw(40)};
       margin-bottom: ${vw(40)};
     }
+  }
+
+  ${mediaBreakpointUp('lg')} {
+    margin-top: ${vw(140)};
+
   }
 `;
 

@@ -38,6 +38,11 @@ export const TopBar = styled.div`
     gap: ${vw(12, 'xs')};
     color: ${color('textPrimary')};
     ${font('bodyLarge')};
+
+    ${mediaBreakpointUp('xl')} {
+        padding: ${vw(22)} ${vw(30)} ${vw(14)};
+        gap: ${vw(14)};
+    }
 `;
 
 export const CloseBtn = styled.button`
@@ -73,6 +78,13 @@ export const TreeSelect = styled.select`
     background-repeat: no-repeat;
     background-position: right ${vw(10, 'xs')} center;
 
+    ${mediaBreakpointUp('xl')} {
+        border-radius: ${vw(8)};
+        padding: ${vw(12)} ${vw(36)} ${vw(12)} ${vw(16)};
+        background-position: right ${vw(14)} center;
+        font-size: 16px;
+    }
+
     &:hover { background-color: ${color('lightGray')}; border-color: ${color('forestDeep')}; }
     &:focus, &:focus-visible {
         outline: none;
@@ -91,6 +103,11 @@ export const Menu = styled.ul`
     display: flex;
     flex-direction: column;
     gap: ${vw(14, 'xs')};
+
+    ${mediaBreakpointUp('xl')} {
+        padding: ${vw(8)} ${vw(30)} ${vw(22)};
+        gap: ${vw(16)};
+    }
 `;
 
 export const MenuItem = styled.button`
@@ -103,8 +120,104 @@ export const MenuItem = styled.button`
     ${font('mobileAction')};
     cursor: pointer;
     &:hover { color: ${color('forest')}; }
+
+    ${mediaBreakpointUp('xl')} {
+        padding: ${vw(9)} 0;
+        font-size: 16px;
+        line-height: 1.2;
+    }
 `;
 
-export const CondensedMenuItem = styled(MenuItem)`
-    ${font('mobileBody')};
+/**
+ * Same visual weight as MenuItem — on desktop the previous `mobileBody` role
+ * ballooned these longer labels to 22px, so keep them aligned with the rest of
+ * the menu instead.
+ */
+export const CondensedMenuItem = styled(MenuItem)``;
+
+/* --------------------- Hidden relatives --------------------- */
+
+export const HiddenSection = styled.div`
+    margin: 0 ${vw(22, 'xs')} ${vw(22, 'xs')};
+    padding-top: ${vw(14, 'xs')};
+    border-top: 1px solid ${color('ink', 0.15)};
+    display: flex;
+    flex-direction: column;
+    gap: ${vw(10, 'xs')};
+
+    ${mediaBreakpointUp('xl')} {
+        margin: 0 ${vw(30)} ${vw(30)};
+        padding-top: ${vw(18)};
+        gap: ${vw(12)};
+    }
+`;
+
+export const HiddenTitle = styled.h3`
+    margin: 0;
+    color: ${color('textPrimary')};
+    ${font('mobileControl')};
+    opacity: 0.75;
+`;
+
+export const HiddenList = styled.ul`
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: ${vw(8, 'xs')};
+
+    ${mediaBreakpointUp('xl')} {
+        gap: ${vw(8)};
+    }
+`;
+
+export const HiddenRow = styled.li`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: ${vw(10, 'xs')};
+    background: ${color('cream', 0.55)};
+    border-radius: ${vw(8, 'xs')};
+    padding: ${vw(8, 'xs')} ${vw(10, 'xs')};
+
+    ${mediaBreakpointUp('xl')} {
+        border-radius: ${vw(8)};
+        padding: ${vw(8)} ${vw(12)};
+        gap: ${vw(12)};
+    }
+`;
+
+export const HiddenName = styled.span`
+    ${font('mobileAction')};
+    color: ${color('textPrimary')};
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+`;
+
+export const RestoreButton = styled.button`
+    flex-shrink: 0;
+    border: 1px solid ${color('forest')};
+    background: transparent;
+    color: ${color('forest')};
+    border-radius: ${vw(6, 'xs')};
+    padding: ${vw(5, 'xs')} ${vw(12, 'xs')};
+    ${font('mobileControl')};
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+    &:hover {
+        background: ${color('forest')};
+        color: ${color('cream')};
+    }
+    &:focus-visible {
+        outline: 2px solid ${color('forest')};
+        outline-offset: 2px;
+    }
+
+    ${mediaBreakpointUp('xl')} {
+        border-radius: ${vw(6)};
+        padding: ${vw(5)} ${vw(12)};
+    }
 `;

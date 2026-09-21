@@ -2,16 +2,12 @@ import React from 'react';
 import { Container, MainPictureLabel, MainPictureMenu, MainPictureMenuItem } from '@/components/blocks/MainPicture/MainPicture.styled';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRecoilValue } from 'recoil';
-import { SizesState } from '@/recoil/commonState/athom';
 
 export interface MainPictureProps {
     image: string;
 }
 
 const MainPicture: React.FC<MainPictureProps> = ({ image }) => {
-    const { isMobile } = useRecoilValue(SizesState);
-
     return (
         <Container>
             <Image src={image} fill alt="main image" quality={100} sizes="100vw" />
@@ -33,11 +29,6 @@ const MainPicture: React.FC<MainPictureProps> = ({ image }) => {
                 <Link href="/">
                     <MainPictureMenuItem>Contact us</MainPictureMenuItem>
                 </Link>
-                {!isMobile && (
-                    <Link href="/about">
-                        <MainPictureMenuItem>About</MainPictureMenuItem>
-                    </Link>
-                )}
             </MainPictureMenu>
         </Container>
     );

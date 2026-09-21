@@ -200,6 +200,7 @@ export const CemeteryNodeCard = styled.div<{
     color: ${color('cream')};
     border: none;
     transition: box-shadow 0.3s ease;
+    cursor: pointer;
 
     /* Search-match glow (mirrors the tree page search behavior). */
     ${({ $highlighted }) =>
@@ -208,6 +209,12 @@ export const CemeteryNodeCard = styled.div<{
             z-index: 2;
             box-shadow: 0 0 0 3px ${color('cream')}, 0 0 ${vw(22)} ${color('white', 0.55)};
         `}
+
+    &:hover {
+        ${hover(css`
+            box-shadow: 0 0 ${vw(14)} ${color('cream', 0.3)};
+        `)}
+    }
 
     width: clamp(${vw(124, 'xs')}, 7.8vw, ${vw(132, 'xs')});
     height: fit-content;
