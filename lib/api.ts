@@ -19,7 +19,14 @@ export const getIndexPage = () => indexPage;
 
 /* ------------------------------ Base ------------------------------ */
 
-const rawApiUrl = (process.env.API_URL || 'https://stammbaum.ru').replace(/\/+$/, '');
+// Нормализуем API_URL: срезаем хвостовые слэши и уже присутствующий суффикс /api/v1,
+// чтобы не задваивать префикс, независимо от того, задан он в env или нет.
+// Примеры:
+//   https://api.stammbaum.ru        -> origin, base = .../api/v1
+//   https://api.stammbaum.ru/api/v1 -> origin, base = .../api/v1 (без дублирования)
+const rawApiUrl = (process.env.API_URL || 'https://stammbaum.ru')
+    .replace(/\/+$/, '')
+    .replace(/\/api\/v1$/, '');
 export const API_BASE_URL = `${rawApiUrl}/api/v1`;
 export const API_ORIGIN = rawApiUrl;
 
