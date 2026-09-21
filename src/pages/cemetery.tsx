@@ -3,11 +3,14 @@ import React from 'react';
 import Layout from '@/components/common/Layout/Layout';
 import Cemetery from '@/components/sections/Cemetery/Cemetery';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import AuthGuard from '@/components/common/AuthGuard/AuthGuard';
 
 const CemeteryPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ meta, header, sandwich }) => {
     return (
         <Layout meta={meta} header={header} sandwich={sandwich}>
-            <Cemetery />
+            <AuthGuard>
+                <Cemetery />
+            </AuthGuard>
         </Layout>
     );
 };
