@@ -1,10 +1,14 @@
 import styled from 'styled-components';
-import { color, font, vw } from '@/style/mixins';
+import { color, font, vw, mediaBreakpointUp } from '@/style/mixins';
 
 export const Grid = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: ${vw(8, 'xs')};
+
+    ${mediaBreakpointUp('lg')} {
+        gap: ${vw(8)};
+    }
 `;
 
 export const Choice = styled.button`
@@ -18,5 +22,10 @@ export const Choice = styled.button`
 
     &:hover {
         background: ${color('slateBlue')};
+    }
+
+    ${mediaBreakpointUp('lg')} {
+        padding: ${vw(12)} ${vw(16)};
+        border-radius: ${vw(8)};
     }
 `;

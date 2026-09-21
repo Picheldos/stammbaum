@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import Logo from '@/components/blocks/Logo/Logo';
 import LangSwitch from '@/components/ui/LangSwitch/LangSwitch';
 import { SandwichState } from '@/recoil/sandwichState/athom';
-import { SizesState } from '@/recoil/commonState/athom';
 import { logoutUser } from '@/lib/api';
 import { useSession } from '@/hooks/useSession';
 import {
@@ -40,15 +39,11 @@ const Header: React.FC<HeaderProps> = ({ variant = 'marketing' }) => {
     const toggleMenu = () => setSandwichOpen((open) => !open);
 
     const marketing = variant === 'marketing';
-    const { isMobile } = useRecoilValue(SizesState);
 
-    const allNavItems: { href: string; labelKey: string }[] = [
-        { href: '/about', labelKey: 'nav.about' },
+    const navItems: { href: string; labelKey: string }[] = [
         { href: '/tree', labelKey: 'nav.tree' },
         { href: '/cemetery', labelKey: 'nav.cemetery' }
     ];
-
-    const navItems = isMobile ? allNavItems.filter((item) => item.href !== '/about') : allNavItems;
 
     useEffect(() => {
         refresh();

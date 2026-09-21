@@ -15,10 +15,7 @@ export const MainArea = styled.main`
     padding: 0 ${vw(8.533, 'xs')};
 
     ${mediaBreakpointUp('lg')} {
-        padding: ${vw(60)} ${vw(20)} 0;
+        padding: 0 ${vw(20)};
     }
 
-    ${mediaBreakpointUp('fhd')} {
-        padding-top: 0;
-    }
 `;

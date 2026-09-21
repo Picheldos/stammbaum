@@ -34,6 +34,7 @@ yarn-error.log*
 /*-768.png
 /*-1200.png
 /*-1920.png
+/*-nav.png
 /auth-*.png
 /cemetery-*.png
 /home-*.png
@@ -46,6 +47,9 @@ yarn-error.log*
 /export-*.tsv
 /export-*.jsonl
 /auth-before-fhd-snapshot.txt
+
+# Local scratch workspace (debug scripts, screenshots, inspection notes)
+/scratch/
 
 # TypeScript incremental build metadata
 *.tsbuildinfo

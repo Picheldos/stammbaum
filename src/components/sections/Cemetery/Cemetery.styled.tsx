@@ -57,16 +57,14 @@ export const PeriodNavRail = styled.nav`
     position: relative;
     z-index: 2;
     margin-bottom: ${vw(8)};
-    padding: 0 ${vw(72)};
+
+    padding: ${vw(72)} 0;
 
     ${mediaBreakpointDown('md')} {
         position: sticky;
         top: 0;
         margin-top: 0;
         margin-bottom: ${vw(12, 'xs')};
-        padding: ${vw(52, 'xs')} ${vw(56, 'xs')} ${vw(8, 'xs')};
-        background: ${color('cream')};
-        border-bottom: 1px solid ${color('cemeteryGray', 0.16)};
     }
 `;
 
@@ -81,7 +79,6 @@ export const PeriodChipRow = styled.div`
         overflow-x: auto;
         overflow-y: hidden;
         -webkit-overflow-scrolling: touch;
-        padding-bottom: ${vw(6, 'xs')};
 
         &::after {
             content: '';
@@ -98,22 +95,6 @@ export const PeriodChipRow = styled.div`
 /* ===================================================================== */
 /*  Floating controls (search / menu) — same layout as the Family tree    */
 /* ===================================================================== */
-
-export const FloatingTopLeft = styled.div`
-    position: absolute;
-    top: ${vw(12, 'xs')};
-    left: ${vw(16, 'xs')};
-    display: flex;
-    align-items: center;
-    gap: ${vw(8, 'xs')};
-    z-index: 6;
-
-    ${mediaBreakpointUp('lg')} {
-        top: ${vw(12)};
-        left: ${vw(16)};
-        gap: ${vw(8)};
-    }
-`;
 
 export const FloatingTopRight = styled.div`
     position: absolute;
@@ -181,7 +162,8 @@ export const ScrollViewport = styled.div`
     overflow-x: auto;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
+    /* No CSS smooth-scroll: it turns each wheel notch into a slow animation and
+       makes manual scrolling crawl. Programmatic jumps pass behavior:'smooth'. */
     scrollbar-gutter: stable;
 
     ${mediaBreakpointDown('md')} {

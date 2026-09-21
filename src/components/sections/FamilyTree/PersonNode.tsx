@@ -47,6 +47,8 @@ export interface CemeteryTreeNodeProps {
     highlighted?: boolean;
     /** Geometry for the card→axis connector. */
     connector: { direction: 'vertical' | 'horizontal'; length: number };
+    /** Click handler — opens the person card modal, mirroring the tree page flow. */
+    onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 export type PersonNodeProps = TreeNodeProps | CemeteryTreeNodeProps;
@@ -72,7 +74,7 @@ export type PersonNodeProps = TreeNodeProps | CemeteryTreeNodeProps;
  */
 const PersonNode: React.FC<PersonNodeProps> = (props) => {
     if (props.variant === 'cemetery') {
-        const { person, row, axisPos, isDesktop, highlighted, connector } = props;
+        const { person, row, axisPos, isDesktop, highlighted, connector, onClick } = props;
         const label = formatShortName(person);
         return (
             <CemeteryNodeCard
@@ -82,6 +84,7 @@ const PersonNode: React.FC<PersonNodeProps> = (props) => {
                 $highlighted={highlighted}
                 aria-label={label}
                 role="figure"
+                onClick={onClick}
             >
                 <CemeteryAvatar person={person} />
                 <CemeteryNodeRelation aria-label={person.relation}>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import {
   Overlay,
   Content,
@@ -34,8 +34,12 @@ export const Popup: React.FC<PopupProps> = ({
     currentStep < totalSteps;
 
   useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isOpen) {
+      if (e.key === 'Escape') {
         onClose();
       }
     };
@@ -44,19 +48,43 @@ export const Popup: React.FC<PopupProps> = ({
     return () => window.removeEventListener('keydown', handleEscape);
   }, [isOpen, onClose]);
 
-  const handleContentClick = (e: React.MouseEvent) => {
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    const previousScrollbarGutter = document.body.style.scrollbarGutter;
+    document.body.style.overflow = 'hidden';
+    document.body.style.scrollbarGutter = 'stable';
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.body.style.scrollbarGutter = previousScrollbarGutter;
+    };
+  }, [isOpen]);
+
+  const handleContentClick = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
-  };
+  }, []);
 
   return (
     <Overlay isOpen={isOpen} onClick={closeOnOverlayClick ? onClose : undefined}>
       <Content className={className} onClick={handleContentClick}>
+        <Header>
+          <Title>{title}</Title>
+          <Subtitle>{subtitle}</Subtitle>
+        </Header>
         {showCloseButton && (
           <CloseButton type="button" onClick={onClose} aria-label="Закрыть">
             <span />
             <span />
           </CloseButton>
         )}
+        <Body>
+          <Text>{content}</Text>
+          {children}
+        </Body>
         {showPrevButton && onStepChange && (
           <PrevButton
             type="button"
@@ -77,14 +105,6 @@ export const Popup: React.FC<PopupProps> = ({
             <span />
           </NextButton>
         )}
-        <Header>
-          <Title>{title}</Title>
-        </Header>
-        <Subtitle>{subtitle}</Subtitle>
-        <Body>
-          <Text>{content}</Text>
-          {children}
-        </Body>
       </Content>
     </Overlay>
   );

@@ -521,6 +521,26 @@ const FamilyTree: React.FC = () => {
         setContextMenu(null);
         reload();
     };
+
+    /**
+     * Restore a hidden relative from the sidebar list. Unlike the context-menu
+     * toggle this keeps the sidebar open so several relatives can be restored in
+     * a row.
+     */
+    const handleRestoreRelative = async (personId: string) => {
+        const person = persons.find((p) => p.id === personId);
+        if (!person) return;
+        try {
+            await apiUpdatePersonPreferences(person.treeId, person.id, false);
+        } catch (error) {
+            setBackendError(formatBackendError(error, t('errors.saveFailed', { defaultValue: 'Failed to save' })));
+        }
+        reload();
+    };
+
+    const hiddenRelatives = persons
+        .filter((p) => p.isHidden)
+        .map((p) => ({ id: p.id, name: formatShortName(p) }));
  
     const handleDeletePerson = async (person: Person) => {
         const confirmed =
@@ -627,6 +647,7 @@ const FamilyTree: React.FC = () => {
                     open={sidebarOpen}
                     trees={trees.map((tr) => ({ id: tr.id, name: tr.name }))}
                     activeTreeId={activeTreeId}
+                    hiddenRelatives={hiddenRelatives}
                     onSelectTree={setActiveTreeId}
                     onClose={() => setSidebarOpen(false)}
                     onNewTree={handleNewTree}
@@ -635,6 +656,7 @@ const FamilyTree: React.FC = () => {
                     onInviteRelatives={placeholderAction('inviteRelatives')}
                     onDownloadForPrint={placeholderAction('downloadPrint')}
                     onContactUs={placeholderAction('contactUs')}
+                    onRestoreRelative={(id) => { void handleRestoreRelative(id); }}
                 />
  
                 <AddPersonModal
@@ -855,6 +877,7 @@ const FamilyTree: React.FC = () => {
                 open={sidebarOpen}
                 trees={trees.map((tr) => ({ id: tr.id, name: tr.name }))}
                 activeTreeId={activeTreeId}
+                hiddenRelatives={hiddenRelatives}
                 onSelectTree={(id) => {
                     setActiveTreeId(id);
                     setSidebarOpen(false);
@@ -866,6 +889,7 @@ const FamilyTree: React.FC = () => {
                 onInviteRelatives={placeholderAction('inviteRelatives')}
                 onDownloadForPrint={placeholderAction('downloadPrint')}
                 onContactUs={placeholderAction('contactUs')}
+                onRestoreRelative={(id) => { void handleRestoreRelative(id); }}
             />
  
         </TreeRoot>

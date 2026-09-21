@@ -11,6 +11,7 @@ import {
     ListAvatar,
     ListItem,
     ListRow,
+    PersonModalCard,
     RemoveRelationButton
 } from './PersonCardModal.styled';
 import { Person, PersonRelation } from '@/lib/family/types';
@@ -29,8 +30,8 @@ import {
     InfoLabel,
     InfoValue,
     ModalBody,
-    ModalCard,
     ModalHeader,
+    ModalVariant,
     Overlay,
     Tab,
     Tabs
@@ -46,6 +47,8 @@ export interface PersonCardModalProps {
     persons: Person[];
     relations: PersonRelation[];
     initialTab?: PersonCardTab;
+    /** Theme of the modal — `tree` (cream, default) or `cemetery` (dark). */
+    variant?: ModalVariant;
     onClose: () => void;
     onEdit: (person: Person) => void;
     onSelectPerson: (personId: string) => void;
@@ -66,6 +69,7 @@ const PersonCardModal: React.FC<PersonCardModalProps> = ({
     persons,
     relations,
     initialTab = 'info',
+    variant = 'tree',
     onClose,
     onEdit,
     onSelectPerson,
@@ -181,7 +185,7 @@ const PersonCardModal: React.FC<PersonCardModalProps> = ({
 
     return (
         <Overlay $open={open} onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
-            <ModalCard onMouseDown={(e) => e.stopPropagation()}>
+            <PersonModalCard $variant={variant} onMouseDown={(e) => e.stopPropagation()}>
                 <ModalHeader>
                     <span>{formatFullName(person)}</span>
                     <HeaderClose type="button" aria-label="close" onClick={onClose}>
@@ -276,7 +280,7 @@ const PersonCardModal: React.FC<PersonCardModalProps> = ({
                     {tab === 'children' && renderList(getChildren(person.id, relations), () => onAddChild(person))}
                     {tab === 'siblings' && renderList(getSiblings(person.id, relations), () => onAddSibling(person))}
                 </ModalBody>
-            </ModalCard>
+            </PersonModalCard>
         </Overlay>
     );
 };

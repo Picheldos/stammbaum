@@ -4,9 +4,15 @@ import {
     Backdrop,
     CloseBtn,
     CondensedMenuItem,
+    HiddenList,
+    HiddenName,
+    HiddenRow,
+    HiddenSection,
+    HiddenTitle,
     Menu,
     MenuItem,
     Panel,
+    RestoreButton,
     TopBar,
     TreeSelect
 } from './TreeSidebar.styled';
@@ -16,10 +22,17 @@ export interface TreeSidebarTreeOption {
     name: string;
 }
 
+export interface TreeSidebarHiddenRelative {
+    id: string;
+    name: string;
+}
+
 export interface TreeSidebarProps {
     open: boolean;
     trees: TreeSidebarTreeOption[];
     activeTreeId: string;
+    /** Relatives currently hidden from the tree, shown with a restore action. */
+    hiddenRelatives: TreeSidebarHiddenRelative[];
     onSelectTree: (id: string) => void;
     onClose: () => void;
     onNewTree: () => void;
@@ -28,12 +41,15 @@ export interface TreeSidebarProps {
     onInviteRelatives: () => void;
     onDownloadForPrint: () => void;
     onContactUs: () => void;
+    /** Restore (unhide) a hidden relative back onto the tree. */
+    onRestoreRelative: (id: string) => void;
 }
 
 const TreeSidebar: React.FC<TreeSidebarProps> = ({
     open,
     trees,
     activeTreeId,
+    hiddenRelatives,
     onSelectTree,
     onClose,
     onNewTree,
@@ -41,7 +57,8 @@ const TreeSidebar: React.FC<TreeSidebarProps> = ({
     onGallery,
     onInviteRelatives,
     onDownloadForPrint,
-    onContactUs
+    onContactUs,
+    onRestoreRelative
 }) => {
     const { t } = useTranslation('tree');
 
@@ -82,6 +99,26 @@ const TreeSidebar: React.FC<TreeSidebarProps> = ({
                     <CondensedMenuItem type="button" onClick={onDownloadForPrint}>{t('sidebar.downloadPrint')}</CondensedMenuItem>
                     <CondensedMenuItem type="button" onClick={onContactUs}>{t('sidebar.contactUs')}</CondensedMenuItem>
                 </Menu>
+                {hiddenRelatives.length > 0 && (
+                    <HiddenSection>
+                        <HiddenTitle>
+                            {t('sidebar.hiddenRelatives', { defaultValue: 'Hidden relatives' })}
+                        </HiddenTitle>
+                        <HiddenList>
+                            {hiddenRelatives.map((relative) => (
+                                <HiddenRow key={relative.id}>
+                                    <HiddenName title={relative.name}>{relative.name}</HiddenName>
+                                    <RestoreButton
+                                        type="button"
+                                        onClick={() => onRestoreRelative(relative.id)}
+                                    >
+                                        {t('sidebar.restoreRelative', { defaultValue: 'Restore' })}
+                                    </RestoreButton>
+                                </HiddenRow>
+                            ))}
+                        </HiddenList>
+                    </HiddenSection>
+                )}
             </Panel>}
         </>
     );

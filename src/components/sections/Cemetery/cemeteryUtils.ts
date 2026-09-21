@@ -88,6 +88,55 @@ export const parsePeriods = (value: unknown): CemeteryPeriod[] =>
           )
         : [];
 
+/** Width, in years, of a single timeline window / period. */
+export const WINDOW_YEARS = 100;
+
+/** Snap a year down to the start of its 100-year window (…, 1800, 1900, 2000). */
+const windowStartOf = (year: number): number => Math.floor(year / WINDOW_YEARS) * WINDOW_YEARS;
+
+/**
+ * Build the timeline periods from the dead relatives themselves.
+ *
+ * Rules (see task):
+ *  - Only 100-year windows that actually contain a death are shown.
+ *  - Windows are aligned to century boundaries (1800–1900, 1900–2000, …).
+ *  - The range is always at least one full window, i.e. a minimum of 100 years,
+ *    even when the data spans fewer years or is empty.
+ *
+ * `fallbackEndYear` (usually the current year) is only used for the empty state
+ * so the line still renders a 100-year window when there are no dead relatives.
+ */
+export const buildDeathWindows = (
+    persons: CemeteryPerson[],
+    fallbackEndYear: number
+): CemeteryPeriod[] => {
+    const makeWindow = (start: number): CemeteryPeriod => ({
+        id: `${start}-${start + WINDOW_YEARS}`,
+        label: `${start}–${start + WINDOW_YEARS}`,
+        startYear: start,
+        endYear: start + WINDOW_YEARS
+    });
+
+    const years = persons.map(getDeathYear).filter((y) => y > 0);
+
+    if (years.length === 0) {
+        // No dead relatives yet: show the current century as a single window.
+        return [makeWindow(windowStartOf(fallbackEndYear))];
+    }
+
+    const firstStart = windowStartOf(Math.min(...years));
+    const lastStart = windowStartOf(Math.max(...years));
+
+    const windows: CemeteryPeriod[] = [];
+    for (let start = firstStart; start <= lastStart; start += WINDOW_YEARS) {
+        const hasDeath = years.some((y) => y >= start && y < start + WINDOW_YEARS);
+        if (hasDeath) windows.push(makeWindow(start));
+    }
+
+    // Guarantees the minimum-100-years rule for the single-window case.
+    return windows.length ? windows : [makeWindow(firstStart)];
+};
+
 /** Safe-parse the `persons` array returned by `t('persons', { returnObjects: true })`. */
 export const parsePersons = (value: unknown): CemeteryPerson[] =>
     Array.isArray(value)

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Link from 'next/link';
-import { color, font, vw } from '@/style/mixins';
+import { color, font, mediaBreakpointUp, vw } from '@/style/mixins';
 
 export const Container = styled.div<{ open: boolean }>`
     position: fixed;
@@ -25,6 +25,19 @@ export const Container = styled.div<{ open: boolean }>`
         `
         transform: translateX(0);
     `}
+
+    /* Desktop: the mobile 'xs' vw units blow the panel up to ~60vw; pin it to a
+       sensible right-hand drawer instead. */
+    ${mediaBreakpointUp('md')} {
+        width: min(${vw(320)}, 340px);
+        padding: ${vw(20)} ${vw(28)} ${vw(32)};
+        box-shadow: ${vw(-8)} 0 ${vw(28)} ${color('forestDeep', 0.14)};
+    }
+
+    ${mediaBreakpointUp('fhd')} {
+        width: 340px;
+        padding: 20px 28px 32px;
+    }
 `;
 
 export const SandwichTop = styled.div`
@@ -34,6 +47,10 @@ export const SandwichTop = styled.div`
     width: 100%;
     flex-shrink: 0;
     height: ${vw(20, 'xs')};
+
+    ${mediaBreakpointUp('md')} {
+        height: ${vw(28)};
+    }
 `;
 
 export const SandwichMenu = styled.div`
@@ -61,6 +78,10 @@ export const SandwichMenuLink = styled.span`
             cursor: pointer;
             color: ${color('forest')};
         }
+    }
+
+    ${mediaBreakpointUp('md')} {
+        padding: ${vw(12)} 0;
     }
 `;
 

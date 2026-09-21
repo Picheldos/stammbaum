@@ -8,7 +8,7 @@ import { Playfair_Display, Manrope } from 'next/font/google';
 
 const playfairDisplay = Playfair_Display({
     subsets: ['latin', 'cyrillic'],
-    weight: ['400', '600'],
+    weight: ['400', '500', '600'],
     variable: '--font-playfair-display',
     display: 'swap'
 });

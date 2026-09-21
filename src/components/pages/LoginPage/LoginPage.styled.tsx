@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { color, mediaBreakpointUp, vw } from '@/style/mixins';
+import { xlFontSize, xlOnly } from '@/style/typography';
 
 type AuthMode = 'login' | 'register' | 'forgot';
 export type AuthContentMode = AuthMode | 'auth';
@@ -101,6 +102,8 @@ export const Title = styled.h3`
         font-size: ${vw(22)};
         line-height: ${vw(30.052)};
     }
+    ${xlFontSize(22)};
+    ${xlOnly('line-height', '30.052px')};
 `;
 
 export const Close = styled.button`
@@ -200,6 +203,8 @@ export const Tab = styled.button<{ $active?: boolean }>`
         font-size: ${vw(16)};
         line-height: ${vw(21.856)};
     }
+    ${xlFontSize(16)};
+    ${xlOnly('line-height', '17.6px')};
 `;
 
 export const FieldLabel = styled.label`
@@ -330,6 +335,8 @@ export const CheckboxRow = styled.label`
             width: ${vw(288)};
         }
     }
+    ${xlFontSize(12)};
+    ${xlOnly('line-height', '16.392px')};
 `;
 
 export const Action = styled.button`
@@ -369,6 +376,8 @@ export const Action = styled.button`
         font-size: ${vw(18)};
         line-height: ${vw(24.588)};
     }
+    ${xlFontSize(18)};
+    ${xlOnly('line-height', '24.588px')};
 `;
 
 export const AuxiliaryAction = styled.button`
@@ -394,6 +403,8 @@ export const AuxiliaryAction = styled.button`
         font-size: ${vw(12)};
         line-height: ${vw(16.392)};
     }
+    ${xlFontSize(12)};
+    ${xlOnly('line-height', '16.392px')};
 `;
 
 export const Status = styled.div`
@@ -409,6 +420,8 @@ export const Status = styled.div`
         font-size: ${vw(16)};
         line-height: ${vw(21.856)};
     }
+    ${xlFontSize(16)};
+    ${xlOnly('line-height', '21.856px')};
 `;
 
 export const Error = styled.div`
@@ -428,6 +441,8 @@ export const Error = styled.div`
         font-size: ${vw(12)};
         line-height: ${vw(16.392)};
     }
+    ${xlFontSize(12)};
+    ${xlOnly('line-height', '16.392px')};
 `;
 
 export const LoginForm = styled(Form)`

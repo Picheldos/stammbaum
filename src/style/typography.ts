@@ -83,6 +83,23 @@ export const remAdaptiveFont = (
     return remFluidMiddle('font-size', minSize, tabletSize, smallDeskSize, maxSize, 16);
 };
 
+/**
+ * Точечный оверрайд под UI-kit Desktop 1200px.
+ * Окно 1200-1439px (= xl из breakpoints.ts: xl 1200, xxl 1440).
+ * Ниже 1200 и выше 1439 — старый CSS: mobile и FHD не меняются.
+ */
+export const xlOnly: (property: string, value: string) => FlattenSimpleInterpolation = (property, value) => {
+    return css`
+        @media (min-width: 1200px) and (max-width: 1439px) {
+            ${property}: ${value};
+        }
+    `;
+};
+
+export const xlFontSize: (sizePx: number) => FlattenSimpleInterpolation = (sizePx) => {
+    return xlOnly('font-size', `${sizePx}px`);
+};
+
 const sans = "var(--font-manrope), 'Manrope', Arial, sans-serif";
 const serif = "var(--font-playfair-display), 'Playfair Display', Georgia, serif";
 
@@ -94,94 +111,108 @@ const typography = {
     display: css`
         font-family: ${sans};
         ${remAdaptiveFont(20, 22, 40, 70)};
+        ${xlFontSize(40)};
         line-height: 1;
         font-weight: 500;
-        @media (min-width: 1920px) { font-weight: 600; }
+        @media (min-width: 1920px) {
+            font-weight: 600;
+        }
     `,
     sectionTitle: css`
         font-family: ${sans};
         ${remAdaptiveFont(16, 18, 30, 50)};
+        ${xlFontSize(30)};
         line-height: 1;
         font-weight: 500;
     `,
     serifTitle: css`
         font-family: ${serif};
         ${remAdaptiveFont(16, 16, 20, 20)};
+        ${xlFontSize(20)};
         line-height: 1;
         font-weight: 400;
+        ${xlOnly('font-weight', '500')};
     `,
     body: css`
         font-family: ${sans};
         ${remAdaptiveFont(12, 12, 20, 18)};
+        ${xlFontSize(20)};
         line-height: 1.2;
         font-weight: 400;
     `,
     bodySmall: css`
         font-family: ${sans};
         ${remAdaptiveFont(8, 8, 16, 18)};
-        line-height: 1;
-        font-weight: 500;
+        ${xlFontSize(16)};
+        line-height: 1.366;
+        font-weight: 400;
     `,
     bodyLarge: css`
         font-family: ${sans};
         ${remAdaptiveFont(18, 18, 22, 22)};
+        ${xlFontSize(22)};
         line-height: 1.2;
         font-weight: 500;
     `,
     label: css`
         font-family: ${sans};
         ${remAdaptiveFont(12, 12, 12, 14)};
-        line-height: 1.2;
+        line-height: 1.366;
         font-weight: 500;
     `,
     labelStrong: css`
         font-family: ${sans};
         ${remAdaptiveFont(12, 12, 12, 14)};
-        line-height: 1.2;
+        line-height: 1.366;
         font-weight: 600;
     `,
     cardTitle: css`
         font-family: ${sans};
-        ${remAdaptiveFont(10, 10, 22, 22)};
-        line-height: 1.2;
+        ${remAdaptiveFont(14, 14, 22, 22)};
+        ${xlFontSize(22)};
+        line-height: 1.1;
         font-weight: 500;
     `,
     cardTitleStrong: css`
         font-family: ${sans};
         ${remAdaptiveFont(18, 18, 22, 22)};
+        ${xlFontSize(22)};
         line-height: 1.2;
         font-weight: 700;
     `,
     button: css`
         font-family: ${sans};
-        ${remAdaptiveFont(18, 18, 22, 22)};
+        ${remAdaptiveFont(18, 18, 18, 22)};
+        ${xlFontSize(18)};
         line-height: 1.2;
         font-weight: 600;
     `,
     buttonSmall: css`
         font-family: ${sans};
         ${remAdaptiveFont(8, 8, 16, 18)};
-        line-height: 1;
+        ${xlFontSize(16)};
+        line-height: 1.366;
         font-weight: 600;
     `,
     input: css`
         font-family: ${sans};
-        font-size: 16px;
+        ${remAdaptiveFont(16, 16, 16, 16)};
         line-height: 1.2;
         font-weight: 400;
     `,
     step: css`
         font-family: ${sans};
-        ${remAdaptiveFont(14, 14, 25, 30)};
-        line-height: 1;
+        ${remAdaptiveFont(14, 14, 22, 22)};
+        ${xlFontSize(22)};
+        line-height: 1.1;
         font-weight: 500;
     `,
     stepCopy: css`
         font-family: ${sans};
-        ${remAdaptiveFont(18, 18, 22, 22)};
-        line-height: 1.2;
-        font-weight: 400;
-        @media (min-width: 1200px) { line-height: 1.45; }
+        ${remAdaptiveFont(14, 14, 22, 22)};
+        ${xlFontSize(22)};
+        line-height: 1.1;
+        font-weight: 500;
     `,
     personName: css`
         font-family: ${sans};
@@ -198,14 +229,16 @@ const typography = {
     personMeta: css`
         font-family: ${sans};
         ${remAdaptiveFont(5, 8, 8, 8)};
-        line-height: 1;
+        line-height: 1.366;
         font-weight: 400;
-        @media (min-width: 1280px) { font-weight: 600; }
+        @media (min-width: 1280px) {
+            font-weight: 600;
+        }
     `,
     personMetaStrong: css`
         font-family: ${sans};
         ${remAdaptiveFont(5, 8, 8, 8)};
-        line-height: 1.1;
+        line-height: 1.366;
         font-weight: 600;
     `,
     personLifespan: css`
@@ -217,116 +250,135 @@ const typography = {
     logo: css`
         font-family: ${sans};
         ${remAdaptiveFont(28, 32, 55, 55)};
+        ${xlFontSize(55)};
         line-height: 1;
         font-weight: 400;
     `,
     logoSerif: css`
         font-family: ${serif};
-        ${remAdaptiveFont(11, 11, 20, 20)};
+        ${remAdaptiveFont(16, 16, 20, 20)};
+        ${xlFontSize(20)};
         line-height: 1;
         font-weight: 400;
+        ${xlOnly('font-weight', '500')};
+        @media (min-width: 1920px) {
+            font-weight: 500;
+        }
         letter-spacing: 0.02em;
     `,
     navigation: css`
         font-family: ${sans};
-        ${remAdaptiveFont(14, 14, 16, 16)};
-        line-height: 1.2;
+        ${remAdaptiveFont(14, 14, 14, 14)};
+        line-height: 1.366;
         font-weight: 500;
     `,
     navigationStrong: css`
         font-family: ${sans};
-        ${remAdaptiveFont(14, 14, 16, 16)};
-        line-height: 1.2;
+        ${remAdaptiveFont(14, 14, 14, 14)};
+        line-height: 1.366;
         font-weight: 600;
+        ${xlOnly('font-weight', '500')};
     `,
     tab: css`
         font-family: ${sans};
         ${remAdaptiveFont(8, 8, 16, 16)};
+        ${xlFontSize(16)};
         line-height: 1.2;
         font-weight: 500;
     `,
     tabActive: css`
         font-family: ${sans};
         ${remAdaptiveFont(8, 8, 16, 16)};
+        ${xlFontSize(16)};
         line-height: 1.2;
         font-weight: 600;
     `,
     error: css`
         font-family: ${sans};
-        font-size: 12px;
+        ${remAdaptiveFont(12, 12, 12, 12)};
         line-height: 1.366;
         font-weight: 500;
     `,
     mobileHeader: css`
         font-family: ${sans};
-        font-size: 16px;
+        ${remAdaptiveFont(16, 16, 16, 16)};
         line-height: 1.366;
         font-weight: 500;
     `,
     mobileBody: css`
         font-family: ${sans};
-        font-size: 14px;
+        ${remAdaptiveFont(14, 14, 22, 22)};
+        ${xlFontSize(22)};
         line-height: 1.1;
         font-weight: 500;
     `,
     mobileControl: css`
         font-family: ${sans};
-        font-size: 12px;
+        ${remAdaptiveFont(12, 12, 12, 12)};
         line-height: 1.366;
         font-weight: 500;
     `,
     mobileAction: css`
         font-family: ${sans};
-        font-size: 14px;
-        line-height: 1.366;
+        ${remAdaptiveFont(14, 14, 14, 14)};
+        line-height: 1.1;
         font-weight: 500;
     `,
     mobileAuxiliary: css`
         font-family: ${sans};
-        font-size: 10px;
-        line-height: 1.366;
-        font-weight: 400;
-    `,
-    mobileMicroLink: css`
-        font-family: ${sans};
-        font-size: 8px;
+        ${remAdaptiveFont(10, 10, 10, 10)};
         line-height: 1.366;
         font-weight: 500;
     `,
+    mobileMicroLink: css`
+        font-family: ${sans};
+        ${remAdaptiveFont(8, 8, 8, 8)};
+        line-height: 1.366;
+        font-weight: 500;
+        @media (min-width: 1920px) {
+            font-weight: 400;
+        }
+    `,
     mobileUpload: css`
         font-family: ${sans};
-        font-size: 12px;
-        line-height: 1;
+        ${remAdaptiveFont(12, 12, 12, 12)};
+        line-height: 1.366;
         font-weight: 500;
     `,
     mobileOptionalAction: css`
         font-family: ${sans};
-        font-size: 8px;
+        ${remAdaptiveFont(8, 8, 8, 8)};
         line-height: 1.366;
-        font-weight: 400;
+        font-weight: 500;
     `,
     landingHeading: css`
         font-family: ${sans};
-        font-size: 20px;
+        ${remAdaptiveFont(20, 20, 50, 50)};
+        ${xlFontSize(30)};
         line-height: 1.1;
         font-weight: 500;
     `,
     landingStepHeading: css`
         font-family: ${sans};
-        font-size: 20px;
+        ${remAdaptiveFont(20, 20, 50, 50)};
+        ${xlFontSize(30)};
         line-height: 1.366;
         font-weight: 500;
     `,
     heroTitle: css`
         font-family: ${sans};
         ${remAdaptiveFont(20, 22, 40, 70)};
-        line-height: 0.92;
+        ${xlFontSize(40)};
+        line-height: 1.1;
         font-weight: 500;
-        @media (min-width: 1920px) { font-weight: 600; }
+        @media (min-width: 1920px) {
+            font-weight: 600;
+        }
     `,
     stepIndex: css`
         font-family: ${sans};
         ${remAdaptiveFont(38, 44, 60, 80)};
+        ${xlFontSize(60)};
         line-height: 1.1;
         font-weight: 700;
     `
