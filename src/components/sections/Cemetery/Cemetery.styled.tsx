@@ -162,7 +162,8 @@ export const ScrollViewport = styled.div`
     overflow-x: auto;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
+    /* No CSS smooth-scroll: it turns each wheel notch into a slow animation and
+       makes manual scrolling crawl. Programmatic jumps pass behavior:'smooth'. */
     scrollbar-gutter: stable;
 
     ${mediaBreakpointDown('md')} {

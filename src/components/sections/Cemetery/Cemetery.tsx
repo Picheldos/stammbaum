@@ -61,10 +61,11 @@ import {
     TRACK_PADDING,
     computeAxisPos,
     computePersonNodes,
-    parsePeriods,
+    buildDeathWindows,
     parsePersons
 } from './cemeteryUtils';
 import { useMedia } from '@/hooks/useMedia';
+import useSmoothScrollX from '@/hooks/useSmoothScrollX';
 import CemeteryAddPersonModal, { type CemeteryPersonValues } from './CemeteryAddPersonModal';
 
 export interface CemeteryProps {
@@ -146,11 +147,6 @@ const Cemetery: React.FC<CemeteryProps> = ({ periods: periodsProp, persons: pers
         reloadFamily();
     }, [session, reloadFamily]);
 
-    const periods = useMemo(
-        () => parsePeriods(periodsProp ?? t('periods', { returnObjects: true })),
-        [periodsProp, t]
-    );
-
     const allPersons = useMemo(() => {
         // Explicit page props win over both sources (tests / static previews).
         if (personsProp) return parsePersons(personsProp);
@@ -180,8 +176,21 @@ const Cemetery: React.FC<CemeteryProps> = ({ periods: periodsProp, persons: pers
         return parsePersons(t('persons', { returnObjects: true }));
     }, [personsProp, familyPersons, focusId, familyRelations, tTree, t]);
 
+    // Periods are 100-year windows derived from the dead relatives themselves:
+    // only windows containing a death are shown, snapped to century boundaries,
+    // always at least one full window (100 years). This keeps the line short —
+    // and the scroll fast — instead of the old fixed 1700–2026 span with three
+    // empty centuries to crawl through.
+    const periods = useMemo(
+        () => periodsProp ?? buildDeathWindows(allPersons, new Date().getFullYear()),
+        [periodsProp, allPersons]
+    );
+
     const isDesktop = useMedia('(min-width: 768px)', false);
-    const pixelsPerYear = isDesktop ? PIXELS_PER_YEAR_DESKTOP : PIXELS_PER_YEAR_MOBILE;
+
+    // Inner size of the scroll viewport (width on desktop, height on mobile),
+    // measured so the track can be stretched to fill at least 100% of it.
+    const [viewportExtent, setViewportExtent] = useState(0);
 
     const [activeId, setActiveId] = useState<string | null>(null);
     const [highlightId, setHighlightId] = useState<string | null>(null);
@@ -194,6 +203,16 @@ const Cemetery: React.FC<CemeteryProps> = ({ periods: periodsProp, persons: pers
     const startYear = periods[0]?.startYear ?? 1700;
     const endYear = periods[periods.length - 1]?.endYear ?? 2026;
     const totalYears = endYear - startYear;
+
+    // Stretch the per-year density so the whole track is at least as long as the
+    // visible window (100% width/height), but never denser than the design's
+    // reference scale for longer spans.
+    const basePixelsPerYear = isDesktop ? PIXELS_PER_YEAR_DESKTOP : PIXELS_PER_YEAR_MOBILE;
+    const pixelsPerYear = useMemo(() => {
+        if (totalYears <= 0) return basePixelsPerYear;
+        const fit = (viewportExtent - 2 * TRACK_PADDING) / totalYears;
+        return Math.max(basePixelsPerYear, fit);
+    }, [basePixelsPerYear, viewportExtent, totalYears]);
 
     const handlePeriodClick = (id: string) => {
         setActiveId(id);
@@ -547,22 +566,25 @@ const Cemetery: React.FC<CemeteryProps> = ({ periods: periodsProp, persons: pers
         return () => window.clearTimeout(timer);
     }, [activeId]);
 
-    // Vertical mouse-wheel scrolls the horizontal timeline (desktop).
-    // Page scrolling is only hijacked while the timeline can actually scroll.
+    // Measure the viewport so the track can be stretched to fill it. A
+    // ResizeObserver also catches the scrollbar-gutter and breakpoint changes,
+    // not just window resizes.
     useEffect(() => {
         const el = viewportRef.current;
         if (!el) return;
-        const onWheel = (e: WheelEvent) => {
-            if (e.deltaY === 0 || el.scrollWidth <= el.clientWidth) return;
-            const atStart = el.scrollLeft <= 0 && e.deltaY < 0;
-            const atEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 1 && e.deltaY > 0;
-            if (atStart || atEnd) return;
-            e.preventDefault();
-            el.scrollLeft += e.deltaY;
-        };
-        el.addEventListener('wheel', onWheel, { passive: false });
-        return () => el.removeEventListener('wheel', onWheel);
-    }, []);
+        const measure = () => setViewportExtent(isDesktop ? el.clientWidth : el.clientHeight);
+        measure();
+        const observer = new ResizeObserver(measure);
+        observer.observe(el);
+        return () => observer.disconnect();
+    }, [isDesktop]);
+
+    // Desktop: vertical mouse-wheel drives the horizontal timeline with the
+    // project's inertial (GSAP-ticker lerp) smooth-scroll — the same feel as the
+    // page-level useSmoothScroll, applied to the track's own scrollLeft. Enabled
+    // only for the horizontal (desktop) layout; the vertical mobile layout keeps
+    // native scrolling.
+    useSmoothScrollX(viewportRef, { enabled: isDesktop, speed: 1.2 });
 
     return (
         <CemeterySection>
