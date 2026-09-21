@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { useRecoilValue } from 'recoil';
 import { SizesState } from '@/recoil/commonState/athom';
+import useRevealOnScroll from '@/hooks/useRevealOnScroll';
 
 import {
     CtaButton,
@@ -24,12 +25,13 @@ const MainSection: React.FC = () => {
     const { t } = useTranslation('index');
     const router = useRouter();
     const { isMobile } = useRecoilValue(SizesState);
+    const heroTitleRef = useRevealOnScroll<HTMLHeadingElement>();
 
     return (
         <LandingRoot>
             <HeroGrid>
                 <HeroContent>
-                    <HeroTitle>{t('hero.title')}</HeroTitle>
+                    <HeroTitle ref={heroTitleRef}>{t('hero.title')}</HeroTitle>
                     <StepsList>
                         {STEP_INDEX_WEIGHTS.map((weight, index) => {
                             const step = index + 1;

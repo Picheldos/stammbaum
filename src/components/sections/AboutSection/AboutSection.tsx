@@ -6,6 +6,7 @@ import { useTranslation } from 'next-i18next';
 import React, { useCallback, useMemo, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 
+import useRevealOnScroll from '@/hooks/useRevealOnScroll';
 import { Container, FlexContainer } from './AboutSection.styled';
 
 type StepConfig = {
@@ -41,6 +42,7 @@ const AboutSection: React.FC = () => {
     const { t } = useTranslation('about');
     const { isMobile } = useRecoilValue(SizesState);
     const [activeStep, setActiveStep] = useState<number | null>(null);
+    const titleRef = useRevealOnScroll<HTMLHeadingElement>();
 
     const steps = useMemo(() => {
         const translations = parseSteps(t('steps', { returnObjects: true }));
@@ -70,7 +72,7 @@ const AboutSection: React.FC = () => {
 
     return (
         <Container>
-            <h1>{t('title')}</h1>
+            <h1 ref={titleRef}>{t('title')}</h1>
 
             <FlexContainer>
                 {isMobile ? (
